@@ -22,7 +22,7 @@
               <!-- trigger modal -->
               <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-search"></i> Search</a></li>
               <li><a href="#"><i class="fas fa-language"></i> English</a></li>
-              <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle"></i> Login</a></li>
+              <li ><a href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle"></i> Login</a></li>
           </ul>
 
           <!-- Modal -->
@@ -166,13 +166,29 @@
                   </div>
               </li>
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                   <a class="nav-link" href="#">English</a>
-              </li>
+              </li> -->
 
-              <li class="nav-item">
-                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle fa-md fa-fw"></i> Login</a>
-              </li>
+              <li *ngIf="!_authService.loggedIn()"  class="nav-item">
+                  <a  class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle fa-md fa-fw"></i> Login </a>    
+                </li>
+
+                <li *ngIf="_authService.loggedIn()"  class="nav-item dropdown">
+                        <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mx-1">{{_authService.getUserName()}}</span>
+                            <i class="fas fa-chevron-down fa-sm fa-fw"></i>
+                        </a>
+                       
+                        <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" routerLink="/profile">
+                                        <i class="fas fa-user-circle fa-md fa-fw"></i> Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:;" (click)="_authService.logoutUser()"><i class="fas fa-sign-out-alt"></i> logout</a>
+                        </div>
+                    </li>
+
           </ul>
 
       </div>
@@ -181,7 +197,7 @@
 <!-- END NAIGATION BAR -->
 
 <!-- Start Modal Login -->
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div id="mainmodel" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
           <div class="brand-logo text-center">
@@ -201,7 +217,7 @@
                       <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                            <app-login>
-                               
+
                            </app-login>
 
                               <div class="password">
@@ -210,25 +226,9 @@
                               </div><!-- End Password-->
                           </div>
                           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                              <form action="" method="">
-                                  <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="Username" name="">
-                                      <small id="emailHelp" class="form-text">Please provide a valid username.</small>
-                                  </div>
-                                  <div class="form-group">
-                                      <input type="email" class="form-control" placeholder="E-mail" name="">
-                                      <small id="emailHelp" class="form-text">Please provide a valid email.</small>
-                                  </div>
-                                  <div class="form-group">
-                                      <input type="password" class="form-control" placeholder="Password" name="">
-                                      <small id="emailHelp" class="form-text">Your Password must be more than five.</small>
-                                  </div>
-                                  <div class="form-group">
-                                      <input type="password" class="form-control" placeholder="Re-Password" name="">
-                                      <small id="emailHelp" class="form-text">Please Write Password</small>
-                                  </div>
-                                  <button type="button" class="btn btn-primary register success2">Register</button>
-                              </form>
+                              <app-register>
+
+                              </app-register>
 
                               <div class="password">
                                   <a href="#">I’m forget my password</a>

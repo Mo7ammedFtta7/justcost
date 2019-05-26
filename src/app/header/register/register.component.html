@@ -1,9 +1,8 @@
-<div class="py-5">
+<!-- <div class="py-5">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <span class="anchor" id="formLogin"></span>
   
-        <!-- form card login -->
         <div class="card rounded-0">
           <div class="card-header">
             <h3 class="mb-0">Register</h3>
@@ -21,12 +20,41 @@
               <button type="button" (click)="registerUser()" class="btn btn-primary float-right">Register</button>
             </form>
           </div>
-          <!--/card-block-->
         </div>
-        <!-- /form card login -->
   
       </div>
   
   
     </div>
-  </div>
+  </div> -->
+
+  <form  #f="ngForm" (ngSubmit)="regSubmit(f)">
+      <div class="form-group">
+          <input type="text" class="form-control" placeholder="Full name" name="name" ngModel required #spy>
+                  <small *ngIf="name"  id="emailHelp1" class="form-text">Please provide a valid username.</small>
+      </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username" name="username" ngModel required>
+        <small *ngIf="username_faild" id="emailHelp2" class="form-text">Please provide a valid username.</small>
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control" placeholder="E-mail" name="email" ngModel required email>
+        <small  *ngIf="username_faild" id="emailHelp3" class="form-text">Please provide a valid email.</small>
+    </div>
+    <div class="form-group">
+        <input type="number" class="form-control" placeholder="Mobile" name="mobile" minlength="8" ngModel required>
+        <small *ngIf="username_faild" id="emailHelp4" class="form-text">Your mobile must be more than 8.</small>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" name="password" ngModel required>
+        <small *ngIf="username_faild" id="emailHelp4" class="form-text">Your Password must be more than five.</small>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Re-Password" name="c_password"  ngModel required>
+        <input type="hidden"  name="city" ngModel >
+        <input type="hidden"  name="firebaseToken" ngModel >
+
+            <small *ngIf="pass_match"  id="emailHelp5" class="form-text">Passwords do not match</small>
+    </div>
+    <button type="submit" class="btn btn-primary register ">Register</button>
+</form>

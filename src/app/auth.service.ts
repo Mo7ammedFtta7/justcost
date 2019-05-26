@@ -7,7 +7,7 @@ import { environment } from './../environments/environment';
 @Injectable()
 export class AuthService {
 
-  private _registerUrl =environment.production+"http://localhost:3000/api/register";
+  private _registerUrl =environment.ApiUrl+"customer/register";
   private _loginUrl = environment.ApiUrl+"customer/login";
 
   constructor(private http: HttpClient,
@@ -23,11 +23,20 @@ export class AuthService {
 
   logoutUser() {
     localStorage.removeItem('token')
-    this._router.navigate(['/events'])
+    this._router.navigate(['/home'])
   }
 
   getToken() {
     return localStorage.getItem('token')
+  }
+
+  getUserName() {
+   //let user=JSON.parse(localStorage.getItem('data'))
+  let user=localStorage.getItem('data')
+let xx=JSON.parse(user)
+
+return xx.userInfo.username
+    
   }
 
   loggedIn() {

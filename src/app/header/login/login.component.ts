@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { UserLogin } from '../../_models/user-login';
 import { Alert } from 'selenium-webdriver';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
+declare function success(msg):any;
 
 
 
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
  
   onSubmit(f: NgForm) {
-    console.log(f.value);  // { first: '', last: '' }
+  //  console.log(f.value);  // { first: '', last: '' }
     if (!f.valid) {
       this.username_faild=true;
       this.password_faild=true;
@@ -33,28 +34,33 @@ export class LoginComponent implements OnInit {
     {
       this.loginUser(f)
     }
-    console.log(f.valid);  // false
+   // console.log(f.valid);  // false
   }
 
   loginUser (user) {
     this._auth.loginUser(user.value)
     .subscribe(
       res => {
-        console.log(res.statusText)
-        
-        
-        // if (res.status==401) {
-        //   alert(res.statusText);
-        // }
-        // localStorage.setItem('token', res.token)
-        // this._router.navigate(['/home'])
+        console.log("isVerified: "+JSON.stringify(res.data))
+        if (res.data.userInfo.isVerified!=true) {
+          Swal.fire( "Oops" ,  "you have to confirm your account before continuing check your email" ,  "error" )
+
+        } else {
+          localStorage.setItem('token', res.data.token)
+          localStorage.setItem('data', JSON.stringify(res.data))
+          success("Welcome :)");
+        }
+
+    
+
       },
       err => {
         if (err.status==401) {
           user.reset();
           this.username_faild=true;
           this.password_faild=true;
-          //alert(err.statusText);
+          Swal.fire( "Oops" ,  "Please Write a valid username and password" ,  "error" )
+  
         } else {
         //  this.password_faild=true;
           console.log(err)

@@ -1,30 +1,57 @@
-/*global $, document , window */
+function owl() {
+
+
+    $.ajax({
+        type: 'get',
+        url: 'http://localhost:8000/api/sliders',
+        contentType: 'application/json',
+        success : function (data) {
+            console.log(data.data);
+            html='<div class="owl-carousel">';
+    
+              data.data.forEach(element => {
+                html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
+              });
+    
+            html+='</div>';
+            $("#slider").append(html);
+            
+           // $(".owl-carousel").owlCarousel();
+            var $owl = $('.owl-carousel').owlCarousel({
+              items: 1,
+              loop:true
+          });
+          
+          $owl.trigger('refresh.owl.carousel');
+    
+        }
+      });
+}
+
+function success(msg){
+    swal({
+        title: msg,
+        icon: 'success',
+        className: "green-bg",
+        buttons: {
+            cancel: false,
+            confirm: 'Ok',
+        },
+    });
+    $('#mainmodel').modal('hide');
+
+}
 
 $(document).ready(function () {
 
+    //   var $owl = $('.owl-carousel').owlCarousel({
+    //       items: 1,
+    //       loop:true
+    //   });
+      
+    //   $owl.trigger('refresh.owl.carousel');
 // USE STRICT
 
-'use strict';
-
-// TRIGGER SLIDER 
-
-$(".slider .owl-carousel").owlCarousel({
-    items: 1,
-    loop: true,
-    mouseDrag: false,
-    autoplay: true,
-    autoplayTimeout: 4000
-
-});
-
-$(".account .slider-section .slider2 .owl-carousel").owlCarousel({
-    items: 1,
-    loop: true,
-    mouseDrag: false,
-    autoplay: false,
-    autoplayTimeout: 4000
-
-});
 
 // TRIGGER NICE SCROLL
 
@@ -102,7 +129,6 @@ $('.details .panel .file4').wrap('<div class="item-upload"><i class="fas fa-plus
 // TRIGGER SWEET ALERT
 
 $('.success').click(function () {
-
     swal({
         title: "Your ad has been posted",
         icon: 'success',

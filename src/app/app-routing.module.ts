@@ -6,6 +6,9 @@ import { EventsComponent } from './pages/events/events.component';
 import { HomeComponent} from './pages/home/home.component';
 import { SpecialEventsComponent } from './pages/special-events/special-events.component';
 import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProductComponent } from './pages/product/product.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 const routes: Routes = [
   {
@@ -33,6 +36,21 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  }
+  ,
+  {
+    path: 'profile',
+    component: ProfileComponent
+  }
+  ,
+  {
+    path: 'products',
+    component: ProductsComponent
+  }
+  ,
+  {
+    path: 'product',
+    component: ProductComponent
   }
 ];
 
