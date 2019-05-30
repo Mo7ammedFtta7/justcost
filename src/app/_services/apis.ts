@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../environments/environment';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Rx';
 import { slider } from '../_models/slider';
+import { AuthService } from '../auth.service';
 
 
 @Injectable()
 export class apis {
-
+  
+  
   private _eventsUrl = "http://localhost:3000/api/events";
   private _specialEventsUrl = "http://localhost:3000/api/special";
     url = environment.ApiUrl+'sliders';
@@ -17,11 +19,17 @@ export class apis {
 
     public  GetFromApi(url) { 
             return this.http.get(url).catch(this.errorHandler);  
-        }
+    }
         
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,public _authService: AuthService) { }
 
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'bearer ' + this._authService.getToken()
+    })
+  };
   
 
   getEvents() {
@@ -42,10 +50,12 @@ export class apis {
   }
 
   GetApi(url){
-      let any:any[];
+      let any:any;
       let errorMsg;
-    this.GetFromApi( environment.ApiUrl+url).subscribe(res =>{any = res['data']},
+      console.log('------------------------');
+    this.GetFromApi(environment.ApiUrl+url).subscribe(res =>{any = res['data']},
     error => errorMsg = error)
+
     return any
   }
   
@@ -55,5 +65,18 @@ export class apis {
   getSpecialEvents() {
     return this.http.get<any>(this._specialEventsUrl)
   }
+
+  likeProduct(productId:number) {
+    return this.http.post<any>(environment.ApiUrl+'likes',{'product_id':productId},this.httpOptions)
+    .catch(this.errorHandler);
+  }
+
+
+  like(productId:number ) {
+     this.likeProduct(productId).subscribe((data: {}) => {
+       console.log( data['data'])
+     });
+   }
+
 }
 

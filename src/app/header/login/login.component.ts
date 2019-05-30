@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(user.value)
     .subscribe(
       res => {
-        console.log("isVerified: "+JSON.stringify(res.data))
+       // console.log("isVerified: "+JSON.stringify(res.data))
         if (res.data.userInfo.isVerified!=true) {
           Swal.fire( "Oops" ,  "you have to confirm your account before continuing check your email" ,  "error" )
 
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
   
         } else {
         //  this.password_faild=true;
-          console.log(err)
+        //  console.log(err)
         }
       }
     ) 

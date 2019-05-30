@@ -1,0 +1,21 @@
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #383F4C;
+    color: white;
+ }
+
+ 
+ .my-pagination /deep/ .ngx-pagination li {
+   /* background-color: #eaeaea;
+     display: inline-block;
+    font-size: 15px;
+    padding: 5px 12px; */
+    border-radius: 5px;
+    /* outline: none;
+    border: none;
+    margin-right: 10px;
+    margin-top: 40px;
+    transition: all .4s ease;
+    cursor: pointer; */
+}
+
+

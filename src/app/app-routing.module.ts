@@ -19,38 +19,40 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+    ,
+    pathMatch: 'full'
   },
   {
     path: 'events',
     component: EventsComponent
+    ,
+    pathMatch: 'full'
   },
   {
     path: 'special',
     canActivate: [AuthGuard],
     component: SpecialEventsComponent
+    ,
+    pathMatch: 'full'
   },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  }
-  ,
+  
   {
     path: 'profile',
     component: ProfileComponent
   }
   ,
   {
-    path: 'products',
+    path: 'products/:id',
     component: ProductsComponent
+    ,
+    pathMatch: 'full'
   }
   ,
   {
-    path: 'product',
+    path: 'product/:id',
     component: ProductComponent
+    ,
+    pathMatch: 'full'
   }
 ];
 

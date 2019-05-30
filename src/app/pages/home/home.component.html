@@ -11,14 +11,14 @@
     <div class="ads py-4">
         <div class="row">
             
-           <!-- <div *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
+           <div *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
                 <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
                     <div class="item">
-                        <img src="{{item.media[0].name}}" alt="Image" class="img-fluid">
+                        <img src="{{item.media[0].url}}" alt="Image" class="img-fluid">
                         <span class="disc">Discount <span> {{reg_price *sale_price/100}} %</span></span>
                     </div>
                     <div class="info">
-                        <h5>{{item.title}}</h5>
+                        <h5> <a routerLink="/product/{{item.productId}}">{{item.title}}</a></h5>
                         <span>{{item.category}}</span>
                     </div>
                     <div class="end-info">
@@ -26,14 +26,13 @@
                         <a href="#"><i class="far fa-star"></i></a>
                         <a href="#"><i class="far fa-star"></i></a>
                         <a href="#"><i class="far fa-star"></i></a>
-
                         <a href="#" class="button float-right"><i class="far fa-heart"></i> save</a>
                         <div class="claerfix"></div>
                     </div>
                 </div>
-            </div> Col #1 -->
+            </div> 
 
-            <div class="col-xl-3 col-sm-6">
+            <!-- <div class="col-xl-3 col-sm-6">
                     <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
                         <div class="item">
                             <img src="http://admin.just-cost.com/storage/products_media/p1.png" alt="Image" class="img-fluid">
@@ -53,7 +52,7 @@
                             <div class="claerfix"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
         </div><!-- End Row -->
     </div><!-- End Ads-->
 </section>
@@ -72,7 +71,7 @@
                     </div>
                     <div class="links">
                         <ul class="list-unstyled">
-                            <li *ngFor="let sub of category.subs;"><a routerLink="/products" queryParams="{id: sub.id}">{{sub.name}}</a> <span>{{sub.count}}</span></li>
+                            <li *ngFor="let sub of category.subs;"><a routerLink="/products/{{sub.id}}">{{sub.name}}</a> <span>{{sub.count}}</span></li>
                         </ul>
                     </div>
                 </div>

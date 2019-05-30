@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
 
       }
     }
-    console.log(f);  // false
+    ///console.log(f);  // false
   }
 
   reqUser (user) {
@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
 
         } else {
         //  this.password_faild=true;
-          console.log(err)
+         // console.log(err)
         }
       }
     ) 

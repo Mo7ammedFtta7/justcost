@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { AppComponent } from './app.component';
 import { LoginComponent } from './header/login/login.component';
 import { RegisterComponent } from './header/register/register.component';
@@ -40,7 +40,8 @@ import { ResultsComponent } from './pages/results/results.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   providers: [AuthService,apis, AuthGuard, EventService, 
   {
