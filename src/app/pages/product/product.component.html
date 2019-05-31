@@ -155,13 +155,9 @@
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> Report Ad</a>
                 </ng-container>
                 <ng-template #elseTemplate>
-                            <ng-container *ngIf="product?.likes==true; else elseTemplate">
-                                    <a href="javascript:;"  class="red"><i class="fas fa-heart"></i> Remove from favorite</a>
-                            </ng-container>
-                            <ng-template #elseTemplate>
-                                    <a href="javascript:;" (click)="onLike()"  class="red"><i class="far fa-heart"></i> Add to favorite</a>
-
-                            </ng-template>
+                          
+                                    <a href="javascript:;" (click)="onLike()"  class="red"><i [ngClass]="product?.likes==true ? 'fas fa-heart' : 'far fa-heart'"></i> Add to favorite</a>
+       
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> Report Ad</a>
                 </ng-template>
                 

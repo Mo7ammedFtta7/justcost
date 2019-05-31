@@ -20,6 +20,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ResultsComponent } from './pages/results/results.component';
+import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ResultsComponent } from './pages/results/results.component';
     ProductComponent,
     ProductsComponent,
     ProfileComponent,
-    ResultsComponent
+    ResultsComponent,
+    EmailverifyComponent
   ],
   imports: [
     BrowserModule,

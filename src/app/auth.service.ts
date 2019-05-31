@@ -31,12 +31,10 @@ export class AuthService {
   }
 
   getUserName() {
-   //let user=JSON.parse(localStorage.getItem('data'))
-  let user=localStorage.getItem('data')
-let xx=JSON.parse(user)
-
-return xx.userInfo.username
-    
+    //let user=JSON.parse(localStorage.getItem('data'))
+    let user=localStorage.getItem('data')
+    let xx=JSON.parse(user)
+    return xx.userInfo.username
   }
 
   loggedIn() {

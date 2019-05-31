@@ -9,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,12 @@ const routes: Routes = [
     ,
     pathMatch: 'full'
   }
+  ,
+  {
+    path: 'emailverify/:token',
+    component: EmailverifyComponent
+  }
+
 ];
 
 @NgModule({

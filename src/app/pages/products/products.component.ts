@@ -55,7 +55,6 @@ export class ProductsComponent implements OnInit {
     this.rest.getBrands(this.id).subscribe((data: {}) => {
       this.Brands = data['data'];
       console.log(data['data']);
-
     });
   }
 

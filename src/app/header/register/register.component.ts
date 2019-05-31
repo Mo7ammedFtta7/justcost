@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   username_faild=false;
   password_faild=false;
   pass_match=false;
+  public FromWeb=1
   // regForm = new FormGroup({
   //   username: new FormControl(''),
   //   password: new FormControl(''),
@@ -53,6 +54,8 @@ export class RegisterComponent implements OnInit {
       {
         f.value.city=1;
         f.value.firebaseToken=1;
+        f.value.FromWeb = 1;
+
         //console.log(f);  // { first: '', last: '' }
 
         this.reqUser(f)

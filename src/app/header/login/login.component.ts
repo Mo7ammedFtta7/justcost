@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(user.value)
     .subscribe(
       res => {
-       // console.log("isVerified: "+JSON.stringify(res.data))
         if (res.data.userInfo.isVerified!=true) {
           Swal.fire( "Oops" ,  "you have to confirm your account before continuing check your email" ,  "error" )
 

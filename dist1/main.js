@@ -1065,6 +1065,8 @@ var RegisterComponent = /** @class */ (function () {
             else {
                 f.value.city = 1;
                 f.value.firebaseToken = 1;
+                f.value.FromWeb = 1;
+
                 //console.log(f);  // { first: '', last: '' }
                 this.reqUser(f);
             }
@@ -1799,7 +1801,7 @@ var TokenInterceptorService = /** @class */ (function () {
     TokenInterceptorService.prototype.intercept = function (req, next) {
         var authService = this.injector.get(_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]);
         var tokenizedReq = req.clone({
-            headers: req.headers.set('Authorization', 'bearer ' + authService.getToken())
+            headers: req.headers.set('Authorization', 'Bearer ' + authService.getToken())
         });
         return next.handle(tokenizedReq);
     };

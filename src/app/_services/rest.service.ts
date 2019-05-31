@@ -35,10 +35,12 @@ import { environment } from '../../environments/environment';
       map(this.extractData));
   }
 
-   getBrands(id): Observable<any> {
+  getBrands(id): Observable<any> {
     return this.http.get(environment.ApiUrl + 'brandsogcategory/'+id).pipe(
       map(this.extractData));
   }
-
+  getEmailValidation(id): Observable<any> {
+    return this.http.get(environment.ApiUrl + 'customer/emailvalidation/'+id)
+  }
 
 }
