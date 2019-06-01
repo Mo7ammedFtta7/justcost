@@ -3,7 +3,7 @@ function owl() {
 
     $.ajax({
         type: 'get',
-        url: 'http://localhost:8000/api/sliders',
+        url: 'http://admin.just-cost.com/api/sliders',
         contentType: 'application/json',
         success : function (data) {
             console.log(data.data);

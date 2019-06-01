@@ -1,0 +1,217 @@
+<div class="main-title" style="margin-bottom: 30px;">
+  <h5 style="margin: 0; color: #383F4C; font-size: 20px;">Post New Ad</h5>
+</div><!-- End Title -->
+<div class="post-new">
+  <div class="row">
+      <div class="col-xl-4 col-sm-12">
+          <div class="new">
+              <div class="person">
+                  <img src="images/user.png" class="rounded-circle float-left" alt="User Image" width="70">
+                  <div class="float-left data-person">
+                      <h6>Mohamed Ali</h6>
+                      <span>Member Since February 19, 2019</span>
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+              <!-- Start List Links -->
+              <ul class="list-unstyled text-uppercase">
+                  <li><a href="#"><i class="fas fa-user"></i> about me</a></li>
+                  <li>
+                      <a href="#"><i class="fas fa-suitcase"></i> my ads</a>
+                      <span class="count float-right">10</span>
+                      <div class="clearfix"></div>
+                  </li>
+                  <li>
+                      <a href="#"><i class="fas fa-heart"></i> watch later ads</a>
+                      <span class="count float-right">44</span>
+                  </li>
+                  <li><a href="#"><i class="fas fa-cogs"></i> profile settings</a></li>
+                  <li><a href="#"><i class="fas fa-sign-out-alt"></i> log out</a></li>
+              </ul>
+          </div><!-- End New -->
+      </div><!-- Col #1 -->
+
+      <div class="col-xl-8 col-sm-12">
+          <div class="add-ad">
+              <h6 class="small-title">Select a Category :</h6>
+              <div class="row">
+
+                  <div *ngFor="let category of categories" class="col-lg-3 col-sm-6">
+                      <div class="panel text-center wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
+                          <img src="images/icons/car.png" alt="Car Icon" width="40">
+                          <h6>Automotive</h6>
+                      </div>
+                  </div>
+              
+              </div><!-- Row Tow -->
+          </div><!-- End Add -->
+
+          <div class="details">
+              <h6 class="small-title">ad Details :</h6>
+              <span class="line"></span>
+              <span>Select Sub Category :</span>
+              <ul class="list-unstyled row">
+                  <li class="col-sm-4"><a href="#">Bikes</a></li>
+                  <li class="col-sm-4"><a href="#">Boats</a></li>
+                  <li class="col-sm-4"><a href="#">Number Plates</a></li>
+                  <li class="col-sm-4"><a href="#">Used Cars for Sale</a></li>
+                  <li class="col-sm-4"><a href="#">Auto Accessories</a></li>
+                  <li class="col-sm-4"><a href="#">Heavy Vehicles</a></li>
+                  <li class="col-sm-4"><a href="#">Motorcycles</a></li>
+                  <li class="col-sm-4"><a href="#">Parts</a></li>
+              </ul>
+
+              <!-- Start Form -->
+              <form>
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Ad Title :<span class="red">*</span></span>
+                      <div class="col-sm-8">
+                          <input type="text" class="form-control mb-2" placeholder="Write a title for your ad" dir="auto">
+                          <small class="form-text text-muted">Type minimum 5 characters</small>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Ad Description :<span class="red">*</span></span>
+                      <div class="col-sm-8">
+                          <textarea class="form-control mb-2" dir="auto"></textarea>
+                          <small class="form-text text-muted">Write description</small>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Keywords :</span>
+                      <div class="col-sm-8">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text"><i class="fas fa-tag"></i></div>
+                              </div>
+                              <input type="text" class="form-control control2" placeholder=" Enter keywords for better search..!" dir="auto">
+                          </div>
+                          <small class="form-text text-muted">Keywords Example : ads, car, cat, business</small>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Ad Price :</span>
+                      <div class="col-xl-3 col-sm-4">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text"><span class="text-uppercase">Aed</span></div>
+                              </div>
+                              <input type="text" class="form-control control2" placeholder="Regular price" dir="auto">
+                          </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-4">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text"><span class="text-uppercase">Aed</span></div>
+                              </div>
+                              <input type="text" class="form-control control2" placeholder="Sale Price" dir="auto">
+                          </div>
+                      </div>
+                      <div class="col-sm-2">
+                          <div class="alert-off text-right">
+                              <span class="alert-yellow">0% off</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Phone Number :</span>
+                      <div class="col-sm-8">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text"><i class="fas fa-phone-square"></i></div>
+                              </div>
+                              <input type="text" class="form-control control2" placeholder="Write your phone number" dir="auto">
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Start Location Details -->
+                  <h6 class="small-title">ad Location :</h6>
+                  <span class="line"></span>
+
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Select Country :<span class="red">*</span></span>
+                      <div class="col-sm-8">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text"><i class="fas fa-globe"></i></div>
+                              </div>
+                              <select class="form-control control2">
+                                  <option selected>select Country</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Select City :<span class="red">*</span></span>
+                      <div class="col-sm-8">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text"><i class="fas fa-globe"></i></div>
+                              </div>
+                              <select class="form-control control2">
+                                  <option selected>select City</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Map Location :</span>
+                      <div class="col-sm-8">
+                          <div class="map">
+                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232565.37346064637!2d54.41853622413337!3d24.387078860425174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f723ef2b9%3A0xc7cc2e9341971108!2sAbu+Dhabi+-+United+Arab+Emirates!5e0!3m2!1sen!2s!4v1552388228569" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Start Media Details -->
+                  <h6 class="small-title">ad Media :</h6>
+                  <span class="line"></span>
+
+                  <div class="form-group row">
+                      <span class="col-sm-4 col-form-label">Ad Photos & Videos :</span>
+                      <div class="col-sm-8">
+                          <div class="col-sm-12">
+                              <i class="fas fa-cloud-upload-alt float-left"></i>
+                              <div class="text float-left px-4">
+                                  <span>Select ﬁles to upload</span>
+                                  <small class="form-text text-muted">You can upload 4 Images maximum.</small>
+                              </div>
+                              <div class="clearfix"></div>
+                          </div>
+                          <div class="col-sm-12">
+                              <div class="panel row">
+                                  <div class="col-lg-3 col-sm-6">
+                                      <input type="file" class="file1">
+                                  </div>
+                                  <div class="col-lg-3 col-sm-6">
+                                      <input type="file" class="file2">
+                                  </div>
+                                  <div class="col-lg-3 col-sm-6">
+                                      <input type="file" class="file3">
+                                  </div>
+                                  <div class="col-lg-3 col-sm-6">
+                                      <input type="file" class="file4">
+                                  </div>
+                              </div>
+                          </div><!-- Col Upload -->
+                      </div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 15px;">
+                      <button type="button" class="button success"><i class="far fa-check-circle"></i> Publish My Ad</button>
+                  </div>
+              </form>
+              <!-- End Form-->
+              <p>By clicking "Publish Ad", you agree to our <a href="#">Terms of Use</a> and acknowledge that you are the rightful owner of this item</p>
+          </div><!-- End Details -->
+      </div><!-- Col #2 -->
+  </div><!-- End Row -->
+</div><!-- End Post-New -->

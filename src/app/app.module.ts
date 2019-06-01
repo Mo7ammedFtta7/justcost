@@ -21,6 +21,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ResultsComponent } from './pages/results/results.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
+import { PostaddComponent } from './pages/postadd/postadd.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EmailverifyComponent } from './pages/emailverify/emailverify.component'
     ProductsComponent,
     ProfileComponent,
     ResultsComponent,
-    EmailverifyComponent
+    EmailverifyComponent,
+    PostaddComponent
   ],
   imports: [
     BrowserModule,

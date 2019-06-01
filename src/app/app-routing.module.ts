@@ -10,6 +10,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
+import { PostaddComponent } from './pages/postadd/postadd.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,11 @@ const routes: Routes = [
   {
     path: 'emailverify/:token',
     component: EmailverifyComponent
+  }
+  ,
+  {
+    path: 'postadd',
+    component: PostaddComponent
   }
 
 ];
