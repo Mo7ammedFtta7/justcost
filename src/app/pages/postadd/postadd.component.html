@@ -36,10 +36,10 @@
               <h6 class="small-title">Select a Category :</h6>
               <div class="row">
 
-                  <div *ngFor="let category of categories" class="col-lg-3 col-sm-6">
-                      <div class="panel text-center wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
-                          <img src="images/icons/car.png" alt="Car Icon" width="40">
-                          <h6>Automotive</h6>
+                  <div *ngFor="let category of categories"   class="col-lg-3 col-sm-6">
+                      <div class="panel text-center wow fadeIn"  (click)="ref(category.id)" data-wow-offset="0" data-wow-delay="0s">
+                          <img src="{{category.image}}" alt="Car Icon" width="40">
+                          <h6>{{category.name}}</h6>
                       </div>
                   </div>
               
@@ -50,34 +50,32 @@
               <h6 class="small-title">ad Details :</h6>
               <span class="line"></span>
               <span>Select Sub Category :</span>
-              <ul class="list-unstyled row">
-                  <li class="col-sm-4"><a href="#">Bikes</a></li>
-                  <li class="col-sm-4"><a href="#">Boats</a></li>
-                  <li class="col-sm-4"><a href="#">Number Plates</a></li>
-                  <li class="col-sm-4"><a href="#">Used Cars for Sale</a></li>
-                  <li class="col-sm-4"><a href="#">Auto Accessories</a></li>
-                  <li class="col-sm-4"><a href="#">Heavy Vehicles</a></li>
-                  <li class="col-sm-4"><a href="#">Motorcycles</a></li>
-                  <li class="col-sm-4"><a href="#">Parts</a></li>
-              </ul>
+              <div id=subs>
+
+              </div>
 
               <!-- Start Form -->
-              <form>
+              <form #create="ngForm" (ngSubmit)="createadd(create)">
                   <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Ad Title :<span class="red">*</span></span>
                       <div class="col-sm-8">
-                          <input type="text" class="form-control mb-2" placeholder="Write a title for your ad" dir="auto">
+                          <input type="text" name="title" class="form-control mb-2" placeholder="Write a title for your ad" dir="auto" ngModel required>
+                          <input type="text" id="category_id" name="category_id" ngValue="8" ng-model-options="{ updateOn: 'change' }" ngModel required>
                           <small class="form-text text-muted">Type minimum 5 characters</small>
                       </div>
                   </div>
                   <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Ad Description :<span class="red">*</span></span>
                       <div class="col-sm-8">
-                          <textarea class="form-control mb-2" dir="auto"></textarea>
+                          <textarea name="description" ngModel required  class="form-control mb-2" dir="auto"></textarea>
                           <small class="form-text text-muted">Write description</small>
                       </div>
                   </div>
-                  <div class="form-group row">
+                  <input type="text" name="ispaided"  ngValue="1" ngModel required>
+                  <input type="text"  name="iswholesale"  ngValue="1" ngModel required>
+                  <input type="text"  name="status"  ngValue="1" ngModel required>
+
+                  <!-- <div class="form-group row hide">
                       <span class="col-sm-4 col-form-label">Keywords :</span>
                       <div class="col-sm-8">
                           <div class="input-group mb-2">
@@ -88,7 +86,7 @@
                           </div>
                           <small class="form-text text-muted">Keywords Example : ads, car, cat, business</small>
                       </div>
-                  </div>
+                  </div> -->
                   <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Ad Price :</span>
                       <div class="col-xl-3 col-sm-4">
@@ -96,7 +94,7 @@
                               <div class="input-group-prepend">
                                   <div class="input-group-text"><span class="text-uppercase">Aed</span></div>
                               </div>
-                              <input type="text" class="form-control control2" placeholder="Regular price" dir="auto">
+                              <input type="text" name="reg_price" ngModel required class="form-control control2" placeholder="Regular price" dir="auto">
                           </div>
                       </div>
                       <div class="col-xl-3 col-sm-4">
@@ -104,7 +102,7 @@
                               <div class="input-group-prepend">
                                   <div class="input-group-text"><span class="text-uppercase">Aed</span></div>
                               </div>
-                              <input type="text" class="form-control control2" placeholder="Sale Price" dir="auto">
+                              <input type="text" ngModel required name="sale_price" class="form-control control2" placeholder="Sale Price" dir="auto">
                           </div>
                       </div>
                       <div class="col-sm-2">
@@ -113,7 +111,7 @@
                           </div>
                       </div>
                   </div>
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Phone Number :</span>
                       <div class="col-sm-8">
                           <div class="input-group mb-2">
@@ -123,13 +121,13 @@
                               <input type="text" class="form-control control2" placeholder="Write your phone number" dir="auto">
                           </div>
                       </div>
-                  </div>
+                  </div> -->
 
                   <!-- Start Location Details -->
                   <h6 class="small-title">ad Location :</h6>
                   <span class="line"></span>
 
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Select Country :<span class="red">*</span></span>
                       <div class="col-sm-8">
                           <div class="input-group mb-2">
@@ -144,7 +142,7 @@
                               </select>
                           </div>
                       </div>
-                  </div>
+                  </div> -->
                   <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Select City :<span class="red">*</span></span>
                       <div class="col-sm-8">
@@ -152,7 +150,7 @@
                               <div class="input-group-prepend">
                                   <div class="input-group-text"><i class="fas fa-globe"></i></div>
                               </div>
-                              <select class="form-control control2">
+                              <select ngModel required name="cityId" class="form-control control2">
                                   <option selected>select City</option>
                                   <option value="1">One</option>
                                   <option value="2">Two</option>
@@ -161,6 +159,22 @@
                           </div>
                       </div>
                   </div>
+                  <div class="form-group row">
+                    <span class="col-sm-4 col-form-label">Select Brand :<span class="red">*</span></span>
+                    <div class="col-sm-8">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-globe"></i></div>
+                            </div>
+                            <select ngModel required name="cityId" class="form-control control2">
+                                <option selected>select Brand</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
                   <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Map Location :</span>
@@ -189,16 +203,16 @@
                           <div class="col-sm-12">
                               <div class="panel row">
                                   <div class="col-lg-3 col-sm-6">
-                                      <input type="file" class="file1">
+                                      <input required  ngModel  name="media[]"  type="file" class="file1">
+                                  </div>
+                                  <div  class="col-lg-3 col-sm-6">
+                                      <input ngModel  name="media[]" type="file" class="file2">
                                   </div>
                                   <div class="col-lg-3 col-sm-6">
-                                      <input type="file" class="file2">
+                                      <input ngModel  name="media[]" type="file" class="file3">
                                   </div>
                                   <div class="col-lg-3 col-sm-6">
-                                      <input type="file" class="file3">
-                                  </div>
-                                  <div class="col-lg-3 col-sm-6">
-                                      <input type="file" class="file4">
+                                      <input ngModel  name="media[]" type="file" class="file4">
                                   </div>
                               </div>
                           </div><!-- Col Upload -->
@@ -206,7 +220,7 @@
                   </div>
 
                   <div class="form-group" style="margin-bottom: 15px;">
-                      <button type="button" class="button success"><i class="far fa-check-circle"></i> Publish My Ad</button>
+                      <button type="submit" class="button success"><i class="far fa-check-circle"></i> Publish My Ad</button>
                   </div>
               </form>
               <!-- End Form-->

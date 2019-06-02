@@ -9,11 +9,11 @@
             <div class="panel" style="padding-bottom: 130px;">
                 <input type="search" class="form-control search2" placeholder="Search Title/Keyword">
                 <i class="fas fa-search search-icon2"></i>
-                <div class="brand">
+                <div class="brand" *ngIf="Brands?.length >0">
                     <h6>brand</h6>
                     <input type="search" class="form-control" placeholder="Brand Name">
                     <ul class="list-unstyled check-ul">
-                        <li *ngFor="let Brand of Brands">
+                        <li  *ngFor="let Brand of Brands">
                             <input type="checkbox" class="box" id="box1">
                             <label for="box1">{{Brand.name}} (596)</label>
                         </li>
@@ -149,7 +149,7 @@
                             </span>
                         </div>
                         <div class="float-right py-3">
-                            <a href="#" class="button2"><i class="fas fa-phone"></i> +971501111112</a>
+                            <a href="#" class="button2"><i class="fas fa-phone"></i> {{product.mobile}}</a>
                             <a href="#" class="button2"><i class="fas fa-map-marker-alt"></i> View Location</a>
                             <div class="text-right grey">
                                 <a href="#" class="button2"><i class="far fa-heart"></i></a>

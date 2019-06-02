@@ -1,3 +1,30 @@
+function subs(id) {
+    // $("#subs").html("");
+
+    // $.ajax({
+    //     type: 'get',
+    //     url: 'http://admin.just-cost.com/api/subCategories/'+id,
+    //     contentType: 'application/json',
+    //     success : function (data) {
+    //         html='<ul class="list-unstyled row">';
+    
+    //           data.data.forEach(element => {
+    //             console.log(element);
+    //             html+="<li class='col-sm-4'><a data-val='"+element['id'] +"' (click)='selectcat("+element['id'] +")' href='javascript:;' >"+element['name']+"</a></li>";
+    //           });
+    //         html+='</ul>';
+    //         $("#subs").append(html);
+    //     }
+    //   });
+}
+
+
+function selectcat(data)
+{
+
+ $("#category_id").val(  data.dataset.val).trigger('input')
+}
+
 function owl() {
 
 

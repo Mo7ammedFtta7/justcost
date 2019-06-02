@@ -20,6 +20,9 @@ import { environment } from '../../environments/environment';
     let body = res;
     return body || { };
   }
+  errorHandler(error: HttpErrorResponse){
+    return Observable.throw(error.message || "Server Error");
+  }
 
   getProducts(params :HttpParams,id): Observable<any> {
    //console.log(params);
@@ -42,5 +45,22 @@ import { environment } from '../../environments/environment';
   getEmailValidation(id): Observable<any> {
     return this.http.get(environment.ApiUrl + 'customer/emailvalidation/'+id)
   }
+  postadd(ad) {
+    return this.http.post<any>(environment.ApiUrl +'products', ad)
+  }
 
+  
+  getProfile():Observable<any>
+      {
+        return this.http.get(environment.ApiUrl+'user-by-token').pipe(
+          map(this.extractData));
+      }
+
+       
+  setProfile(form)
+  {
+    return this.http.post<any>(environment.ApiUrl+'customer/setProfile',form ,this.httpOptions)
+    .catch(this.errorHandler);
+  }
+  
 }

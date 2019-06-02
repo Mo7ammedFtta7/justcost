@@ -22,6 +22,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ResultsComponent } from './pages/results/results.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 import { PostaddComponent } from './pages/postadd/postadd.component';
+import { SubsComponent } from './pages/postadd/subs/subs.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { PostaddComponent } from './pages/postadd/postadd.component';
     ProfileComponent,
     ResultsComponent,
     EmailverifyComponent,
-    PostaddComponent
+    PostaddComponent,
+    SubsComponent
   ],
   imports: [
     BrowserModule,

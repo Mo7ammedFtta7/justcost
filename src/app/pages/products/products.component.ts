@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
   p: number = 1;
   public products: any;
   public Brands: any[];
-
+  category='NaN'
   // count= this.products.length
 
   constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) {}
@@ -33,11 +33,7 @@ export class ProductsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; 
    });
-   console.log("---------------");
-
-   console.log(this.sub);
-   console.log("---------------");
-
+  
   this.getProducts(this.page);
   this.getBrands(this.id);
 
@@ -51,11 +47,13 @@ export class ProductsComponent implements OnInit {
       this.products = data['data'];
     });
   }
-  getBrands( id:any ) {
+  getBrands(id:any) {
     this.rest.getBrands(this.id).subscribe((data: {}) => {
       this.Brands = data['data'];
-      console.log(data['data']);
+      console.log("--------------"+data);
     });
   }
+
+  
 
 }
