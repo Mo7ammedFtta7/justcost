@@ -90,16 +90,16 @@
                 <!-- Start Comments Area -->
                 <div class="comment">
                     <h6>Comments :</h6>
-                    <form action="" method="">
+                    <form #commentForm="ngForm" (ngSubmit)="addcomment(commentForm,product?.productId)">
                         <div class="form-group mb-3">
-                            <textarea class="form-control" placeholder="Write your comment here"></textarea>
+                            <textarea class="form-control" name="comment" ngModel placeholder="Write your comment here"></textarea>
                         </div>
                         <div class="form-group mb-3 text-right">
-                            <ng-container *ngIf="!_authService.loggedIn(); else elseTemplate">
+                            <ng-container *ngIf="!_authService.loggedIn(); else Template">
                                     <button type="submit"  data-target=".bd-example-modal-xl" data-toggle="modal" class="button">Post Comment</button>
 
                             </ng-container>
-                            <ng-template #elseTemplate>
+                            <ng-template #Template>
                                     <button type="submit" class="button">Post Comment</button>
 
                             </ng-template>

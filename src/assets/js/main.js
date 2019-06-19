@@ -1,4 +1,6 @@
 function subs(id) {
+
+    console.log(id);
     // $("#subs").html("");
 
     // $.ajax({
@@ -18,6 +20,12 @@ function subs(id) {
     //   });
 }
 
+function  refr()
+{
+
+
+}
+
 
 function selectcat(data)
 {
@@ -26,20 +34,16 @@ function selectcat(data)
 }
 
 function owl() {
-
-
     $.ajax({
         type: 'get',
-        url: 'http://admin.just-cost.com/api/sliders',
+        url: 'http://localhost:8000/api/sliders',
         contentType: 'application/json',
         success : function (data) {
             console.log(data.data);
             html='<div class="owl-carousel">';
-    
               data.data.forEach(element => {
                 html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
               });
-    
             html+='</div>';
             $("#slider").append(html);
             
@@ -48,9 +52,7 @@ function owl() {
               items: 1,
               loop:true
           });
-          
           $owl.trigger('refresh.owl.carousel');
-    
         }
       });
 }

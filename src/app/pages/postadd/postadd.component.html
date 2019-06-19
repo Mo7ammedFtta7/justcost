@@ -6,10 +6,10 @@
       <div class="col-xl-4 col-sm-12">
           <div class="new">
               <div class="person">
-                  <img src="images/user.png" class="rounded-circle float-left" alt="User Image" width="70">
+                  <img src="{{user.image}}" class="rounded-circle float-left" alt="User Image" width="70">
                   <div class="float-left data-person">
-                      <h6>Mohamed Ali</h6>
-                      <span>Member Since February 19, 2019</span>
+                      <h6>{{user.name}}</h6>
+                     <span *ngIf="user.created_at!=null">Member Since {{user.created_at | date }}</span> 
                   </div>
                   <div class="clearfix"></div>
               </div>
@@ -36,32 +36,37 @@
               <h6 class="small-title">Select a Category :</h6>
               <div class="row">
 
-                  <div *ngFor="let category of categories"   class="col-lg-3 col-sm-6">
-                      <div class="panel text-center wow fadeIn"  (click)="ref(category.id)" data-wow-offset="0" data-wow-delay="0s">
-                          <img src="{{category.image}}" alt="Car Icon" width="40">
+                  <div *ngFor="let category of Icategory"  class="col-lg-3 col-sm-6">
+                      <div class="panel text-center wow fadeIn"   (click)="onSelect(category.id)"  data-wow-offset="0" data-wow-delay="0s">
+                          <img src="{{category.image}}" alt="" width="40">
                           <h6>{{category.name}}</h6>
                       </div>
                   </div>
-              
-              </div><!-- Row Tow -->
+              </div>
+              <!-- Row Tow -->
+
+              <span>Select Sub Category :</span>
+              <div>
+                <ul class="list-unstyled row">
+                    <li class='col-sm-4' *ngFor="let sub of Isub">
+                        <div href="javascript:;" class="panel text-center wow fadeIn" (click)="selectsub(sub.id)">{{sub.name}}</div>
+                    </li>
+                </ul>
+              </div>
+
           </div><!-- End Add -->
 
           <div class="details">
               <h6 class="small-title">ad Details :</h6>
               <span class="line"></span>
-              <span>Select Sub Category :</span>
-              <div id=subs>
-
-              </div>
-
+              
               <!-- Start Form -->
               <form #create="ngForm" (ngSubmit)="createadd(create)">
                   <div class="form-group row">
                       <span class="col-sm-4 col-form-label">Ad Title :<span class="red">*</span></span>
                       <div class="col-sm-8">
                           <input type="text" name="title" class="form-control mb-2" placeholder="Write a title for your ad" dir="auto" ngModel required>
-                          <input type="text" id="category_id" name="category_id" ngValue="8" ng-model-options="{ updateOn: 'change' }" ngModel required>
-                          <small class="form-text text-muted">Type minimum 5 characters</small>
+                          <input type="hidden"  name="category_id"  ngModel #ctrl="ngModel" >
                       </div>
                   </div>
                   <div class="form-group row">
@@ -71,9 +76,9 @@
                           <small class="form-text text-muted">Write description</small>
                       </div>
                   </div>
-                  <input type="text" name="ispaided"  ngValue="1" ngModel required>
-                  <input type="text"  name="iswholesale"  ngValue="1" ngModel required>
-                  <input type="text"  name="status"  ngValue="1" ngModel required>
+                  <input type="hidden" name="ispaided"  ngValue="1" ngModel required>
+                  <input type="hidden"  name="iswholesale"  ngValue="1" ngModel required>
+                  <input type="hidden"  name="status"  ngValue="1" ngModel required>
 
                   <!-- <div class="form-group row hide">
                       <span class="col-sm-4 col-form-label">Keywords :</span>
@@ -94,7 +99,7 @@
                               <div class="input-group-prepend">
                                   <div class="input-group-text"><span class="text-uppercase">Aed</span></div>
                               </div>
-                              <input type="text" name="reg_price" ngModel required class="form-control control2" placeholder="Regular price" dir="auto">
+                              <input type="number" ngModel required name="reg_price"  class="form-control control2" placeholder="Regular price" dir="auto" >
                           </div>
                       </div>
                       <div class="col-xl-3 col-sm-4">
@@ -102,7 +107,7 @@
                               <div class="input-group-prepend">
                                   <div class="input-group-text"><span class="text-uppercase">Aed</span></div>
                               </div>
-                              <input type="text" ngModel required name="sale_price" class="form-control control2" placeholder="Sale Price" dir="auto">
+                              <input type="number"   name="sale_price" class="form-control control2" placeholder="Sale Price" dir="auto" ngModel required>
                           </div>
                       </div>
                       <div class="col-sm-2">
@@ -152,9 +157,8 @@
                               </div>
                               <select ngModel required name="cityId" class="form-control control2">
                                   <option selected>select City</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                  <option *ngFor="let city of citis" value="{{city.id}}">{{city.name}}</option>
+                                
                               </select>
                           </div>
                       </div>
@@ -166,11 +170,10 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-globe"></i></div>
                             </div>
-                            <select ngModel required name="cityId" class="form-control control2">
+                            <select ngModel required name="brand_id" class="form-control control2">
                                 <option selected>select Brand</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option *ngFor="let brand of brands" value="{{brand.id}}">{{brand.name}}</option>
+                                
                             </select>
                         </div>
                     </div>
@@ -203,16 +206,16 @@
                           <div class="col-sm-12">
                               <div class="panel row">
                                   <div class="col-lg-3 col-sm-6">
-                                      <input required  ngModel  name="media[]"  type="file" class="file1">
+                                      <input required  ngModel  name="media"  type="file" class="file1">
                                   </div>
                                   <div  class="col-lg-3 col-sm-6">
-                                      <input ngModel  name="media[]" type="file" class="file2">
+                                      <input ngModel  name="media" type="file" class="file2">
                                   </div>
                                   <div class="col-lg-3 col-sm-6">
-                                      <input ngModel  name="media[]" type="file" class="file3">
+                                      <input ngModel  name="media" type="file" class="file3">
                                   </div>
                                   <div class="col-lg-3 col-sm-6">
-                                      <input ngModel  name="media[]" type="file" class="file4">
+                                      <input ngModel  name="media" type="file" class="file4">
                                   </div>
                               </div>
                           </div><!-- Col Upload -->
@@ -220,7 +223,7 @@
                   </div>
 
                   <div class="form-group" style="margin-bottom: 15px;">
-                      <button type="submit" class="button success"><i class="far fa-check-circle"></i> Publish My Ad</button>
+                      <button type="submit" class="button"><i class="far fa-check-circle"></i> Publish My Ad</button>
                   </div>
               </form>
               <!-- End Form-->

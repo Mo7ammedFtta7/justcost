@@ -42,13 +42,19 @@ import { environment } from '../../environments/environment';
     return this.http.get(environment.ApiUrl + 'brandsogcategory/'+id).pipe(
       map(this.extractData));
   }
+  getCitis(): Observable<any> {
+    return this.http.get(environment.ApiUrl + 'cities/').pipe(
+      map(this.extractData));
+  }
   getEmailValidation(id): Observable<any> {
     return this.http.get(environment.ApiUrl + 'customer/emailvalidation/'+id)
   }
   postadd(ad) {
     return this.http.post<any>(environment.ApiUrl +'products', ad)
   }
-
+  addcomment(comment) {
+    return this.http.post<any>(environment.ApiUrl +'comments', comment)
+  }
   
   getProfile():Observable<any>
       {
