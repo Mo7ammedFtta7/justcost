@@ -109,9 +109,7 @@
               <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
           </form>
 
-          <!-- Buuton To Post Advertiesment -->
-          <button class="post" type="button my-lg-0"><a href="post_ad.html">Post Ad</a></button>
-
+          
           <!-- Navbar Right -->
           <ul class="navbar-nav right">
               <li class="nav-item d-none search">
@@ -158,11 +156,13 @@
                       <i class="fas fa-chevron-down fa-sm fa-fw"></i>
                   </a>
                   <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">usa</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">usa</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">uae</a>
+                    <div *ngFor="let city of citis">
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" href="#">{{city.name}}</a>
+                         
+                    </div>  
+                  
                   </div>
               </li>
 
@@ -181,6 +181,9 @@
                         </a>
                        
                         <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" routerLink="/posatadd">
+                                    <i class="fas fa-user-circle fa-md fa-fw"></i> Create Ad
+                                </a>
                                 <a class="dropdown-item" routerLink="/profile">
                                         <i class="fas fa-user-circle fa-md fa-fw"></i> Profile
                                     </a>

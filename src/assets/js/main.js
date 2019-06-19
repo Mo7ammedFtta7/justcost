@@ -75,8 +75,19 @@ function success(msg){
     $('#mainmodel').modal('hide');
 
 }
+function ViewMap()
+{
+    var mapProp= {
+        center:new google.maps.LatLng(51.508742,-0.120850),
+        zoom:15,
+      };
+      var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+      var marker = new google.maps.Marker({position: mapProp.center, map: map});
+}
 
 $(document).ready(function () {
+ 
+     
 
     //   var $owl = $('.owl-carousel').owlCarousel({
     //       items: 1,

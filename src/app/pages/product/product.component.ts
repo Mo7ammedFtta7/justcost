@@ -9,7 +9,7 @@ import { AuthService } from '../../auth.service';
 import { NgForm } from '@angular/forms';
 declare function goup():any ;
 declare function success(msg):any;
-
+declare function  ViewMap():any;
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -29,6 +29,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() 
     {
+      ViewMap()
      goup()
         this.sub = this.route.params.subscribe(params => {
           this.id = +params['id']; 
@@ -68,6 +69,7 @@ export class ProductComponent implements OnInit {
         .subscribe(
           res => {
            // commentForm.value.comment=555555555555555555
+         commentForm.reset();
             success("comment Add succsefuly!")
             this.getcomments(pid ) 
           console.log(res)
