@@ -1,5 +1,5 @@
 <div class="main-title main-title2">
-    <small><a href="#">Home</a> <i class="fas fa-chevron-right"></i> <a href="#">Categories </a> <i class="fas fa-chevron-right"></i> Computers</small>
+    <small><a href="#">Home</a> <i class="fas fa-chevron-right"></i> <a href="#">Categories </a> <i class="fas fa-chevron-right"></i> {{category}}</small>
 </div><!-- End Title -->
 
 <div class="catogery">
@@ -7,97 +7,32 @@
         <div class="col-xl-3 col-sm-12">
             <div class="custom text-center">Custom Search</div>
             <div class="panel" style="padding-bottom: 130px;">
-                <input type="search" class="form-control search2" placeholder="Search Title/Keyword">
+                <input type="search" #searcF (keyup)="onKey(searcF.value)" class="form-control search2" placeholder="Search Title/Keyword">
                 <i class="fas fa-search search-icon2"></i>
                 <div class="brand" *ngIf="Brands?.length >0">
                     <h6>brand</h6>
                     <input type="search" class="form-control" placeholder="Brand Name">
                     <ul class="list-unstyled check-ul">
                         <li  *ngFor="let Brand of Brands">
-                            <input type="checkbox" class="box" id="box1">
-                            <label for="box1">{{Brand.name}} (596)</label>
+                            <input type="checkbox" class="box" id="brand{{Brand.id}}">
+                            <label for="brand{{Brand.id}}">{{Brand.name}} </label>
                         </li>
-                        <!-- <li>
-                            <input type="checkbox" class="box" id="box2" checked>
-                            <label for="box2">HP (641)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box3">
-                            <label for="box3">Samsung (381)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box4">
-                            <label for="box4">Toshiba (555)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box5">
-                            <label for="box5">Lenovo (636)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box6">
-                            <label for="box6">Fujitsu (879)</label>
-                        </li> -->
-
                     </ul>
                 </div><!-- Brand -->
 
-                <div class="brand text-uppercase">
-                    <h6>RAM</h6>
-                    <input type="search" class="form-control" placeholder="Brand Name">
+                <div class="brand text-uppercase" *ngFor="let attr of attributes">
+                    <h6>{{attr.group}}</h6>
+                    <input type="search" class="form-control" placeholder="{{attr.group}}">
                     <ul class="list-unstyled check-ul">
-                        <li>
-                            <input type="checkbox" class="box" id="box7">
-                            <label for="box7">2GB</label>
+                        <li *ngFor="let att of attr.attributes">
+                            <input type="checkbox" class="box" id="attr{{att.id}}">
+                            <label for="attr{{att.id}}">{{att.name}}</label>
                         </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box8">
-                            <label for="box8">4GB</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box9">
-                            <label for="box9">8GB</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box10">
-                            <label for="box10">16GB</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box11">
-                            <label for="box11">32GB</label>
-                        </li>
+                      
                     </ul>
-                </div><!-- Brand -->
-
-                <div class="brand">
-                    <h6>Processor Family</h6>
-                    <input type="search" class="form-control" placeholder="Brand Name">
-                    <ul class="list-unstyled">
-                        <li>
-                            <input type="checkbox" class="box" id="box12">
-                            <label for="box12" class="small">Intel 8th Generation Core I7 (430)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box13">
-                            <label for="box13" class="small">Intel 7th Generation Core I7 (293)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box14">
-                            <label for="box14" class="small">Intel 8th Generation Core I5 (232)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box15">
-                            <label for="box15" class="small">Intel Core I5 (170)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box16">
-                            <label for="box16" class="small">Intel 7th Generation Core I5 (159)</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="box" id="box17">
-                            <label for="box17" class="small">Intel Core I7 (153)</label>
-                        </li>
-                    </ul>
-                </div><!-- Brand -->
+                </div>
+                
+              
             </div><!-- End Panel-->
         </div><!-- Col #1-->
 

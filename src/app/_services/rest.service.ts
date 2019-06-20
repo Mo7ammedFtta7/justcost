@@ -42,6 +42,11 @@ import { environment } from '../../environments/environment';
     return this.http.get(environment.ApiUrl + 'brandsogcategory/'+id).pipe(
       map(this.extractData));
   }
+
+  getAttru(id): Observable<any> {
+    return this.http.get(environment.ApiUrl + 'products/catAttributes/'+id).pipe(
+      map(this.extractData));
+  }
   getCitis(): Observable<any> {
     return this.http.get(environment.ApiUrl + 'cities/').pipe(
       map(this.extractData));

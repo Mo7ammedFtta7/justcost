@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
   public products: any;
   public Brands: any[];
   category='NaN'
+  attributes:any[];
   // count= this.products.length
 
   constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) {}
@@ -33,18 +34,19 @@ export class ProductsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; 
    });
-  
-  this.getProducts(this.page);
+   this.getAttributes(this.id);
+  this.getProducts(this.page,'');
   this.getBrands(this.id);
 
   }
   public math(aa:any,bb:any) {
     return ((aa-bb) /aa * 100)
   }
-  getProducts( page:any ) {
-    let params = new HttpParams().set("limit",this.limit); //Create new HttpParams
+  getProducts( page:any,search:string ) {
+    let params = new HttpParams().set("limit",this.limit).set("search",search); //Create new HttpParams
     this.rest.getProducts(params,this.id).subscribe((data: {}) => {
       this.products = data['data'];
+      this.category= data['catName'];
     });
   }
   getBrands(id:any) {
@@ -53,7 +55,20 @@ export class ProductsComponent implements OnInit {
       console.log("--------------"+data);
     });
   }
+  getAttributes(id:any) {
+    this.rest.getAttru(this.id).subscribe((data: {}) => {
+      this.attributes = data['data'];
+      console.log("------getAttributes--------");
+      console.log(data);
 
-  
+    });
+  }
+
+
+    onKey(value: string) {
+      console.log(value);
+      this.getProducts(this.page,value);
+
+    }
 
 }
