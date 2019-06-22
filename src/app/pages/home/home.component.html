@@ -15,7 +15,7 @@
                 <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
                     <div class="item">
                         <img src="{{item.media[0].url}}" alt="Image" class="img-fluid">
-                        <span class="disc">Discount <span> {{reg_price *sale_price/100}} %</span></span>
+                        <span class="disc" style="right: 0;">Discount <span> {{math(item.reg_price,item.sale_price)}} %</span></span>
                     </div>
                     <div class="info">
                         <h5> <a routerLink="/product/{{item.productId}}">{{item.title}}</a></h5>

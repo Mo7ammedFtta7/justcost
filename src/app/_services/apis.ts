@@ -81,7 +81,7 @@ export class apis {
     let body = res;
     return body || { };
   }
-  like(productId:any ) {
+  like(productId:any) {
     //  this.likeProduct(productId).subscribe((data: {}) => {
     //    console.log( data['data'])
     //  },
@@ -91,7 +91,16 @@ export class apis {
 
     this.xx()
    }
+   deslike(productId:any) {
+    //  this.likeProduct(productId).subscribe((data: {}) => {
+    //    console.log( data['data'])
+    //  },
+    //  err => {
+    //   console.log(err)
+    //  });
 
+    this.xx()
+   }
       public post(url:string): Observable<any> {
               console.log(this.httpOptions);
               return this.http.post(environment.ApiUrl+url, JSON.stringify({product_id: 7}), this.httpOptions )   

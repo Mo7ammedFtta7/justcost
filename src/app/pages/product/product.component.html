@@ -13,9 +13,9 @@
                 </div>
                 <!-- Start Slider -->
                 <div class="slider2">
-                    <div class="owl-carousel">
-                        <div class="item">
-                            <img src="images/Google-Pixel-3-XL-review-1280-720-3.png" alt="Image">
+                    <div class="">
+                        <div *ngFor="let url of product?.media" class="item">
+                            <img  style="max-height: 360px" src="{{url.url}}" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -23,12 +23,14 @@
 
                 <!-- Start List -->
                 <ul class="list-unstyled row">
-                    <li class="col-md-4 col-sm-6">Address :{{product?.city }}</li>
-                    <li class="col-md-4 col-sm-6">Brand : <img src="{{product?.brand_image}}" alt="Image" width="70" style="max-width: 25px;"></li>
+                    <li class="col-md-4 col-sm-6">City :{{product?.city }}</li>
                     <!-- <li class="col-md-4 col-sm-6">Model : Google Pixel 3 XL </li>
                     <li class="col-md-4 col-sm-6">Condition : Used </li> -->
                     <li class="col-md-4 col-sm-6">Regular Price : <span class="red">{{product?.reg_price }} AED</span></li>
                     <li class="col-md-4 col-sm-6">Sell Price : <span class="red">{{product?.sale_price }} AED</span></li>
+                    <li class="col-md-4 col-sm-6">Brand : <img src="{{product?.brand_image}}" alt="Image" width="70" style="max-width: 25px;"></li>
+                    <li class="col-md-4 col-sm-6" *ngFor="let attri of attributes" >
+                    {{attri.group}}:  {{attri.attributes}}</li>
                 </ul>
                 <!-- End List -->
 
@@ -37,10 +39,11 @@
                 <!-- Start border -->
                 <div class="border" style="margin-bottom: 25px;">
                     <h6>{{product?.description }}</h6>
-                    <span style="font-size: 15px;">Share with Friends</span>
+                 
+                    <!-- <span style="font-size: 15px;">Share with Friends</span>
                     <a href="javascript:;" title="Facebook" deisabled><i class="fab fa-facebook-f fa-fw"></i></a>
                     <a href="javascript:;" title="Twitter"><i class="fab fa-twitter fa-fw"></i></a>
-                    <a href="javascript:;" title="Whatsapp"><i class="fab fa-whatsapp fa-fw"></i></a>
+                    <a href="javascript:;" title="Whatsapp"><i class="fab fa-whatsapp fa-fw"></i></a> -->
                 </div>
                 <!-- End Border -->
 
@@ -156,7 +159,7 @@
                 </ng-container>
                 <ng-template #elseTemplate>
                           
-                                    <a href="javascript:;" (click)="onLike()"  class="red"><i [ngClass]="product?.likes==true ? 'fas fa-heart' : 'far fa-heart'"></i> Add to favorite</a>
+                                    <a href="javascript:;" (click)="onLike(like)"  class="red"><i [ngClass]="like==true ? 'fas fa-heart' : 'far fa-heart'"></i> Add to favorite</a>
        
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> Report Ad</a>
                 </ng-template>
@@ -165,7 +168,7 @@
             </div><!-- #2 -->
             <div class="border">
                 <div class="person" style="overflow: hidden;">
-                    <img src="images/user.png" alt="User Image" class="float-left rounded-circle" width="70">
+                    <img src="{{product?.customerPic}}" alt="User Image" class="float-left rounded-circle" width="70">
                     <div class="float-left data-person">
                         <h6>{{product?.customerName}}</h6>
                         <!-- <span>Member Since : 19-01-2019</span> -->

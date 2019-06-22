@@ -25,6 +25,8 @@ export class ProductComponent implements OnInit {
   public comment:string
   public commments: any;
   public product: any;
+  public attributes: any;
+  like:boolean=false
   constructor(private _rea: RestService,private _api: apis,private route: ActivatedRoute,public _authService: AuthService) {}
 
   ngOnInit() 
@@ -36,31 +38,48 @@ export class ProductComponent implements OnInit {
       });
       this.getProduct(this.id)
       this.getcomments(this.id)
-
+      this.getAttributes( this.id)
     }
 
-    onLike() {
-      this._api.like(this.id);  
+    onLike(type) {
+      if (type) {
+        this._api.deslike(this.id);  
+        success(':( !');
+        this.like=false;
+      } else {
+        
+        this._api.like(this.id);  
+        success('Ausome !');
+        this.like=true;
+      }
+
+     
       }
 
     public math(aa:any,bb:any) {
-      return ((aa-bb) /aa * 100)
+      return ((aa-bb) /aa * 100).toFixed(0)
     }
 
     getProduct( id:any ) {
      // let params = new HttpParams().set("limit",this.limit); //Create new HttpParams
       this._rea.getProduct(this.id).subscribe((data: {}) => {
         this.product = data['data'][0];
+        this.like=data['data'][0]['likes']
         console.log( data['data'][0])
       });
     }
     getcomments( id:any ) {
-      // let params = new HttpParams().set("limit",this.limit); //Create new HttpParams
        this._rea.getcomments(this.id).subscribe((data: {}) => {
          this.commments = data['data'];
          console.log( data['data'])
        });
      }
+     getAttributes( id:any ) {
+      this._rea.getAttributes(this.id).subscribe((data: {}) => {
+        this.attributes = data['data'];
+        console.log( data['data'])
+      });
+    }
      addcomment(commentForm,pid)
       {
         commentForm.value.productid=pid;

@@ -11,7 +11,6 @@
                 <i class="fas fa-search search-icon2"></i>
                 <div class="brand" *ngIf="Brands?.length >0">
                     <h6>brand</h6>
-                    <input type="search" class="form-control" placeholder="Brand Name">
                     <ul class="list-unstyled check-ul">
                         <li  *ngFor="let Brand of Brands">
                             <input type="checkbox" class="box" id="brand{{Brand.id}}">
@@ -22,7 +21,6 @@
 
                 <div class="brand text-uppercase" *ngFor="let attr of attributes">
                     <h6>{{attr.group}}</h6>
-                    <input type="search" class="form-control" placeholder="{{attr.group}}">
                     <ul class="list-unstyled check-ul">
                         <li *ngFor="let att of attr.attributes">
                             <input type="checkbox" class="box" id="attr{{att.id}}">

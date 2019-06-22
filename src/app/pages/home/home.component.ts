@@ -27,13 +27,15 @@ export class HomeComponent implements OnInit {
   constructor(private _api: apis) { }
   
   ngOnInit() {
-  //  this._api.slider().subscribe(data => this.sliders = data['data'],
-  //   error => this.errorMsg = error);
-  owl();
-    this._api.items().subscribe(data => this.items = data['data'],
-      error => this.errorMsg = error);
-
-      this._api.categoris(this.categoriesurl).subscribe(res =>{this.categories = res['data']; console.log(res['data'])},
+ 
+      owl();
+      this._api.items().subscribe(data => this.items = data['data'],
         error => this.errorMsg = error);
 
-}}
+        this._api.categoris(this.categoriesurl).subscribe(res =>{this.categories = res['data']; console.log(res['data'])},
+          error => this.errorMsg = error);
+      }
+      public math(aa:any,bb:any) {
+        return ((aa-bb) /aa * 100).toFixed(0)
+      }
+}

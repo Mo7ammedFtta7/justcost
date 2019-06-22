@@ -40,7 +40,7 @@ export class ProductsComponent implements OnInit {
 
   }
   public math(aa:any,bb:any) {
-    return ((aa-bb) /aa * 100)
+    return ((aa-bb) /aa * 100).toFixed(2)
   }
   getProducts( page:any,search:string ) {
     let params = new HttpParams().set("limit",this.limit).set("search",search); //Create new HttpParams
