@@ -5,9 +5,10 @@ import { RestService } from '../../_services/rest.service';
 import { HttpParams } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { count } from 'rxjs/operators';
+import { NgForm, FormGroup } from '@angular/forms';
 
 declare function goup():any ;
-
+declare function getSelectChecked():any ;
 
 @Component({
   selector: 'app-products',
@@ -24,11 +25,26 @@ export class ProductsComponent implements OnInit {
   public Brands: any[];
   category='NaN'
   attributes:any[];
+  filterForm:FormGroup;
+  masterSelected:boolean;
+  checkedList:any;
+  public checklist = [
+    {id:1,value:'Elenor Anderson',isSelected:false},
+    {id:2,value:'Caden Kunze',isSelected:false},
+    {id:3,value:'Ms. Hortense Zulauf',isSelected:false},
+    {id:4,value:'Grady Reichert',isSelected:false},
+    {id:5,value:'Dejon Olson',isSelected:false},
+    {id:6,value:'Jamir Pfannerstill',isSelected:false},
+    {id:7,value:'Aracely Renner DVM',isSelected:false},
+    {id:8,value:'Genoveva Luettgen',isSelected:false}
+  ];
+
   // count= this.products.length
 
   constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.masterSelected = false;
 
     goup()
     this.sub = this.route.params.subscribe(params => {
@@ -49,6 +65,12 @@ export class ProductsComponent implements OnInit {
       this.category= data['catName'];
     });
   }
+
+  filter(filterForm:FormGroup){
+    console.log(filterForm.value);
+  }
+
+
   getBrands(id:any) {
     this.rest.getBrands(this.id).subscribe((data: {}) => {
       this.Brands = data['data'];
@@ -58,17 +80,39 @@ export class ProductsComponent implements OnInit {
   getAttributes(id:any) {
     this.rest.getAttru(this.id).subscribe((data: {}) => {
       this.attributes = data['data'];
-      console.log("------getAttributes--------");
-      console.log(data);
-
     });
   }
 
+  checkUncheckAll() {
+    for (var i = 0; i < this.checklist.length; i++) {
+      this.checklist[i].isSelected = this.masterSelected;
+    }
+    this.getCheckedItemList();
+  }
 
+  getCheckedItemList(){
+     this.checkedList = [];
+    for (var i = 0; i < this.checklist.length; i++) {
+      if(this.checklist[i].isSelected)
+      this.checkedList.push(this.checklist[i]);
+    }
+     this.checkedList = JSON.stringify(this.checkedList);
+     console.log(this.checkedList)
+
+  }
     onKey(value: string) {
       console.log(value);
       this.getProducts(this.page,value);
 
     }
+
+    isAllSelected() {
+      getSelectChecked()
+      this.masterSelected = this.checklist.every(function(item:any) {
+          return item.isSelected == true;
+        })
+      this.getCheckedItemList();
+    }
+  
 
 }

@@ -7,29 +7,33 @@
         <div class="col-xl-3 col-sm-12">
             <div class="custom text-center">Custom Search</div>
             <div class="panel" style="padding-bottom: 130px;">
+
                 <input type="search" #searcF (keyup)="onKey(searcF.value)" class="form-control search2" placeholder="Search Title/Keyword">
                 <i class="fas fa-search search-icon2"></i>
+                <form action="" #filterForm="ngForm" (ngSubmit)="filter(filterForm)"  >
+
                 <div class="brand" *ngIf="Brands?.length >0">
                     <h6>brand</h6>
                     <ul class="list-unstyled check-ul">
                         <li  *ngFor="let Brand of Brands">
-                            <input type="checkbox" class="box" id="brand{{Brand.id}}">
+                            <input type="checkbox"    class="box" name="name{{Brand.id}}" id="brand{{Brand.id}}">
                             <label for="brand{{Brand.id}}">{{Brand.name}} </label>
                         </li>
                     </ul>
                 </div><!-- Brand -->
 
-                <div class="brand text-uppercase" *ngFor="let attr of attributes">
+                <div id="attrips" class="brand text-uppercase" *ngFor="let attr of attributes">
                     <h6>{{attr.group}}</h6>
                     <ul class="list-unstyled check-ul">
                         <li *ngFor="let att of attr.attributes">
-                            <input type="checkbox" class="box" id="attr{{att.id}}">
-                            <label for="attr{{att.id}}">{{att.name}}</label>
+                                <input type="checkbox" class="box" [(ngModel)]="att.id"  name="{{att.name}}" value="{{att.id}}"/>
+                                <label for="attr{{att.id}}">{{att.name}}</label>
                         </li>
-                      
+                      <button type="submit">ssssssssssss</button>
                     </ul>
                 </div>
-                
+              
+             </form>
               
             </div><!-- End Panel-->
         </div><!-- Col #1-->

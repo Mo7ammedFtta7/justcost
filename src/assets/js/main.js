@@ -26,6 +26,15 @@ function  refr()
 
 }
 
+function getSelectChecked() {
+            var selected = [];
+            $('#attrips input:checked').each(function() {
+                selected.push($(this).attr('value'));
+            });
+            console.log(selected);
+            return selected;
+}
+
 
 function selectcat(data)
 {

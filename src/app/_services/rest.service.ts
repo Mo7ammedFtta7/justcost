@@ -24,11 +24,26 @@ import { environment } from '../../environments/environment';
     return Observable.throw(error.message || "Server Error");
   }
 
+  // items() : Observable<any[]>{
+  //   return this.http.get<any[]>(environment.ApiUrl+'products')
+  //                   .catch(this.errorHandler);
+  // }
+  items(params :HttpParams,id): Observable<any> {
+    //console.log(params);
+     return this.http.get(environment.ApiUrl + 'products/'+id, {params }).pipe(
+       map(this.extractData));
+   }
   getProducts(params :HttpParams,id): Observable<any> {
    //console.log(params);
     return this.http.get(environment.ApiUrl + 'categoryproudects/'+id, {params }).pipe(
       map(this.extractData));
   }
+  getFavProducts(): Observable<any> {
+    //console.log(params);
+     return this.http.get(environment.ApiUrl + 'products/').pipe(
+       map(this.extractData));
+   }
+
   getProduct(id): Observable<any> {
      return this.http.get(environment.ApiUrl + 'products/'+id).pipe(
        map(this.extractData));
