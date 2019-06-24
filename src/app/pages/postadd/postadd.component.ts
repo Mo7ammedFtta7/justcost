@@ -7,7 +7,8 @@ import { Icategory, Isub } from '../../_models/category';
 import { AuthService } from '../../auth.service';
 //declare function subs(id):any ;
 declare function success(msg):any;
-
+declare function SetMap():any;
+declare function getMarker():any;
 @Component({
   selector: 'app-postadd',
   templateUrl: './postadd.component.html',
@@ -25,9 +26,9 @@ export class PostaddComponent implements OnInit {
   Icategory:Icategory[]
   Isub:Isub[]
   user:any
-
   constructor(public _authService: AuthService,private _api: apis,private _rea: RestService) { }
   ngOnInit() {
+  //  SetMap();
     this._api.categoris(this.categoriesurl).subscribe(res =>{this.Icategory = res['data']; this.cat=res['data'][0]['name'];this.onSelect(res['data'][0]['id']);
   },
     error => this.errorMsg = error);
@@ -41,6 +42,7 @@ export class PostaddComponent implements OnInit {
           }
     )
     this.user= this._authService.getUser()
+   SetMap();
   }
     ref(id)
     {
@@ -77,12 +79,19 @@ export class PostaddComponent implements OnInit {
     create.value.iswholesale=0;
     create.value.keywordsId=1;
     create.value.status=1;
-    //create.value.media=[];
+    create.value.lat= 1;
+    create.value.lng=1;
+    var mar=getMarker();
 
+     if (typeof mar !== "undefined") {
+      create.value.lat= mar.position.lat();
+      create.value.lng=mar.position.lng()
+     };
+    
+ 
+     console.log(create.value);
 
-       console.log(create.value);  // false
-
-       this.postadd(create)
+      // this.postadd(create)
       }
    
       postadd (ad) {

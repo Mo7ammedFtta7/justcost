@@ -1,3 +1,4 @@
+var marker;
 function subs(id) {
 
     console.log(id);
@@ -92,6 +93,41 @@ function ViewMap()
       };
       var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
       var marker = new google.maps.Marker({position: mapProp.center, map: map});
+}
+
+function SetMap()
+{
+    var mmaapp= {
+        center:new google.maps.LatLng(51.508742,-0.120850),
+        zoom:15,
+      };
+
+      var map2 = new  google.maps.Map(document.getElementById("SetGoogleMap"),mmaapp);
+    // marker = new google.maps.Marker({position: mmaapp.center, map: map2});
+            google.maps.event.addListener(map2, 'click', function(event) {
+                addMarker(event.latLng,map2);
+            });
+}
+  // Function for adding a marker to the page.
+  function addMarker(location,map) {
+    if (!marker || !marker.setPosition) {
+        marker = new google.maps.Marker({
+          position: location,
+          map: map,
+        });
+      } else {
+        marker.setPosition(location);
+      }
+
+    // var ma = new google.maps.Marker({
+    //     position: location,
+    //     map: map
+    // });
+}
+
+function getMarker()
+{
+    return marker
 }
 
 $(document).ready(function () {

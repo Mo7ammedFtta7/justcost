@@ -16,23 +16,25 @@
                     <h6>brand</h6>
                     <ul class="list-unstyled check-ul">
                         <li  *ngFor="let Brand of Brands">
-                            <input type="checkbox"    class="box" name="name{{Brand.id}}" id="brand{{Brand.id}}">
+                            <input type="checkbox"  class="box" name="name{{Brand.id}}" id="brand{{Brand.id}}">
                             <label for="brand{{Brand.id}}">{{Brand.name}} </label>
                         </li>
                     </ul>
                 </div><!-- Brand -->
 
-                <div id="attrips" class="brand text-uppercase" *ngFor="let attr of attributes">
+                <div class="brand" id="attrips" class="brand text-uppercase" *ngFor="let attr of attributes">
                     <h6>{{attr.group}}</h6>
                     <ul class="list-unstyled check-ul">
                         <li *ngFor="let att of attr.attributes">
-                                <input type="checkbox" class="box" [(ngModel)]="att.id"  name="{{att.name}}" value="{{att.id}}"/>
+                                <input type="checkbox" value="{{att.id}}">
+
+                                <!-- <input type="checkbox" class="box" [(ngModel)]="att.id"  name="{{att.name}}" value="{{att.id}}"/> -->
                                 <label for="attr{{att.id}}">{{att.name}}</label>
                         </li>
-                      <button type="submit">ssssssssssss</button>
                     </ul>
                 </div>
-              
+                <button type="button" (click)="isAllSelected()">ssssssssssss</button>
+
              </form>
               
             </div><!-- End Panel-->
@@ -97,9 +99,8 @@
                     </div><!-- About Photo-->
                 </div><!-- Item #1 -->
                 <div class="paginaion text-center">
-               
-                 
-                                    <pagination-controls class="my-pagination"  (pageChange)="p = $event"></pagination-controls>
+
+                    <pagination-controls class="my-pagination"  (pageChange)="p = $event"></pagination-controls>
 
                 </div>
 
