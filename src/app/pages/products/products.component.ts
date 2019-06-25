@@ -16,6 +16,7 @@ declare function getSelectChecked():any ;
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  searcF:string='dddd';
   id: any;
   sub: any;
   page:any=1;
@@ -58,8 +59,12 @@ export class ProductsComponent implements OnInit {
   public math(aa:any,bb:any) {
     return ((aa-bb) /aa * 100).toFixed(2)
   }
-  getProducts( page:any,search:string ) {
-    let params = new HttpParams().set("limit",this.limit).set("search",search); //Create new HttpParams
+  getProducts(page:any,search:string) {
+    let params = new HttpParams()
+    .set("limit",this.limit)
+    .set("search",search)
+    .set("checked",getSelectChecked())
+    console.log(params)
     this.rest.getProducts(params,this.id).subscribe((data: {}) => {
       this.products = data['data'];
       this.category= data['catName'];
@@ -101,9 +106,7 @@ export class ProductsComponent implements OnInit {
 
   }
     onKey(value: string) {
-      console.log(value);
       this.getProducts(this.page,value);
-
     }
 
     isAllSelected() {

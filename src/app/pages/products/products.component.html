@@ -8,7 +8,7 @@
             <div class="custom text-center">Custom Search</div>
             <div class="panel" style="padding-bottom: 130px;">
 
-                <input type="search" #searcF (keyup)="onKey(searcF.value)" class="form-control search2" placeholder="Search Title/Keyword">
+                <input type="search" ngModel #searcF (keyup)="onKey(searcF.value)" class="form-control search2" placeholder="Search Title/Keyword">
                 <i class="fas fa-search search-icon2"></i>
                 <form action="" #filterForm="ngForm" (ngSubmit)="filter(filterForm)"  >
 
@@ -21,17 +21,30 @@
                         </li>
                     </ul>
                 </div><!-- Brand -->
+                <div id="attrips">
 
-                <div class="brand" id="attrips" class="brand text-uppercase" *ngFor="let attr of attributes">
-                    <h6>{{attr.group}}</h6>
-                    <ul class="list-unstyled check-ul">
+                <div class="brand"  class="brand " *ngFor="let group of attributes">
+                    <h6>{{group.group}}</h6>
+                    <!-- <ul class="list-unstyled check-ul">
                         <li *ngFor="let att of attr.attributes">
-                                <input type="checkbox" value="{{att.id}}">
+                            <input type="checkbox"  class="box" ngModel name="name{{att.id}}" id="att{{att.id}}">
 
-                                <!-- <input type="checkbox" class="box" [(ngModel)]="att.id"  name="{{att.name}}" value="{{att.id}}"/> -->
                                 <label for="attr{{att.id}}">{{att.name}}</label>
                         </li>
-                    </ul>
+                    </ul> -->
+
+    <ul class="list-unstyled check-ul">
+        <li *ngFor="let att of group.attributes; let i=index">
+            <input type="checkbox" class="box" ngModel value="{{att.id}}" (change)="onKey(searcF.value)" name="att{{att.id}}" id="att{{i}}-{{group.group}}">
+            <label for="att{{i}}-{{group.group}}">{{att.name}}</label>
+        </li>
+      
+    </ul>
+</div>
+
+                 
+
+
                 </div>
                 <button type="button" (click)="isAllSelected()">ssssssssssss</button>
 
