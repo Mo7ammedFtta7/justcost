@@ -66,6 +66,33 @@ function owl() {
         }
       });
 }
+
+function owl2() {
+    $.ajax({
+        type: 'get',
+        url: 'http://localhost:8000/api/sliders',
+        contentType: 'application/json',
+        success : function (data) {
+            console.log(data.data);
+            html='<div class="owl-carousel">';
+              data.data.forEach(element => {
+                html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
+              });
+            html+='</div>';
+            $("#slider2").append(html);
+            
+           // $(".owl-carousel").owlCarousel();
+            var $owl = $('.owl-carousel').owlCarousel({
+              items: 1,
+              loop:true
+          });
+          $owl.trigger('refresh.owl.carousel');
+        }
+      });
+}
+
+
+
     function goup(){
         $('html, body').animate({
             scrollTop: '0'
