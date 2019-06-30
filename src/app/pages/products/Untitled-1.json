@@ -1,0 +1,264 @@
+{
+    "countries":[
+       {
+          "id":1,
+          "enName":"Bahrain",
+          "arName":"البحرين",
+          "states":[
+             {
+                "arName":"",
+                "enName":"Al Hadd"
+             },
+             {
+                "arName":"",
+                "enName":"Al Manamah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Mintaqah al Gharbiyah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Mintaqah al Wusta"
+             },
+             {
+                "arName":"",
+                "enName":"Al Mintaqah ash Shamaliyah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Muharraq"
+             },
+             {
+                "arName":"",
+                "enName":"Ar Rifa' wa al Mintaqah al Janubiyah"
+             },
+             {
+                "arName":"",
+                "enName":"Jidd Hafs"
+             },
+             {
+                "arName":"",
+                "enName":"Madinat Hamad"
+             },
+             {
+                "arName":"",
+                "enName":"Madinat 'Isa"
+             },
+             {
+                "arName":"",
+                "enName":"Juzur Hawar"
+             },
+             {
+                "arName":"",
+                "enName":"Sitrah"
+             }
+          ]
+       },
+       {
+          "id":2,
+          "enName":"Kuwait",
+          "arName":"الكويت",
+          "states":[
+             {
+                "arName":"",
+                "enName":"Al Ahmadi"
+             },
+             {
+                "arName":"",
+                "enName":"Al Farwaniyah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Asimah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Jahra"
+             },
+             {
+                "arName":"",
+                "enName":"Hawalli"
+             },
+             {
+                "arName":"",
+                "enName":"Mubarak Al-Kabeer"
+             }
+          ]
+       },
+       {
+          "id":3,
+          "arName":"قطر",
+          "enName":"Qatar",
+          "states":[
+             {
+                "arName":"",
+                "enName":"Ad Dawhah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Ghuwayriyah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Jumayliyah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Khawr"
+             },
+             {
+                "arName":"",
+                "enName":"Al Wakrah"
+             },
+             {
+                "arName":"",
+                "enName":"Ar Rayyan"
+             },
+             {
+                "arName":"",
+                "enName":"Jarayan al Batinah"
+             },
+             {
+                "arName":"",
+                "enName":"Madinat ash Shamal"
+             },
+             {
+                "arName":"",
+                "enName":"Umm Sa'id"
+             },
+             {
+                "arName":"",
+                "enName":"Umm Salal"
+             }
+          ]
+       },
+       {
+        "id":4,
+          "arName":"السعودية",
+          "enName":"Saudi Arabia",
+          "states":[
+             {
+                "arName":"",
+                "enName":"Al Bahah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Hudud ash Shamaliyah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Jawf"
+             },
+             {
+                "arName":"",
+                "enName":"Al Madinah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Qasim"
+             },
+             {
+                "arName":"",
+                "enName":"Ar Riyad"
+             },
+             {
+                "arName":"",
+                "enName":"Ash Sharqiyah"
+             },
+             {
+                "arName":"",
+                "enName":"'Asir"
+             },
+             {
+                "arName":"",
+                "enName":"Ha'il"
+             },
+             {
+                "arName":"",
+                "enName":"Jizan"
+             },
+             {
+                "arName":"",
+                "enName":"Makkah"
+             },
+             {
+                "arName":"",
+                "enName":"Najran"
+             },
+             {
+                "arName":"",
+                "enName":"Tabuk"
+             }
+          ]
+       },
+       {
+        "id":5,
+          "arName":"عمان",
+          "enName":"Oman",
+          "states":[
+             "Ad Dakhiliyah",
+             {
+                "arName":"",
+                "enName":"Al Batinah"
+             },
+             {
+                "arName":"",
+                "enName":"Al Wusta"
+             },
+             {
+                "arName":"",
+                "enName":"Ash Sharqiyah"
+             },
+             {
+                "arName":"",
+                "enName":"Az Zahirah"
+             },
+             {
+                "arName":"",
+                "enName":"Masqat"
+             },
+             {
+                "arName":"",
+                "enName":"Musandam"
+             },
+             {
+                "arName":"",
+                "enName":"Dhofar"
+             }
+          ]
+       },
+       {
+        "id":6,
+          "arName":"الامارات",
+          "enName":"United Arab Emirates",
+          "states":[
+             "Abu Dhabi",
+             {
+                "arName":"",
+                "enName":"Ajman"
+             },
+             {
+                "arName":"",
+                "enName":"Al Fujayrah"
+             },
+             {
+                "arName":"",
+                "enName":"Sharjah"
+             },
+             {
+                "arName":"",
+                "enName":"Dubai"
+             },
+             {
+                "arName":"",
+                "enName":"Ra's al Khaymah"
+             },
+             {
+                "arName":"",
+                "enName":"Umm al Qaywayn"
+             }
+          ]
+       }
+    ]
+ }

@@ -35,7 +35,7 @@ import { environment } from '../../environments/environment';
    }
   getProducts(params :HttpParams,id): Observable<any> {
    //console.log(params);
-    return this.http.get(environment.ApiUrl + 'categoryproudects/'+id, {params }).pipe(
+    return this.http.get(environment.ApiUrl + 'categoryproudects/'+id, {headers: this.httpOptions.headers ,params }).pipe(
       map(this.extractData));
   }
   getFavProducts(): Observable<any> {
