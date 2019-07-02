@@ -11,6 +11,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 import { PostaddComponent } from './pages/postadd/postadd.component';
+import { ResultsComponent } from './pages/results/results.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,11 @@ const routes: Routes = [
   {
     path: 'postadd',
     component: PostaddComponent
+  }
+  ,
+  {
+    path: 'results',
+    component: ResultsComponent
   }
 
 ];

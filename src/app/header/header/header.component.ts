@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { RestService } from '../../_services/rest.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -12,7 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   citis:any[]
-  constructor(public _authService: AuthService,private _rea: RestService){}
+  Search:string;
+  constructor(public _authService: AuthService,private _rea: RestService,public router: Router){}
 
   ngOnInit() {
     this._rea.getCitis().subscribe(
@@ -23,6 +24,12 @@ export class HeaderComponent implements OnInit {
       err => {
         console.log(err)
       })
+  }
+
+
+  GoSearch(){
+    console.log(this.Search)
+    this.router.navigate(['/results'],{queryParams:{search:this.Search}} );
   }
 
 }

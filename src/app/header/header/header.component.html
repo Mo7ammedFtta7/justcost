@@ -104,9 +104,9 @@
               </div>
           </div>
           <form class="form-inline my-2 mx-5 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="What you are looking for ?" aria-label="Search" dir="auto">
+              <input class="form-control mr-sm-2" type="search" placeholder="What you are looking for ?" [(ngModel)]="Search" name="Search" aria-label="Search" dir="auto">
               <span>Abu Dhabi sd</span>
-              <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
+              <button class="btn btn-outline-success my-sm-0" (click)="GoSearch(ngModel)" type="submit">Search</button>
           </form>
 
           
