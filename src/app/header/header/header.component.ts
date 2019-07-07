@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   constructor(public _authService: AuthService,private _rea: RestService,public router: Router){}
 
   ngOnInit() {
-    this._rea.getCitis().subscribe(
+    this._rea.getCountries().subscribe(
       res => {
       this.citis=res.data
         console.log(res)

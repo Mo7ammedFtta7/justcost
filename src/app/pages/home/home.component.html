@@ -9,6 +9,12 @@
     <h3 class="main-title">Featured ads</h3>
     <div class="ads py-4">
         <div class="row">
+            <style>
+            .img-fluid {
+   
+    max-height: 200px;
+}
+            </style>
             
            <div *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
                 <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
@@ -16,15 +22,16 @@
                         <img src="{{item.media[0].url}}" alt="Image" class="img-fluid">
                         <span class="disc" style="right: 0;">Discount <span> {{math(item.reg_price,item.sale_price)}} %</span></span>
                     </div>
-                    <div class="info">
+                    <div class="info" style="padding: 15px 15px 0px 15px;">
                         <h5> <a routerLink="/product/{{item.productId}}">{{item.title}}</a></h5>
                         <span>{{item.category}}</span>
                     </div>
                     <div class="end-info">
+                            <bar-rating [(rate)]="rate" [max]="5" ></bar-rating>
+                        <!-- <a href="#"><i class="far fa-star"></i></a>
                         <a href="#"><i class="far fa-star"></i></a>
                         <a href="#"><i class="far fa-star"></i></a>
-                        <a href="#"><i class="far fa-star"></i></a>
-                        <a href="#"><i class="far fa-star"></i></a>
+                        <a href="#"><i class="far fa-star"></i></a> -->
                         <!-- <a href="#" class="button float-right"><i class="far fa-heart"></i> save</a> -->
                         <div class="claerfix"></div>
                     </div>

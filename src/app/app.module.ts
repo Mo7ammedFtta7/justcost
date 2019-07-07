@@ -23,7 +23,7 @@ import { ResultsComponent } from './pages/results/results.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 import { PostaddComponent } from './pages/postadd/postadd.component';
 import { SubsComponent } from './pages/postadd/subs/subs.component';
-
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { SubsComponent } from './pages/postadd/subs/subs.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BarRatingModule
   ],
   providers: [AuthService,apis, AuthGuard, EventService, 
   {

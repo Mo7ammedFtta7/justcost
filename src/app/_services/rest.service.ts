@@ -77,6 +77,13 @@ import { environment } from '../../environments/environment';
     return this.http.get(environment.ApiUrl + 'cities/').pipe(
       map(this.extractData));
   }
+  
+  getCountries(): Observable<any> {
+    return this.http.get(environment.ApiUrl + 'countries/').pipe(
+    map(this.extractData));
+  }
+
+
   getEmailValidation(id): Observable<any> {
     return this.http.get(environment.ApiUrl + 'customer/emailvalidation/'+id)
   }

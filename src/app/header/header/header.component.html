@@ -105,7 +105,9 @@
           </div>
           <form class="form-inline my-2 mx-5 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="What you are looking for ?" [(ngModel)]="Search" name="Search" aria-label="Search" dir="auto">
-              <span>Abu Dhabi sd</span>
+              <select name="" id="">
+                  <option>Abu Dhabi sd</option>
+              </select>
               <button class="btn btn-outline-success my-sm-0" (click)="GoSearch(ngModel)" type="submit">Search</button>
           </form>
 
@@ -181,7 +183,7 @@
                         </a>
                        
                         <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" routerLink="/posatadd">
+                                <a class="dropdown-item" routerLink="/postadd">
                                     <i class="fas fa-user-circle fa-md fa-fw"></i> Create Ad
                                 </a>
                                 <a class="dropdown-item" routerLink="/profile">
