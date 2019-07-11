@@ -73,8 +73,8 @@ import { environment } from '../../environments/environment';
       map(this.extractData));
   }
 
-  getCitis(): Observable<any> {
-    return this.http.get(environment.ApiUrl + 'cities/').pipe(
+  getCitis(countryId): Observable<any> {
+    return this.http.get(environment.ApiUrl + 'cities/'+countryId).pipe(
       map(this.extractData));
   }
   

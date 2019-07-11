@@ -105,9 +105,11 @@
           </div>
           <form class="form-inline my-2 mx-5 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="What you are looking for ?" [(ngModel)]="Search" name="Search" aria-label="Search" dir="auto">
-              <select name="" id="">
-                  <option>Abu Dhabi sd</option>
+            <span>
+              <select name="" id=""  >
+                  <option *ngFor="let city of citis" [ngValue]="city.id">{{city.name}}</option>
               </select>
+            </span>
               <button class="btn btn-outline-success my-sm-0" (click)="GoSearch(ngModel)" type="submit">Search</button>
           </form>
 
@@ -154,15 +156,13 @@
               <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <img src="assets/images/emirian-flag-medium.gif" alt="Flag Image" width="30">
-                      <span class="mx-1">uae</span>
+                      <span class="mx-1">{{_authService.getUser().country.name}}</span>
                       <i class="fas fa-chevron-down fa-sm fa-fw"></i>
                   </a>
                   <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
-                    <div *ngFor="let city of citis">
+                    <div *ngFor="let country of countries">
                             <div class="dropdown-divider"></div>
-
-                            <a class="dropdown-item" href="#">{{city.name}}</a>
-                         
+                            <a class="dropdown-item" href="javascript:;" (click)="getCitisOfCountry(country.id)" >{{country.name}}</a>
                     </div>  
                   
                   </div>

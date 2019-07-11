@@ -32,15 +32,15 @@ export class PostaddComponent implements OnInit {
     this._api.categoris(this.categoriesurl).subscribe(res =>{this.Icategory = res['data']; this.cat=res['data'][0]['name'];this.onSelect(res['data'][0]['id']);
   },
     error => this.errorMsg = error);
-    this._rea.getCitis().subscribe(
-          res => {
-          this.citis=res.data
-            console.log(res)
-          },
-          err => {
-            console.log(err)
-          }
-    )
+    // this._rea.getCitis().subscribe(
+    //       res => {
+    //       this.citis=res.data
+    //         console.log(res)
+    //       },
+    //       err => {
+    //         console.log(err)
+    //       }
+    // )
     this.user= this._authService.getUser()
    SetMap();
   }
