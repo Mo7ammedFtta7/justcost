@@ -71,14 +71,17 @@
                   </div>
                   <div class="col-xl-6 col-sm-12">
                       <div class="save text-right">
-                          <a href="#"><i class="far fa-save"></i>Save Search</a>
+                          <a href="#"><i class="far fa-save"></i>{{products?.length}} result</a>
                       </div>
                   </div>
               </div>
 
               <div *ngFor="let product of products | paginate: { itemsPerPage: 4, currentPage: p }" class="item row">
                   <div class="photo text-center col-sm-3">
-                      <img src="{{product.media[0].url}}" alt="Image" class="img-fluid">
+
+                      <img *ngIf="product.media!=null" src="{{product.media.split(',')[0]}}" alt="Image" class="img-fluid">
+                      <img *ngIf="product.media==null" src="http://admin.just-cost.com/storage/products_media/dd.jpg" alt="Image" class="img-fluid">
+
                   </div><!-- Photo -->
                   <div class="about-photo  col-sm-9">
                       <div class="float-left py-3">

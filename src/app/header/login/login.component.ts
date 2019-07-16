@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
  
   onSubmit(f: NgForm) {
-  //  console.log(f.value);  // { first: '', last: '' }
+    console.log(f.value);  // { first: '', last: '' }
     if (!f.valid) {
       this.username_faild=true;
       this.password_faild=true;

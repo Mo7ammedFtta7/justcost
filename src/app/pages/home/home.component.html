@@ -77,7 +77,7 @@
                     </div>
                     <div class="links">
                         <ul class="list-unstyled">
-                            <li *ngFor="let sub of category.subs;"><a routerLink="/products/{{sub.id}}">{{sub.name}}</a> <span>{{sub.count}}</span></li>
+                            <li *ngFor="let sub of category.subs;"><a [routerLink]="['/results']" [queryParams]="{ category: sub.name}" >{{sub.name}}</a> <span>{{sub.count}}</span></li>
                         </ul>
                     </div>
                 </div>

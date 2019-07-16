@@ -50,7 +50,7 @@ import { environment } from '../../environments/environment';
    }
 
    getProductss(params :HttpParams): Observable<any> {
-    return this.http.get(environment.ApiUrl + 'products',{params }).pipe(
+    return this.http.get(environment.ApiUrl + 'getAllProducts',{params}).pipe(
       map(this.extractData));
   }
    getcomments(id): Observable<any> {

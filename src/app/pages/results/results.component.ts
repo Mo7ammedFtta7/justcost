@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../_services/rest.service';
 import { apis } from '../../_services/apis';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 
 @Component({
@@ -12,16 +12,29 @@ import { HttpParams } from '@angular/common/http';
 export class ResultsComponent implements OnInit {
   products:any[];
   search:string;
+  category:string;
   sub:any;
-
+   paramsa = new HttpParams()
 
   constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.search = params['search'];
-      this.getAttributes();
-      console.log(params);
+    this.route.queryParams.subscribe(param => {
+     // this.paramss.set("categoty",params['categoty']);
+      for (const key in param) {
+      //   this.paramss== new HttpParams()
+
+      this.paramsa.append(key,param[key])
+         console.log(key+" "+param[key]);
+      }
+      console.log(this.paramsa);
+
+      // //  params.forEach(element => {
+      // //   this.paramss.set(element[''],this.search)
+      // });
+      //this.params=param ;
+
+      this.getAttributes(this.paramsa);
    });
 
   }
@@ -30,9 +43,23 @@ export class ResultsComponent implements OnInit {
     return ((aa-bb) /aa * 100).toFixed(2)
   }
 
-  getAttributes() {
-    let params = new HttpParams()
-    .set("search",this.search)
+  onKey(key)
+  {
+   this.search=key;
+  this.paramsa.set("search",this.search);
+  console.log("-----------------");
+
+   console.log(this.paramsa);
+  //  this.params.set("search",this.search)
+  this.getAttributes(this.paramsa)
+  }
+
+  getAttributes(params) {
+    //  let paramsa = new HttpParams()
+    // .set("search",this.paramsa["search"])
+    // .set("category",this.category)
+    // //console.log(params);
+
     this.rest.getProductss(params).subscribe((data) => {
       this.products = data['data'];
     });
