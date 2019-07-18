@@ -24,6 +24,7 @@ import { EmailverifyComponent } from './pages/emailverify/emailverify.component'
 import { PostaddComponent } from './pages/postadd/postadd.component';
 import { SubsComponent } from './pages/postadd/subs/subs.component';
 import { BarRatingModule } from "ngx-bar-rating";
+import { TranslatePipe } from './pipe/translate.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BarRatingModule } from "ngx-bar-rating";
     ResultsComponent,
     EmailverifyComponent,
     PostaddComponent,
-    SubsComponent
+    SubsComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import { BarRatingModule } from "ngx-bar-rating";
     NgxPaginationModule,
     BarRatingModule
   ],
-  providers: [AuthService,apis, AuthGuard, EventService, 
+  providers: [AuthService,apis, AuthGuard, EventService,TranslatePipe, 
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
