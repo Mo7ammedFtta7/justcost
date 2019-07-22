@@ -156,7 +156,7 @@
               <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <img src="assets/images/emirian-flag-medium.gif" alt="Flag Image" width="30">
-                      <span class="mx-1">{{_authService.getUser().country.name}}</span>
+                      <span class="mx-1">{{_authService.getUserCountry()}}</span>
                       <i class="fas fa-chevron-down fa-sm fa-fw"></i>
                   </a>
                   <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
@@ -169,7 +169,7 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mx-1">{{ local | translate }}</span>
+                    <span class="mx-1">{{ 'local' | translate }}</span>
                     <i class="fas fa-chevron-down fa-sm fa-fw"></i>
                 </a>
                 <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
@@ -188,7 +188,7 @@
               </li> -->
 
               <li *ngIf="!_authService.loggedIn()"  class="nav-item">
-                  <a  class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle fa-md fa-fw"></i> Login </a>    
+                  <a  class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle fa-md fa-fw"></i> {{ 'Login' | translate }} </a>    
                 </li>
 
                 <li *ngIf="_authService.loggedIn()"  class="nav-item dropdown">
@@ -228,7 +228,7 @@
                   <div class="panel-modal">
                       <ul class="nav nav-tabs row" id="myTab" role="tablist">
                           <li class="nav-item col-sm-6">
-                              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login</a>
+                              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{{ 'Login' | translate }}</a>
                           </li>
                           <li class="nav-item col-sm-6">
                               <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">register</a>
@@ -241,8 +241,8 @@
                            </app-login>
 
                               <div class="password">
-                                  <a href="reset_p.html">I’m forget my password</a>
-                                  <p>I don’t have account <a href="#">Create new</a></p>
+                                  <a href="reset_p.html">{{ 'forget password' | translate }}</a>
+                                  <p>{{ 'I don’t have account' | translate }} <a href="#">{{ 'Create new' | translate }}</a></p>
                               </div><!-- End Password-->
                           </div>
                           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -251,7 +251,7 @@
                               </app-register>
 
                               <div class="password">
-                                  <a href="#">I’m forget my password</a>
+                                  <a href="#">{{ 'forget password' | translate }}</a>
                               </div><!-- End Password-->
                           </div>
                       </div>
@@ -259,9 +259,9 @@
 
                   <!-- Start About us -->
                   <div class="about-us text-center">
-                      <a href="#">About us | <a href="#"> <i class="fas fa-comment fa-md fa-fw"></i> get help</a></a>
-                      <p>Copyright &copy; 2019 , All rights reserved.</p>
-                      <a href="#" class="privacy">Privacy <span>|</span> Terms of services</a>
+                      <a href="#">{{ 'About us' | translate }} | <a href="#"> <i class="fas fa-comment fa-md fa-fw"></i> {{ 'get help' | translate }}</a></a>
+                      <p>Copyright &copy; 2019 , {{ 'All rights reserved.' | translate }}</p>
+                      <a href="#" class="privacy">{{ 'Privacy' | translate }} <span>|</span> Terms of services</a>
                   </div>
                   <!-- End About us -->
               </div><!-- End Col #1 -->

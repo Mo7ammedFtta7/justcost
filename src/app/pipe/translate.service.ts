@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import db from  './database.json';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ export class TranslateService {
 
   public local:string=this.getlocalLang();
   newWords=[]
+  lang_db=db
   constructor() { }
 
   getlocalLang ()
@@ -14,8 +16,8 @@ export class TranslateService {
     if (localStorage.getItem("bdrLng")!=null) {
       return localStorage.getItem("bdrLng");
     } else {
-      localStorage.setItem("bdrLng", "en");  
-      return "en" 
+      localStorage.setItem("bdrLng", "ar");  
+      return "ar" 
     }
   }
 

@@ -4,10 +4,6 @@
     "langs": [
       {
         "lang": "ar",
-        "word": "Login"
-      },
-      {
-        "lang": "ar",
         "word": "تسجيل الدخول"
       }
     ]
@@ -228,7 +224,7 @@
     "langs": [
       {
         "lang": "ar",
-        "word": ""
+        "word": "الخصوصية"
       }
     ]
   },
@@ -237,7 +233,7 @@
     "langs": [
       {
         "lang": "ar",
-        "word": ""
+        "word": "شروط الكوكيز"
       }
     ]
   },
@@ -304,5 +300,96 @@
       }
     ]
   },
-  {"key":"What you are looking for ?","langs":[{"lang":"ar","word":"ابحث هنا"}]}
+  {
+    "key": "What you are looking for ?",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "ابحث هنا"
+      }
+    ]
+  },
+  {
+    "key": "Home",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "الرئيسية"
+      }
+    ]
+  },
+  {
+    "key": "About",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "عنا"
+      }
+    ]
+  },
+  {
+    "key": "Blog",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "المدونة"
+      }
+    ]
+  },
+  {
+    "key": "Register",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "انشاء حساب"
+      }
+    ]
+  },
+  {
+    "key": "Pricing Plans",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "الاسعار"
+      }
+    ]
+  },
+  {
+    "key": "FAQ",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "الاسئلة المتكررة"
+      }
+    ]
+  },
+  {
+    "key": "All Ads",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "جميع الاعلانات"
+      }
+    ]
+  },
+  {
+    "key": "Help & Contact us",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": " تواصل معنا"
+      }
+    ]
+  },
+  {
+    "key": "Terms & Conditions",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": ""
+      }
+    ]
+  },
+  {"key":"Featured ads","langs":[{"lang":"ar","word":"الاعلانات المميزة"}]},
+  {"key":"Browse Categories","langs":[{"lang":"ar","word":"التصنيفات"}]}
 ]

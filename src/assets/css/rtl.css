@@ -1,0 +1,103 @@
+body {
+    direction: rtl;
+}
+
+/*Home Page RTL*/
+.featured-ads .panel .info,
+.main-title {
+    text-align: right;
+}
+
+.icon {
+    flex-direction: row;
+}
+
+.browse-Categories .links ul li {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+}
+
+ul {
+    padding-right: 0;
+}
+
+/*Footer*/
+.footer .end-foot p {
+    text-align: right;
+}
+
+/*Results Page RTL*/
+
+.catogery i.search-icon2 {
+    left: 5px;
+    right: inherit;
+}
+
+.catogery .brand,
+.catogery .brand ul li,
+.save-search {
+    text-align: right;
+}
+
+.save {
+    text-align: left;
+}
+
+.catogery .save-search a i {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+/*Wholesale Page*/
+.person {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 20px 30px;
+}
+
+.post-new .new .person .data-person {
+    text-align: right;
+    margin: 0 14px;
+}
+
+.post-new .new ul li a i {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.small-title {
+    text-align: right;
+}
+
+.details,
+.details form .form-control {
+    text-align: right;
+}
+
+.details .input-group {
+    flex-direction: row-reverse;
+}
+
+/*Profile */
+.profile h3 {
+    text-align: right;
+}
+
+.profile .panel-profile .p-image {
+    right: 22px;
+}
+
+.profile .panel-profile .person-name {
+    text-align: right;
+}
+
+.profile .panel-profile .nav-link i {
+    margin-right: 0;
+    margin-left: 5px;
+}
+.profile .tab-content > .tab-pane .classic .ads {
+    text-align: right;
+}

@@ -25,6 +25,7 @@ import { PostaddComponent } from './pages/postadd/postadd.component';
 import { SubsComponent } from './pages/postadd/subs/subs.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { TranslatePipe } from './pipe/translate.pipe';
+import { TranslateComponent } from './pipe/translate/translate.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TranslatePipe } from './pipe/translate.pipe';
     EmailverifyComponent,
     PostaddComponent,
     SubsComponent,
-    TranslatePipe
+    TranslatePipe,
+    TranslateComponent
   ],
   imports: [
     BrowserModule,

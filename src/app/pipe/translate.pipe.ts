@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
-import db from  './database.json';
+//import db from  './database.json';
 import {TranslateService} from './translate.service';
 
 @Injectable()
@@ -7,16 +7,18 @@ import {TranslateService} from './translate.service';
   name: 'translate'
 })
 
-
 export class TranslatePipe implements PipeTransform {
 
+  db=this.translate.lang_db;
   constructor(private translate: TranslateService) {
   }
 
  
   transform(keyWord: string): string {
-    var result =keyWord;
-    db.find((words) => {
+   // console.log(keyWord);
+
+    var result=keyWord;
+    this.db.find((words) => {
         if (words.key===keyWord) {
            words.langs.find((word) => {
             if (word.lang===this.translate.local) {
@@ -25,9 +27,10 @@ export class TranslatePipe implements PipeTransform {
          });
         }
     });
-        if (  this.translate.ifExistInArray(db,keyWord)==false &&  this.translate.ifExistInArray(this.translate.newWords,keyWord)==false) {
-
+        if (  this.translate.ifExistInArray(this.db,keyWord)==false &&  this.translate.ifExistInArray(this.translate.newWords,keyWord)==false) {
           this.translate.newWords.push({"key":result,"langs":[{"lang":"ar","word":""}]})
+          console.log("---------------------------------------");
+          console.log( JSON.stringify( this.translate.newWords));
         }
     return result;
   }

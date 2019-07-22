@@ -79,7 +79,6 @@
               <div *ngFor="let product of products | paginate: { itemsPerPage: 4, currentPage: p }" class="item row">
                   <div class="photo text-center col-sm-3">
 
-                      <img *ngIf="product.media!=null" src="{{product.media.split(',')[0]}}" alt="Image" class="img-fluid">
                       <img *ngIf="product.media==null" src="http://admin.just-cost.com/storage/products_media/dd.jpg" alt="Image" class="img-fluid">
 
                   </div><!-- Photo -->

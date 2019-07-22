@@ -1,0 +1,37 @@
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>KeyWord</td>
+      <td>arabic</td>
+      <td>english</td>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of table">
+      <td>
+      {{row.key}}
+      </td>
+     
+
+      <td>
+
+         <div *ngFor="let lang of row.langs ">
+
+                  <input *ngIf="lang.lang=='ar'; else elseTemplate" type="text" value="{{lang.word}} ">   
+  
+         </div>
+         
+          </td>
+          <td>
+              <div *ngFor="let lang of row.langs">
+
+               <input *ngIf="lang.lang=='en'; else elseTemplate" type="text" value="{{lang.word}}">   
+
+                 </div>
+          </td>
+    </tr>
+  </tbody>
+</table>

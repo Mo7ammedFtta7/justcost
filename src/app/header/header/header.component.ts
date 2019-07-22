@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getCitisOfCountry(this._authService.getUser().country.id);
+    // this.getCitisOfCountry(this._authService.getUser().country.id);
     
     this._rea.getCountries().subscribe(
       res => {

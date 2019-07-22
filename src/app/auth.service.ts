@@ -39,10 +39,18 @@ export class AuthService {
   getUser() {
     let user=localStorage.getItem('data')
     let xx=JSON.parse(user)
-    return xx.userInfo
+    return xx!=null ?xx.userInfo :null
+  }
+
+  getUserCountry() {
+    
+   let xx=this.getUser()
+    return xx!=null ?xx.userInfo.country.name :"UAE"
   }
 
   loggedIn() {
     return !!localStorage.getItem('token')    
   }
+
+
 }
