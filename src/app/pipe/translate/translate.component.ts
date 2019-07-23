@@ -10,8 +10,7 @@ export class TranslateComponent implements OnInit {
  public table:any[]=this.trans.lang_db;
 
   ngOnInit() {
-    console.log(this.table)
-    
+   // console.log(this.table)
   }
 
 }

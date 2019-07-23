@@ -7,6 +7,7 @@ import db from  './database.json';
 export class TranslateService {
 
   public local:string=this.getlocalLang();
+  // public langs
   newWords=[]
   lang_db=db
   constructor() { }
@@ -21,7 +22,7 @@ export class TranslateService {
     }
   }
 
-  setlocalLang (local)
+  setlocalLang(local)
   {     
    localStorage.setItem("bdrLng", local);
    window.location.reload()
@@ -36,7 +37,7 @@ export class TranslateService {
               return true
             }
           })
-  return isex;
+    return isex;
   }
 
   ifExistInArray(array,key)

@@ -167,20 +167,22 @@
                   
                   </div>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mx-1">{{ 'local' | translate }}</span>
-                    <i class="fas fa-chevron-down fa-sm fa-fw"></i>
-                </a>
-                <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown">
+              <li class="nav-item">
+                <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"  (click)="translate.setlocalLang('ar')">عربي</a>
+                <a *ngIf="translate.getlocalLang()=='ar'"class="nav-link"  (click)="translate.setlocalLang('en')">English</a>
+
+
+                <!-- <div class="dropdown-menu country text-uppercase" aria-labelledby="navbarDropdown"> -->
                   <!-- <div *ngFor="let country of countries">
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="javascript:;" (click)="getCitisOfCountry(country.id)" >{{country.name}}</a>
                           
                   </div> -->
                   <!-- <a *ngIf="local=='ar'" class="dropdown-item" href="javascript:;" (click)="setlocalLang('en')">English</a> -->
-                  <a class="dropdown-item"  (click)="translate.setlocalLang('ar')">عربي</a>
-                </div>
+                  <!-- <a class="nav-link"  (click)="translate.setlocalLang('ar')">عربي</a> -->
+                  <!-- <a class="dropdown-item"  (click)="translate.setlocalLang('en')">eng</a> -->
+
+                <!-- </div> -->
             </li>
 
               <!-- <li class="nav-item">

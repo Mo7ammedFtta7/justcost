@@ -386,10 +386,73 @@
     "langs": [
       {
         "lang": "ar",
-        "word": ""
+        "word": "الشروط والقوانين"
       }
     ]
   },
-  {"key":"Featured ads","langs":[{"lang":"ar","word":"الاعلانات المميزة"}]},
-  {"key":"Browse Categories","langs":[{"lang":"ar","word":"التصنيفات"}]}
+  {
+    "key": "Featured ads",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "الاعلانات المميزة"
+      }
+    ]
+  },
+  {
+    "key": "Browse Categories",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "التصنيفات"
+      }
+    ]
+  },
+  {
+    "key": "Categories",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "التصنيفات"
+      }
+    ]
+  },
+  {
+    "key": "Custom Search",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "بحث متقدم"
+      }
+    ]
+  },
+  {
+    "key": "Found results",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": " النتائج"
+      }
+    ]
+  },
+  {
+    "key": "Sort by",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "ترتيب بـ"
+      }
+    ]
+  }
+  ,
+  {
+    "key": "off",
+    "langs": [
+      {
+        "lang": "ar",
+        "word": "تخفيض"
+      }
+    ]
+  },
+  {"key":"Search Title/Keyword","langs":[{"lang":"ar","word":" ابحث عن منتج"}]},{"key":"result","langs":[{"lang":"ar","word":"منتج"}]}
 ]

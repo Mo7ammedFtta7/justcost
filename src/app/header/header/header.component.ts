@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { RestService } from '../../_services/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '../../pipe/translate.service';
 
 
 
@@ -14,16 +15,14 @@ export class HeaderComponent implements OnInit {
   citis:any[]
   countries:any[];
   Search:string;
-  constructor(public _authService: AuthService,private _rea: RestService,public router: Router){}
+  constructor(public _authService: AuthService,private _rea: RestService,public router: Router,public translate :TranslateService){}
 
   ngOnInit() {
 
     // this.getCitisOfCountry(this._authService.getUser().country.id);
-    
     this._rea.getCountries().subscribe(
       res => {
       this.countries=res.data
-
       },
       err => {
         console.log(err)
@@ -35,6 +34,7 @@ export class HeaderComponent implements OnInit {
     console.log(this.Search)
     this.router.navigate(['/results'],{queryParams:{search:this.Search}} );
   }
+
   getCitisOfCountry(countryId)
   {
     this._rea.getCitis(countryId).subscribe(
@@ -45,7 +45,6 @@ export class HeaderComponent implements OnInit {
       err => {
         console.log(err)
       })
-
   }
   
 
