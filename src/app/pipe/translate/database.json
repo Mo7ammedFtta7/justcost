@@ -12,10 +12,6 @@
     "key": "Logout",
     "langs": [
       {
-        "lang": "en",
-        "word": "Logout"
-      },
-      {
         "lang": "ar",
         "word": "تسجيل الخروج"
       }

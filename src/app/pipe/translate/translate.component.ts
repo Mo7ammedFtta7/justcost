@@ -10,7 +10,18 @@ export class TranslateComponent implements OnInit {
  public table:any[]=this.trans.lang_db;
 
   ngOnInit() {
-   // console.log(this.table)
+  //  console.log(this.table)
+  //  console.log( JSON.stringify(this.trans.temp_database));
+
+  //  this.trans.db2.forEach(element => {
+
+  //   this.trans.setRow(element['key'],this.trans.def_lang,element['langs'][0]['word'])
+     
+  //   });
+   // this.trans.db2
+
+   console.log( JSON.stringify(this.trans.db2));
+
   }
 
 }

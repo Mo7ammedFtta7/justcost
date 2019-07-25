@@ -1,0 +1,105 @@
+<app-header>
+
+</app-header>
+
+
+<!-- =========== STRAT CONTENT PAGE =========== -->
+<div class="content-page">
+  <div class="container">
+    <router-outlet>
+
+
+    </router-outlet>  
+  </div><!-- End Container -->
+</div>
+<!-- ============ END CONTENT PAGE ============ -->
+
+
+<!-- START DOWN BUTTON SECTION -->
+<div class="down-button">
+  <div class="container">
+      <a href="#">
+          <div class="button-down wow fadeIn" data-wow-offset="450" data-wow-delay="0">
+              <img class=" float-left img-fluid" src="assets/images/icons/google-play.png" alt="Google Play Icon" width="30">
+              <div class="text float-left text-center">
+                  <h6>Download</h6>
+                  <span>Google Play</span>
+              </div>
+              <div class="clearfix"></div>
+          </div><!-- Button Down -->
+      </a>
+
+      <a href="#">
+          <div class="button-down wow fadeIn" data-wow-offset="450" data-wow-delay=".3s">
+              <img class=" float-left img-fluid" src="assets/images/icons/app-store.png" alt="App store Icon" width="30">
+              <div class="text float-left text-center">
+                  <h6>Download</h6>
+                  <span>Apple Store</span>
+              </div>
+              <div class="clearfix"></div>
+          </div><!-- Button Down -->
+      </a>
+
+      <a href="#">
+          <div class="button-down wow fadeIn" data-wow-offset="450" data-wow-delay=".6s">
+              <img class=" float-left img-fluid" src="assets/images/icons/windows.png" alt="Windows Icon" width="30">
+              <div class="text float-left text-center">
+                  <h6>Download</h6>
+                  <span>windows Phone</span>
+              </div>
+              <div class="clearfix"></div>
+          </div><!-- Button Down -->
+      </a>
+  </div><!-- End Container -->
+</div>
+<!-- END DOWN BUTTON SECTION -->
+
+<!-- START FOOTER AREA -->
+<footer class="footer py-5">
+  <div class="container">
+      <div class="row">
+          <div class="col-xl-6 col-sm-6">
+              <div class="end-foot">
+                  <!--                            <img src="assets/images/logo.png" alt="" width="160">-->
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only ﬁve centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+              </div>
+          </div><!-- Col #1 -->
+          <div class="col-xl-auto col-sm-6">
+              <div class="end-foot">
+                  <h6>{{ 'Useful Links' | translate }}</h6>
+                  <ul class="list-unstyled">
+                      <li><a href="#">{{ 'Home' | translate }}</a></li>
+                      <li><a href="#">{{ 'About' | translate }}</a></li>
+                      <li><a href="#">{{ 'Blog' | translate }}</a></li>
+                      <li><a href="#">{{ 'Login' | translate }}</a></li>
+                      <li><a href="#">{{ 'Register' | translate }}</a></li>
+                  </ul>
+                  <ul class="list-unstyled">
+                      <li><a href="#">{{ 'Pricing Plans' | translate }}</a></li>
+                      <li><a href="#">{{ 'FAQ' | translate }}</a></li>
+                      <li><a href="#">{{ 'All Ads' | translate }}</a></li>
+                      <li><a href="#">{{ 'Help & Contact us' | translate }}</a></li>
+                      <li><a href="#">{{ 'Terms & Conditions' | translate }}</a></li>
+                  </ul>
+              </div>
+          </div><!-- Col #2 -->
+          <div class="col-xl-auto col-sm-12">
+              <!-- Start Image Phone -->
+              <div class="image-phone d-xl-block">
+                  <img src="assets/images/iPhone.png" alt="iPhone Logo">
+              </div><!-- End Image Phone -->
+              <div class="end-foot text-center">
+                  <h6>{{'Contact with us' | translate}} </h6>
+                  <div class="links-social">
+                      <a href="#" title="Facebook"><img src="assets/images/icons/facebook.png"></a>
+                      <a href="#" title="Twitter"><img src="assets/images/icons/twitter.png"></a>
+                      <a href="#" title="Instagram"><img src="assets/images/icons/instagram.png"></a>
+                      <a href="#" title="Linkedin"><img src="assets/images/icons/linkedin.png"></a>
+                  </div>
+              </div>
+          </div><!-- Col #3 -->
+      </div><!-- End Row -->
+  </div><!-- End Container -->
+</footer>
+<!-- END FOOTER AREA -->
+

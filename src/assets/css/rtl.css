@@ -9,6 +9,56 @@ body {
   margin-right: 0;
 }
 /*Home Page RTL*/
+
+.navbar .form-inline .form-control {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    text-align: right;  
+}
+.navbar .form-inline .btn-outline-success, .navbar button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+header .dropdown .dropdown-menu {
+  text-align: right;
+}
+header .selection .language span {
+  margin-right: 10px;
+  margin-left: 0;
+}
+.navbar .navbar-nav .nav-item .btn-add-post i {
+  left: 8px;
+  right: inherit;
+}
+header .btn-add-post span {
+  margin-right: 0;
+  margin-left: 25px;
+}
+.input-group>.custom-select:not(:last-child), .input-group>.form-control:not(:last-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-group>.input-group-append>.btn {
+  border-top-left-radius: 2px;
+ border-bottom-left-radius: 2px;
+}
+.input-group>.input-group-append>.btn {
+   border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.search-area .search-input .btn {
+  text-align: right;
+}
+
+.search-area .search-input i {
+  left: 10px;
+  right: inherit;
+}
 .featured-ads .panel .info,
 .main-title {
   text-align: right;

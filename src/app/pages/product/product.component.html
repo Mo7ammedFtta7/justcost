@@ -1,5 +1,5 @@
 <div class="main-title main-title2" style="margin-bottom: 30px;">
-    <small><a href="/">Home</a> <i class="fas fa-chevron-right"></i> <a href="/">Categories </a> <i class="fas fa-chevron-right"></i> {{product?.category}}</small>
+    <small><a href="/">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a href="/">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{product?.category}}</small>
 </div><!-- End Title -->
 
 <div class="account">
@@ -8,7 +8,7 @@
             <div class="slider-section">
                 <div class="slider-title">
                     <h6 class="float-left">{{product?.title }}</h6>
-                    <span class="alert-yellow float-right">{{math(product?.reg_price,product?.sale_price)}}% off</span>
+                    <span class="alert-yellow float-right">{{math(product?.reg_price,product?.sale_price)}}% {{'off' | translate }}</span>
                     <div class="clearfix"></div>
                 </div>
                 <!-- Start Slider -->
@@ -23,12 +23,12 @@
 
                 <!-- Start List -->
                 <ul class="list-unstyled row">
-                    <li class="col-md-4 col-sm-6">City :{{product?.city }}</li>
+                    <li class="col-md-4 col-sm-6">{{'City' | translate }} :{{product?.city }}</li>
                     <!-- <li class="col-md-4 col-sm-6">Model : Google Pixel 3 XL </li>
                     <li class="col-md-4 col-sm-6">Condition : Used </li> -->
-                    <li class="col-md-4 col-sm-6">Regular Price : <span class="red">{{product?.reg_price }} AED</span></li>
-                    <li class="col-md-4 col-sm-6">Sell Price : <span class="red">{{product?.sale_price }} AED</span></li>
-                    <li class="col-md-4 col-sm-6">Brand : <img src="{{product?.brand_image}}" alt="Image" width="70" style="max-width: 25px;"></li>
+                    <li class="col-md-4 col-sm-6 ">{{'Regular Price' | translate }} : <span class="red oldPrice">{{product?.reg_price }} AED</span></li>
+                    <li class="col-md-4 col-sm-6">{{'Sell Price' | translate }} : <span class="red">{{product?.sale_price }} AED</span></li>
+                    <li class="col-md-4 col-sm-6">{{'Brand' | translate }} : <img src="{{product?.brand_image}}" alt="Image" width="70" style="max-width: 25px;"></li>
                     <li class="col-md-4 col-sm-6" *ngFor="let attri of attributes" >
                     {{attri.group}}:  {{attri.attributes}}</li>
                 </ul>
@@ -38,7 +38,7 @@
 
                 <!-- Start border -->
                 <div class="border" style="margin-bottom: 25px;">
-                    <h6>{{product?.description }}</h6>
+                    <h6>{{product?.description}}</h6>
                  
                     <!-- <span style="font-size: 15px;">Share with Friends</span>
                     <a href="javascript:;" title="Facebook" deisabled><i class="fab fa-facebook-f fa-fw"></i></a>
@@ -51,7 +51,7 @@
 
                 <!-- Satrt Like Box -->
                 <div class="like-box">
-                    <h6>You may also like :</h6>
+                    <h6>{{'You may also like' | translate }} :</h6>
 
                     <div class="row">
                         <div class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
@@ -92,18 +92,18 @@
 
                 <!-- Start Comments Area -->
                 <div class="comment">
-                    <h6>Comments :</h6>
+                    <h6>{{'Comments' | translate }} :</h6>
                     <form #commentForm="ngForm" (ngSubmit)="addcomment(commentForm,product?.productId)">
                         <div class="form-group mb-3">
                             <textarea class="form-control" name="comment" ngModel placeholder="Write your comment here"></textarea>
                         </div>
                         <div class="form-group mb-3 text-right">
                             <ng-container *ngIf="!_authService.loggedIn(); else Template">
-                                    <button type="submit"  data-target=".bd-example-modal-xl" data-toggle="modal" class="button">Post Comment</button>
+                                    <button type="submit"  data-target=".bd-example-modal-xl" data-toggle="modal" class="button">{{'Post Comment' | translate }}</button>
 
                             </ng-container>
                             <ng-template #Template>
-                                    <button type="submit" class="button">Post Comment</button>
+                                    <button type="submit" class="button">{{'Post Comment' | translate }}</button>
 
                             </ng-template>
                             
@@ -118,7 +118,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mx-1">
-                                        <h6>{{comment.customerName}} <a href="javascript:;"><i class="fas fa-reply"></i> Reply</a></h6>
+                                        <h6>{{comment.customerName}} <a href="javascript:;"><i class="fas fa-reply"></i> {{'Reply' | translate }}</a></h6>
                                         <small>{{comment.postedOn}}</small>
                                     </div>
                                 </div>
@@ -150,18 +150,18 @@
 
         <div class="col-xl-4 col-sm-12">
             <div class="border">
-                <a href="javascript:;" class="red">Sell Price : {{product?.sale_price }} <span>AED</span></a>
+                <a href="javascript:;" class="red">{{'Sell Price' | translate }} : {{product?.sale_price }} <span>AED</span></a>
             </div><!-- #1 -->
             <div class="border">
                 <ng-container *ngIf="!_authService.loggedIn(); else elseTemplate">
-                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="far fa-heart"></i> Add to favorite</a>
-                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> Report Ad</a>
+                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
+                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 </ng-container>
                 <ng-template #elseTemplate>
                           
-                                    <a href="javascript:;" (click)="onLike(like)"  class="red"><i [ngClass]="like==true ? 'fas fa-heart' : 'far fa-heart'"></i> Add to favorite</a>
+                                    <a href="javascript:;" (click)="onLike(like)"  class="red"><i [ngClass]="like==true ? 'fas fa-heart' : 'far fa-heart'"></i> {{'Add to favorite' | translate }}</a>
        
-                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> Report Ad</a>
+                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 </ng-template>
                 
                

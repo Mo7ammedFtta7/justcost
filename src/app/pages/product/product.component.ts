@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 declare function goup():any ;
 declare function success(msg):any;
 declare function  ViewMap():any;
-declare function owl2():any ;
+//declare function owl2():any ;
 
 @Component({
   selector: 'app-product',
@@ -33,7 +33,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() 
     {
-      ViewMap()
+    //  ViewMap()
      goup()
         this.sub = this.route.params.subscribe(params => {
           this.id = +params['id']; 

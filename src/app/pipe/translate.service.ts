@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import db from  './database.json';
+import db from  './translate/database.json';
+import database from  './translate/test.json';
+
+//import fs from 'file-system';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +12,23 @@ export class TranslateService {
   public local:string=this.getlocalLang();
   // public langs
   newWords=[]
-  lang_db=db
+  lang_db=database
+   langs ={ar:'العربية',en:'English'}
+   def_lang='ar'
+   temp_database={}
+  db2=database
   constructor() { }
+
+
+  setdb()
+  {
+
+   // database=db
+   // fs.writeFile('./translate/test.json', this.temp_database, function(err) {})
+  // database=this.temp_database
+  }
+
+
 
   getlocalLang ()
   {  
@@ -44,4 +62,39 @@ export class TranslateService {
   {
     return  array.some(el => el.key === key); 
    }
+
+    setRow(key,lang,word)
+{
+    var translates={};
+    translates[lang]=word;
+    this.temp_database[key] = translates;
+}
+
+
+ setTrans(key,lang,word)
+{
+    var translates={};
+    translates= database[key];
+    translates[lang]=word
+    database[key] = translates;
+}
+
+ updateItem(key,lang,word)
+{
+    var ii={};
+    ii[lang]=word;
+    database[key] = ii;
+}
+
+
+
+ translate(key) {
+
+   return key in database && database[key][this.local] !=undefined? database[key][this.local] :key
+}
+
+
+
+
+
 }

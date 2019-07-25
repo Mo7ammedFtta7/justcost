@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 import { Icategory } from '../../_models/category';
 import { RestService } from '../../_services/rest.service';
 
-declare function owl():any ;
+//declare function owl():any ;
 
 @Component({
   selector: 'app-home',
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   
   ngOnInit() {
  
-      owl();
+     // owl();
       this.getitems();
 
         this._api.categoris(this.categoriesurl).subscribe(res =>{this.categories = res['data']; console.log(res['data'])},

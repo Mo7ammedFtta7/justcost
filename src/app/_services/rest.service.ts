@@ -40,7 +40,7 @@ import { environment } from '../../environments/environment';
   }
   getFavProducts(): Observable<any> {
     //console.log(params);
-     return this.http.get(environment.ApiUrl + 'products/').pipe(
+     return this.http.get(environment.ApiUrl + 'getAllProducts/').pipe(
        map(this.extractData));
    }
 

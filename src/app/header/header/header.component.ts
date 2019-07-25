@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   countries:any[];
   Search:string;
   constructor(public _authService: AuthService,private _rea: RestService,public router: Router,public translate :TranslateService){}
-
   ngOnInit() {
 
     // this.getCitisOfCountry(this._authService.getUser().country.id);

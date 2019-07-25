@@ -14,19 +14,24 @@ export class ResultsComponent implements OnInit {
   search:string;
   category:string;
   sub:any;
-   paramsa = new HttpParams()
+  public paramsa:any[] =new Array();
 
   constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(param => {
      // this.paramss.set("categoty",params['categoty']);
-      for (const key in param) {
+     // for (const key in param) {
       //   this.paramss== new HttpParams()
-
-      this.paramsa.append(key,param[key])
-         console.log(key+" "+param[key]);
-      }
+    
+   //this.paramsa=
+    Object.keys(param).map(i => {
+      
+      this.paramsa[i]=param[i] 
+    
+    })
+       //  console.log(key+" "+param[key]);
+     // }
       console.log(this.paramsa);
 
       // //  params.forEach(element => {
@@ -34,7 +39,7 @@ export class ResultsComponent implements OnInit {
       // });
       //this.params=param ;
 
-      this.getAttributes(this.paramsa);
+    this.getAttributes(this.paramsa);
    });
 
   }
@@ -46,20 +51,16 @@ export class ResultsComponent implements OnInit {
   onKey(key)
   {
    this.search=key;
-  this.paramsa.set("search",this.search);
-  console.log("-----------------");
-
-   console.log(this.paramsa);
-  //  this.params.set("search",this.search)
+  this.paramsa["search"]=key;
+ 
   this.getAttributes(this.paramsa)
   }
 
   getAttributes(params) {
-    //  let paramsa = new HttpParams()
-    // .set("search",this.paramsa["search"])
-    // .set("category",this.category)
+     let paramsa = new HttpParams()
+    .set("search",this.paramsa["search"])
+    .set("category",this.category)
     // //console.log(params);
-
     this.rest.getProductss(params).subscribe((data) => {
       this.products = data['data'];
     });
