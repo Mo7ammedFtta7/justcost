@@ -3,7 +3,7 @@ import { RestService } from '../../_services/rest.service';
 import { apis } from '../../_services/apis';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
-
+declare function nav(type:any) 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
@@ -19,6 +19,8 @@ export class ResultsComponent implements OnInit {
   constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) {}
 
   ngOnInit() {
+
+    nav("small") ;
     this.route.queryParams.subscribe(param => {
      // this.paramss.set("categoty",params['categoty']);
      // for (const key in param) {

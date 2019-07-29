@@ -9,6 +9,8 @@ import { AuthService } from '../../auth.service';
 declare function success(msg):any;
 declare function SetMap():any;
 declare function getMarker():any;
+declare function nav(type):any;
+
 @Component({
   selector: 'app-postadd',
   templateUrl: './postadd.component.html',
@@ -28,8 +30,9 @@ export class PostaddComponent implements OnInit {
   user:any
   constructor(public _authService: AuthService,private _api: apis,private _rea: RestService) { }
   ngOnInit() {
+    nav("hide");
   //  SetMap();
-    this._api.categoris(this.categoriesurl).subscribe(res =>{this.Icategory = res['data']; this.cat=res['data'][0]['name'];this.onSelect(res['data'][0]['id']);
+    this._api.categoris().subscribe(res =>{this.Icategory = res['data']; this.cat=res['data'][0]['name'];this.onSelect(res['data'][0]['id']);
   },
     error => this.errorMsg = error);
     // this._rea.getCitis().subscribe(
@@ -42,7 +45,7 @@ export class PostaddComponent implements OnInit {
     //       }
     // )
     this.user= this._authService.getUser()
-   SetMap();
+   //SetMap();
   }
     ref(id)
     {

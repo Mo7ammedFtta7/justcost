@@ -23,7 +23,10 @@ export class AuthService {
 
   logoutUser() {
     localStorage.removeItem('token')
+    localStorage.removeItem('data')
     this._router.navigate(['/home'])
+   // window.location.reload()
+
   }
 
   getToken() {
@@ -45,7 +48,9 @@ export class AuthService {
   getUserCountry() {
     
    let xx=this.getUser()
-    return xx!=null ?xx.userInfo.country.name :"UAE"
+ 
+    return xx!=null ?xx.country.name :"UAE"
+
   }
 
   loggedIn() {

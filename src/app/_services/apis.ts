@@ -20,7 +20,7 @@ export class apis {
    
 
     public  GetFromApi(url) { 
-            return this.http.get(url).catch(this.errorHandler);  
+            return this.http.get(url,this.httpOptions).catch(this.errorHandler);  
     }
         
 
@@ -48,8 +48,8 @@ export class apis {
                     .catch(this.errorHandler);
   }
 
-  categoris(categoriesurl){
-  return this.GetFromApi(categoriesurl)
+  categoris(){
+  return this.GetFromApi(this.categoriesurl)
   }
 
   GetApi(url){

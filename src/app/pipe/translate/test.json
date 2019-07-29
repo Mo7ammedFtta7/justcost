@@ -120,7 +120,7 @@
     "ar": "الاسئلة المتكررة"
   },
   "All Ads": {
-    "ar": "جميع الاعلانات"
+    "ar": "جميع الإعلانات"
   },
   "Help & Contact us": {
     "ar": " تواصل معنا"
@@ -129,7 +129,7 @@
     "ar": "الشروط والقوانين"
   },
   "Featured ads": {
-    "ar": "الاعلانات المميزة"
+    "ar": "الإعلانات المميزة"
   },
   "Browse Categories": {
     "ar": "الاقسام"
@@ -167,53 +167,193 @@
   "Select City.": {
     "ar": "إختر مدينة"
   },
-    "Select Category": {
-      "ar": "اختر قسم"
-    },
-    "Search": {
-      "ar": "ابحث"
-    }
-
-    ,
-    "Find the best deals": {
-      "ar": "ابحث عن افضل العروض"
-    }
-
-    ,
-    "Sell Price": {
-      "ar": "سعر البيع"
-    }
-    ,
-    "Add to favorite": {
-      "ar": "اضف للمفضلة"
-    }
-
-    ,
-    "Report Ad": {
-      "ar": "التبلي عن الاعلان"
-    }
-    ,
-    "You may also like": {
-      "ar": "اعلانات مشابهة"
-    }
-    ,
-    "Comments": {
-      "ar": "التعليقات"
-    }
-    ,
-    "Post Comment": {
-      "ar": "اضف تعليق"
-    }
-    ,
-    "Brand": {
-      "ar": "الماركة"
-    }
-    ,
-    "City": {
-      "ar": "المدينة"
-    }
-    ,
-    "Regular Price": {
-      "ar": "السعر خارج التخفيض"
-    }
-  }
+  "Select Category": {
+    "ar": "اختر قسم"
+  },
+  "Search": {
+    "ar": "ابحث"
+  },
+  "Find the best deals": {
+    "ar": "ابحث عن افضل العروض"
+  },
+  "Sell Price": {
+    "ar": "سعر البيع"
+  },
+  "Add to favorite": {
+    "ar": "اضف للمفضلة"
+  },
+  "Report Ad": {
+    "ar": "التبلي عن الإعلان"
+  },
+  "You may also like": {
+    "ar": "اعلانات مشابهة"
+  },
+  "Comments": {
+    "ar": "التعليقات"
+  },
+  "Post Comment": {
+    "ar": "اضف تعليق"
+  },
+  "Brand": {
+    "ar": "الماركة"
+  },
+  "City": {
+    "ar": "المدينة"
+  },
+  "Regular Price": {
+    "ar": "السعر خارج التخفيض"
+  },
+  "Bahrain": {
+    "ar": "البحرين"
+  },
+  "Kuwait": {
+    "ar": "الكويت"
+  },
+  "Qatar": {
+    "ar": "قطر"
+  },
+  "Saudi Arabia": {
+    "ar": "المملكة العربية السعودية"
+  },
+  "Oman": {
+    "ar": "عمان"
+  },
+  "UAE": {
+    "ar": "الامارات المتحدة"
+  },
+  "Notifications": {
+    "ar": "الاشعارات"
+  },
+  "My Profile": {
+    "ar": "الحساب"
+  },
+  "forget password": {
+    "ar": "نسيت كلمة المرور"
+  },
+  "I don’t have account": {
+    "ar": "ليس لدي حساب"
+  },
+  "Create new": {
+    "ar": "إنشاء جديد"
+  },
+  "get help": {
+    "ar": "مساعدة"
+  },
+  "All rights reserved.": {
+    "ar": "جميع الحقوق محفوظة."
+  },
+  "Privacy": {
+    "ar": "الخصوصية"
+  },
+  "Post New Ad": {
+    "ar": "إنشاء إعلان"
+  },
+  "my ads": {
+    "ar": "إعلاناتي"
+  },
+  "watch later ads": {
+    "ar": "الإعلانات المفضلة"
+  },
+  "ad Details": {
+    "ar": "تفاصيل"
+  },
+  "Ad Title": {
+    "ar": "عنوان الإعلان"
+  },
+  "Ad Description": {
+    "ar": "شرح الإعلان"
+  },
+  "Keywords": {
+    "ar": "كلمات مفتاحية"
+  },
+  "Phone Number": {
+    "ar": "رقم الهاتف"
+  },
+  "ad Products": {
+    "ar": "منتجات الإعلان"
+  },
+  "Product Name": {
+    "ar": "اسم المنتج"
+  },
+  "Quantity": {
+    "ar": "الكمية"
+  },
+  "Old Price": {
+    "ar": "السعر الاصلي"
+  },
+  "New Price": {
+    "ar": "السعر الجديد"
+  },
+  "Product Details": {
+    "ar": "تفاصيل المنتج"
+  },
+  "Products Details": {
+    "ar": "تفاصيل المنتجات"
+  },
+  "Prodcut Description": {
+    "ar": "وصف المنتج"
+  },
+  "Product Category": {
+    "ar": "التصنيف"
+  },
+  "ad Media": {
+    "ar": "الصور والفيديوهات"
+  },
+  "Ad Photos": {
+    "ar": "صور الإعلان"
+  },
+  "You can upload 4 Images maximum": {
+    "ar": "يمكنك اضافة 4 صور كحد اقصى"
+  },
+  "Drag": {
+    "ar": "اسحب"
+  },
+  "drop files here": {
+    "ar": "افلت الملفات هنا"
+  },
+  "Submit": {
+    "ar": "حفظ"
+  },
+  "Reset": {
+    "ar": "إلغاء"
+  },
+  "Close": {
+    "ar": "إغلاق"
+  },
+  "Save changes": {
+    "ar": "حفظ التغيرات"
+  },
+  "Select Country": {
+    "ar": "اختر دولة"
+  },
+  "Select City": {
+    "ar": "اختر مدينة"
+  },
+  "Map Location": {
+    "ar": "الموقع على الخريطة"
+  },
+  "Publish My Ad": {
+    "ar": "نشر الإعلان"
+  },
+  "Drop files here to upload": {
+    "ar": "افلت  الملفات هنا "
+  },
+  "Type minimum 5 characters": {
+    "ar": "ادخلى خمسة احرف على الاقل"
+  },
+  "Write description": {
+    "ar": "اكتب وصف"
+  },
+  "Enter keywords for better search": {
+    "ar": "اكتب كلمة مفتاحة لتجربة بحث اسرع"
+  },
+  "Keywords Example": {
+    "ar": "امثلة كلمات مفتاحية"
+  },
+  "ad Location": {
+    "ar": "موقع الإعلان على الخريطة"
+  },
+  "Write your phone number":{"ar":"ادخل رقم الهاتف"}
+  ,
+  "Write a title for your ad":{"ar":"اكتب عنوان لإعلانك"}
+}

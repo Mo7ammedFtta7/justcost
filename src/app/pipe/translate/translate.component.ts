@@ -8,6 +8,7 @@ import { TranslateService } from '../translate.service';
 export class TranslateComponent implements OnInit {
   constructor(private trans:TranslateService) { }
  public table:any[]=this.trans.lang_db;
+ public temp:any=localStorage.getItem("tempDb")!=null ?JSON.parse(localStorage.getItem("tempDb")):JSON.parse("{}")
 
   ngOnInit() {
   //  console.log(this.table)
@@ -20,7 +21,7 @@ export class TranslateComponent implements OnInit {
   //   });
    // this.trans.db2
 
-   console.log( JSON.stringify(this.trans.db2));
+   //console.log( JSON.stringify(this.trans.db2));
 
   }
 

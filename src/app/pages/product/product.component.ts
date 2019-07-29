@@ -10,6 +10,8 @@ import { NgForm } from '@angular/forms';
 declare function goup():any ;
 declare function success(msg):any;
 declare function  ViewMap():any;
+declare function nav(type):any;
+
 //declare function owl2():any ;
 
 @Component({
@@ -33,6 +35,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() 
     {
+      nav("small");
     //  ViewMap()
      goup()
         this.sub = this.route.params.subscribe(params => {

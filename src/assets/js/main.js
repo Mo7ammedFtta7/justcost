@@ -1,4 +1,34 @@
 var marker;
+
+
+function dir() {
+    $('head').append('<link rel="stylesheet" href="assets/css/rtl.css"/>');
+    document.getElementsByTagName("body")[0].style ='direction: rtl;'
+}
+
+function nav(type) {
+    var search_nav = document.getElementById("search_nav");
+    var cat_nav = document.getElementById("cat_nav");
+
+if (type=="small") {
+    search_nav.style.display="block"
+    search_nav.classList.add("small-header");
+    cat_nav.style.display="block"
+
+}
+if (type=="larg") {
+    search_nav.classList.remove("small-header");
+   cat_nav.style.display="block"
+
+}
+if (type=="hide") {
+    search_nav.style.display="none"
+    cat_nav.style.display="none"
+}
+
+   
+}
+
 function subs(id) {
 
     console.log(id);
@@ -172,14 +202,14 @@ $(document).ready(function () {
 
 // TRIGGER NICE SCROLL
 
-$("html").niceScroll({
+// $("html").niceScroll({
 
-    cursorcolor: '#383F4C',
-    cursorborderradius: 0,
-    cursorwidth: 10,
-    cursorborder: '1px solid #383F4C'
+//     cursorcolor: '#383F4C',
+//     cursorborderradius: 0,
+//     cursorwidth: 10,
+//     cursorborder: '1px solid #383F4C'
 
-});
+// });
 
 // SHOW MENU 
 

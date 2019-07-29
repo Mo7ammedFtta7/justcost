@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import {TranslatePipe} from  '../app/pipe/translate.pipe';
 import {TranslateService} from  '../app/pipe/translate.service';
+import { Router } from '@angular/router';
+declare function  dir():any;
 
 @Component({
   selector: 'app-root',
@@ -12,9 +14,15 @@ export class AppComponent {
   title = 'app';
   public local:string
 
-  constructor(private _authService: AuthService,public _translate : TranslateService){}
+
+  constructor(private _authService: AuthService,public _translate : TranslateService,private router: Router){}
 
   ngOnInit() {
+    console.log(this.router.url);
+    // small-header
+    if ( this._translate.getlocalLang()=="ar") {
+      dir();
+    }
     //this.local=this._TranslatePip.getlocalLang();
   }
 }

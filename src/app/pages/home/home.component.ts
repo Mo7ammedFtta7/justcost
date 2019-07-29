@@ -9,6 +9,8 @@ import 'rxjs/add/observable/throw';
 import { environment } from '../../../environments/environment';
 import { Icategory } from '../../_models/category';
 import { RestService } from '../../_services/rest.service';
+import { Router } from '@angular/router';
+declare function nav(type):any;
 
 //declare function owl():any ;
 
@@ -22,12 +24,21 @@ export class HomeComponent implements OnInit {
   public items = [];
   public  categories: Icategory[] ;
   categoriesurl = environment.ApiUrl+'nest';
-
+  countries:any[];
 
   public errorMsg;
-  constructor(private _api: apis,public rest:RestService) { }
+  constructor(private _api: apis,public rest:RestService ,private router:Router) { }
   
   ngOnInit() {
+
+nav("larg");
+    this.rest.getCountries().subscribe(
+      res => {
+      this.countries=res.data
+      },
+      err => {
+        console.log(err)
+      })
  
      // owl();
       this.getitems();

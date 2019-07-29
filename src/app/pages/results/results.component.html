@@ -9,7 +9,7 @@
           <div class="panel" style="padding-bottom: 130px;">
 
               <input type="search" ngModel #searcF (keyup)="onKey(searcF.value)" class="form-control search2" placeholder="{{'Search Title/Keyword' | translate }}">
-              <i class="fas fa-search search-icon2"></i>
+              <!-- <i class="fas fa-search search-icon2"></i> -->
               <form action="" #filterForm="ngForm" (ngSubmit)="filter(filterForm)"  >
 
               <div class="brand" *ngIf="Brands?.length >0">
