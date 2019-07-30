@@ -19,7 +19,15 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  },
+  }
+  ,
+  {
+    path: 'login',
+    component: LoginComponent
+    ,
+    pathMatch: 'full'
+  }
+  ,
   {
     path: 'home',
     component: HomeComponent
@@ -42,7 +50,8 @@ const routes: Routes = [
   
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   }
   ,
   {
@@ -66,7 +75,8 @@ const routes: Routes = [
   ,
   {
     path: 'postadd',
-    component: PostaddComponent
+    component: PostaddComponent,
+    canActivate: [AuthGuard]
   }
   ,
   {
@@ -76,7 +86,8 @@ const routes: Routes = [
 ,
 {
   path: 'translate',
-  component: TranslateComponent
+  component: TranslateComponent,
+    canActivate: [AuthGuard]
 }
 ];
 

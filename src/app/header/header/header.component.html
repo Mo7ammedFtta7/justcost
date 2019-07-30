@@ -28,8 +28,10 @@
                             </select>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-add-post mt-1" href="javascript:;" routerLink="/postadd"><i
-                                    class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
+                            <a *ngIf="_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" routerLink="/postadd"><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
+                           
+                            <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>    
+
                         </li>
                     </ul>
 
@@ -96,16 +98,15 @@
         <form>
             <div class="row">
                 <div class="col-md-3">
-                    <select class="custom-select my-2" id="inputGroupSelect01">
+                    <select class="custom-select my-2" (change)="selectCity($event)"  id="inputGroupSelect01">
                         <option value="0" selected>{{'Select City.' | translate}}</option>
                         <option *ngFor="let city of citis" [ngValue]="city.id">{{city.name}}</option>
-
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <select class="custom-select my-2" id="inputGroupSelect01">
-                        <option selected>{{'Select Category' | translate}}</option>
-                        <option *ngFor="let category of categories" >{{category.name}}</option>
+                    <select class="custom-select my-2" (change)="selectCat($event)" id="inputGroupSelect02">
+                        <option selected value="0">{{'Select Category' | translate}}</option>
+                        <option *ngFor="let category of categories" [value]="category.name" >{{category.name}}</option>
                     </select>
                 </div>
 

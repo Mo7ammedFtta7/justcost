@@ -59,12 +59,15 @@ export class ResultsComponent implements OnInit {
   }
 
   getAttributes(params) {
-     let paramsa = new HttpParams()
-    .set("search",this.paramsa["search"])
-    .set("category",this.category)
+    //  let paramsa = new HttpParams()
+    // .set("search",this.paramsa["search"])
+    // .set("category",this.category)
+    params["limit"]='100'
+
     // //console.log(params);
     this.rest.getProductss(params).subscribe((data) => {
       this.products = data['data'];
+      console.log( this.products)
     });
   }
 }

@@ -17,6 +17,8 @@ if (type=="small") {
 
 }
 if (type=="larg") {
+    search_nav.style.display="block"
+
     search_nav.classList.remove("small-header");
    cat_nav.style.display="block"
 

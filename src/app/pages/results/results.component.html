@@ -22,7 +22,36 @@
                   </ul>
               </div><!-- Brand -->
               <div id="attrips">
+                    <div class="brand">
+                            <h6>{{ 'Categories' | translate }}</h6>
+                            <ul class="list-unstyled check-ul">
+                                <li>
+                                    <input type="checkbox" id="box1">
+                                    <label for="box1">dell (596)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="box2" checked="">
+                                    <label for="box2">HP (641)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="box3">
+                                    <label for="box3">Samsung (381)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="box4">
+                                    <label for="box4">Toshiba (555)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="box5">
+                                    <label for="box5">Lenovo (636)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="box6">
+                                    <label for="box6">Fujitsu (879)</label>
+                                </li>
 
+                            </ul>
+                        </div>
               <div class="brand"  class="brand " *ngFor="let group of attributes">
                   <h6>{{group.group}}</h6>
                   <!-- <ul class="list-unstyled check-ul">
@@ -76,16 +105,16 @@
                   </div>
               </div>
 
-              <div *ngFor="let product of products | paginate: { itemsPerPage: 4, currentPage: p }" class="item row">
+              <div *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p }" class="item row">
                  
                     <div class="photo text-center col-sm-3">
-                        <img  src="http://admin.just-cost.com/storage/products_media/dd.jpg" alt="Image" class="img-fluid">
+                        <img  src="{{product?.media[0]['url']}}" alt="Image" class="img-fluid">
                     </div><!-- Photo -->
                     <div class="about-photo  col-sm-9">
                         <div class="post-title">
                             <div>
                                 <h6> <a routerLink="/product/{{product.productId}}">{{product.title}}</a> </h6>
-                                <small>{{product.postedOn | date }}</small>
+                                <small>{{product.postedOn | date }} </small>
                             </div>
                             <div>
                                 <span class="alert-yellow"> {{math(product.reg_price,product.sale_price)}}%  {{ 'off' | translate }} </span>

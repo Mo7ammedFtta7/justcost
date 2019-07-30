@@ -19,6 +19,9 @@ export class HeaderComponent implements OnInit {
   Search:string;
   categories:any[];
   errorMsg: any;
+  Category:string="";
+  city:string="";
+
   constructor(public _authService: AuthService,private _rea: RestService,private _api: apis,public router: Router,public translate :TranslateService){}
   ngOnInit() {
 
@@ -26,6 +29,8 @@ export class HeaderComponent implements OnInit {
     this._rea.getCountries().subscribe(
       res => {
       this.countries=res.data
+      console.log(res.data[0]['id'])
+      this.getCitisOfCountry(res.data[0]['id'])
       },
       err => {
         console.log(err)
@@ -33,13 +38,31 @@ export class HeaderComponent implements OnInit {
 
       this._api.categoris().subscribe(res =>{this.categories = res['data']; console.log(res['data'])},error => this.errorMsg = error);
 
-
+     // this.getCitisOfCountry(this.countries[0]);
+     
   }
-
+      selectCat(event:any){
+      this.Category = event.target.value;
+    }
 
   GoSearch(){
-    console.log(this.Search)
-    this.router.navigate(['/results'],{queryParams:{search:this.Search}} );
+  var queryParams={} ;
+  //search:this.Search
+  if (this.Search !=undefined) {
+    queryParams['Search']=this.Search;
+  }
+
+  if (this.Category!="0" || this.Category !=null) {
+    queryParams['category']=this.Category;
+  }
+
+  if (this.city!="0" || this.Category !=null) {
+    queryParams['city']=this.city;
+  }
+
+  //console.log(queryParams)
+
+  this.router.navigate(['/results'],{queryParams:{search:this.Search}} );
   }
 
   getCitisOfCountry(countryId)
@@ -54,5 +77,7 @@ export class HeaderComponent implements OnInit {
       })
   }
   
-
+  selectCity(event:any){
+    this.city = event.target.value;
+  }
 }

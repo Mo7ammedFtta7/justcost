@@ -7,6 +7,7 @@ import { Alert } from 'selenium-webdriver';
 import Swal from 'sweetalert2';
 
 declare function success(msg):any;
+declare function nav(msg):any;
 
 
 
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
+    nav("hide");
   }
  
   onSubmit(f: NgForm) {

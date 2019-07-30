@@ -43,8 +43,7 @@ nav("larg");
      // owl();
       this.getitems();
 
-        this._api.categoris(this.categoriesurl).subscribe(res =>{this.categories = res['data']; console.log(res['data'])},
-          error => this.errorMsg = error);
+        this._api.categoris().subscribe(res =>{this.categories = res['data']; console.log(res['data'])},error => this.errorMsg = error);
       }
 
       getitems( ) {
