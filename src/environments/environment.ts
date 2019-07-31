@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  //ApiUrl:'http://somocars-001-site3.itempurl.com/api/'
+  ApiUrl:'http://skilledtechuae-001-site3.htempurl.com/api/'
  //ApiUrl:'http://localhost:8000/api/',
- ApiUrl:'http://192.168.1.76:8000/api/'
+ //ApiUrl:'http://192.168.1.76:8000/api/'
 };
