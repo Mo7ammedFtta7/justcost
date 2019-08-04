@@ -106,7 +106,7 @@
           <form class="form-inline my-2 mx-5 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="What you are looking for ?" [(ngModel)]="Search" name="Search" aria-label="Search" dir="auto">
             <span>
-              <select >
+              <select name="" id=""  >
                   <option *ngFor="let city of citis" [ngValue]="city.id">{{city.name}}</option>
               </select>
             </span>
