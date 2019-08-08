@@ -1,0 +1,153 @@
+ <!-- Start Ad Products -->
+                                <h6 class="small-title">{{'ad Products' | translate}} :</h6>
+                                <span class="line"></span>
+
+                           
+
+                                <!-- Start Location Details -->
+                                <h6 class="small-title">{{'ad Location' | translate}} :</h6>
+                                <span class="line"></span>
+
+     <div class="form-group">
+                                    <div class="table-add">
+                                        <div class="table-responsive">
+                                            <table id="test-table" class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{'Product Name' | translate}}</th>
+                                                        <th>{{'Quantity' | translate}}</th>
+                                                        <th>{{'Old Price' | translate}}</th>
+                                                        <th>{{'New Price' | translate}}</th>
+                                                        <th>{{'Product Details' | translate}}</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="test-body">
+                                                    <tr id="row0">
+                                                        <td>
+                                                            <input name="" type="text" class="form-control mt-29" placeholder="Product Name" style="width: 160px">
+                                                        </td>
+                                                        <td>
+                                                            <input name="" type="number" class="form-control input-sm mt-29" placeholder="3232">
+                                                        </td>
+                                                        <td>
+                                                            <small class="mb-1 d-inline-block">AED</small>
+                                                            <input name="" type="text" class="form-control input-sm" placeholder="3232">
+                                                        </td>
+                                                        <td>
+                                                            <small class="mb-1 d-inline-block">AED</small>
+                                                            <input name="" type="text" class="form-control input-sm" placeholder="500">
+                                                            <span class="alert-yellow mt-2">0% off</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="btn btn-info mt-29" data-toggle="modal" data-target="#moreDetailsModal">Details' | translate}} <i class="fa fa-external-link-alt"></i></div>
+                                                            <!-- Product Details Modal  -->
+                                                            <div class="modal fade" id="moreDetailsModal" tabindex="-1" role="dialog" aria-labelledby="moreDetailsModalTitle" aria-hidden="true" style="display: none;">
+                                                                <div class="modal-dialog modal-xl" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="moreDetailsModalTitle">{{'Products Details' | translate}}</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">×</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <small class=" d-inline-block">{{'Prodcut Description' | translate}}</small>
+                                                                            <textarea name="" id="" cols="30" rows="10" class="form-control mt-10" placeholder="Write Description for the Product"></textarea>
+
+                                                                            <small class=" d-inline-block">Select the Prodcut Categories' | translate}}</small>
+                                                                            <!-- Start Select Category -->
+                                                                            <span>{{'Product Category' | translate}} :</span>
+                                                                            <ul class="list-unstyled row Select-category category-list">
+                                                                                <li><a href="#" class="">Automotive</a></li>
+                                                                                <li><a href="#" class="">Property for sale</a></li>
+                                                                                <li><a href="#" class="select">Property for rent</a></li>
+                                                                                <li><a href="#">Shopping</a></li>
+                                                                                <li><a href="#">Services</a></li>
+                                                                                <li><a href="#">Electronics </a></li>
+                                                                            </ul>
+
+                                                                            <!-- Start Sub Category -->
+                                                                            <span>Sub Category :</span>
+                                                                            <ul class="list-unstyled row category-list">
+                                                                                <li><a href="#">Bikes </a></li>
+                                                                                <li><a href="#">Used Cars for Sale</a></li>
+                                                                                <li><a href="#">Motorcycles</a></li>
+                                                                                <li><a href="#">Heavy Vehicles</a></li>
+                                                                            </ul>
+                                                                            <!-- Start Media Details -->
+                                                                            <h6 class="small-title">{{'ad Media' | translate}} :</h6>
+                                                                            <span class="line"></span>
+
+                                                                            <div class="form-group row">
+                                                                                <span class="col-sm-4 col-form-label">{{'Ad Photos' | translate}} &amp; Videos' | translate}} :</span>
+                                                                                <div class="col-sm-8">
+                                                                                    <div class="col-sm-12">
+                                                                                        <i class="fas fa-cloud-upload-alt float-left"></i>
+                                                                                        <div class="text float-left px-4">
+                                                                                            <span>{{'Select ﬁles to upload</span>
+                                                                                            <small class="form-text text-muted">{{'You can upload 4 Images maximum' | translate}}.</small>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="file-loading">
+                                                                                            <input id="kv-explorer" type="file" multiple="">
+                                                                                        </div>
+                                                                                        <br>
+                                                                                        <div class="file-input theme-fas file-input-ajax-new"><div class="file-preview ">
+<button type="button" class="close fileinput-remove" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>    <div class=" file-drop-zone"><div class="file-drop-zone-title">{{'Drag' | translate}} &amp;{{'drop files here' | translate}} …</div>
+<div class="file-preview-thumbnails">
+</div>
+<div class="clearfix"></div>    <div class="file-preview-status text-center text-success"></div>
+<div class="kv-fileinput-error file-error-message" style="display: none;"></div>
+</div>
+</div>
+<div class="kv-upload-progress kv-hidden" style="display: none;"><div class="progress">
+<div class="progress-bar bg-success progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+    0%
+ </div>
+</div></div><div class="clearfix"></div>
+<div class="input-group file-caption-main">
+<div class="file-caption form-control  kv-fileinput-caption" tabindex="500">
+<span class="file-caption-icon"></span>
+<input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="Select files...">
+</div>
+<div class="input-group-btn input-group-append">
+  <button type="button" tabindex="500" title="Clear all unprocessed files" class="btn btn-default btn-secondary fileinput-remove fileinput-remove-button"><i class="glyphicon glyphicon-trash"></i>  <span class="hidden-xs">{{'Remove</span></button>
+  <button type="button" tabindex="500" title="Abort ongoing upload" class="btn btn-default btn-secondary kv-hidden fileinput-cancel fileinput-cancel-button"><i class="glyphicon glyphicon-ban-circle"></i>  <span class="hidden-xs">{{'Cancel</span></button>
+  
+  <button type="submit" tabindex="500" title="Upload selected files" class="btn btn-default btn-secondary fileinput-upload fileinput-upload-button"><i class="glyphicon glyphicon-upload"></i>  <span class="hidden-xs">{{'Upload</span></button>
+  <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">Browse …</span><input id="file-0a" class="file" type="file" multiple="" data-min-file-count="1" data-theme="fas"></div>
+</div>
+</div></div>
+                                                                                        <br>
+                                                                                        <button type="submit" class="btn btn-primary">{{'Submit' | translate}}</button>
+                                                                                        <button type="reset" class="btn btn-outline-secondary">{{'Reset' | translate}}</button>
+                                                                                    </div>
+                                                                                    <!-- Col Upload -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
+                                                                            <button type="button" class="btn btn-success">{{'Save changes' | translate}}</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Product Details Modal  -->
+                                                        </td>
+                                                        <td>
+                                                            <button class="delete-row button dis mt-29" disabled="">
+                                                                <i class="fas fa-times fa-fw"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button id="add-row" class="button"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>

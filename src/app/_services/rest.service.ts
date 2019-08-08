@@ -90,6 +90,11 @@ import { environment } from '../../environments/environment';
   postadd(ad) {
     return this.http.post<any>(environment.ApiUrl +'products', ad)
   }
+
+  createadd(ad) {
+    return this.http.post<any>(environment.ApiUrl +'ads', ad)
+  }
+
   addcomment(comment) {
     return this.http.post<any>(environment.ApiUrl +'comments', comment)
   }

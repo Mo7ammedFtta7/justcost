@@ -28,11 +28,18 @@ export class PostaddComponent implements OnInit {
   Icategory:Icategory[]
   Isub:Isub[]
   user:any
+  phone:string
+  
   constructor(public _authService: AuthService,private _api: apis,private _rea: RestService) { }
   ngOnInit() {
     nav("hide");
   //  SetMap();
+ // this.create.value.phone="dsdsdfsdf"
     this._api.categoris().subscribe(res =>{this.Icategory = res['data']; this.cat=res['data'][0]['name'];this.onSelect(res['data'][0]['id']);
+  
+  
+  
+  
   },
     error => this.errorMsg = error);
     // this._rea.getCitis().subscribe(
@@ -45,15 +52,18 @@ export class PostaddComponent implements OnInit {
     //       }
     // )
     this.user= this._authService.getUser()
+    this.phone=this.user.phone
+
    //SetMap();
   }
+
     ref(id)
     {
       this.create.value.category_id=5
       console.log(id);  // false
     }
 
-   
+ 
 
     selectsub(id){
       this.category_id=id;
@@ -77,28 +87,29 @@ export class PostaddComponent implements OnInit {
     }
 
     createadd(create: NgForm) {
-    create.value.category_id=this.category_id;
-    create.value.ispaided=0;
-    create.value.iswholesale=0;
-    create.value.keywordsId=1;
-    create.value.status=1;
-    create.value.lat= 1;
-    create.value.lng=1;
-    var mar=getMarker();
 
-     if (typeof mar !== "undefined") {
-      create.value.lat= mar.position.lat();
-      create.value.lng=mar.position.lng()
-     };
+     create.value.category_id=9;
+    // create.value.ispaided=0;
+    // create.value.iswholesale=0;
+    // create.value.keywordsId=1;
+    create.value.customerId=this.user.id;
+     create.value.lat= 1;
+     create.value.lng=1;
+    // var mar=getMarker();
+
+    //  if (typeof mar !== "undefined") {
+    //   create.value.lat= mar.position.lat();
+    //   create.value.lng=mar.position.lng()
+    //  };
     
  
      console.log(create.value);
 
-      // this.postadd(create)
+       this.postadd(create)
       }
    
       postadd (ad) {
-        this._rea.postadd(ad.value)
+        this._rea.createadd(ad.value)
         .subscribe(
           res => {
             success("Product Add succsefuly!")
