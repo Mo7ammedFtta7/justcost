@@ -7,6 +7,7 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { count } from 'rxjs/operators';
 import { AuthService } from '../../auth.service';
 import { NgForm } from '@angular/forms';
+import { ApiService } from '../../_services/api.service';
 declare function goup():any ;
 declare function success(msg):any;
 declare function  ViewMap():any;
@@ -31,7 +32,7 @@ export class ProductComponent implements OnInit {
   public product: any;
   public attributes: any;
   like:boolean=false
-  constructor(private _rea: RestService,private _api: apis,private route: ActivatedRoute,public _authService: AuthService) {}
+  constructor(private _rea: RestService,private _api: ApiService,private route: ActivatedRoute,public _authService: AuthService) {}
 
   ngOnInit() 
     {
@@ -70,25 +71,25 @@ export class ProductComponent implements OnInit {
       this._rea.getProduct(this.id).subscribe((data: {}) => {
         this.product = data['data'][0];
         this.like=data['data'][0]['likes']
-        console.log( data['data'][0])
+       // console.log( data['data'][0])
       });
     }
     getcomments( id:any ) {
        this._rea.getcomments(this.id).subscribe((data: {}) => {
          this.commments = data['data'];
-         console.log( data['data'])
+      //   console.log( data['data'])
        });
      }
      getAttributes( id:any ) {
       this._rea.getAttributes(this.id).subscribe((data: {}) => {
         this.attributes = data['data'];
-        console.log( data['data'])
+        //console.log( data['data'])
       });
     }
      addcomment(commentForm,pid)
       {
         commentForm.value.productid=pid;
-        console.log(commentForm.value)
+       // console.log(commentForm.value)
         this._rea.addcomment(commentForm.value)
         .subscribe(
           res => {
@@ -96,10 +97,10 @@ export class ProductComponent implements OnInit {
          commentForm.reset();
             success("comment Add succsefuly!")
             this.getcomments(pid ) 
-          console.log(res)
+         // console.log(res)
           },
           err => {
-            console.log(err)
+           // console.log(err)
           }
       
        )

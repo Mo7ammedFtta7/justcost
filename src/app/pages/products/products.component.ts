@@ -63,7 +63,7 @@ export class ProductsComponent implements OnInit {
     .set("limit",this.limit)
     .set("search",search)
     .set("checked",getSelectChecked())
-    console.log(params)
+//console.log(params)
     this.rest.getProducts(params,this.id).subscribe((data: {}) => {
       this.products = data['data'];
       this.category= data['catName'];
@@ -71,14 +71,14 @@ export class ProductsComponent implements OnInit {
   }
 
   filter(filterForm:FormGroup){
-    console.log(filterForm.value);
+  //  console.log(filterForm.value);
   }
 
 
   getBrands(id:any) {
     this.rest.getBrands(this.id).subscribe((data: {}) => {
       this.Brands = data['data'];
-      console.log("--------------"+data);
+     // console.log("--------------"+data);
     });
   }
   getAttributes(id:any) {
@@ -101,7 +101,7 @@ export class ProductsComponent implements OnInit {
       this.checkedList.push(this.checklist[i]);
     }
      this.checkedList = JSON.stringify(this.checkedList);
-     console.log(this.checkedList)
+    // console.log(this.checkedList)
 
   }
     onKey(value: string) {

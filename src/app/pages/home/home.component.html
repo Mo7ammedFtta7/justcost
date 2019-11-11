@@ -1,58 +1,63 @@
-
-
 <!-- START FEATURED ADS -->
-<section class="featured-ads">
+<!-- <section class="featured-ads"> -->
+        <section class="">
+
     <h3 class="main-title">{{ 'Featured ads' | translate }}</h3>
     <div class="ads py-4">
         <div class="row">
-            <style>
-            .img-fluid {
-    max-height: 200px;
-}
-            </style>
-            
-           <div *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
+          
+
+
+            <div *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
                 <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
                     <div class="item">
-                        <img src="{{item.media[0].url}}" alt="Image" class="img-fluid">
-                        <span class="disc" style="right: 0;">Discount <span> {{math(item.reg_price,item.sale_price)}} %</span></span>
+                        <img appImage src="{{item?.media[0].url}}"  alt="Image" class="img">
+                        <span class="discount">{{ 'off' | translate }} {{item?.discount}}</span>
                     </div>
                     <div class="info" style="padding: 15px 15px 0px 15px;">
-                        <h5> <a routerLink="/product/{{item.productId}}">{{item.title}}</a></h5>
-                        <span>{{item.category}}</span>
+                        <h5> <a routerLink="/product/{{item?.productId}}">{{item?.title}}</a></h5>
+                        <span>{{item?.category}}</span>
                     </div>
                     <div class="end-info">
-                            <bar-rating [(rate)]="rate" [max]="5" ></bar-rating>
+                        <bar-rating [rate]="0" [max]="5" [readOnly]="true"></bar-rating> 
                         <!-- <a href="#"><i class="far fa-star"></i></a>
                         <a href="#"><i class="far fa-star"></i></a>
                         <a href="#"><i class="far fa-star"></i></a>
                         <a href="#"><i class="far fa-star"></i></a> -->
-                        <!-- <a href="#" class="button float-right"><i class="far fa-heart"></i> save</a> -->
+                         <!-- <a href="#" class="button float-right"><i class="far fa-heart"></i> save</a> -->
                         <div class="claerfix"></div>
                     </div>
                 </div>
-            </div> 
+            </div>
+        </div>
+    </div>
+</section>
 
-<!-- START BROWSE CATEGORIES SECTION -->
 <section class="browse-Categories">
     <h3 class="main-title">{{'Browse Categories' | translate }}</h3>
     <div class="category py-4">
         <div class="row">
-            <div *ngFor="let category of categories" class="col-xl-3 col-sm-6">
+            <div *ngFor="let category of categories" class="col-xl-4 col-sm-6">
                 <div class="panel wow fadeIn" data-wow-offset="200" data-wow-duration="2s">
                     <div class="icon">
                         <img src="{{category.image}}" alt="Car Icon" width="47">
-                        <span>{{category.name}}</span>
+                        <span *ngIf="lang=='en'">{{category.name}}</span>
+                        <span  *ngIf="lang=='ar'">{{category.name_ar}}</span>
+
                     </div>
-                    <div class="links">
+                    <div class="links" style="max-height: 250px;scroll-behavior: smooth;overflow-y: scroll;">
                         <ul class="list-unstyled">
-                            <li *ngFor="let sub of category.subs;"><a [routerLink]="['/results']" [queryParams]="{ category: sub.name}" >{{sub.name}}</a> <span>{{sub.count}}</span></li>
+                            <li *ngFor="let sub of category.subs;"><a [routerLink]="['/results']" [queryParams]="{ category: sub.name}"> 
+                                <div *ngIf="lang=='en'"> {{sub.name}}</div>
+                                <div *ngIf="lang=='ar'"> {{sub.name_ar}}</div>
+                               
+                            </a>
+                                <span>{{sub.count}}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div><!-- Col #1 -->
-
         </div><!-- End Row -->
     </div><!-- End Category -->
 </section>
-<!-- END BROWSE CATEGORIES SECTION -->

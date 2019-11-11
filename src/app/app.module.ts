@@ -27,6 +27,8 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { TranslatePipe } from './pipe/translate.pipe';
 import { TranslateComponent } from './pipe/translate/translate.component';
 import { AssetsComponent } from './assets/assets.component';
+import { ApiService } from './_services/api.service';
+import { ImageDirective } from './directives/image.directive';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { AssetsComponent } from './assets/assets.component';
     SubsComponent,
     TranslatePipe,
     TranslateComponent,
-    AssetsComponent
+    AssetsComponent,
+    ImageDirective
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { AssetsComponent } from './assets/assets.component';
     NgxPaginationModule,
     BarRatingModule
   ],
-  providers: [AuthService,apis, AuthGuard, EventService,TranslatePipe, 
+  providers: [ApiService,AuthService,apis, AuthGuard, EventService,TranslatePipe, 
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

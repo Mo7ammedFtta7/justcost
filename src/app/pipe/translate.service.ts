@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import db from './translate/database.json';
 import database from './translate/test.json';
-import { directiveDef } from '@angular/core/src/view';
+// import { directiveDef } from '@angular/core/src/view';
 declare function dir(): any;
 
 //import fs from 'file-system';
@@ -88,7 +88,7 @@ export class TranslateService {
       translates[this.local] = word;
       this.temp_database[word] = translates;
      }
-    console.log(JSON.stringify(this.temp_database))
+    //console.log(JSON.stringify(this.temp_database))
     return word
   }
 

@@ -5,6 +5,7 @@ import { RestService } from '../../_services/rest.service';
 import { NgForm, FormGroup } from '@angular/forms';
 import { Icategory, Isub } from '../../_models/category';
 import { AuthService } from '../../auth.service';
+import { ApiService } from '../../_services/api.service';
 //declare function subs(id):any ;
 declare function success(msg):any;
 declare function SetMap():any;
@@ -30,7 +31,7 @@ export class PostaddComponent implements OnInit {
   user:any
   phone:string
   
-  constructor(public _authService: AuthService,private _api: apis,private _rea: RestService) { }
+  constructor(public _authService: AuthService,private _api: ApiService,private _rea: RestService) { }
   ngOnInit() {
     nav("hide");
   //  SetMap();
@@ -60,7 +61,7 @@ export class PostaddComponent implements OnInit {
     ref(id)
     {
       this.create.value.category_id=5
-      console.log(id);  // false
+    //  console.log(id);  // false
     }
 
  
@@ -70,13 +71,14 @@ export class PostaddComponent implements OnInit {
       this._rea.getBrands(id).subscribe(
         res => {
          this.brands=res.data
-          console.log(res)
+         // console.log(res)
         },
         err => {
-          console.log(err)
-        }
+         // console.log(err)
+        //
+      }
       ) ;
-      console.log(id);
+     // console.log(id);
     }
     onSelect(id) {
       const xx= this.Icategory.filter((item) => item.id == id);
@@ -113,10 +115,10 @@ export class PostaddComponent implements OnInit {
         .subscribe(
           res => {
             success("Product Add succsefuly!")
-            console.log(res)
+       //     console.log(res)
           },
           err => {
-            console.log(err)
+         //   console.log(err)
           }
         ) 
       }

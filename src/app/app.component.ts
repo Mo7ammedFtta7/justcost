@@ -15,7 +15,7 @@ export class AppComponent {
   public local:string
 
 
-  constructor(private _authService: AuthService,public _translate : TranslateService,private router: Router){}
+  constructor(public _translate : TranslateService,private router: Router){}
 
   ngOnInit() {
     console.log(this.router.url);

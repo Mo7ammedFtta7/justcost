@@ -2,60 +2,58 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
+import { apis } from './_services/apis';
+import { retry } from 'rxjs/operators';
+import { EncryptService } from './_services/encrypt.service';
 
 
 @Injectable()
 export class AuthService {
 
-  private _registerUrl =environment.ApiUrl+"customer/register";
   private _loginUrl = environment.ApiUrl+"customer/login";
+  protected secretKey = 'sfsdfkjblsfgmb@asd^gsaj)s9hfds^f@3s4!';
+
+  constructor(private http: HttpClient,private _router: Router,private crypt: EncryptService) { }
+
+  // registerUser(user) {
+  //   return this._api.post("customer/register",user)
+  //   //return this.http.post<any>(this._registerUrl, user)
+  // }
   
-  constructor(private http: HttpClient,
-              private _router: Router) { }
-
-  registerUser(user) {
-    return this.http.post<any>(this._registerUrl, user)
-  }
-
-  loginUser(user) {
-    return this.http.post<any>(this._loginUrl, user)
-  }
-
   logoutUser() {
-    localStorage.removeItem('token')
+    localStorage.removeItem(this.secretKey)
     localStorage.removeItem('data')
     this._router.navigate(['/home'])
    // window.location.reload()
-
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem(this.secretKey)
   }
 
   getUserName() {
-    //let user=JSON.parse(localStorage.getItem('data'))
-    let user=localStorage.getItem('data')
-    let xx=JSON.parse(user)
-    return xx.userInfo.username
+    return this.user().userInfo.username
   }
   getUser() {
-    let user=localStorage.getItem('data')
-    let xx=JSON.parse(user)
-    return xx!=null ?xx.userInfo :null
+    return JSON.parse(this.crypt.decrypt(this.secretKey, this.getToken()));
+  }
+  
+  setToken(data: string) {
+    console.log(this.crypt.encrypt(this.secretKey, JSON.stringify(data)))
+    localStorage.setItem(this.secretKey, this.crypt.encrypt(this.secretKey, JSON.stringify(data)));
   }
 
   getUserCountry() {
-    
    let xx=this.getUser()
- 
-    return xx!=null ?xx.country.name :"UAE"
-
+  return xx!=null ?xx.country.name :"UAE"
   }
 
-  loggedIn() {
-    return !!localStorage.getItem('token')    
+  loggedIn(): boolean {
+    return this.getToken() !== null;
   }
 
+  user() {
+    return JSON.parse(this.crypt.decrypt(this.secretKey, this.getToken().toString()));
+  }
 
 }

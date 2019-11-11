@@ -1,28 +1,27 @@
 <div class="main-title main-title2">
-  <small><a href="#">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a href="#">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{category}}</small>
+    <small><a href="#">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a
+            href="#">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{category}}</small>
 </div><!-- End Title -->
 
 <div class="catogery">
-  <div class="row">
-      <div class="col-xl-3 col-sm-12">
-          <div class="custom text-center">{{'Custom Search' | translate }}</div>
-          <div class="panel" style="padding-bottom: 130px;">
-
-              <input type="search" ngModel #searcF (keyup)="onKey(searcF.value)" class="form-control search2" placeholder="{{'Search Title/Keyword' | translate }}">
-              <!-- <i class="fas fa-search search-icon2"></i> -->
-              <form action="" #filterForm="ngForm" (ngSubmit)="filter(filterForm)"  >
-
-              <div class="brand" *ngIf="Brands?.length >0">
-                  <h6>brand</h6>
-                  <ul class="list-unstyled check-ul">
-                      <li  *ngFor="let Brand of Brands">
-                          <input type="checkbox"  class="box" name="name{{Brand.id}}" id="brand{{Brand.id}}">
-                          <label for="brand{{Brand.id}}">{{Brand.name}} </label>
-                      </li>
-                  </ul>
-              </div><!-- Brand -->
-              <div id="attrips">
-                    <div class="brand">
+    <div class="row">
+        <div class="col-xl-3 col-sm-12">
+            <div class="custom text-center">{{'Custom Search' | translate }}</div>
+            <div class="panel" style="padding-bottom: 130px;">
+                <input type="search" ngModel #searcF (keyup)="onKey(searcF.value)" class="form-control search2" placeholder="{{'Search Title/Keyword' | translate }}">
+                <!-- <i class="fas fa-search search-icon2"></i> -->
+                <form action="" #filterForm="ngForm" (ngSubmit)="filter(filterForm)">
+                    <div class="brand" *ngIf="Brands?.length >0">
+                        <h6>brand</h6>
+                        <ul class="list-unstyled check-ul">
+                            <li *ngFor="let Brand of Brands">
+                                <input type="checkbox" class="box" name="name{{Brand.id}}" id="brand{{Brand.id}}">
+                                <label for="brand{{Brand.id}}">{{Brand.name}} </label>
+                            </li>
+                        </ul>
+                    </div><!-- Brand -->
+                    <div id="attrips">
+                        <div class="brand">
                             <h6>{{ 'Categories' | translate }}</h6>
                             <ul class="list-unstyled check-ul">
                                 <li>
@@ -49,83 +48,79 @@
                                     <input type="checkbox" id="box6">
                                     <label for="box6">Fujitsu (879)</label>
                                 </li>
-
                             </ul>
                         </div>
-              <div class="brand"  class="brand " *ngFor="let group of attributes">
-                  <h6>{{group.group}}</h6>
-                  <!-- <ul class="list-unstyled check-ul">
-                      <li *ngFor="let att of attr.attributes">
-                          <input type="checkbox"  class="box" ngModel name="name{{att.id}}" id="att{{att.id}}">
+                        <div class="brand" class="brand">
+                             <!--<h6>{{group?.group}}</h6>
+                            <ul class="list-unstyled check-ul">
+                            <li *ngFor="let att of attr.attributes">
+                                <input type="checkbox"  class="box" ngModel name="name{{att.id}}" id="att{{att.id}}">
+                                <label for="attr{{att.id}}">{{att.name}}</label>
+                            </li>
+                            </ul> 
+                            <ul class="list-unstyled check-ul">
+                                <li *ngFor="let att of group.attributes; let i=index">
+                                    <input type="checkbox" class="box" ngModel value="{{att.id}}"
+                                        (change)="onKey(searcF.value)" name="att{{att.id}}"
+                                        id="att{{i}}-{{group.group}}">
+                                    <label for="att{{i}}-{{group.group}}">{{att.name}}</label>
+                                </li>
 
-                              <label for="attr{{att.id}}">{{att.name}}</label>
-                      </li>
-                  </ul> -->
+                            </ul>-->
+                        </div>
+                    </div>
+                    <!-- <button type="button" (click)="isAllSelected()">ssssssssssss</button> -->
+                </form>
+            </div><!-- End Panel-->
+        </div><!-- Col #1-->
 
-  <ul class="list-unstyled check-ul">
-      <li *ngFor="let att of group.attributes; let i=index">
-          <input type="checkbox" class="box" ngModel value="{{att.id}}" (change)="onKey(searcF.value)" name="att{{att.id}}" id="att{{i}}-{{group.group}}">
-          <label for="att{{i}}-{{group.group}}">{{att.name}}</label>
-      </li>
-    
-  </ul>
-</div>
+        <div class="col-xl-9 col-sm-12">
+            <div class="save-search">
+                <h6>{{ 'Found results' | translate }}</h6>
+                <div class="panel row">
+                    <div class="col-xl-6 col-sm-12">
+                        <div class="row">
+                            <span class="col-xl-3  col-sm-12 sort"
+                                style="margin-top:7px; text-transform: none">{{'Sort by' | translate }}</span>
+                            <select class="form-control col-xl-9 col-sm-12">
+                                <option selected>Top Rated</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-sm-12">
+                        <div class=" text-right">
+                            <a href="#">{{products?.length}} {{'result' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
 
-               
+            <div *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p }" class="item row">
 
-
-              </div>
-              <!-- <button type="button" (click)="isAllSelected()">ssssssssssss</button> -->
-
-           </form>
-            
-          </div><!-- End Panel-->
-      </div><!-- Col #1-->
-
-
-      <div class="col-xl-9 col-sm-12">
-          <div class="save-search">
-              <h6>{{ 'Found results' | translate }}</h6>
-              <div class="panel row">
-                  <div class="col-xl-6 col-sm-12">
-                      <div class="row">
-                          <span class="col-xl-3  col-sm-12 sort" style="margin-top:7px; text-transform: none">{{'Sort by' | translate }}</span>
-                          <select class="form-control col-xl-9 col-sm-12">
-                              <option selected>Top Rated</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="col-xl-6 col-sm-12">
-                      <div class=" text-right">
-                          <a href="#">{{products?.length}} {{'result' | translate }}</a>
-                      </div>
-                  </div>
-              </div>
-
-              <div *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p }" class="item row">
-                 
                     <div class="photo text-center col-sm-3">
-                        <img  src="{{product?.media[0]['url']}}" alt="Image" class="img-fluid">
-                    </div><!-- Photo -->
+                        <img appImage src="#" alt="Image" class="img-fluid">
+                    </div>
                     <div class="about-photo  col-sm-9">
                         <div class="post-title">
                             <div>
-                                <h6> <a routerLink="/product/{{product.productId}}">{{product.title}}</a> </h6>
+                                <h6> <a routerLink="/product/{{product?.productId}}">{{product?.title}}</a> </h6>
                                 <small>{{product.postedOn | date }} </small>
                             </div>
                             <div>
-                                <span class="alert-yellow"> {{math(product.reg_price,product.sale_price)}}%  {{ 'off' | translate }} </span>
+                                <span class="alert-yellow"> {{math(product.reg_price,product.sale_price)}}%
+                                    {{ 'off' | translate }} </span>
                                 <span class="red">AED {{product.sale_price}} </span>
                             </div>
                         </div>
                         <div class="post-details">
                             <div>
-                                <small style="margin-right: 0;">{{ 'Home' | translate }} <i class="fas fa-chevron-right fa-sm"></i> {{ 'Categories' | translate }} <i class="fas fa-chevron-right fa-sm"></i> {{product.category}} </small><br>
-                                <small>Usage: 6 - 8 Month</small>
-                                <small>Status: Very Good</small>
+                                <small style="margin-right: 0;">{{ 'Home' | translate }} <i
+                                        class="fas fa-chevron-right fa-sm"></i> {{ 'Categories' | translate }} <i
+                                        class="fas fa-chevron-right fa-sm"></i> {{product.category}} </small><br>
+                                <!-- <small>Usage: 6 - 8 Month</small>
+                                <small>Status: Very Good</small> -->
                                 <span class="star">3/5
                                     <i class="far fa-star"></i>
                                     <i class="far fa-star"></i>
@@ -145,19 +140,19 @@
 
 
                         <div class="clearfix"></div>
-                    </div><!-- About Photo-->
-                </div>
-                  
+                    </div>
+                </div> 
 
-              
-              <div class="paginaion text-center">
 
-                  <pagination-controls class="my-pagination"  (pageChange)="p = $event"></pagination-controls>
+<!-- 
+                <div class="paginaion text-center">
 
-              </div>
+                    <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
 
-              <!-- END PAGINATION -->
-          </div><!-- End Save Saerch-->
-      </div><!-- Col#2 -->
-  </div><!-- End Row -->
+                </div> -->
+
+                <!-- END PAGINATION -->
+            </div><!-- End Save Saerch-->
+        </div><!-- Col#2 -->
+    </div><!-- End Row -->
 </div>

@@ -4,7 +4,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" [routerLink]="['/']"  href="javascrip:;">
                     <img src="assets/images/logo.png" alt="Logo" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -117,9 +117,9 @@
                             name="Search" aria-label="What you are looking for ?" aria-describedby="basic-addon2">
 
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" (click)="GoSearch(ngModel)"><i
+                            <button class="btn btn-outline-secondary" type="button" (click)="GoSearch(Search)"><i
                                     class="fa fa-search"></i>{{'Search' | translate}}</button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -130,11 +130,10 @@
 <div id="cat_nav" class="categories-area">
     <div class="container">
         <ul class="nav">
-
             <li *ngFor="let category of categories" class="nav-item">
-                <a class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name}}</a>
+                <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name_ar}}</a>
+                <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name}}</a>
             </li>
-          
         </ul>
     </div>
 </div>

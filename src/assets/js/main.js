@@ -64,7 +64,7 @@ function getSelectChecked() {
             $('#attrips input:checked').each(function() {
                 selected.push($(this).attr('value'));
             });
-            console.log(selected);
+         //   console.log(selected);
             return selected;
 }
 
@@ -81,7 +81,7 @@ function owl() {
         url: 'http://localhost:8000/api/sliders',
         contentType: 'application/json',
         success : function (data) {
-            console.log(data.data);
+          //  console.log(data.data);
             html='<div class="owl-carousel">';
               data.data.forEach(element => {
                 html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
@@ -105,7 +105,7 @@ function owl2() {
         url: 'http://localhost:8000/api/sliders',
         contentType: 'application/json',
         success : function (data) {
-            console.log(data.data);
+           // console.log(data.data);
             html='<div class="owl-carousel">';
               data.data.forEach(element => {
                 html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";

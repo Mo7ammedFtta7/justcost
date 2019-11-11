@@ -1,0 +1,24 @@
+.discount{
+        position: absolute;
+        top: 19px;
+        right: 129px;
+        background-color: yellow;
+}
+
+.img-fluid {
+    max-height: 200px;
+}
+.item{
+position: relative;
+}
+
+.img{
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 225px;
+    max-width: 225PX;
+}
+
+.br-units {
+    padding-right: 58px;
+}

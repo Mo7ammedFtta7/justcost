@@ -3,7 +3,8 @@ import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router'
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-declare function success(msg):any;
+import { ApiService } from '../../_services/api.service';
+declare function success(msg): any;
 
 @Component({
   selector: 'app-register',
@@ -11,22 +12,21 @@ declare function success(msg):any;
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  username_faild=false;
-  password_faild=false;
-  pass_match=false;
-  public FromWeb=1
+  username_faild = false;
+  password_faild = false;
+  pass_match = false;
+  public FromWeb = 1
   // regForm = new FormGroup({
   //   username: new FormControl(''),
   //   password: new FormControl(''),
   // });
- 
+
 
   registerUserData = {}
-  constructor(private _auth: AuthService,
-              private _router: Router) { }
+  constructor(private _auth: AuthService,private _router: Router, private _api: ApiService) { };
 
   ngOnInit() {
-   
+
   }
 
   // registerUser() {
@@ -43,17 +43,20 @@ export class RegisterComponent implements OnInit {
 
 
     if (!f.valid) {
-      this.username_faild=true;
-      this.password_faild=true;
-    }else
-    {
-      if (f.value.password!=f.value.c_password) {
-        this.pass_match=true;
+      this.username_faild = true;
+      this.password_faild = true;
+      console.log(this.password_faild)
+    } else {
+      if (f.value.password != f.value.c_password) {
+        this.pass_match = true;
+        console.log(this.pass_match)
+
       }
-      else
-      {
-        f.value.city=1;
-        f.value.firebaseToken=1;
+      else {
+        console.log("elese")
+
+        f.value.city = 1;
+        f.value.firebaseToken = 1;
         f.value.FromWeb = 1;
 
         //console.log(f);  // { first: '', last: '' }
@@ -65,29 +68,32 @@ export class RegisterComponent implements OnInit {
     ///console.log(f);  // false
   }
 
-  reqUser (user) {
-    this._auth.registerUser(user.value)
-    .subscribe(
-      res => {
-      //   console.log(res.data.token)
-      //   localStorage.setItem('token', res.data.token)
-      //  localStorage.setItem('data', JSON.stringify(res.data))
-       success("registration successful please check your email for confirmation");
+  // registerUser(user) {
+  //   return this._api.post("customer/register",user)
+  //   //return this.http.post<any>(this._registerUrl, user)
+  // }
 
+  reqUser(user) {
+    console.log(user.value)
+
+    // this._auth.registerUser(user.value)
+    this._api.post("customer/register", user.value).subscribe(
+      res => {
+        success("registration successful please check your email for confirmation");
       },
       err => {
-        if (err.status==400) {
+        if (err.status == 400) {
           user.reset();
-          this.username_faild=true;
-          this.password_faild=true;
-         Swal.fire( "Oops" ,  "User already exist" ,  "error" )
+          this.username_faild = true;
+          this.password_faild = true;
+          Swal.fire("Oops", "User already exist", "error")
 
         } else {
-        //  this.password_faild=true;
-         // console.log(err)
+          //  this.password_faild=true;
+          console.log(err)
         }
       }
-    ) 
+    )
   }
 
 }

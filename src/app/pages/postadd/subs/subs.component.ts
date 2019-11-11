@@ -12,9 +12,9 @@ export class SubsComponent implements OnInit {
   
   ngOnInit() {
    // this.name=this.categoty 
-  console.log("-------")
+  //console.log("-------")
 
-   console.log(this.cat)
+  // console.log(this.cat)
   }
   
 }
