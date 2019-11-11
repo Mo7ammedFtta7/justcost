@@ -30,11 +30,8 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
 
   onSubmit(f: NgForm) {
-    if (!f.valid) {
-      this.username_faild = true;
-      this.password_faild = true;
-    } else {
-      this.loginUser(f)
+    if (f.valid) {
+      this.loginUser(f);
     }
   }
 
@@ -67,7 +64,7 @@ export class LoginComponent implements OnInit,OnDestroy {
 
       this.apis.sub("loginUser",sub)
   }
- 
+
   ngOnDestroy() {
     this.apis.unsub(["loginUser"])
   }
