@@ -15,10 +15,8 @@
                 <div class="collapse navbar-collapse " id="navbarResponsive">
                     <ul class="navbar-nav selection ml-auto">
                         <li class="nav-item">
-                            <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"
-                                (click)="translate.setlocalLang('ar')">عربي</a>
-                            <a *ngIf="translate.getlocalLang()=='ar'" class="nav-link"
-                                (click)="translate.setlocalLang('en')">English</a>
+                            <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"(click)="translate.setlocalLang('ar')"> <img class="flag" src="assets/images/emirian-flag-medium.gif">عربي</a>
+                            <a *ngIf="translate.getlocalLang()=='ar'" class="nav-link"(click)="translate.setlocalLang('en')"> <img class="flag" src="assets/images/e-flag.png" alt="">English</a>
                         </li>
                         <li class="nav-item">
                             <select class="custom-select" #CitisOfCountry (change)='getCitisOfCountry(CitisOfCountry.value)'>
@@ -74,7 +72,7 @@
 
                                 <!-- dropdown menu -->
                                 <ul class="dropdown-menu">
-                                    <li><a href="#home">{{'My Profile' | translate}} </a></li>
+                                    <li><a [routerLink]="['/profile']"  href="javascript:;">{{'My Profile' | translate}} </a></li>
                                     <!-- <li><a href="#about">About</a></li> -->
                                     <div class="dropdown-divider"></div>
                                     <li><a href="javascript:;"

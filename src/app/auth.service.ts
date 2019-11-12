@@ -35,7 +35,11 @@ export class AuthService {
     return this.user().userInfo.username
   }
   getUser() {
-    return JSON.parse(this.crypt.decrypt(this.secretKey, this.getToken()));
+    return this.user();
+  }
+
+  getUserToken() {
+    return this.user().token;
   }
   
   setToken(data: string) {

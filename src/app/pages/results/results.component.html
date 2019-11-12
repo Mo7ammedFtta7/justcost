@@ -97,6 +97,14 @@
                     </div>
                 </div>
 
+
+
+<div *ngIf="products.length==0" class="text-center">
+    <img class="mt-3 ml-5" src="assets/images/empty.png" alt="">
+    <p> {{"empty" | translate}}</p>
+</div>
+
+
             <div *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p }" class="item row">
 
                     <div class="photo text-center col-sm-3">
