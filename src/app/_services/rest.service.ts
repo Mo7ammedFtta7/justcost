@@ -96,7 +96,7 @@ import { environment } from '../../environments/environment';
   }
 
   addcomment(comment) {
-    return this.http.post<any>(environment.ApiUrl +'comments', comment)
+    return this.http.post<any>(environment.ApiUrl +'comments/addcomment', comment,this.httpOptions)
   }
   
   getProfile():Observable<any>

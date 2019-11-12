@@ -89,15 +89,12 @@ export class ProductComponent implements OnInit {
      addcomment(commentForm,pid)
       {
         commentForm.value.productid=pid;
-       // console.log(commentForm.value)
         this._rea.addcomment(commentForm.value)
         .subscribe(
           res => {
-           // commentForm.value.comment=555555555555555555
          commentForm.reset();
             success("comment Add succsefuly!")
-            this.getcomments(pid ) 
-         // console.log(res)
+           this.getcomments(pid ) 
           },
           err => {
            // console.log(err)
