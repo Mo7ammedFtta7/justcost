@@ -105,7 +105,7 @@ export class ApiService {
     const body = new FormData();
     body.append('product_id', productId);
     console.log(body);
-    return this.http.post<any>(environment.ApiUrl + 'likes', body, this.httpOptions())
+    return this.http.post<any>(environment.ApiUrl + 'like/addlike', body, this.httpOptions())
       .catch(this.errorHandler);
   }
 
@@ -114,12 +114,12 @@ export class ApiService {
     return body || {};
   }
   like(productId: any) {
-    //  this.likeProduct(productId).subscribe((data: {}) => {
-    //    console.log( data['data'])
-    //  },
-    //  err => {
-    //   console.log(err)
-    //  });
+     this.likeProduct(productId).subscribe((data: {}) => {
+       console.log( data['data'])
+     },
+     err => {
+      console.log(err)
+     });
 
   //  this.xx()
   }
@@ -133,9 +133,9 @@ export class ApiService {
 
    // this.xx()
   }
-  
 
-  
+
+
 
   // public xx() {
   //   this.post('likes').subscribe(res => { console.log(res) },
@@ -173,7 +173,7 @@ export class ApiService {
     }
     return { headers };
   }
-  
+
   get(url: string): Observable<any> {
     return this.http.get<any>(environment.ApiUrl + url, this.httpOptions()).pipe(catchError(this.errorHandler));
   }

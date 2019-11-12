@@ -20,9 +20,6 @@ declare function nav(msg): any;
 })
 export class LoginComponent implements OnInit,OnDestroy {
 
-  password_faild = false;
-  username_faild = false;
-
   constructor(private _auth: AuthService, private _router: Router, public apis: ApiService) { }
 
   ngOnInit() {
@@ -53,14 +50,12 @@ export class LoginComponent implements OnInit,OnDestroy {
         err => {
           if (err.status == 401) {
             user.reset();
-            this.username_faild = true;
-            this.password_faild = true;
             Swal.fire("Oops", "Please Write a valid username and password", "error")
           } else {
             console.log(err)
           }
         }
-      )
+      );
 
       this.apis.sub("loginUser",sub)
   }

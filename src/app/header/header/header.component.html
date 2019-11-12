@@ -168,7 +168,7 @@
                                     </app-login>
 
                                     <div class="password">
-                                        <a href="reset_p.html">{{ 'forget password' | translate }}</a>
+                                        <a  [routerLink]="['/forgetPass']" routerLinkActive="router-link-active"  >{{ 'forget password' | translate }}</a>
                                         <p>{{'I don’t have account' | translate }} <a
                                                 href="#">{{ 'Create new' | translate }}</a></p>
                                     </div><!-- End Password-->

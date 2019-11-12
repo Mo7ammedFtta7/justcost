@@ -39,7 +39,7 @@
                 <!-- Start border -->
                 <div class="border" style="margin-bottom: 25px;">
                     <h6>{{product?.description}}</h6>
-                 
+
                     <!-- <span style="font-size: 15px;">Share with Friends</span>
                     <a href="javascript:;" title="Facebook" deisabled><i class="fab fa-facebook-f fa-fw"></i></a>
                     <a href="javascript:;" title="Twitter"><i class="fab fa-twitter fa-fw"></i></a>
@@ -106,14 +106,14 @@
                                     <button type="submit" class="button">{{'Post Comment' | translate }}</button>
 
                             </ng-template>
-                            
+
                         </div>
                     </form>
 
                     <!-- Start Reply area -->
                     <div class="reply-area">
 
-                        
+
                         <div *ngFor="let comment of commments" class="panel">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -154,17 +154,17 @@
             </div><!-- #1 -->
             <div class="border">
                 <ng-container *ngIf="!_authService.loggedIn(); else elseTemplate">
-                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
+                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="far fa-heart" ></i> {{'Add to favorite' | translate }}</a>
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 </ng-container>
                 <ng-template #elseTemplate>
-                          
+
                                     <a href="javascript:;" (click)="onLike(like)"  class="red"><i [ngClass]="like==true ? 'fas fa-heart' : 'far fa-heart'"></i> {{'Add to favorite' | translate }}</a>
-       
+
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 </ng-template>
-                
-               
+
+
             </div><!-- #2 -->
             <div class="border">
                 <div class="person" style="overflow: hidden;">

@@ -29,6 +29,7 @@ import { TranslateComponent } from './pipe/translate/translate.component';
 import { AssetsComponent } from './assets/assets.component';
 import { ApiService } from './_services/api.service';
 import { ImageDirective } from './directives/image.directive';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ImageDirective } from './directives/image.directive';
     TranslatePipe,
     TranslateComponent,
     AssetsComponent,
-    ImageDirective
+    ImageDirective,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
