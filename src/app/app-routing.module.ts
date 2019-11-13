@@ -11,6 +11,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 import { PostaddComponent } from './pages/postadd/postadd.component';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResultsComponent } from './pages/results/results.component';
 import { TranslateComponent } from './pipe/translate/translate.component';
 
@@ -18,6 +19,13 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
+    pathMatch: 'full'
+  }
+  ,
+  {
+    path: 'forgetPass',
+    component: ForgetPasswordComponent
+    ,
     pathMatch: 'full'
   }
   ,

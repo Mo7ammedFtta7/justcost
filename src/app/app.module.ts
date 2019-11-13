@@ -31,6 +31,7 @@ import { ApiService } from './_services/api.service';
 import { ImageDirective } from './directives/image.directive';
 import { LikeDirective } from './directives/like.directive';
 import { LoginDirective } from './directives/login/login.directive';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { LoginDirective } from './directives/login/login.directive';
     ImageDirective,
     LikeDirective,
     LoginDirective
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
