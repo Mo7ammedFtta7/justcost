@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
-import { apis } from './_services/apis';
-import { retry } from 'rxjs/operators';
 import { EncryptService } from './_services/encrypt.service';
 
 
@@ -58,6 +56,10 @@ export class AuthService {
 
   user() {
     return JSON.parse(this.crypt.decrypt(this.secretKey, this.getToken().toString()));
+  }
+
+  likes() :any[] {
+    return  this.user().likedProducts !==null?this.user().likedProducts:[];
   }
 
 }

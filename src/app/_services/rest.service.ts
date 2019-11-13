@@ -3,18 +3,33 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { AuthService } from '../auth.service';
+import { TranslateService } from '../pipe/translate.service';
 
 @Injectable({
   providedIn: 'root'
 })
     export class RestService {
-    private httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-    
-  constructor(private http: HttpClient) { }
+
+
+      constructor(private http: HttpClient, private _authService :AuthService,private trans :TranslateService) { }
+
+ httpOptions(): any {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Content-Type', 'multipart/form-data');
+    headers = headers.append('Lang', this.trans.getlocalLang());
+    if (this._authService.loggedIn()) {
+      headers = headers.append('Authorization', `Bearer  ${this._authService.user().token}`);
+    }
+    return { headers };
+  }
+
+
+
+
+
+
 
   private extractData(res: Response) {
     let body = res;
@@ -35,7 +50,7 @@ import { environment } from '../../environments/environment';
    }
   getProducts(params :HttpParams,id): Observable<any> {
    //console.log(params);
-    return this.http.get(environment.ApiUrl + 'categoryproudects/'+id, {headers: this.httpOptions.headers ,params }).pipe(
+    return this.http.get(environment.ApiUrl + 'categoryproudects/'+id, {headers: this.httpOptions().headers ,params }).pipe(
       map(this.extractData));
   }
   getFavProducts(): Observable<any> {
@@ -96,7 +111,7 @@ import { environment } from '../../environments/environment';
   }
 
   addcomment(comment) {
-    return this.http.post<any>(environment.ApiUrl +'comments/addcomment', comment,this.httpOptions)
+    return this.http.post<any>(environment.ApiUrl +'comments/addcomment', comment,this.httpOptions())
   }
   
   getProfile():Observable<any>
@@ -108,7 +123,7 @@ import { environment } from '../../environments/environment';
        
   setProfile(form)
   {
-    return this.http.post<any>(environment.ApiUrl+'customer/setProfile',form ,this.httpOptions)
+    return this.http.post<any>(environment.ApiUrl+'customer/setProfile',form ,this.httpOptions())
     .catch(this.errorHandler);
   }
   

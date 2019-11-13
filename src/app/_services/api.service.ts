@@ -18,11 +18,23 @@ export class ApiService {
   protected secretKey = '123456$#@$^@1ERF5555';
   public errorMsg;
 
-  private _eventsUrl = "http://localhost:3000/api/events";
-  private _specialEventsUrl = "http://localhost:3000/api/special";
   url = environment.ApiUrl + 'sliders';
-  categoriesurl = environment.ApiUrl + 'nest';
   public subscriptions: Subscription[] = [];
+
+
+  constructor(private trans: TranslateService,private http: HttpClient,private router: Router, public _authService: AuthService, private crypt: EncryptService) { }
+
+
+  httpOptions(): any {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Content-Type', 'multipart/form-data');
+    headers = headers.append('Lang', this.trans.getlocalLang());
+    if (this._authService.loggedIn()) {
+      headers = headers.append('Authorization', `Bearer  ${this._authService.user().token}`);
+    }
+    return { headers };
+  }
 
 
   public GetFromApi(url) {
@@ -42,37 +54,6 @@ export class ApiService {
     });
   }
 
-  constructor(private trans: TranslateService,private http: HttpClient,private router: Router, public _authService: AuthService, private crypt: EncryptService) { }
-
-  // public httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Bearerx ' + localStorage.getItem('token')
-  //   })
-  // };
-  setToken(data: string) {
-    localStorage.setItem(this.storageKey, this.crypt.encrypt(this.secretKey, JSON.stringify(data)));
-  }
-
-  getToken() {
-    return localStorage.getItem(this.storageKey);
-  }
-
-  // isLoggedIn(): boolean {
-  //   return this.getToken() !== null;
-  // }
-  isVerified(): boolean {
-      return  this.user().userInfo.isVerified;
-  }
-  user() {
-    return JSON.parse(this.crypt.decrypt(this.secretKey, this.getToken()));
-  }
-
-
-  getEvents() {
-    return this.http.get<any>(this._eventsUrl)
-  }
   slider(): Observable<slider[]> {
     return this.http.get<slider[]>(this.url)
       .catch(this.errorHandler);
@@ -84,65 +65,41 @@ export class ApiService {
   }
 
   categoris() {
-    return this.GetFromApi(this.categoriesurl)
+    return this.GetFromApi(environment.ApiUrl + 'nest')
   }
 
   GetApi(url) {
     let any: any;
     let errorMsg;
-    console.log('------------------------');
     this.GetFromApi(environment.ApiUrl + url).subscribe(res => { any = res['data'] },
-      error => errorMsg = error)
-
+    error => errorMsg = error)
     return any
   }
 
-  getSpecialEvents() {
-    return this.http.get<any>(this._specialEventsUrl)
-  }
+
 
   likeProduct(id: any) {
     return this.http.post<any>(environment.ApiUrl + 'like/addlike', {id:id}, this.httpOptions())
       .catch(this.errorHandler);
   }
 
-  private extractData(res: Response) {
-    let body = res;
-    return body || {};
-  }
+  
   like(id: any) {
-     this.likeProduct(id).subscribe(next => {
-       console.log(next);
-         localStorage.setItem(''+id,''+id);
+     this.likeProduct(id).subscribe((data: {}) => {
+       console.log( data['data'])
      },
      err => {
       console.log(err)
      });
 
-  //  this.xx()
   }
   deslike(productId: any) {
-    //  this.likeProduct(productId).subscribe((data: {}) => {
-    //    console.log( data['data'])
-    //  },
-    //  err => {
-    //   console.log(err)
-    //  });
-
-   // this.xx()
+ 
   }
    likes():[]{
     return [1,2,3,4,224,5];
   }
 
-
-
-
-  // public xx() {
-  //   this.post('likes').subscribe(res => { console.log(res) },
-  //     error => console.log(error));
-  //   //console.log(localStorage.getItem('token'));
-  // }
 
   handleError(handleError: any): Observable<any> {
     throw new Error("Method not implemented.");
@@ -150,31 +107,7 @@ export class ApiService {
   handleData(handleData: any) {
     throw new Error("Method not implemented.");
   }
-
-
-  //=============== main apis ======================
-
-  // ==== get api
-  // public get(url: string): Observable<any> {
-  //   return this.http.get(environment.ApiUrl + url)
-  //     .pipe(map(this.extractData));
-  // }
-
-   // ==== get api
-  //  public post(url: string,data: any): Observable<any> {
-  //   return this.http.post(environment.ApiUrl + url, JSON.stringify(data), this.httpOptions)
-  // }
-  httpOptions(): any {
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    headers = headers.append('Content-Type', 'multipart/form-data');
-    headers = headers.append('Lang', this.trans.getlocalLang());
-    if (this._authService.loggedIn()) {
-      headers = headers.append('Authorization', `Bearer  ${this._authService.user().token}`);
-    }
-    return { headers };
-  }
-
+  
   get(url: string): Observable<any> {
     return this.http.get<any>(environment.ApiUrl + url, this.httpOptions()).pipe(catchError(this.errorHandler));
   }
@@ -185,7 +118,6 @@ export class ApiService {
     return this.http.delete(environment.ApiUrl + url, this.httpOptions()).pipe(catchError(this.errorHandler));
   }
   errorHandler(error: HttpErrorResponse) {
-
     if (error.status === 422) {
       Object.keys(error.error.errors).forEach(key => {
         console.log(error.error.errors[key][0])

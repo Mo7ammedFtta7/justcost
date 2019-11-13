@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { apis } from '../../_services/apis';
+//import { apis } from '../../_services/apis';
 import { RestService } from '../../_services/rest.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class EmailverifyComponent implements OnInit
     id: number;
     public name:string
     public val:any
-    constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) { }
+    constructor(public rest:RestService,private route: ActivatedRoute) { }
 
         ngOnInit()
             {

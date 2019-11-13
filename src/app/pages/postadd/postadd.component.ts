@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { apis } from '../../_services/apis';
 import { environment } from '../../../environments/environment';
 import { RestService } from '../../_services/rest.service';
 import { NgForm, FormGroup } from '@angular/forms';

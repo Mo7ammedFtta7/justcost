@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { apis } from '../../_services/apis';
+//import { apis } from '../../_services/apis';
 import { RestService } from '../../_services/rest.service';
 import { HttpParams } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
 
   // count= this.products.length
 
-  constructor(public rest:RestService,private _api: apis,private route: ActivatedRoute) {}
+  constructor(public rest:RestService,private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.masterSelected = false;

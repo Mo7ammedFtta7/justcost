@@ -7,7 +7,7 @@
         <div class="col-xl-8 col-sm-12">
             <div class="slider-section">
                 <div class="slider-title">
-                    <h6 class="float-left">{{product?.title }}</h6>
+                    <h6 class="float-left"   >{{product?.title }}</h6>
                     <span class="alert-yellow float-right">{{math(product?.reg_price,product?.sale_price)}}% {{'off' | translate }}</span>
                     <div class="clearfix"></div>
                 </div>
@@ -153,18 +153,18 @@
                 <a href="javascript:;"  appLike [xx]="id" class="red">{{'Sell Price' | translate }} : {{product?.sale_price }} <span>AED</span></a>
             </div><!-- #1 -->
             <div class="border">
-                <ng-container *ngIf="!_authService.loggedIn(); else elseTemplate">
-                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="far fa-heart" ></i> {{'Add to favorite' | translate }}</a>
+                <!-- <ng-container *ngIf="!_authService.loggedIn(); else elseTemplate">
+                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 </ng-container>
-                <ng-template #elseTemplate>
+                <ng-template #elseTemplate> -->
+                          
+                                    <a appLogin href="javascript:;"  (click)="onLike(like)"  class="red"> <i [appLike]="id"   Class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
 
-                                    <a href="javascript:;" (click)="onLike(like)"  class="red"><i  [ngClass]="like==true ? 'fas fa-heart' : 'far fa-heart'"></i> {{'Add to favorite' | translate }}</a>
-
-                        <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
-                </ng-template>
-
-
+                        <a href="javascript:;" appLogin  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
+                <!-- </ng-template> -->
+                
+               
             </div><!-- #2 -->
             <div class="border">
                 <div class="person" style="overflow: hidden;">
