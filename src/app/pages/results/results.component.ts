@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../_services/rest.service';
-import { apis } from '../../_services/apis';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 declare function nav(type: any)
@@ -17,7 +16,7 @@ export class ResultsComponent implements OnInit {
   Brands: any[] = []
   public paramsa: any[] = new Array();
 
-  constructor(public rest: RestService, private _api: apis, private route: ActivatedRoute) { }
+  constructor(public rest: RestService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 

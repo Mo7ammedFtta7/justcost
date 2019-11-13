@@ -11,9 +11,9 @@ import { RegisterComponent } from './header/register/register.component';
 import { EventsComponent } from './pages/events/events.component';
 import { SpecialEventsComponent } from './pages/special-events/special-events.component';
 import { AuthService } from './auth.service';
-import { apis } from '../app/_services/apis';
+//import { apis } from '../app/_services/apis';
 import { EventService } from './event.service';
-import { TokenInterceptorService } from './token-interceptor.service';
+//import { TokenInterceptorService } from './token-interceptor.service';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './header/header/header.component';
 import { ProductComponent } from './pages/product/product.component';
@@ -29,6 +29,8 @@ import { TranslateComponent } from './pipe/translate/translate.component';
 import { AssetsComponent } from './assets/assets.component';
 import { ApiService } from './_services/api.service';
 import { ImageDirective } from './directives/image.directive';
+import { LikeDirective } from './directives/like.directive';
+import { LoginDirective } from './directives/login/login.directive';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ImageDirective } from './directives/image.directive';
     TranslatePipe,
     TranslateComponent,
     AssetsComponent,
-    ImageDirective
+    ImageDirective,
+    LikeDirective,
+    LoginDirective
   ],
   imports: [
     BrowserModule,
@@ -59,12 +63,13 @@ import { ImageDirective } from './directives/image.directive';
     NgxPaginationModule,
     BarRatingModule
   ],
-  providers: [ApiService,AuthService,apis, AuthGuard, EventService,TranslatePipe, 
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true
-  }],
+  providers: [ApiService,AuthService, AuthGuard, EventService,TranslatePipe, 
+  // {
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: TokenInterceptorService,
+  //   multi: true
+  // }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

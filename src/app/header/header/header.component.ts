@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { RestService } from '../../_services/rest.service';
-import { apis } from '../../_services/apis';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '../../pipe/translate.service';
