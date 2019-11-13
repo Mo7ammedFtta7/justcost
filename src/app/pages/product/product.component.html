@@ -150,7 +150,7 @@
 
         <div class="col-xl-4 col-sm-12">
             <div class="border">
-                <a href="javascript:;" class="red">{{'Sell Price' | translate }} : {{product?.sale_price }} <span>AED</span></a>
+                <a href="javascript:;"  appLike [xx]="id" class="red">{{'Sell Price' | translate }} : {{product?.sale_price }} <span>AED</span></a>
             </div><!-- #1 -->
             <div class="border">
                 <ng-container *ngIf="!_authService.loggedIn(); else elseTemplate">
@@ -159,7 +159,7 @@
                 </ng-container>
                 <ng-template #elseTemplate>
 
-                                    <a href="javascript:;" (click)="onLike(like)"  class="red"><i [ngClass]="like==true ? 'fas fa-heart' : 'far fa-heart'"></i> {{'Add to favorite' | translate }}</a>
+                                    <a href="javascript:;" (click)="onLike(like)"  class="red"><i  [ngClass]="like==true ? 'fas fa-heart' : 'far fa-heart'"></i> {{'Add to favorite' | translate }}</a>
 
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 </ng-template>

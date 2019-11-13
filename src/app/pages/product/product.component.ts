@@ -21,7 +21,7 @@ declare function nav(type):any;
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  id: any;
+  id: number;
   sub: any;
   page:any=1;
   limit:any=100;
@@ -34,13 +34,13 @@ export class ProductComponent implements OnInit {
   like:boolean=false
   constructor(private _rea: RestService,private _api: ApiService,private route: ActivatedRoute,public _authService: AuthService) {}
 
-  ngOnInit() 
+  ngOnInit()
     {
       nav("small");
     //  ViewMap()
      goup()
         this.sub = this.route.params.subscribe(params => {
-          this.id = +params['id']; 
+          this.id = +params['id'];
       });
       this.getProduct(this.id)
       this.getcomments(this.id)
@@ -49,17 +49,17 @@ export class ProductComponent implements OnInit {
 
     onLike(type) {
       if (type) {
-        this._api.deslike(this.id);  
+        this._api.deslike(this.id);
         success(':( !');
         this.like=false;
       } else {
-        
-        this._api.like(this.id);  
+
+        this._api.like(this.id);
         success('Ausome !');
         this.like=true;
       }
 
-     
+
       }
 
     public math(aa:any,bb:any) {
@@ -70,8 +70,9 @@ export class ProductComponent implements OnInit {
      // let params = new HttpParams().set("limit",this.limit); //Create new HttpParams
       this._rea.getProduct(this.id).subscribe((data: {}) => {
         this.product = data['data'][0];
-        this.like=data['data'][0]['likes']
-       // console.log( data['data'][0])
+        console.log(this.product);
+        this.like = data['data'][0]['likes']
+       // console.log( data)
       });
     }
     getcomments( id:any ) {
@@ -94,12 +95,12 @@ export class ProductComponent implements OnInit {
           res => {
          commentForm.reset();
             success("comment Add succsefuly!")
-           this.getcomments(pid ) 
+           this.getcomments(pid )
           },
           err => {
            // console.log(err)
           }
-      
+
        )
       }
 }

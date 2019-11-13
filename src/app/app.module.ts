@@ -30,6 +30,7 @@ import { AssetsComponent } from './assets/assets.component';
 import { ApiService } from './_services/api.service';
 import { ImageDirective } from './directives/image.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { LikeDirective } from './directives/like.directive';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ForgetPasswordComponent } from './pages/forget-password/forget-password
     TranslateComponent,
     AssetsComponent,
     ImageDirective,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    LikeDirective
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,7 @@ import { ForgetPasswordComponent } from './pages/forget-password/forget-password
     NgxPaginationModule,
     BarRatingModule
   ],
-  providers: [ApiService,AuthService,apis, AuthGuard, EventService,TranslatePipe, 
+  providers: [ApiService,AuthService,apis, AuthGuard, EventService,TranslatePipe,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
