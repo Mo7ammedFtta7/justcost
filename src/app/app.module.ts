@@ -32,8 +32,6 @@ import { ImageDirective } from './directives/image.directive';
 import { LikeDirective } from './directives/like.directive';
 import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
-import { LikeDirective } from './directives/like.directive';
-
 @NgModule({
   declarations: [
     AppComponent,

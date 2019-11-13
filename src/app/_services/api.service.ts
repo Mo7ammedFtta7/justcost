@@ -96,7 +96,7 @@ export class ApiService {
   deslike(productId: any) {
  
   }
-   likes():[]{
+   likes(){
     return [1,2,3,4,224,5];
   }
 
