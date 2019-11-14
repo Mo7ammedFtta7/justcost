@@ -34,24 +34,12 @@ export class PostaddComponent implements OnInit {
   ngOnInit() {
     nav("hide");
   //  SetMap();
- // this.create.value.phone="dsdsdfsdf"
     this._api.categoris().subscribe(res =>{this.Icategory = res['data']; this.cat=res['data'][0]['name'];this.onSelect(res['data'][0]['id']);
-  
-  
-  
-  
   },
     error => this.errorMsg = error);
-    // this._rea.getCitis().subscribe(
-    //       res => {
-    //       this.citis=res.data
-    //         console.log(res)
-    //       },
-    //       err => {
-    //         console.log(err)
-    //       }
-    // )
-    this.user= this._authService.getUser()
+  
+    this.user= this._authService.getUser().userInfo
+    console.log( this.user)
     this.phone=this.user.phone
 
    //SetMap();
@@ -73,8 +61,7 @@ export class PostaddComponent implements OnInit {
          // console.log(res)
         },
         err => {
-         // console.log(err)
-        //
+         console.log(err)
       }
       ) ;
      // console.log(id);
@@ -114,7 +101,7 @@ export class PostaddComponent implements OnInit {
         .subscribe(
           res => {
             success("Product Add succsefuly!")
-       //     console.log(res)
+          console.log(res)
           },
           err => {
          //   console.log(err)

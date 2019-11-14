@@ -36,7 +36,7 @@ export class EncryptService {
     return CryptoJS.AES.encrypt(JSON.stringify(value), keys);
   }
   decrypt(keys, value) {
-    var bytes  = CryptoJS.AES.decrypt(value.toString(), keys);
+    const bytes  = CryptoJS.AES.decrypt(value.toString(), keys);
     return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
   }
 }

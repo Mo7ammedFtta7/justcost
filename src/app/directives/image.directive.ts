@@ -6,7 +6,7 @@ import { Directive, Input, HostBinding, HostListener } from '@angular/core';
 export class ImageDirective {
 
   @Input()
-  default = 'https://placeimg.com/640/480/any';
+  default = 'assets/images/holder.jpg';
 
   @HostBinding('src')
   @Input()

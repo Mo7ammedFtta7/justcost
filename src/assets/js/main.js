@@ -76,51 +76,51 @@ function selectcat(data)
 }
 
 function owl() {
-    $.ajax({
-        type: 'get',
-        url: 'http://localhost:8000/api/sliders',
-        contentType: 'application/json',
-        success : function (data) {
-          //  console.log(data.data);
-            html='<div class="owl-carousel">';
-              data.data.forEach(element => {
-                html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
-              });
-            html+='</div>';
-            $("#slider").append(html);
+    // $.ajax({
+    //     type: 'get',
+    //     url: 'http://localhost:8000/api/sliders',
+    //     contentType: 'application/json',
+    //     success : function (data) {
+    //       //  console.log(data.data);
+    //         html='<div class="owl-carousel">';
+    //           data.data.forEach(element => {
+    //             html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
+    //           });
+    //         html+='</div>';
+    //         $("#slider").append(html);
             
-           // $(".owl-carousel").owlCarousel();
-            var $owl = $('.owl-carousel').owlCarousel({
-              items: 1,
-              loop:true
-          });
-          $owl.trigger('refresh.owl.carousel');
-        }
-      });
+    //        // $(".owl-carousel").owlCarousel();
+    //         var $owl = $('.owl-carousel').owlCarousel({
+    //           items: 1,
+    //           loop:true
+    //       });
+    //       $owl.trigger('refresh.owl.carousel');
+    //     }
+    //   });
 }
 
 function owl2() {
-    $.ajax({
-        type: 'get',
-        url: 'http://localhost:8000/api/sliders',
-        contentType: 'application/json',
-        success : function (data) {
-           // console.log(data.data);
-            html='<div class="owl-carousel">';
-              data.data.forEach(element => {
-                html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
-              });
-            html+='</div>';
-            $("#slider2").append(html);
+    // $.ajax({
+    //     type: 'get',
+    //     url: 'http://localhost:8000/api/sliders',
+    //     contentType: 'application/json',
+    //     success : function (data) {
+    //        // console.log(data.data);
+    //         html='<div class="owl-carousel">';
+    //           data.data.forEach(element => {
+    //             html+="<div class='item'><img src='"+element+"' alt='Image 1'></div>";
+    //           });
+    //         html+='</div>';
+    //         $("#slider2").append(html);
             
-           // $(".owl-carousel").owlCarousel();
-            var $owl = $('.owl-carousel').owlCarousel({
-              items: 1,
-              loop:true
-          });
-          $owl.trigger('refresh.owl.carousel');
-        }
-      });
+    //        // $(".owl-carousel").owlCarousel();
+    //         var $owl = $('.owl-carousel').owlCarousel({
+    //           items: 1,
+    //           loop:true
+    //       });
+    //       $owl.trigger('refresh.owl.carousel');
+    //     }
+    //   });
 }
 
 
@@ -129,6 +129,19 @@ function owl2() {
         $('html, body').animate({
             scrollTop: '0'
         }, 800);
+    }
+
+    function owlSlider(id)
+    {
+    
+    $(".account .slider-section .slider2 .owl-carousel").owlCarousel({
+            items: 1,
+            loop: true,
+            mouseDrag: false,
+            autoplay: false,
+            autoplayTimeout: 4000
+    
+        });
     }
 
 function success(msg){
@@ -187,9 +200,23 @@ function SetMap()
 function getMarker()
 {
     return marker
-}
+};
+
+
+
+
 
 $(document).ready(function () {
+
+
+    // $(".account .slider-section .slider2 .owl-carousel").owlCarousel({
+    //     items: 1,
+    //     loop: true,
+    //     mouseDrag: false,
+    //     autoplay: false,
+    //     autoplayTimeout: 4000
+
+    // });
  
         var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
