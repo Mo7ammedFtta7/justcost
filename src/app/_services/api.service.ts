@@ -78,17 +78,14 @@ export class ApiService {
 
 
 
-  likeProduct(productId: any) {
-    const body = new FormData();
-    body.append('product_id', productId);
-    console.log(body);
-    return this.http.post<any>(environment.ApiUrl + 'like/addlike', body, this.httpOptions())
+  likeProduct(id: any) {
+    return this.http.post<any>(environment.ApiUrl + 'like/addlike', {id:id}, this.httpOptions())
       .catch(this.errorHandler);
   }
 
   
-  like(productId: any) {
-     this.likeProduct(productId).subscribe((data: {}) => {
+  like(id: any) {
+     this.likeProduct(id).subscribe((data: {}) => {
        console.log( data['data'])
      },
      err => {
@@ -98,6 +95,9 @@ export class ApiService {
   }
   deslike(productId: any) {
  
+  }
+   likes(){
+    return [1,2,3,4,224,5];
   }
 
 

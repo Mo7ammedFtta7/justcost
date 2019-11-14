@@ -170,7 +170,7 @@
 
         <div class="col-xl-4 col-sm-12">
             <div class="border">
-                <a href="javascript:;" class="red">{{'Sell Price' | translate }} : {{product?.sale_price }} <span>AED</span></a>
+                <a href="javascript:;"  [appLike]="id" class="red">{{'Sell Price' | translate }} : {{product?.sale_price }} <span>AED</span></a>
             </div><!-- #1 -->
             <div class="border">
                 <!-- <ng-container *ngIf="!_authService.loggedIn(); else elseTemplate">

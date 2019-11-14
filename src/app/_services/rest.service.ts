@@ -114,12 +114,6 @@ import { TranslateService } from '../pipe/translate.service';
     return this.http.post<any>(environment.ApiUrl +'comments/addcomment', comment,this.httpOptions())
   }
   
-  getProfile():Observable<any>
-      {
-        return this.http.get(environment.ApiUrl+'user-by-token').pipe(
-          map(this.extractData));
-      }
-
        
   setProfile(form)
   {

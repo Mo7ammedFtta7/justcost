@@ -20,7 +20,7 @@ declare function nav(type): any;
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  id: any;
+  id: number;
   sub: any;
   page: any = 1;
   limit: any = 100;
