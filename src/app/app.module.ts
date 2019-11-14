@@ -1,7 +1,7 @@
 import { AuthGuard } from './auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
@@ -11,9 +11,8 @@ import { RegisterComponent } from './header/register/register.component';
 import { EventsComponent } from './pages/events/events.component';
 import { SpecialEventsComponent } from './pages/special-events/special-events.component';
 import { AuthService } from './auth.service';
-//import { apis } from '../app/_services/apis';
 import { EventService } from './event.service';
-//import { TokenInterceptorService } from './token-interceptor.service';
+import {Axios} from '../app/_services/axios';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './header/header/header.component';
 import { ProductComponent } from './pages/product/product.component';
@@ -23,7 +22,7 @@ import { ResultsComponent } from './pages/results/results.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 import { PostaddComponent } from './pages/postadd/postadd.component';
 import { SubsComponent } from './pages/postadd/subs/subs.component';
-import { BarRatingModule } from "ngx-bar-rating";
+import { BarRatingModule } from 'ngx-bar-rating';
 import { TranslatePipe } from './pipe/translate.pipe';
 import { TranslateComponent } from './pipe/translate/translate.component';
 import { AssetsComponent } from './assets/assets.component';
@@ -60,6 +59,7 @@ import {AgmCoreModule} from '@agm/core';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
@@ -68,12 +68,8 @@ import {AgmCoreModule} from '@agm/core';
       apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'
     }),
   ],
-  providers: [ApiService, AuthService, AuthGuard, EventService, TranslatePipe,
-  // {
-  //   provide: HTTP_INTERCEPTORS,
-  //   useClass: TokenInterceptorService,
-  //   multi: true
-  // }
+
+  providers: [ApiService, AuthService, AuthGuard, EventService, TranslatePipe, Axios
 ],
   bootstrap: [AppComponent]
 })

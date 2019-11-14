@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../_services/rest.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import {remove} from 'lodash';
+import * as _ from 'lodash';
 import { HttpParams } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 declare function nav(type: any);
@@ -22,9 +22,11 @@ export class ResultsComponent implements OnInit {
   brands = [];
   Brands: any[] = [];
   fillterBrand = [];
+  attributes = [];
   public paramsa: any[] = new Array();
 
-  constructor(public rest: RestService, private route: ActivatedRoute) { }
+  constructor(public rest: RestService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
 
@@ -41,7 +43,8 @@ export class ResultsComponent implements OnInit {
     return ((aa - bb) / aa * 100).toFixed(2);
   }
 
-  public filter(filterForm) {}
+  public filter(filterForm) {
+  }
 
   onKey(key) {
     this.search = key;
@@ -56,6 +59,7 @@ export class ResultsComponent implements OnInit {
 
       this.products = data['data'];
       this.filterProducts = data.data;
+      this.attributes = _.map(data.data, 'attributes');
 
       data['data'].forEach(item => {
         if (!this.brands.includes(item.brand)) {
@@ -64,6 +68,7 @@ export class ResultsComponent implements OnInit {
       });
     });
   }
+
   getInfoMap(product) {
     this.product = product;
     if (this.product) {
@@ -72,7 +77,16 @@ export class ResultsComponent implements OnInit {
     }
   }
 
-  filterByBrand(brand) {
-    (this.fillterBrand.includes(brand)) ? remove(this.fillterBrand, r => r === brand) : this.fillterBrand.push(brand);
+  filterByBrand(brandy) {
+    this.filterProducts = this.products;
+    (this.fillterBrand.includes(brandy)) ? _.remove(this.fillterBrand, r => r === brandy) : this.fillterBrand.push(brandy);
+    this.filterProducts = [];
+    if (this.fillterBrand.length > 0) {
+      this.fillterBrand.forEach(r => {
+        this.filterProducts = _.filter(this.products, {brand: r}).concat(this.filterProducts);
+      });
+    } else {
+      this.filterProducts = this.products;
+    }
   }
 }
