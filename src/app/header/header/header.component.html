@@ -26,7 +26,7 @@
                             </select>
                         </li>
                         <li class="nav-item">
-                            <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;" routerLink="/postadd"><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
+                            <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;"  data-toggle="modal" data-target="#addtype" ><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
                            
                             <!-- <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>     -->
 
@@ -203,3 +203,21 @@
     </div>
 </div>
 <!-- End Modal Login -->
+
+
+
+ <!-- Button trigger modal -->
+
+ <!-- Modal -->
+ <div class="modal fade" id="addtype" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+         <div class="modal-content text-center py-4">
+             <div class="modal-body row px-5">
+                <button class="button mr-3 col" style="background:#FACB33; padding: 9px 10px;" data-dismiss="modal" aria-label="Close" routerLink="/postadd"   ><i class="fas fa-shopping-cart"></i> Single Product</button>
+                <button class="button col" style="background:#FACB33; padding: 9px 10px;"  data-dismiss="modal" aria-label="Close" routerLink="/postadd"><i class="fas fa-shopping-cart"></i> Multi Products</button>
+             </div>
+         </div>
+     </div>
+ </div>
+ 
+ <!-- /** -->

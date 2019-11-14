@@ -41,7 +41,6 @@ export class AuthService {
   }
   
   setToken(data: string) {
-    console.log(this.crypt.encrypt(this.secretKey, JSON.stringify(data)))
     localStorage.setItem(this.secretKey, this.crypt.encrypt(this.secretKey, JSON.stringify(data)));
   }
 
@@ -57,6 +56,16 @@ export class AuthService {
   user() {
     return JSON.parse(this.crypt.decrypt(this.secretKey, this.getToken().toString()));
   }
+
+  setUserImg(imgUrl){
+   var user =this.user()
+   user.userInfo.image=imgUrl;
+   this.setToken(user)
+  }
+
+
+
+
 
   likes() :any[] {
     return  this.user().likedProducts !==null?this.user().likedProducts:[];
