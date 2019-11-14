@@ -32,6 +32,7 @@ import { ImageDirective } from './directives/image.directive';
 import { LikeDirective } from './directives/like.directive';
 import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import {AgmCoreModule} from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,9 +63,12 @@ import { ForgetPasswordComponent } from './pages/forget-password/forget-password
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
-    BarRatingModule
+    BarRatingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'
+    }),
   ],
-  providers: [ApiService,AuthService, AuthGuard, EventService,TranslatePipe, 
+  providers: [ApiService, AuthService, AuthGuard, EventService, TranslatePipe,
   // {
   //   provide: HTTP_INTERCEPTORS,
   //   useClass: TokenInterceptorService,

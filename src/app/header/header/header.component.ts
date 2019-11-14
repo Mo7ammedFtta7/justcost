@@ -5,6 +5,8 @@ import { RestService } from '../../_services/rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '../../pipe/translate.service';
 import { ApiService } from '../../_services/api.service';
+import {EncryptService} from '../../_services/encrypt.service';
+import {environment} from '../../../environments/environment';
 
 
 
@@ -14,27 +16,32 @@ import { ApiService } from '../../_services/api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  citis: any[]
+  citis: any[];
   countries: any[];
   Search: string;
   categories: any[];
   errorMsg: any;
-  Category: string = "";
-  city: string = "";
-  lang : string =this.translate.getlocalLang();
-  constructor(public _authService: AuthService, private _rea: RestService, private _api: ApiService, public router: Router, public translate: TranslateService) { }
+  Category = '';
+  city = '';
+  env = environment;
+  lang: string = this.translate.getlocalLang();
+  constructor(public _authService: AuthService,
+              private _rea: RestService,
+              private _api: ApiService,
+              public encrypt: EncryptService,
+              public router: Router, public translate: TranslateService) { }
   ngOnInit() {
 
     // this.getCitisOfCountry(this._authService.getUser().country.id);
     this._rea.getCountries().subscribe(
       res => {
-        this.countries = res.data
+        this.countries = res.data;
         // console.log(res.data[0]['id'])
-        this.getCitisOfCountry(res.data[0]['id'])
+        this.getCitisOfCountry(res.data[0]['id']);
       },
       err => {
-        console.log(err)
-      })
+        console.log(err);
+      });
 
     this._api.categoris().subscribe(res => {
     this.categories = res['data'];
@@ -48,21 +55,21 @@ export class HeaderComponent implements OnInit {
   }
 
   GoSearch(Search) {
-    var queryParams = {};
-    //search:this.Search
+    let queryParams = {};
+    // search:this.Search
     if (this.Search != undefined) {
       queryParams['Search'] = this.Search;
     }
 
-    if (this.Category != "0" || this.Category != null) {
+    if (this.Category != '0' || this.Category != null) {
       queryParams['category'] = this.Category;
     }
 
-    if (this.city != "0" || this.Category != null) {
+    if (this.city != '0' || this.Category != null) {
       queryParams['city'] = this.city;
     }
 
-    //console.log(queryParams)
+    // console.log(queryParams)
 
     this.router.navigate(['/results'], { queryParams: { search: this.Search } });
   }
@@ -70,12 +77,12 @@ export class HeaderComponent implements OnInit {
   getCitisOfCountry(countryId) {
     this._rea.getCitis(countryId).subscribe(
       res => {
-        this.citis = res.data
+        this.citis = res.data;
         // console.log(res.data);
       },
       err => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
 
   selectCity(event: any) {

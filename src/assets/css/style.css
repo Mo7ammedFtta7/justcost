@@ -92,19 +92,6 @@ label.login {
     margin-top: 5px;
 }
 
-label::after {
-    content: "";
-    width: 12px;
-    height: 6px;
-    border: none;
-    border-left: 2px solid transparent;
-    border-bottom: 2px solid transparent;
-    display: block;
-    transform: rotate(-45deg);
-    position: absolute;
-    left: 2px;
-    top: 12px;
-}
 
 .box {
     opacity: 0;
@@ -150,7 +137,7 @@ header .dropdown {
     position: relative;
     display: inline-block;
   }
-  
+
   header .dropdown .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -166,33 +153,33 @@ header .dropdown {
   header .dropdown:hover .dropdown-menu {
     display: block;
   }
-  
+
   header .dropdown {
     position: relative;
     display: inline-block;
   }
-  
+
   header .dropdown .dropdown-menu {
     position: absolute;
     top: 100%;
     display: none;
     margin: 0;
-    list-style: none; 
-    width: 100%; 
+    list-style: none;
+    width: 100%;
     padding: 0;
   }
-  
+
   header .dropdown:hover .dropdown-menu {
     display: block;
   }
-  
+
   header .dropdown .nav-link {
     border: none;
     margin: 0;
     padding: 0.4em 0.8em;
     font-size: 1em;
   }
-  
+
  header  .dropdown a {
     display: block;
     padding: 10px;
@@ -213,9 +200,9 @@ header .dropdown-divider {
  header  .dropdown .dropdown-menu a i {
     margin-right: 10px;
   }
-  
-  
- 
+
+
+
 header .navbar {
     padding: 0;
   }
@@ -232,7 +219,7 @@ header .navbar {
     padding-right: 0.7rem !important;
     padding-left: 0.7rem !important;
   }
-  
+
   header .navbar img {
     width: 100px;
   }
@@ -275,7 +262,7 @@ header .navbar {
   header .selection .nav-item:last-child {
     margin-right: 0;
   }
-  
+
   header .selection img.flag {
     width: 28px;
     border-radius: 2px;
@@ -287,7 +274,7 @@ header .navbar {
   header .selection {
     margin: 0 10px;
   }
-  
+
   header .selection .language {
     position: relative;
   }
@@ -303,7 +290,7 @@ header .navbar {
   header .selection .language span {
     margin-left: 10px;
   }
-  
+
   header .custom-select {
     border: 0;
     background-color: transparent;
@@ -320,7 +307,7 @@ header .navbar {
     top: 13px;
     right: 0;
   }
-  
+
   header .profile-icons .nav-item {
     margin: 0 15px;
   }
@@ -360,7 +347,7 @@ header .navbar {
     min-width: 100px;
     text-align: left;
   }
-  
+
   .navbar .navbar-nav .nav-item .btn-add-post {
     position: relative;
     min-width: 100px;
@@ -404,7 +391,7 @@ header .navbar {
     top: 7px;
     right: 0;
   }
-  
+
   /* Responsive - Small Screen and less */
   @media only screen and (max-width: 992px) {
     header .selection .nav-item {
@@ -426,7 +413,7 @@ header .navbar {
     display: none;
     }
   }
-  
+
 .modal-content {
     background: #f3f3f3;
 }
@@ -1035,7 +1022,7 @@ header .navbar {
 
 .profile .tab-content > .tab-pane .classic .text-image a i,
 .profile .tab-content > .tab-pane .classic .view i,
- .profile .tab-content .fav a>i, 
+ .profile .tab-content .fav a>i,
  .profile .tab-content > .favorite a>i
  {
     margin-right: 5px;

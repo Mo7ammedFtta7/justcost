@@ -1,205 +1,205 @@
 <header>
-    <div class="container">
+  <div class="container">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" [routerLink]="['/']"  href="javascrip:;">
-                    <img src="assets/images/logo.png" alt="Logo" width="100">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']"  href="javascrip:;">
+          <img src="assets/images/logo.png" alt="Logo" width="100">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarResponsive">
+          <ul class="navbar-nav selection ml-auto">
+            <li class="nav-item">
+              <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"(click)="translate.setlocalLang('ar')"> <img class="flag" src="assets/images/emirian-flag-medium.gif">عربي</a>
+              <a *ngIf="translate.getlocalLang()=='ar'" class="nav-link"(click)="translate.setlocalLang('en')"> <img class="flag" src="assets/images/e-flag.png" alt="">English</a>
+            </li>
+            <li class="nav-item">
+              <select class="custom-select" #CitisOfCountry (change)='getCitisOfCountry(CitisOfCountry.value)'>
+                <!-- <option selected>{{ _authService.getUserCountry() | translate}} </option> -->
+                <option *ngFor="let country of countries; let i=index" [value]="country.id" >{{ country.name | translate}}</option>
+
+              </select>
+            </li>
+            <li class="nav-item">
+              <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;" routerLink="/postadd"><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
+
+              <!-- <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>     -->
+
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item profile-icons">
+
+              <!-- dropdown container -->
+              <div class="dropdown">
+                <a class="nav-link icon-top" href="#">
+                  <i class="fa fa-user">
+
+                  </i>
+                  <span class="link-name">{{'Notifications' | translate}} </span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <!-- dropdown menu -->
+                <ul class="dropdown-menu">
+                  <!-- <li><a href="javascript:;"><span></span></a></li>
+                  <li><a href="javascript:;">About</a></li> -->
+                  <!-- <div class="dropdown-divider"></div>
+                  <li><a href="#contact">Contact</a></li> -->
+                </ul>
+              </div>
 
-                <div class="collapse navbar-collapse " id="navbarResponsive">
-                    <ul class="navbar-nav selection ml-auto">
-                        <li class="nav-item">
-                            <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"(click)="translate.setlocalLang('ar')"> <img class="flag" src="assets/images/emirian-flag-medium.gif">عربي</a>
-                            <a *ngIf="translate.getlocalLang()=='ar'" class="nav-link"(click)="translate.setlocalLang('en')"> <img class="flag" src="assets/images/e-flag.png" alt="">English</a>
-                        </li>
-                        <li class="nav-item">
-                            <select class="custom-select" #CitisOfCountry (change)='getCitisOfCountry(CitisOfCountry.value)'>
-                                <!-- <option selected>{{ _authService.getUserCountry() | translate}} </option> -->
-                                <option *ngFor="let country of countries; let i=index" [value]="country.id" >{{ country.name | translate}}</option>
+            </li>
 
-                            </select>
-                        </li>
-                        <li class="nav-item">
-                            <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;" routerLink="/postadd"><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
-                           
-                            <!-- <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>     -->
+            <li class="nav-item">
 
-                        </li>
-                    </ul>
+              <!-- dropdown container -->
+              <a *ngIf="!_authService.loggedIn()" class="nav-link icon-top" href="javascript:;"
+                 data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-user"></i><span
+                class="link-name">{{'Login' | translate}}</span></a>
 
-                    <ul class="navbar-nav ml-auto">
-
-                        <li class="nav-item profile-icons">
-
-                            <!-- dropdown container -->
-                            <div class="dropdown">
-                                <a class="nav-link icon-top" href="#">
-                                    <i class="fa fa-user">
-
-                                    </i>
-                                    <span class="link-name">{{'Notifications' | translate}} </span>
-                                </a>
-                                <!-- dropdown menu -->
-                                <ul class="dropdown-menu">
-                                    <!-- <li><a href="javascript:;"><span></span></a></li>
-                                    <li><a href="javascript:;">About</a></li> -->
-                                    <!-- <div class="dropdown-divider"></div>
-                                    <li><a href="#contact">Contact</a></li> -->
-                                </ul>
-                            </div>
-
-                        </li>
-
-                        <li class="nav-item">
-
-                            <!-- dropdown container -->
-                            <a *ngIf="!_authService.loggedIn()" class="nav-link icon-top" href="javascript:;"
-                                data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-user"></i><span
-                                    class="link-name">{{'Login' | translate}}</span></a>
-
-                            <div *ngIf="_authService.loggedIn()" class="dropdown">
+              <div *ngIf="_authService.loggedIn()" class="dropdown">
 
 
-                                <a class="nav-link icon-top" href="javascript:;"><i class="fa fa-user"></i><span
-                                        class="link-name">{{_authService.getUserName()}}</span></a>
+                <a class="nav-link icon-top" href="javascript:;"><i class="fa fa-user"></i><span
+                  class="link-name">{{_authService.getUserName()}}</span></a>
 
 
-                                <!-- dropdown menu -->
-                                <ul class="dropdown-menu">
-                                    <li><a [routerLink]="['/profile']"  href="javascript:;">{{'My Profile' | translate}} </a></li>
-                                    <!-- <li><a href="#about">About</a></li> -->
-                                    <div class="dropdown-divider"></div>
-                                    <li><a href="javascript:;"
-                                            (click)="_authService.logoutUser()">{{'Logout' | translate}}</a></li>
-                                </ul>
-                            </div>
+                <!-- dropdown menu -->
+                <ul class="dropdown-menu">
+                  <li><a [routerLink]="['/profile']"  href="javascript:;">{{'My Profile' | translate}} </a></li>
+                  <!-- <li><a href="#about">About</a></li> -->
+                  <div class="dropdown-divider"></div>
+                  <li><a href="javascript:;"
+                         (click)="_authService.logoutUser()">{{'Logout' | translate}}</a></li>
+                </ul>
+              </div>
 
-                        </li>
-                    </ul>
+            </li>
+          </ul>
 
-                </div>
-            </div>
-        </nav>
-    </div>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
 <div id="search_nav" class="search-area ">
-    <div class="container">
-        <div class="search-area-heading">
-            <h2>{{'Find the best deals' | translate}}</h2>
-        </div>
-        <form>
-            <div class="row">
-                <div class="col-md-3">
-                    <select class="custom-select my-2" (change)="selectCity($event)"  id="inputGroupSelect01">
-                        <option value="0" selected>{{'Select City.' | translate}}</option>
-                        <option *ngFor="let city of citis" [ngValue]="city.id">{{city.name}}</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="custom-select my-2" (change)="selectCat($event)" id="inputGroupSelect02">
-                        <option selected value="0">{{'Select Category' | translate}}</option>
-                        <option *ngFor="let category of categories" [value]="category.name" >{{category.name}}</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="input-group mb-3 search-input  my-2">
-                        <input type="search" class="form-control"
-                            placeholder="{{'What you are looking for ?' | translate}} " [(ngModel)]="Search"
-                            name="Search" aria-label="What you are looking for ?" aria-describedby="basic-addon2">
-
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" (click)="GoSearch(Search)"><i
-                                    class="fa fa-search"></i>{{'Search' | translate}}</button>
-                        </div> 
-                    </div>
-                </div>
-            </div>
-        </form>
-
+  <div class="container">
+    <div class="search-area-heading">
+      <h2>{{'Find the best deals' | translate}}</h2>
     </div>
+    <form>
+      <div class="row">
+        <div class="col-md-3">
+          <select class="custom-select my-2" (change)="selectCity($event)"  id="inputGroupSelect01">
+            <option value="0" selected>{{'Select City.' | translate}}</option>
+            <option *ngFor="let city of citis" [ngValue]="city.id">{{city.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="custom-select my-2" (change)="selectCat($event)" id="inputGroupSelect02">
+            <option selected value="0">{{'Select Category' | translate}}</option>
+            <option *ngFor="let category of categories" [value]="category.name" >{{category.name}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <div class="input-group mb-3 search-input  my-2">
+            <input type="search" class="form-control"
+                   placeholder="{{'What you are looking for ?' | translate}} " [(ngModel)]="Search"
+                   name="Search" aria-label="What you are looking for ?" aria-describedby="basic-addon2">
+
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" (click)="GoSearch(Search)"><i
+                class="fa fa-search"></i>{{'Search' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
 </div>
 <div id="cat_nav" class="categories-area">
-    <div class="container">
-        <ul class="nav">
-            <li *ngFor="let category of categories" class="nav-item">
-                <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name_ar}}</a>
-                <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name}}</a>
-            </li>
-        </ul>
-    </div>
+  <div class="container">
+    <ul class="nav">
+      <li *ngFor="let category of categories" class="nav-item">
+        <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name_ar}}</a>
+        <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name}}</a>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <!-- Start Modal Login -->
 <div id="mainmodel" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
-    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="brand-logo text-center">
-                <img src="assets/images/logo.png" alt="Just Coast Logo" width="250">
+     aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="brand-logo text-center">
+        <img src="assets/images/logo.png" alt="Just Coast Logo" width="250">
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-sm-12">
+          <div class="content-wrapper">
+            <div class="panel-modal">
+              <ul class="nav nav-tabs row" id="myTab" role="tablist">
+                <li class="nav-item col-sm-6">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                     aria-controls="home" aria-selected="true">{{ 'Login' | translate }}</a>
+                </li>
+                <li class="nav-item col-sm-6">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                     aria-controls="profile" aria-selected="false">{{ 'Register' | translate }}</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                     aria-labelledby="home-tab">
+                  <app-login>
+
+                  </app-login>
+
+                  <div class="password">
+                    <a  [routerLink]="['/forgetPass']" routerLinkActive="router-link-active"  >{{ 'forget password' | translate }}</a>
+                    <p>{{'I don’t have account' | translate }} <a
+                      href="#">{{ 'Create new' | translate }}</a></p>
+                  </div><!-- End Password-->
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <app-register>
+
+                  </app-register>
+
+                  <div class="password">
+                    <a href="#">{{ 'forget password' | translate }}</a>
+                  </div><!-- End Password-->
+                </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-xl-6 col-sm-12">
-                    <div class="content-wrapper">
-                        <div class="panel-modal">
-                            <ul class="nav nav-tabs row" id="myTab" role="tablist">
-                                <li class="nav-item col-sm-6">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                        aria-controls="home" aria-selected="true">{{ 'Login' | translate }}</a>
-                                </li>
-                                <li class="nav-item col-sm-6">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                        aria-controls="profile" aria-selected="false">{{ 'Register' | translate }}</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                    aria-labelledby="home-tab">
-                                    <app-login>
 
-                                    </app-login>
-
-                                    <div class="password">
-                                        <a  [routerLink]="['/forgetPass']" routerLinkActive="router-link-active"  >{{ 'forget password' | translate }}</a>
-                                        <p>{{'I don’t have account' | translate }} <a
-                                                href="#">{{ 'Create new' | translate }}</a></p>
-                                    </div><!-- End Password-->
-                                </div>
-                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <app-register>
-
-                                    </app-register>
-
-                                    <div class="password">
-                                        <a href="#">{{ 'forget password' | translate }}</a>
-                                    </div><!-- End Password-->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Start About us -->
-                        <div class="about-us text-center">
-                            <a href="#">{{ 'About us' | translate }} | <a href="#"> <i
-                                        class="fas fa-comment fa-md fa-fw"></i> {{ 'get help' | translate }}</a></a>
-                            <p>Copyright &copy; 2019 , {{ 'All rights reserved.' | translate }}</p>
-                            <a href="#" class="privacy">{{ 'Privacy' | translate }} <span>|</span> Terms of services</a>
-                        </div>
-                    </div>
-                    <!-- End About us -->
-                </div><!-- End Col #1 -->
-                <div class="col-xl-6 col-sm-12">
-                    <div class="image-modal d-lg-block">
-                        <img src="assets/images/modal.png" alt="Image" width="350">
-                    </div>
-                </div><!-- End Col #2 -->
-            </div><!-- End Row -->
-        </div>
+            <!-- Start About us -->
+            <div class="about-us text-center">
+              <a href="#">{{ 'About us' | translate }} | <a href="#"> <i
+                class="fas fa-comment fa-md fa-fw"></i> {{ 'get help' | translate }}</a></a>
+              <p>Copyright &copy; 2019 , {{ 'All rights reserved.' | translate }}</p>
+              <a href="#" class="privacy">{{ 'Privacy' | translate }} <span>|</span> Terms of services</a>
+            </div>
+          </div>
+          <!-- End About us -->
+        </div><!-- End Col #1 -->
+        <div class="col-xl-6 col-sm-12">
+          <div class="image-modal d-lg-block">
+            <img src="assets/images/modal.png" alt="Image" width="350">
+          </div>
+        </div><!-- End Col #2 -->
+      </div><!-- End Row -->
     </div>
+  </div>
 </div>
 <!-- End Modal Login -->
