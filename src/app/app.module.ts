@@ -10,6 +10,7 @@ import { LoginComponent } from './header/login/login.component';
 import { RegisterComponent } from './header/register/register.component';
 import { EventsComponent } from './pages/events/events.component';
 import { SpecialEventsComponent } from './pages/special-events/special-events.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
 import { AuthService } from './auth.service';
 //import { apis } from '../app/_services/apis';
 import { EventService } from './event.service';
@@ -55,7 +56,8 @@ import { ForgetPasswordComponent } from './pages/forget-password/forget-password
     ImageDirective,
     LikeDirective,
     LoginDirective,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

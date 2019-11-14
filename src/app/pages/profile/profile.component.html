@@ -91,7 +91,7 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                        <div class="classic" >
+                        <div class="classic" *ngFor="let item of myAds">
                             <div class="ads">
 
                                 <div class="image float-left">
@@ -101,13 +101,13 @@
                                 </div><!-- Image -->
 
                                 <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
+                                    <h6> {{item.ad_title}} </h6>
+                                    <a href="#"><i class="far fa-map"></i> {{item.cityId.name}} </a> |
                                     <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
+                                    <a href="#"><i class="far fa-calendar"></i> {{ (item.created_at*1000) | timeAgo}} </a>
                                 </div>
 
-                                <div class="view float-left text-center">
+                                <!-- <div class="view float-left text-center">
                                     <h6><i class="far fa-eye"></i> View</h6>
                                     <span>( 520 )</span>
                                 </div>
@@ -118,7 +118,7 @@
                                 <div class="view float-left  text-center">
                                     <h6><i class="fas fa-star"></i> Rating</h6>
                                     <span>( +3 )</span>
-                                </div>
+                                </div> -->
                                 <div class="view view2 float-left  text-center">
                                     <h6>OPtions</h6>
                                     <span><a href="#">Edit</a> | <a href="#">Deactivate</a></span>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <a href="#" class="button button2">Remove Selected</a>
-                        <div class="classic classic2">
+                        <div class="classic classic2" *ngFor="let item of LikedProducts">
                             <div class="ads">
 
                                 <div class="view float-left text-center py-3 px-3">
@@ -141,20 +141,20 @@
                                 </div>
 
                                 <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
+                                    <img [src]="item.brand_image" alt="Image" width="100">
                                 </div><!-- Image -->
 
                                 <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
+                                    <h6>{{item.ad_title}}</h6>
+                                    <a href="#"><i class="far fa-map"></i>{{item.city}}</a> |
+                                    <a href="#"><i class="fas fa-tag"></i> {{item.category}} </a> |
+                                    <a href="#"><i class="far fa-calendar"></i>{{ (item.created_at*1000) | timeAgo}}</a>
                                 </div>
 
 
                                 <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
+                                    <span class="alert-yellow"> {{ (((item.reg_price-item.sale_price)/item.reg_price)*100) | number:'1.0-0' }} % off</span>
+                                    <span class="red">AED {{item.sale_price}}</span>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -162,99 +162,6 @@
 
                             </div>
                         </div><!-- End Classic2 -->
-
-                        <div class="classic classic2">
-                            <div class="ads">
-
-                                <div class="view float-left text-center py-3 px-3">
-                                    <input type="checkbox" class="box" id="box2">
-                                    <label for="box2"></label>
-                                </div>
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-
-                                <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic2 -->
-
-                        <div class="classic classic2">
-                            <div class="ads">
-
-                                <div class="view float-left text-center py-3 px-3">
-                                    <input type="checkbox" class="box" id="box3">
-                                    <label for="box3"></label>
-                                </div>
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-
-                                <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic3 -->
-
-                        <div class="classic classic2">
-                            <div class="ads">
-
-                                <div class="view float-left text-center py-3 px-3">
-                                    <input type="checkbox" class="box" id="box4">
-                                    <label for="box4"></label>
-                                </div>
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-
-                                <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic4 -->
 
                         <!-- Paginagion -->
                         <div class="paginaion text-center">

@@ -18,6 +18,8 @@ export class ProfileComponent implements OnInit {
   username:string
   email:string
   getprofile;
+  myAds;
+  LikedProducts
   uploadForm: FormGroup;
   constructor( private axios: Axios,private _rest: RestService,private _auth: AuthService,public api:ApiService,private formBuilder: FormBuilder) { }
   ngOnInit() { 
@@ -26,7 +28,8 @@ export class ProfileComponent implements OnInit {
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
-    this.api.get('myads').subscribe((next)=>console.log(next));
+    this.api.get('myads').subscribe((next)=>{ this.myAds = next.data; console.log(next.data)});
+    this.api.get('like/likedProducts').subscribe((next)=>{this.LikedProducts = next.data;console.log(next.data)});
   }
    onImgSubmit() {
     const fd = new FormData();
