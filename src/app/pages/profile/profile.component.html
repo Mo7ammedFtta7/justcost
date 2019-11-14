@@ -8,25 +8,47 @@
                     <i class="far fa-user fa-fw"></i>
                 </div>
 -->
-
+<div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="imgModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Select Image</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <form>
+                            <div class="form-group">
+                              <input (change)="onImgSelect($event)" type="file" class="form-control-file" name="profile">
+                            </div>
+                          </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button (click)="onImgSubmit()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
                 <div class="small-12 medium-2 large-2 columns float-left">
                     <div class="circle">
                         <!-- User Profile Image -->
-                        <img appImage class="profile-pic" src="{{getprofile?.image}}">
+                        <img appImage class="profile-pic" [src]="getprofile?.image">
 
                         <!-- Default Image -->
                         <i class="far fa-user fa-fw"></i>
                     </div>
                     <div class="p-image">
-                        <i class="fas fa-camera fa-fw upload-button"></i>
-                        <input class="file-upload" type="file" accept="image/*" />
+                        <i  data-toggle="modal" data-target="#imgModal" class="fas fa-camera fa-fw upload-button" (click)="openImg()"></i>
+                        <input class="file-upload" type="file">
                     </div>
                 </div>
 
                 <div class="person-name float-left">
-                    <h5 class="name">Ahmed Salah</h5>
-                    <span>Membership <img src="images/nissan.png" alt="" width="30"></span>
+                    <h5 class="name"> {{getprofile?.name}} </h5>
+                    <span>{{getprofile?.email}} <img src="images/nissan.png" alt="" width="30"></span>
                     <div class="level">
                         <p>Level <span class="alert-num">1</span> | Votes <span class="alert-num">2500</span></p>
                     </div>
@@ -68,7 +90,8 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="classic">
+
+                        <div class="classic" >
                             <div class="ads">
 
                                 <div class="image float-left">
@@ -106,119 +129,6 @@
                             </div>
                         </div><!-- End Classic -->
 
-                        <div class="classic">
-                            <div class="ads">
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                    <span>Active</span>
-
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-                                <div class="view float-left text-center">
-                                    <h6><i class="far fa-eye"></i> View</h6>
-                                    <span>( 520 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="far fa-comments"></i>Comments</h6>
-                                    <span>( 71 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="fas fa-star"></i> Rating</h6>
-                                    <span>( +3 )</span>
-                                </div>
-                                <div class="view view2 float-left  text-center">
-                                    <h6>OPtions</h6>
-                                    <span><a href="#">Edit</a> | <a href="#">Deactivate</a></span>
-                                </div>
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic -->
-
-                        <div class="classic">
-                            <div class="ads">
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                    <span>Active</span>
-
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-                                <div class="view float-left text-center">
-                                    <h6><i class="far fa-eye"></i> View</h6>
-                                    <span>( 520 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="far fa-comments"></i>Comments</h6>
-                                    <span>( 71 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="fas fa-star"></i> Rating</h6>
-                                    <span>( +3 )</span>
-                                </div>
-                                <div class="view view2 float-left  text-center">
-                                    <h6>OPtions</h6>
-                                    <span><a href="#">Edit</a> | <a href="#">Deactivate</a></span>
-                                </div>
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic -->
-
-                        <div class="classic">
-                            <div class="ads">
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                    <span>Active</span>
-
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-                                <div class="view float-left text-center">
-                                    <h6><i class="far fa-eye"></i> View</h6>
-                                    <span>( 520 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="far fa-comments"></i>Comments</h6>
-                                    <span>( 71 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="fas fa-star"></i> Rating</h6>
-                                    <span>( +3 )</span>
-                                </div>
-                                <div class="view view2 float-left  text-center">
-                                    <h6>OPtions</h6>
-                                    <span><a href="#">Edit</a> | <a href="#">Deactivate</a></span>
-                                </div>
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic -->
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <a href="#" class="button button2">Remove Selected</a>

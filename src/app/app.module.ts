@@ -1,7 +1,7 @@
 import { AuthGuard } from './auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
@@ -14,6 +14,7 @@ import { AuthService } from './auth.service';
 //import { apis } from '../app/_services/apis';
 import { EventService } from './event.service';
 //import { TokenInterceptorService } from './token-interceptor.service';
+import {Axios} from '../app/_services/axios';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './header/header/header.component';
 import { ProductComponent } from './pages/product/product.component';
@@ -59,12 +60,13 @@ import { ForgetPasswordComponent } from './pages/forget-password/forget-password
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
     BarRatingModule
   ],
-  providers: [ApiService,AuthService, AuthGuard, EventService,TranslatePipe, 
+  providers: [ApiService,AuthService, AuthGuard, EventService,TranslatePipe,Axios
   // {
   //   provide: HTTP_INTERCEPTORS,
   //   useClass: TokenInterceptorService,

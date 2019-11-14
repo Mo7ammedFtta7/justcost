@@ -17,7 +17,11 @@ export class AuthService {
   //   return this._api.post("customer/register",user)
   //   //return this.http.post<any>(this._registerUrl, user)
   // }
-  
+  setUserImg(imgUrl){
+    var user =this.user()
+    user.userInfo.image=imgUrl;
+    this.setToken(user)
+   }
   logoutUser() {
     localStorage.removeItem(this.secretKey)
     localStorage.removeItem('data')
