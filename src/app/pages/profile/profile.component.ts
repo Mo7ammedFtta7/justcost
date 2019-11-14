@@ -26,18 +26,13 @@ export class ProfileComponent implements OnInit {
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
+    this.api.get('myads').subscribe((next)=>console.log(next));
   }
    onImgSubmit() {
     const fd = new FormData();
     fd.append('image', this.uploadForm.get('profile').value);
      this.axios.post('customer/uploadImage', fd)
-     .then(r => console.log(r.data))
-    
-        
-    // this.api.post('customer/uploadImage',formData).subscribe(
-    //   (res) => console.log(res),
-    //   (err) => console.log(err)
-    // );
+     .then(r => console.log(r.data));
   }
   onImgSelect(event) {
     if (event.target.files.length > 0) {
