@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
+    this.api.get('myads').subscribe((next)=>console.log(next));
   }
    onImgSubmit() {
     const fd = new FormData();

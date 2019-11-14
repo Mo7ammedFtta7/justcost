@@ -127,6 +127,7 @@ export class ApiService {
         console.log(error.status)
         this.router.navigate(['/login']);
     }
+    console.log(error);
     return throwError(error);
   }
 }

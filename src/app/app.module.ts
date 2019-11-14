@@ -11,9 +11,7 @@ import { RegisterComponent } from './header/register/register.component';
 import { EventsComponent } from './pages/events/events.component';
 import { SpecialEventsComponent } from './pages/special-events/special-events.component';
 import { AuthService } from './auth.service';
-//import { apis } from '../app/_services/apis';
 import { EventService } from './event.service';
-//import { TokenInterceptorService } from './token-interceptor.service';
 import {Axios} from '../app/_services/axios';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './header/header/header.component';
@@ -24,7 +22,7 @@ import { ResultsComponent } from './pages/results/results.component';
 import { EmailverifyComponent } from './pages/emailverify/emailverify.component';
 import { PostaddComponent } from './pages/postadd/postadd.component';
 import { SubsComponent } from './pages/postadd/subs/subs.component';
-import { BarRatingModule } from "ngx-bar-rating";
+import { BarRatingModule } from 'ngx-bar-rating';
 import { TranslatePipe } from './pipe/translate.pipe';
 import { TranslateComponent } from './pipe/translate/translate.component';
 import { AssetsComponent } from './assets/assets.component';
@@ -34,7 +32,7 @@ import { LikeDirective } from './directives/like.directive';
 import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { OwlModule } from 'ngx-owl-carousel';  
-
+import {AgmCoreModule} from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,14 +65,13 @@ import { OwlModule } from 'ngx-owl-carousel';
     AppRoutingModule,
     NgxPaginationModule,
     BarRatingModule,
-    OwlModule
+    OwlModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'
+    }),
   ],
-  providers: [ApiService,AuthService, AuthGuard, EventService,TranslatePipe,Axios
-  // {
-  //   provide: HTTP_INTERCEPTORS,
-  //   useClass: TokenInterceptorService,
-  //   multi: true
-  // }
+
+  providers: [ApiService, AuthService, AuthGuard, EventService, TranslatePipe, Axios
 ],
   bootstrap: [AppComponent]
 })
