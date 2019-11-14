@@ -42,17 +42,15 @@
                                 <div class="form-group row">
                                     <span class="col-sm-4 col-form-label">{{'Ad Title' | translate}} :<span class="red">*</span></span>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control mb-2" placeholder="{{'Write a title for your ad' | translate}}" dir="auto" name="addtitle" ngModel required>
+                                        <input type="text" class="form-control mb-2" placeholder="{{'Write a title for your ad' | translate}}" [class.is-valid]="addtitle.valid && addtitle.touched" [class.is-invalid]="addtitle.invalid && (addtitle.touched || create.submitted)" dir="auto" #addtitle="ngModel" name="addtitle" ngModel required>
+                                        <small *ngIf="addtitle.invalid && addtitle.touched"  id="addtitle" class="form-text">Please provide a valid title.</small>
                                         <small class="form-text text-muted text-danger">{{'Type minimum 5 characters' | translate}}</small>
-
-
-                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <span class="col-sm-4 col-form-label">{{'Ad Description' | translate}} :<span class="red">*</span></span>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control mb-2" dir="auto"    name="description"  ngModel required   ></textarea>
+                                        <textarea class="form-control mb-2" dir="auto"   #description="ngModel" [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || create.submitted)"  name="description"  ngModel required   ></textarea>
                                         <small class="form-text text-muted">{{'Write description' | translate}}</small>
                                     </div>
                                 </div>
@@ -76,7 +74,7 @@
                                                 <div class="input-group-text"><i class="fas fa-phone-square"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control control2" placeholder="{{'Write your phone number' | translate}}" value="{{user.mobile}}" dir="auto" name="mobile" ngModel  required>
+                                            <input type="text" class="form-control control2" placeholder="{{'Write your phone number' | translate}}"  #mobile="ngModel" [class.is-valid]="mobile.valid && mobile.touched" [class.is-invalid]="mobile.invalid && (mobile.touched || create.submitted)" value="{{user.mobile}}" dir="auto" name="mobile" ngModel  required>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +117,11 @@
                                     <span class="col-sm-4 col-form-label">{{'Map Location' | translate}} :</span>
                                     <div class="col-sm-8">
                                         <div class="map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232565.37346064637!2d54.41853622413337!3d24.387078860425174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f723ef2b9%3A0xc7cc2e9341971108!2sAbu+Dhabi+-+United+Arab+Emirates!5e0!3m2!1sen!2s!4v1552388228569" width="400" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                                            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232565.37346064637!2d54.41853622413337!3d24.387078860425174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f723ef2b9%3A0xc7cc2e9341971108!2sAbu+Dhabi+-+United+Arab+Emirates!5e0!3m2!1sen!2s!4v1552388228569" width="400" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe> -->
+                                            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onSelectLocation($event)">
+                                                <agm-marker [latitude]="lat" [longitude]="lng" *ngIf="locationChosen"></agm-marker>
+                                            </agm-map>
+                                        
                                         </div>
                                     </div>
                                 </div>

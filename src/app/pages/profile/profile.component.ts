@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
     const fd = new FormData();
     fd.append('image', this.uploadForm.get('profile').value);
      this.axios.post('customer/uploadImage', fd)
-     .then(r => console.log(r.data))
+     .then(r => this._auth.setUserImg(r.data.data.userInfo.image) );
     
         
     // this.api.post('customer/uploadImage',formData).subscribe(

@@ -101,7 +101,7 @@ export class PostaddComponent implements OnInit {
         .subscribe(
           res => {
             success("Product Add succsefuly!")
-       //     console.log(res)
+          console.log(res)
           },
           err => {
          //   console.log(err)
