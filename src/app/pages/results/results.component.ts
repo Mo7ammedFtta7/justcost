@@ -57,9 +57,15 @@ export class ResultsComponent implements OnInit {
     this.rest.getProductss(params).subscribe((data) => {
       // @ts-ignore
 
-      this.products = data['data'];
+      this.products = data.data;
       this.filterProducts = data.data;
       this.attributes = _.map(data.data, 'attributes');
+
+      data.data.forEach(item => {
+        if (!this.attributes.includes(item.attributes) && item.attributes != null ) {
+          this.attributes.push(item.attributes);
+        }
+      });
 
       data['data'].forEach(item => {
         if (!this.brands.includes(item.brand)) {
