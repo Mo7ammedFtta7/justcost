@@ -13,15 +13,6 @@ export class AuthService {
 
   constructor(private http: HttpClient,private _router: Router,private crypt: EncryptService) { }
 
-  // registerUser(user) {
-  //   return this._api.post("customer/register",user)
-  //   //return this.http.post<any>(this._registerUrl, user)
-  // }
-  setUserImg(imgUrl){
-    var user =this.user()
-    user.userInfo.image=imgUrl;
-    this.setToken(user)
-   }
   logoutUser() {
     localStorage.removeItem(this.secretKey)
     localStorage.removeItem('data')
