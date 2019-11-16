@@ -1,4 +1,6 @@
 import { AuthGuard } from './auth.guard';
+import {ToastrModule} from 'ngx-toastr'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -60,6 +62,8 @@ import {AgmCoreModule} from '@agm/core';
     TimeAgoPipe
   ],
   imports: [
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

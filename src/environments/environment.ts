@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
  // ApiUrl:'http://185.151.29.205:8099/api/'
- ApiUrl:'http://192.168.8.100:8000/api/',
+ ApiUrl:'http://192.168.8.143:8000/api/',
  //ApiUrl:'http://192.168.1.76:8000/api/'
 };
