@@ -45,81 +45,6 @@
                   </i>
                   <span class="link-name">{{'Notifications' | translate}} </span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse " id="navbarResponsive">
-                    <ul class="navbar-nav selection ml-auto">
-                        <li class="nav-item">
-                            <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"(click)="translate.setlocalLang('ar')"> <img class="flag" src="assets/images/emirian-flag-medium.gif">عربي</a>
-                            <a *ngIf="translate.getlocalLang()=='ar'" class="nav-link"(click)="translate.setlocalLang('en')"> <img class="flag" src="assets/images/e-flag.png" alt="">English</a>
-                        </li>
-                        <li class="nav-item">
-                            <select class="custom-select" #CitisOfCountry (change)='getCitisOfCountry(CitisOfCountry.value)'>
-                                <!-- <option selected>{{ _authService.getUserCountry() | translate}} </option> -->
-                                <option *ngFor="let country of countries; let i=index" [value]="country.id" >{{ country.name | translate}}</option>
-
-                            </select>
-                        </li>
-                        <li class="nav-item">
-                            <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;"  data-toggle="modal" data-target="#addtype" ><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
-                           
-                            <!-- <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>     -->
-
-                        </li>
-                    </ul>
-
-                    <ul class="navbar-nav ml-auto">
-
-                        <li class="nav-item profile-icons">
-
-                            <!-- dropdown container -->
-                            <div class="dropdown">
-                                <a class="nav-link icon-top" href="#">
-                                    <i class="fa fa-user">
-
-                                    </i>
-                                    <span class="link-name">{{'Notifications' | translate}} </span>
-                                </a>
-                                <!-- dropdown menu -->
-                                <ul class="dropdown-menu">
-                                    <!-- <li><a href="javascript:;"><span></span></a></li>
-                                    <li><a href="javascript:;">About</a></li> -->
-                                    <!-- <div class="dropdown-divider"></div>
-                                    <li><a href="#contact">Contact</a></li> -->
-                                </ul>
-                            </div>
-
-                        </li>
-
-                        <li class="nav-item">
-
-                            <!-- dropdown container -->
-                            <a *ngIf="!_authService.loggedIn()" class="nav-link icon-top" href="javascript:;"
-                                data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-user"></i><span
-                                    class="link-name">{{'Login' | translate}}</span></a>
-
-                            <div *ngIf="_authService.loggedIn()" class="dropdown">
-
-
-                                <a class="nav-link icon-top" href="javascript:;"><i class="fa fa-user"></i><span
-                                        class="link-name">{{_authService.getUserName()}}</span></a>
-
-
-                                <!-- dropdown menu -->
-                                <ul class="dropdown-menu">
-                                    <li><a [routerLink]="['/profile']"  href="javascript:;">{{'My Profile' | translate}} </a></li>
-                                    <!-- <li><a href="#about">About</a></li> -->
-                                    <div class="dropdown-divider"></div>
-                                    <li><a href="javascript:;"
-                                            (click)="_authService.logoutUser()">{{'Logout' | translate}}</a></li>
-                                </ul>
-                            </div>
-
-                        </li>
-                    </ul>
                 <!-- dropdown menu -->
                 <ul class="dropdown-menu">
                   <!-- <li><a href="javascript:;"><span></span></a></li>
@@ -278,21 +203,3 @@
   </div>
 </div>
 <!-- End Modal Login -->
-
-
-
- <!-- Button trigger modal -->
-
- <!-- Modal -->
- <div class="modal fade" id="addtype" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-         <div class="modal-content text-center py-4">
-             <div class="modal-body row px-5">
-                <button class="button mr-3 col" style="background:#FACB33; padding: 9px 10px;" data-dismiss="modal" aria-label="Close" routerLink="/postadd"   ><i class="fas fa-shopping-cart"></i> Single Product</button>
-                <button class="button col" style="background:#FACB33; padding: 9px 10px;"  data-dismiss="modal" aria-label="Close" routerLink="/postadd"><i class="fas fa-shopping-cart"></i> Multi Products</button>
-             </div>
-         </div>
-     </div>
- </div>
- 
- <!-- /** -->
