@@ -107,7 +107,7 @@ import { TranslateService } from '../pipe/translate.service';
   }
 
   createadd(ad) {
-    return this.http.post<any>(environment.ApiUrl + 'ads', ad);
+    return this.http.post<any>(environment.ApiUrl + 'ads', ad,{headers: this.httpOptions().headers  });
   }
 
   addcomment(comment) {
