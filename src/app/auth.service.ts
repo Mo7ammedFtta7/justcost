@@ -13,15 +13,6 @@ export class AuthService {
 
   constructor(private http: HttpClient,private _router: Router,private crypt: EncryptService) { }
 
-  // registerUser(user) {
-  //   return this._api.post("customer/register",user)
-  //   //return this.http.post<any>(this._registerUrl, user)
-  // }
-  setUserImg(imgUrl){
-    var user =this.user()
-    user.userInfo.image=imgUrl;
-    this.setToken(user)
-   }
   logoutUser() {
     localStorage.removeItem(this.secretKey)
     localStorage.removeItem('data')
@@ -44,8 +35,7 @@ export class AuthService {
     return this.user().token;
   }
   
-  setToken(data: string) {
-    console.log(this.crypt.encrypt(this.secretKey, JSON.stringify(data)))
+  setToken(data) {
     localStorage.setItem(this.secretKey, this.crypt.encrypt(this.secretKey, JSON.stringify(data)));
   }
 
@@ -61,6 +51,16 @@ export class AuthService {
   user() {
     return JSON.parse(this.crypt.decrypt(this.secretKey, this.getToken().toString()));
   }
+
+  setUserImg(imgUrl){
+   var user =this.user()
+   user.userInfo.image=imgUrl;
+   this.setToken(user)
+  }
+
+
+
+
 
   likes() :any[] {
     return  this.user().likedProducts !==null?this.user().likedProducts:[];

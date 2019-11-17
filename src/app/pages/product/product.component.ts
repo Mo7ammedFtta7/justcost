@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '../../_services/rest.service';
-import { HttpParams } from '@angular/common/http';
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
-import { count } from 'rxjs/operators';
+import { NgxSlideshowAcracodeModel } from 'ngx-slideshow-acracode';
 import { AuthService } from '../../auth.service';
 import { NgForm } from '@angular/forms';
 import { ApiService } from '../../_services/api.service';
@@ -31,8 +29,8 @@ export class ProductComponent implements OnInit {
   public product: any;
   public attributes: any;
   like: boolean = false
-
-
+  imagesUrl = [
+];
   constructor(private _rea: RestService, private _api: ApiService, private route: ActivatedRoute, public _authService: AuthService) {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -53,8 +51,6 @@ export class ProductComponent implements OnInit {
   }
 
   onLike(type) {
-
-    console.log(type);
     if (type) {
       this._api.deslike(this.id);
       success(':( !');
@@ -74,6 +70,11 @@ export class ProductComponent implements OnInit {
 
   getProduct() {
     this._rea.getProduct(this.id).subscribe((data: {}) => {
+      let imgUrl:[] = data['data'][0].media;
+      imgUrl.forEach((r)=>{
+        this.imagesUrl.push(new NgxSlideshowAcracodeModel(r['url']));
+        console.log(r['url']);
+      })
       this.product = data['data'][0];
       this.like = data['data'][0]['likes']
     });
@@ -98,7 +99,6 @@ export class ProductComponent implements OnInit {
           this.getcomments()
         },
         err => {
-          console.log(err)
         }
 
       )

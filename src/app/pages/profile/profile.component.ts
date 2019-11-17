@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder,FormGroup  } from '@angular/forms';
+import {ToastrService} from 'ngx-toastr'
 import { RestService } from '../../_services/rest.service';
 import { AuthService } from '../../auth.service';
 import { ApiService} from '../../_services/api.service';
-import {environment} from '../../../environments/environment';
+import * as _ from 'lodash';
 import {Axios} from '../../_services/axios';
 declare function nav(type): any;
 declare function success(msg):any;
@@ -15,24 +16,37 @@ declare function success(msg):any;
 })
 export class ProfileComponent implements OnInit {
   edit:NgForm
-  username:string
-  email:string
+  cities;
   getprofile;
+  editResponse = false;
+  myAds;
+  totalMyAds;
+  totalActive;
+  totalPaid;
+  LikedProducts
   uploadForm: FormGroup;
-  constructor( private axios: Axios,private _rest: RestService,private _auth: AuthService,public api:ApiService,private formBuilder: FormBuilder) { }
+  constructor(private toastr:ToastrService, private axios: Axios,private _rest: RestService,private _auth: AuthService,public api:ApiService,private formBuilder: FormBuilder) { }
   ngOnInit() { 
+    // this.toastr.success('hi','suhail');
     nav('hide');
     this.getprofile = this._auth.getUser().userInfo;
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
-    this.api.get('myads').subscribe((next)=>console.log(next));
+    this.api.get('myads').subscribe((next)=>{  
+      this.myAds = next.data; 
+      this.totalMyAds = this.myAds.length; 
+      this.totalActive =_.filter(this.myAds,['status.id',3]).length;
+      this.totalPaid =_.filter(this.myAds,['ispaided',"1"]).length;
+    });
+    this.api.get('like/likedProducts').subscribe((next)=>{this.LikedProducts = next.data;});
+    this.api.get('cities').subscribe((next)=>{this.cities = next.data;});
   }
    onImgSubmit() {
     const fd = new FormData();
     fd.append('image', this.uploadForm.get('profile').value);
      this.axios.post('customer/uploadImage', fd)
-     .then(r => console.log(r.data));
+     .then(r => this._auth.setUserImg(r.data.data.userInfo.image));
   }
   onImgSelect(event) {
     if (event.target.files.length > 0) {
@@ -45,13 +59,23 @@ getMyAds(){
 openImg(){
 
 }
-  editprofile(edit)
+  editprofile(edit:NgForm)
     {
-      this._rest.setProfile(edit.value)
-      .subscribe(
-        _res => {
-          success("Data Update succesfuly");
-        })
+      if (edit.valid) {
+        this.editResponse = true;
+        const payload = edit.value;
+        this.api.post('customer/setProfile',payload).subscribe((next)=>{
+          edit.resetForm;
+          this.editResponse = false;
+          this.toastr.success('success','data update successfulley');
+          let localStorag = {token:this._auth.user().token,userInfo:next.data.userInfo};
+          let parm = localStorag;
+          this._auth.setToken(parm);
+        },
+        (error)=>{
+          this.toastr.error('Error','There is Some error We try to fix it');
+        });
+      }
     }
 
     

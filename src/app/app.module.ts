@@ -1,4 +1,7 @@
 import { AuthGuard } from './auth.guard';
+import {ToastrModule} from 'ngx-toastr'
+import { NgxSlideshowAcracodeModule } from 'ngx-slideshow-acracode';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +13,7 @@ import { LoginComponent } from './header/login/login.component';
 import { RegisterComponent } from './header/register/register.component';
 import { EventsComponent } from './pages/events/events.component';
 import { SpecialEventsComponent } from './pages/special-events/special-events.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
 import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import {Axios} from '../app/_services/axios';
@@ -31,6 +35,7 @@ import { ImageDirective } from './directives/image.directive';
 import { LikeDirective } from './directives/like.directive';
 import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { OwlModule } from 'ngx-owl-carousel';  
 import {AgmCoreModule} from '@agm/core';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 @NgModule({
@@ -55,9 +60,13 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     ImageDirective,
     LikeDirective,
     LoginDirective,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    TimeAgoPipe
   ],
   imports: [
+    ToastrModule.forRoot(),
+    NgxSlideshowAcracodeModule,
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -66,6 +75,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     BarRatingModule,
+    OwlModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'
     }),

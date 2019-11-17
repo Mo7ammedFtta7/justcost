@@ -63,15 +63,15 @@
                     </div>
                     <div class="data text-center">
                         <h6>My Ads</h6>
-                        <span>( 170 )</span>
+                        <span> ({{totalMyAds}}) </span>
                     </div>
                     <div class="data text-center">
                         <h6>Active Ads</h6>
-                        <span>( 5 )</span>
+                        <span> ( {{totalActive}} ) </span>
                     </div>
                     <div class="data text-center">
                         <h6>Payed Ads</h6>
-                        <span>( 5 )</span>
+                        <span>( {{totalPaid}} )</span>
                     </div>
                 </div><!-- End Account -->
             </div>
@@ -91,23 +91,23 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                        <div class="classic" >
+                        <div class="classic" *ngFor="let item of myAds | paginate:  { id: 'myAds', itemsPerPage: 5, currentPage: p2 }">
                             <div class="ads">
 
                                 <div class="image float-left">
                                     <img src="images/1.jpg" alt="Image" width="100">
-                                    <span>Active</span>
+                                    <span> {{item.status.name}} </span>
 
                                 </div><!-- Image -->
 
                                 <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
+                                    <h6> {{item.ad_title}} </h6>
+                                    <a href="#"><i class="far fa-map"></i> {{item.cityId.name}} </a> |
                                     <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
+                                    <a href="#"><i class="far fa-calendar"></i> {{ (item.created_at*1000) | timeAgo}} </a>
                                 </div>
 
-                                <div class="view float-left text-center">
+                                <!-- <div class="view float-left text-center">
                                     <h6><i class="far fa-eye"></i> View</h6>
                                     <span>( 520 )</span>
                                 </div>
@@ -118,7 +118,7 @@
                                 <div class="view float-left  text-center">
                                     <h6><i class="fas fa-star"></i> Rating</h6>
                                     <span>( +3 )</span>
-                                </div>
+                                </div> -->
                                 <div class="view view2 float-left  text-center">
                                     <h6>OPtions</h6>
                                     <span><a href="#">Edit</a> | <a href="#">Deactivate</a></span>
@@ -128,11 +128,13 @@
 
                             </div>
                         </div><!-- End Classic -->
-
+                        <div class="paginaion text-center">
+                            <pagination-controls id="myAds" class="my-pagination" (pageChange)="p2 = $event"></pagination-controls>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <a href="#" class="button button2">Remove Selected</a>
-                        <div class="classic classic2">
+                        <!-- <a href="#" class="button button2">Remove Selected</a> -->
+                        <div class="classic classic2" *ngFor="let item of LikedProducts | paginate:  { itemsPerPage: 4, currentPage: p }">
                             <div class="ads">
 
                                 <div class="view float-left text-center py-3 px-3">
@@ -141,20 +143,20 @@
                                 </div>
 
                                 <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
+                                    <img appImage [src]="item.brand_image" alt="Image" width="100">
                                 </div><!-- Image -->
 
                                 <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
+                                    <h6>{{item.ad_title}}</h6>
+                                    <a href="#"><i class="far fa-map"></i>{{item.city}}</a> |
+                                    <a href="#"><i class="fas fa-tag"></i> {{item.category}} </a> |
+                                    <a href="#"><i class="far fa-calendar"></i>{{ (item.created_at*1000) | timeAgo}}</a>
                                 </div>
 
 
                                 <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
+                                    <span class="alert-yellow"> {{ (((item.reg_price-item.sale_price)/item.reg_price)*100) | number:'1.0-0' }} % off</span>
+                                    <span class="red">AED {{item.sale_price}}</span>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -162,112 +164,10 @@
 
                             </div>
                         </div><!-- End Classic2 -->
-
-                        <div class="classic classic2">
-                            <div class="ads">
-
-                                <div class="view float-left text-center py-3 px-3">
-                                    <input type="checkbox" class="box" id="box2">
-                                    <label for="box2"></label>
-                                </div>
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-
-                                <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic2 -->
-
-                        <div class="classic classic2">
-                            <div class="ads">
-
-                                <div class="view float-left text-center py-3 px-3">
-                                    <input type="checkbox" class="box" id="box3">
-                                    <label for="box3"></label>
-                                </div>
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-
-                                <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic3 -->
-
-                        <div class="classic classic2">
-                            <div class="ads">
-
-                                <div class="view float-left text-center py-3 px-3">
-                                    <input type="checkbox" class="box" id="box4">
-                                    <label for="box4"></label>
-                                </div>
-
-                                <div class="image float-left">
-                                    <img src="images/1.jpg" alt="Image" width="100">
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6>2012 Classic van for sale</h6>
-                                    <a href="#"><i class="far fa-map"></i>Abu Dhabi</a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i>3 weeks ago</a>
-                                </div>
-
-
-                                <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow">25% off</span>
-                                    <span class="red">AED 3,000</span>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic4 -->
 
                         <!-- Paginagion -->
                         <div class="paginaion text-center">
-                            <ul class="list-unstyled">
-                                <li class="page"><i class="fas fa-chevron-left"></i></li>
-                                <li class="page active">1</li>
-                                <li class="page">2</li>
-                                <li class="page">3</li>
-                                <li class="page">4</li>
-                                <li class="page">...</li>
-                                <li class="page">9</li>
-                                <li class="page"><i class="fas fa-chevron-right"></i></li>
-                            </ul>
+                            <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div><!-- Tab #2 -->
 
@@ -275,15 +175,29 @@
                     <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <form  #edit="ngForm" (ngSubmit)="editprofile(edit)" class="mx-3">
                             <div class="form-group row">
-                                <span class="col-sm-2 col-form-label">User name</span>
+                                <span class="col-sm-2 col-form-label">Name</span>
                                 <div class="col-sm-8">
-                                    <input type="text" name="username"  [(ngModel)]="username" required  class="form-control mb-2" placeholder="Enter your Name" dir="auto">
+                                    <input  type="text" name="name"  #name="ngModel" [(ngModel)]="getprofile.name" [class.is-valid]="name.valid && name.touched" [class.is-invalid]="name.invalid && (name.touched || edit.submitted)" ngModel required class="form-control mb-2" placeholder="Enter your Name" dir="auto">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <span class="col-sm-2 col-form-label">Email</span>
                                 <div class="col-sm-8">
-                                    <input type="text" name="email"  [(ngModel)]="email" required  class="form-control mb-2" placeholder="Enter Address" dir="auto">
+                                    <input [value]="getprofile?.email" type="text" name="email"  #email="ngModel" [(ngModel)]="getprofile.email" [class.is-valid]="email.valid && email.touched" [class.is-invalid]="email.invalid && (email.touched || edit.submitted)" ngModel required email placeholder="Enter your Name" class="form-control mb-2" placeholder="example@mail.com" dir="auto">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <span class="col-sm-2 col-form-label">phone</span>
+                                <div class="col-sm-8">
+                                    <input [value]="getprofile?.mobile" type="text" name="mobile" #mobile="ngModel" [(ngModel)]="getprofile.mobile" [class.is-valid]="mobile.valid && mobile.touched" [class.is-invalid]="mobile.invalid && (mobile.touched || edit.submitted)" ngModel required class="form-control mb-2" placeholder="00000-0000-00" dir="auto">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <span class="col-sm-2 col-form-label">city</span>
+                                <div class="col-sm-8">
+                                    <select class="form-control mb-2" name="city" #city="ngModel" ngModel [(ngModel)]="getprofile.city.id"  id="city" dir="auto">
+                                        <option *ngFor="let item of cities" [selected]="getprofile.city.id == item.id" [value]="item.id"> {{item.name}} </option>
+                                    </select>
                                 </div>
                             </div>
                             <!-- <div class="form-group row">
@@ -292,7 +206,7 @@
                                     <input type="email" class="form-control mb-2" placeholder="Enter Phone No" dir="auto">
                                 </div>
                             </div> -->
-                            <button type="submit" class="button">Edit Data</button>
+                            <button type="submit" class="button">Edit Data <i *ngIf="editResponse" class="fa fa-spinner fa-spin" ></i> </button>
                         </form>
                     </div><!-- Tab #3 -->
                 </div>
