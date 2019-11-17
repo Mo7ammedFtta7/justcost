@@ -30,7 +30,6 @@ export class ProfileComponent implements OnInit {
     // this.toastr.success('hi','suhail');
     nav('hide');
     this.getprofile = this._auth.getUser().userInfo;
-    console.log(this.getprofile);
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
@@ -65,15 +64,13 @@ openImg(){
       if (edit.valid) {
         this.editResponse = true;
         const payload = edit.value;
-        console.log(edit.value);
         this.api.post('customer/setProfile',payload).subscribe((next)=>{
           edit.resetForm;
           this.editResponse = false;
           this.toastr.success('success','data update successfulley');
-          console.log(next.data);
           let localStorag = {token:this._auth.user().token,userInfo:next.data.userInfo};
-          console.log(localStorag);
-          this._auth.setToken(localStorag);
+          let parm = localStorag;
+          this._auth.setToken(parm);
         },
         (error)=>{
           this.toastr.error('Error','There is Some error We try to fix it');

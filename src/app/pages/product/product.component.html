@@ -11,7 +11,13 @@
                     <span class="alert-yellow float-right">{{math(product?.reg_price,product?.sale_price)}}% {{'off' | translate }}</span>
                     <div class="clearfix"></div>
                 </div>
+                <ngx-slideshow-acracode 
+                 [images]="imagesUrl"
+                 [auto]="true"
+                  [timeLap]="6000">
+                </ngx-slideshow-acracode>
                 <!-- Start Slider 
+                    
                 <div class="slider2">
                     <div class="owl-carousel">
                         <div *ngFor="let url of product?.media" class="item">
@@ -21,24 +27,11 @@
                 </div>
                  End Slider -->
                   <!-- Start Slider -->
-
-                  {{slides | json}}
                   <!-- <div class="slider2">
                         <div [innerHTML]="slides" id="slider" class="owl-carousel">
                             
                         </div>
                     </div> -->
-
-
-
-
-                    <owl-carousel [options]="SlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >  
-                            <div class="item" *ngFor="let img of Images">  
-                            <div style="align-content: center">  
-                            <img style="height: 260px;width:100%"src={{img}}/>  
-                            </div>  
-                            </div>  
-                            </owl-carousel>  
                     <!-- End Slider -->
 
                 <!-- Start List -->
