@@ -32,6 +32,7 @@ import { LikeDirective } from './directives/like.directive';
 import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import {AgmCoreModule} from '@agm/core';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import {AgmCoreModule} from '@agm/core';
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
+    Ng2SearchPipeModule,
     BarRatingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'

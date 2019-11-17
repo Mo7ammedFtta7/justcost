@@ -49,12 +49,12 @@ export class ProductComponent implements OnInit {
 
     this.getProduct()
     this.getcomments()
-    this.getAttributes(this.id)
+    this.getAttributes(this.id);
   }
 
   onLike(type) {
 
-    console.log("like")
+    console.log(type);
     if (type) {
       this._api.deslike(this.id);
       success(':( !');

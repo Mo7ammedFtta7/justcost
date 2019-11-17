@@ -83,7 +83,7 @@ export class ApiService {
       .catch(this.errorHandler);
   }
 
-  
+
   like(id: any) {
      this.likeProduct(id).subscribe((data: {}) => {
        console.log( data['data'])
@@ -94,7 +94,7 @@ export class ApiService {
 
   }
   deslike(productId: any) {
- 
+
   }
    likes(){
     return [1,2,3,4,224,5];
@@ -107,7 +107,7 @@ export class ApiService {
   handleData(handleData: any) {
     throw new Error("Method not implemented.");
   }
-  
+
   get(url: string): Observable<any> {
     return this.http.get<any>(environment.ApiUrl + url, this.httpOptions()).pipe(catchError(this.errorHandler));
   }
@@ -117,10 +117,19 @@ export class ApiService {
   delete(url: string): Observable<any> {
     return this.http.delete(environment.ApiUrl + url, this.httpOptions()).pipe(catchError(this.errorHandler));
   }
+  toggleLike(id) {
+    if (this._authService.user().userInfo.likedProducts.includes(id)) {
+      return this.http.post(environment.ApiUrl + 'like/deslike', {id: id}, this.httpOptions()).pipe(catchError(this.errorHandler));
+    }
+    return  this.likeProduct(id).subscribe(next => {
+      // @ts-ignore
+      this._authService.user().userInfo.likedProducts.push(next.data.product_id);
+    });
+  }
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 422) {
       Object.keys(error.error.errors).forEach(key => {
-        console.log(error.error.errors[key][0])
+        console.log(error.error.errors[key][0]);
       });
     }
     if (error.status === 401) {
