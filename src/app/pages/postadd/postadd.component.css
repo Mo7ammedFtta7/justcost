@@ -3,3 +3,10 @@
    text-transform: none;
 }
 agm-map { height: 300px; }
+.is-valid[required], .ng-valid.required  {
+   border-left: 5px solid #42A948; /* green */
+ }
+ 
+ .is-invalid:not(form)  {
+   border-left: 5px solid #a94442; /* red */
+ }

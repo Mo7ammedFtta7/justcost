@@ -184,7 +184,10 @@ export class PostaddComponent implements OnInit {
      // console.log("--------------"+data);
     });
   }
-  addproduct(product){
+  addproduct(product:NgForm){
+    if (product.invalid) {
+      return;
+    }
     // console.log();
     const fd = new FormData();
     for (let index = 0; index < this.images.length ; index++) {
@@ -216,7 +219,8 @@ alert(product.value.brand_id);
     this.images=null
 
     console.table(this.newProducts)
-
+    product.resetForm();
+    
 
   }
   public math(aa: any, bb: any) {

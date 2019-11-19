@@ -316,43 +316,43 @@
                                     <form #newProduct="ngForm" (ngSubmit)="addproduct(newProduct)" class="row">
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block">Product Name</span>
-                                            <input type="text" [(ngModel)]="newProduct.title" name="title" class="form-control" id="" placeholder="Product Name">
+                                            <input type="text" name="title" #name="ngModel"  [class.is-valid]="name.valid && name.touched" [class.is-invalid]="name.invalid && (name.touched || newProduct.submitted)"   ngModel required class="form-control" placeholder="Product Name">
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block">Quantity</span>
-                                            <input type="text" class="form-control" [(ngModel)]="newProduct.qty" name="qty" id="" placeholder="Quantity">
+                                            <input type="text" class="form-control"name="qty" #qty="ngModel"  [class.is-valid]="qty.valid && qty.touched" [class.is-invalid]="qty.invalid && (qty.touched || newProduct.submitted)"   ngModel required placeholder="Quantity">
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block">Old Price</span>
-                                            <input type="text" class="form-control" id="" placeholder="Product Name" [(ngModel)]="newProduct.reg_price" name="reg_price">
+                                            <input type="text" class="form-control" placeholder="Old Price" name="reg_price"  #reg_price="ngModel" [class.is-valid]="reg_price.valid && reg_price.touched" [class.is-invalid]="reg_price.invalid && (reg_price.touched || newProduct.submitted)"  ngModel required>
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block">New Price</span>
-                                            <input type="text" class="form-control" id="" placeholder="Quantity" [(ngModel)]="newProduct.sale_price" name="sale_price">
+                                            <input type="text" class="form-control"  placeholder="Sale Price" name="sale_price"  #sale_price="ngModel" [class.is-valid]="sale_price.valid && sale_price.touched" [class.is-invalid]="sale_price.invalid && (sale_price.touched || newProduct.submitted)"  ngModel required>
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block">Product Category</span>
-                                            <select #category (change)="getBrands(category.value)" class="form-control"  [(ngModel)]="newProduct.category_id" name="category_id">
+                                            <select (change)="getBrands(category_id.value)" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"   ngModel required>
                                                 <option *ngFor="let item of Icategory" [value]="item.id"> {{item.name}} </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-xl-6">
                                                 <span class="mb-2 d-block"> Brands </span>
-                                                <select class="form-control" name="brand_id"  [(ngModel)]="newProduct.brand_id">
+                                                <select class="form-control" name="brand_id" #brand_id="ngModel"  [class.is-valid]="brand_id.valid && brand_id.touched" [class.is-invalid]="brand_id.invalid && (brand_id.touched || newProduct.submitted)"   ngModel>
                                                     <option *ngFor="let item of Brands" [value]="item.id"> {{item.name}} </option>
                                                 </select>
                                             </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block">Product Image</span>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile" multiple  (change)="onFileSelect($event)" [(ngModel)]="newProduct.media" name="media">
+                                                <input type="file" class="custom-file-input" id="customFile" multiple  (change)="onFileSelect($event)" name="media" #media="ngModel"  [class.is-valid]="media.valid && media.touched" [class.is-invalid]="media.invalid && (media.touched || newProduct.submitted)"   ngModel required >
                                                 <label class="custom-file-label" for="customFile">Choose file</label>
                                             </div>
                                         </div>
                                         <div class="form-group col-xl-12">
                                             <span class="mb-2 d-block">Description</span>
                                             <textarea class="form-control" id="" rows="3"
-                                                placeholder="Write Description" [(ngModel)]="newProduct.description" name="description"></textarea>
+                                                placeholder="Write Description" name="description" #description="ngModel"  [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || newProduct.submitted)"   ngModel required></textarea>
                                         </div>
                                         <div class="col-xl-12">
                                             <button type="submit" class="button">Save Data</button>
