@@ -5,6 +5,7 @@ import { NgForm, FormGroup } from '@angular/forms';
 import { Icategory, Isub } from '../../_models/category';
 import { AuthService } from '../../auth.service';
 import { ApiService } from '../../_services/api.service';
+import axios from 'axios';
 //declare function subs(id):any ;
 declare function success(msg): any;
 declare function SetMap(): any;
@@ -17,13 +18,19 @@ declare function nav(type): any;
   styleUrls: ['./postadd.component.css']
 })
 export class PostaddComponent implements OnInit {
+
+  axios = axios;
+
   categoriesurl = environment.ApiUrl + 'nest';
   errorMsg: any;
   categories: any[]
-  cat: any
   brands: any[]
   citis: any[]
   create: NgForm
+  showProduct = [];
+  newProduct: NgForm
+  newProducts: any[]=[]
+  Brands;
   category_id: number = 5;
   Icategory: Icategory[]
   Isub: Isub[]
@@ -31,11 +38,12 @@ export class PostaddComponent implements OnInit {
   phone: string
   lat: "25.200279"
   lng: "55.274819"
-
+  products:any[]=[]
   marker = { lat: "25.200279", lng: "55.274819" }
   countries: any;
+  images: FileList;
 
-  constructor(public _authService: AuthService, private _api: ApiService, private _rea: RestService) { }
+  constructor(public rest:RestService,public _authService: AuthService, private _api: ApiService, private _rea: RestService) { }
   ngOnInit() {
     nav("hide");
 
@@ -53,7 +61,8 @@ export class PostaddComponent implements OnInit {
 
 
     this._api.categoris().subscribe(res => {
-      this.Icategory = res['data']; this.cat = res['data'][0]['name']; this.onSelect(res['data'][0]['id']);
+      this.Icategory = res['data']; 
+      this.getBrands(res['data'][0]['id']);
     },
       error => this.errorMsg = error);
     this.user = this._authService.getUser().userInfo
@@ -76,23 +85,56 @@ export class PostaddComponent implements OnInit {
 
 
  
+  addnew(newProduct: NgForm){
+    //this.newProducts.push(newProduct.value)
+    this.addproduct(newProduct)
 
 
+   console.table(this.newProducts)
 
-
-  selectsub(id) {
-    this.category_id = id;
-    this._rea.getBrands(id).subscribe(
-      res => {
-        this.brands = res.data
-        // console.log(res)
-      },
-      err => {
-        console.log(err)
-      }
-    );
-    // console.log(id);
   }
+
+
+
+  send(categoryId){
+
+
+          const headers = {
+      Authorization:  `Bearer  ${this._authService.user().token}`,
+      'Content-Type': 'multipart/form-data'};
+
+
+
+      this.newProducts.forEach(product => {
+        product.set('ad_id', categoryId);
+
+        console.log(product.value)
+
+
+        this.axios.post(environment.ApiUrl + "products", product , { headers } ).then(res=>{
+
+          console.log(res)
+    
+        }).catch(err=>console.log(err))
+
+
+      });
+
+
+
+
+
+
+
+  
+
+
+  }
+
+
+  
+
+
   onSelect(id) {
     const xx = this.Icategory.filter((item) => item.id == id);
     this.Isub = xx[0]['subs']
@@ -101,42 +143,95 @@ export class PostaddComponent implements OnInit {
     // this.states = this.selectService.getStates().filter((item) => item.countryid == countryid);
   }
 
-  createadd(create: NgForm) {
+  createadd(ad: NgForm) {
 
    // create.value.category_id = 9;
-    create.value.ispaided=0;
-    create.value.iswholesale=0;
-    create.value.keywordsId=1;
-    create.value.customerId = this.user.id;
-    create.value.lat = this.marker.lat;
-    create.value.lng = this.marker.lng;
-    create.value.ad_description=create.value.description
-    // var mar=getMarker();
+   ad.value.ispaided=0;
+   ad.value.iswholesale=0;
+   ad.value.keywordsId=1;
+   ad.value.customerId = this.user.id;
+   ad.value.lat = this.marker.lat;
+    ad.value.lng = this.marker.lng;
+    ad.value.ad_description=ad.value.description
+ 
 
-    //  if (typeof mar !== "undefined") {
-    //   create.value.lat= mar.position.lat();
-    //   create.value.lng=mar.position.lng()
-    //  };
+    if (this.newProducts.length==0) {
 
-
-    console.log(create.value);
-
-    this.postadd(create)
-  }
-
-  postadd(ad) {
-    this._rea.createadd(ad.value)
+    alert("dddddddddddddddddd")
+    }else
+    {
+      this._rea.createadd(ad.value)
       .subscribe(
         res => {
+
+         this.send(res['data'])
+          
+
           success("Product Add succsefuly!")
-          console.log(res)
+         // console.log(res)
         },
         err => {
-             console.log(err)
+          console.log(err)
         }
       )
+    }
   }
 
+
+  getBrands(id) {
+    this.rest.getBrands(id).subscribe((data: {}) => {
+      this.Brands = data['data'];
+     // console.log("--------------"+data);
+    });
+  }
+  addproduct(product){
+    // console.log();
+    const fd = new FormData();
+    for (let index = 0; index < this.images.length ; index++) {
+      const image = this.images[index];
+        fd.append('media[]',  image);
+    console.log(image );
+    }
+let newProduct = {
+  'title': product.value.title,
+  'qty':product.value.qty,
+  'reg_price':product.value.reg_price,
+  'sale_price':product.value.sale_price,
+  'description':product.value.description
+  };
+alert(product.value.brand_id);
+    fd.set('category_id', product.value.category_id);
+    fd.set('reg_price', product.value.reg_price);
+    fd.set('sale_price', product.value.sale_price);
+    fd.set('brand_id', "1");
+    fd.set('media', product.value.media);
+    fd.set('qty', product.value.qty);
+    fd.set('ad_id', "125");
+    fd.set('iswholesale', "1");
+    fd.set('title',product.value.title);
+    fd.set('description',product.value.description);
+    fd.set('ispaided',"0");
+    this.showProduct.push(newProduct);
+    this.newProducts.push(fd);
+    this.images=null
+
+    console.table(this.newProducts)
+
+
+  }
+  public math(aa: any, bb: any) {
+    return ((aa - bb) / aa * 100).toFixed(0)
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      
+      const files = event.target.files;
+      this.images=files;
+
+      console.log(this.images)
+    }
+  }
 
   onSelectLocation(event) {
 
