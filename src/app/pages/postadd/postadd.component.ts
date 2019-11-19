@@ -1,11 +1,15 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { RestService } from '../../_services/rest.service';
-import { NgForm, FormGroup } from '@angular/forms';
-import { Icategory, Isub } from '../../_models/category';
-import { AuthService } from '../../auth.service';
-import { ApiService } from '../../_services/api.service';
+import {Component, OnInit, Output, Input} from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {RestService} from '../../_services/rest.service';
+import {NgForm, FormGroup} from '@angular/forms';
+import {Icategory, Isub} from '../../_models/category';
+import {AuthService} from '../../auth.service';
+import {ApiService} from '../../_services/api.service';
 import axios from 'axios';
+import {ToastrService} from 'ngx-toastr'
+import { $ } from 'protractor';
+declare var $:any;
+// import { threadId } from 'worker_threads';
 //declare function subs(id):any ;
 declare function success(msg): any;
 declare function SetMap(): any;
@@ -18,9 +22,8 @@ declare function nav(type): any;
   styleUrls: ['./postadd.component.css']
 })
 export class PostaddComponent implements OnInit {
-
+  subAds = false;
   axios = axios;
-
   categoriesurl = environment.ApiUrl + 'nest';
   errorMsg: any;
   categories: any[]
@@ -29,7 +32,7 @@ export class PostaddComponent implements OnInit {
   create: NgForm
   showProduct = [];
   newProduct: NgForm
-  newProducts: any[]=[]
+  newProducts: any[] = []
   Brands;
   category_id: number = 5;
   Icategory: Icategory[]
@@ -38,12 +41,15 @@ export class PostaddComponent implements OnInit {
   phone: string
   lat: "25.200279"
   lng: "55.274819"
-  products:any[]=[]
-  marker = { lat: "25.200279", lng: "55.274819" }
+  products: any[] = []
+  marker = {
+    lat: "25.200279",
+    lng: "55.274819"
+  }
   countries: any;
   images: FileList;
 
-  constructor(public rest:RestService,public _authService: AuthService, private _api: ApiService, private _rea: RestService) { }
+  constructor(private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {}
   ngOnInit() {
     nav("hide");
 
@@ -61,9 +67,9 @@ export class PostaddComponent implements OnInit {
 
 
     this._api.categoris().subscribe(res => {
-      this.Icategory = res['data']; 
-      this.getBrands(res['data'][0]['id']);
-    },
+        this.Icategory = res['data'];
+        this.getBrands(res['data'][0]['id']);
+      },
       error => this.errorMsg = error);
     this.user = this._authService.getUser().userInfo
     this.phone = this.user.phone
@@ -84,55 +90,58 @@ export class PostaddComponent implements OnInit {
   }
 
 
- 
-  addnew(newProduct: NgForm){
+
+  addnew(newProduct: NgForm) {
     //this.newProducts.push(newProduct.value)
     this.addproduct(newProduct)
 
 
-   console.table(this.newProducts)
+    console.table(this.newProducts)
 
   }
 
 
 
-  send(categoryId){
+  send(categoryId) {
 
 
-          const headers = {
-      Authorization:  `Bearer  ${this._authService.user().token}`,
-      'Content-Type': 'multipart/form-data'};
-
-
-
-      this.newProducts.forEach(product => {
-        product.set('ad_id', categoryId);
-
-        console.log(product.value)
-
-
-        this.axios.post(environment.ApiUrl + "products", product , { headers } ).then(res=>{
-
-          console.log(res)
-    
-        }).catch(err=>console.log(err))
-
-
-      });
+    const headers = {
+      Authorization: `Bearer  ${this._authService.user().token}`,
+      'Content-Type': 'multipart/form-data'
+    };
 
 
 
+    this.newProducts.forEach(product => {
+      product.set('ad_id', categoryId);
+
+      console.log(product.value)
+
+
+      this.axios.post(environment.ApiUrl + "products", product, {
+        headers
+      }).then(res => {
+
+        console.log(res)
+
+      }).catch(err => console.log(err))
+
+
+    });
 
 
 
 
-  
+
+
+
+
 
 
   }
 
 
-  
+
 
 
   onSelect(id) {
@@ -145,64 +154,63 @@ export class PostaddComponent implements OnInit {
 
   createadd(ad: NgForm) {
 
-   // create.value.category_id = 9;
-   ad.value.ispaided=0;
-   ad.value.iswholesale=0;
-   ad.value.keywordsId=1;
-   ad.value.customerId = this.user.id;
-   ad.value.lat = this.marker.lat;
+    // create.value.category_id = 9;
+    ad.value.ispaided = 0;
+    ad.value.iswholesale = 0;
+    ad.value.keywordsId = 1;
+    ad.value.customerId = this.user.id;
+    ad.value.lat = this.marker.lat;
     ad.value.lng = this.marker.lng;
-    ad.value.ad_description=ad.value.description
- 
+    ad.value.ad_description = ad.value.description
+    if (ad.valid) {
+      if (this.showProduct.length > 0) {
+        this.subAds = true;
+        this._rea.createadd(ad.value)
+          .subscribe(
+            res => {
 
-    if (this.newProducts.length==0) {
-
-    alert("dddddddddddddddddd")
-    }else
-    {
-      this._rea.createadd(ad.value)
-      .subscribe(
-        res => {
-
-         this.send(res['data'])
-          
-
-          success("Product Add succsefuly!")
-         // console.log(res)
-        },
-        err => {
-          console.log(err)
-        }
-      )
+              this.send(res['data'])
+              this.subAds = false;
+              this.toastr.success("Product Add succsefuly!");
+              // console.log(res)
+            },
+            err => {
+              console.log(err)
+              this.subAds = false;
+            }
+          )
+      } else {
+        this.toastr.warning("choose product first");
+      }
     }
+
   }
 
 
   getBrands(id) {
     this.rest.getBrands(id).subscribe((data: {}) => {
       this.Brands = data['data'];
-     // console.log("--------------"+data);
+      // console.log("--------------"+data);
     });
   }
-  addproduct(product:NgForm){
+  addproduct(product: NgForm) {
     if (product.invalid) {
       return;
     }
     // console.log();
     const fd = new FormData();
-    for (let index = 0; index < this.images.length ; index++) {
+    for (let index = 0; index < this.images.length; index++) {
       const image = this.images[index];
-        fd.append('media[]',  image);
-    console.log(image );
+      fd.append('media[]', image);
+      console.log(image);
     }
-let newProduct = {
-  'title': product.value.title,
-  'qty':product.value.qty,
-  'reg_price':product.value.reg_price,
-  'sale_price':product.value.sale_price,
-  'description':product.value.description
-  };
-alert(product.value.brand_id);
+    let newProduct = {
+      'title': product.value.title,
+      'qty': product.value.qty,
+      'reg_price': product.value.reg_price,
+      'sale_price': product.value.sale_price,
+      'description': product.value.description
+    };
     fd.set('category_id', product.value.category_id);
     fd.set('reg_price', product.value.reg_price);
     fd.set('sale_price', product.value.sale_price);
@@ -211,16 +219,16 @@ alert(product.value.brand_id);
     fd.set('qty', product.value.qty);
     fd.set('ad_id', "125");
     fd.set('iswholesale', "1");
-    fd.set('title',product.value.title);
-    fd.set('description',product.value.description);
-    fd.set('ispaided',"0");
+    fd.set('title', product.value.title);
+    fd.set('description', product.value.description);
+    fd.set('ispaided', "0");
     this.showProduct.push(newProduct);
     this.newProducts.push(fd);
-    this.images=null
+    this.images = null
 
     console.table(this.newProducts)
     product.resetForm();
-    
+    $("#addproduct").modal('hide');
 
   }
   public math(aa: any, bb: any) {
@@ -229,9 +237,9 @@ alert(product.value.brand_id);
 
   onFileSelect(event) {
     if (event.target.files.length > 0) {
-      
+
       const files = event.target.files;
-      this.images=files;
+      this.images = files;
 
       console.log(this.images)
     }

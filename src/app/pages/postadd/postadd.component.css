@@ -10,3 +10,6 @@ agm-map { height: 300px; }
  .is-invalid:not(form)  {
    border-left: 5px solid #a94442; /* red */
  }
+ .is-invalid {
+  border-left: 5px solid #a94442; /* red */
+}

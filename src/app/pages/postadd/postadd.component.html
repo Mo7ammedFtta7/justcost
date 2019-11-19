@@ -57,10 +57,10 @@
                         <span class="col-sm-4 col-form-label">{{'Ad Description' | translate}} :<span
                                 class="red">*</span></span>
                         <div class="col-sm-8">
-                            <textarea class="form-control mb-2" dir="auto" #description="ngModel"
-                                [class.is-valid]="description.valid && description.touched"
-                                [class.is-invalid]="description.invalid && (description.touched || create.submitted)"
-                                name="description" ngModel required></textarea>
+                            <textarea class="form-control mb-2"
+                            [class.is-valid]="description.valid && description.touched"
+                                [class.is-invalid]="description.invalid && (description.touched )"
+                                dir="auto" #description="ngModel" name="description" ngModel required></textarea>
                             <small class="form-text text-muted">{{'Write description' | translate}}</small>
                         </div>
                     </div>
@@ -216,7 +216,7 @@
 
                     <div class="form-group" style="margin-bottom: 15px;">
                         <button type="submit" class="button "><i class="far fa-check-circle"></i>
-                            {{'Publish My Ad' | translate}}</button>
+                            {{'Publish My Ad' | translate}} <i *ngIf="subAds" class="fa fa-spinner fa-spin"></i> </button>
                     </div>
                     <!--  <div class="dz-default dz-message"><span>{{'Drop files here to upload' | translate}}</span>
                                 </div> -->
