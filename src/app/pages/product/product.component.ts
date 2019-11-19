@@ -20,12 +20,13 @@ declare function nav(type): any;
 export class ProductComponent implements OnInit {
   id: number;
   sub: any;
+  // formRating;
   page: any = 1;
   limit: any = 100;
   p: number = 1;
   commentForm: NgForm
   public comment: string
-  public commments: any;
+  public commments: any; 
   public product: any;
   public attributes: any;
   like: boolean = false
@@ -38,7 +39,7 @@ export class ProductComponent implements OnInit {
 
 
   }
-
+  
   ngOnInit() {
     nav("small");
     //  ViewMap()
@@ -49,7 +50,15 @@ export class ProductComponent implements OnInit {
     this.getcomments()
     this.getAttributes(this.id)
   }
-
+  setRate(rate){
+    if(this.product){
+    this._api.post('ratings',{rate:rate,product:this.product.productId}).subscribe((next)=>{
+    },
+    (error=>{
+      console.log(error);
+    }));
+  };
+}
   onLike(type) {
     if (type) {
       this._api.deslike(this.id);
@@ -73,7 +82,6 @@ export class ProductComponent implements OnInit {
       let imgUrl:[] = data['data'][0].media;
       imgUrl.forEach((r)=>{
         this.imagesUrl.push(new NgxSlideshowAcracodeModel(r['url']));
-        console.log(r['url']);
       })
       this.product = data['data'][0];
       this.like = data['data'][0]['likes']
