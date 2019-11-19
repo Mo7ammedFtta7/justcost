@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
 
     this.getProduct()
     this.getcomments()
-    this.getAttributes(this.id)
+    this.getAttributes(this.id);
   }
   setRate(rate){
     if(this.product){

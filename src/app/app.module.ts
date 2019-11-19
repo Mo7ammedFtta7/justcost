@@ -38,6 +38,7 @@ import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { OwlModule } from 'ngx-owl-carousel';  
 import {AgmCoreModule} from '@agm/core';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +75,7 @@ import {AgmCoreModule} from '@agm/core';
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
+    Ng2SearchPipeModule,
     BarRatingModule,
     OwlModule,
     AgmCoreModule.forRoot({
