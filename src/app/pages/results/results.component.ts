@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChildren} from '@angular/core';
 import { RestService } from '../../_services/rest.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
 import { HttpParams } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {AuthService} from '../../auth.service';
+import {ApiService} from '../../_services/api.service';
 declare function nav(type: any);
 @Component({
   selector: 'app-results',
@@ -11,25 +13,28 @@ declare function nav(type: any);
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
+  @ViewChildren('res') res;
   products: any[];
   filterProducts = [];
+  le: number;
   search: string;
   category: string;
   sub: any;
+  itemsPerPage = 3;
   product: any;
   lat: number;
   lng: number;
   brands = [];
   Brands: any[] = [];
-  fillterBrand = [];
   attributes = [];
+  filterBrand: string;
+  attrs = [];
   public paramsa: any[] = new Array();
 
-  constructor(public rest: RestService, private route: ActivatedRoute) {
+  constructor(public rest: RestService, private api: ApiService, private route: ActivatedRoute, public auth: AuthService) {
   }
 
   ngOnInit() {
-
     nav('sma ll');
     this.route.queryParams.subscribe(param => {
       Object.keys(param).map(i => {
@@ -37,6 +42,7 @@ export class ResultsComponent implements OnInit {
       });
       this.getAttributes(this.paramsa);
     });
+   //  console.log(this.auth.user().userInfo.likedProducts);
   }
 
   public math(aa: any, bb: any) {
@@ -53,14 +59,22 @@ export class ResultsComponent implements OnInit {
   }
 
   getAttributes(params) {
+    this.attributes = [];
+    this.brands = [];
     params['limit'] = '100';
     this.rest.getProductss(params).subscribe((data) => {
       // @ts-ignore
 
-      this.products = data['data'];
+      this.products = data.data;
       this.filterProducts = data.data;
-      this.attributes = _.map(data.data, 'attributes');
-
+      this.le = this.products.length;
+      const att = [];
+      data.data.forEach(item => {
+        if (!att.includes(item.attributes) && item.attributes != null) {
+          att.push(item.attributes);
+        }
+      });
+      this.attributes = _.split(att[0], ',');
       data['data'].forEach(item => {
         if (!this.brands.includes(item.brand)) {
           this.brands.push(item.brand);
@@ -76,17 +90,19 @@ export class ResultsComponent implements OnInit {
       this.lng = parseInt(product.location.split(',')[1], 0);
     }
   }
+  like(id) {
+    // @ts-ignore
+    this.api.toggleLike(id);
+  }
 
-  filterByBrand(brandy) {
+  filterByBrand(brand) {
+    this.filterBrand = brand;
+  }
+  filterByAttributes(attr) {
     this.filterProducts = this.products;
-    (this.fillterBrand.includes(brandy)) ? _.remove(this.fillterBrand, r => r === brandy) : this.fillterBrand.push(brandy);
-    this.filterProducts = [];
-    if (this.fillterBrand.length > 0) {
-      this.fillterBrand.forEach(r => {
-        this.filterProducts = _.filter(this.products, {brand: r}).concat(this.filterProducts);
-      });
-    } else {
-      this.filterProducts = this.products;
-    }
+    this.attrs.includes(attr) ? _.remove(this.attrs, r => r === attr) : this.attrs.push(attr);
+    this.attrs.forEach(r => {
+      this.filterProducts = _.filter(this.filterProducts, atr =>  _.includes(atr.attributes, r));
+    });
   }
 }

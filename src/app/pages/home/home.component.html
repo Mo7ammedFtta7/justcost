@@ -1,8 +1,33 @@
 <!-- START FEATURED ADS -->
 <!-- <section class="featured-ads"> -->
         <section class="">
-
     <h3 class="main-title">{{ 'Featured ads' | translate }}</h3>
+    <div *ngIf="loaded" class="item">
+            <ngx-skeleton-loader [theme]="{
+            width: '20%',
+            'border-radius': '25',
+            height: '200px',
+            'margin-left': '10px',
+            'margin-bottom': '10px'
+          }" count="4"> 
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{
+            width: '20%',
+            'border-radius': '25',
+            height: '200px',
+            'margin-left': '10px',
+            'margin-bottom': '10px'
+          }" count="4"> 
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{
+            width: '20%',
+            'border-radius': '25',
+            height: '200px',
+            'margin-left': '10px',
+            'margin-bottom': '10px'
+          }" count="4"> 
+        </ngx-skeleton-loader>
+        </div>
     <div class="ads py-4">
         <div class="row">
           

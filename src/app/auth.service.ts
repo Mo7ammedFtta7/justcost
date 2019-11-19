@@ -35,7 +35,7 @@ export class AuthService {
     return this.user().token;
   }
   
-  setToken(data: string) {
+  setToken(data) {
     localStorage.setItem(this.secretKey, this.crypt.encrypt(this.secretKey, JSON.stringify(data)));
   }
 

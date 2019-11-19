@@ -1,4 +1,8 @@
 import { AuthGuard } from './auth.guard';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import {ToastrModule} from 'ngx-toastr'
+import { NgxSlideshowAcracodeModule } from 'ngx-slideshow-acracode';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +38,7 @@ import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { OwlModule } from 'ngx-owl-carousel';  
 import {AgmCoreModule} from '@agm/core';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,12 +65,17 @@ import {AgmCoreModule} from '@agm/core';
     TimeAgoPipe
   ],
   imports: [
+    ToastrModule.forRoot(),
+    NgxSkeletonLoaderModule,
+    NgxSlideshowAcracodeModule,
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,
+    Ng2SearchPipeModule,
     BarRatingModule,
     OwlModule,
     AgmCoreModule.forRoot({

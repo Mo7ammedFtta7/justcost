@@ -11,7 +11,13 @@
                     <span class="alert-yellow float-right">{{math(product?.reg_price,product?.sale_price)}}% {{'off' | translate }}</span>
                     <div class="clearfix"></div>
                 </div>
+                <ngx-slideshow-acracode 
+                 [images]="imagesUrl"
+                 [auto]="true"
+                  [timeLap]="6000">
+                </ngx-slideshow-acracode>
                 <!-- Start Slider 
+                    
                 <div class="slider2">
                     <div class="owl-carousel">
                         <div *ngFor="let url of product?.media" class="item">
@@ -21,24 +27,11 @@
                 </div>
                  End Slider -->
                   <!-- Start Slider -->
-
-                  {{slides | json}}
                   <!-- <div class="slider2">
                         <div [innerHTML]="slides" id="slider" class="owl-carousel">
                             
                         </div>
                     </div> -->
-
-
-
-
-                    <owl-carousel [options]="SlideOptions" [items]="images" [carouselClasses]="['owl-theme', 'sliding']" >  
-                            <div class="item" *ngFor="let img of Images">  
-                            <div style="align-content: center">  
-                            <img style="height: 260px;width:100%"src={{img}}/>  
-                            </div>  
-                            </div>  
-                            </owl-carousel>  
                     <!-- End Slider -->
 
                 <!-- Start List -->
@@ -53,7 +46,7 @@
                     {{attri.group}}:  {{attri.attributes}}</li>
                 </ul>
                 <!-- End List -->
-
+                <bar-rating  name="rating" [rate]="product?.rating" [max]="5" [readOnly]="true"></bar-rating>
                 <span class="line"></span>
 
                 <!-- Start border -->
@@ -118,6 +111,8 @@
                             <textarea class="form-control" name="comment" ngModel placeholder="Write your comment here"></textarea>
                         </div>
                         <div class="form-group mb-3 text-right">
+                                <bar-rating (rateChange)="setRate(formRating)" name="rating" [(ngModel)]="formRating"  [rate]="0" [max]="5" ></bar-rating>
+                                <!-- <pre> {{ formRating }} </pre> -->
                             <ng-container *ngIf="!_authService.loggedIn(); else Template">
                                     <button type="submit"  data-target=".bd-example-modal-xl" data-toggle="modal" class="button">{{'Post Comment' | translate }}</button>
 
@@ -126,10 +121,10 @@
                                     <button type="submit" class="button">{{'Post Comment' | translate }}</button>
 
                             </ng-template>
-
+                           
                         </div>
                     </form>
-
+                    
                     <!-- Start Reply area -->
                     <div class="reply-area">
 
