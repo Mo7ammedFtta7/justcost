@@ -91,7 +91,7 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                        <div class="classic" *ngFor="let item of myAds | paginate:  { id: 'myAds', itemsPerPage: 5, currentPage: p2 }">
+                        <div class="classic" *ngFor="let item of myAds | paginate:  { id: 'myAds', itemsPerPage: 5, currentPage: p }">
                             <div class="ads">
 
                                 <div class="image float-left">
@@ -129,7 +129,7 @@
                             </div>
                         </div><!-- End Classic -->
                         <div class="paginaion text-center">
-                            <pagination-controls id="myAds" class="my-pagination" (pageChange)="p2 = $event"></pagination-controls>
+                            <pagination-controls id="myAds" class="my-pagination" (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">

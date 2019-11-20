@@ -7,7 +7,7 @@ import {AuthService} from '../../auth.service';
 import {ApiService} from '../../_services/api.service';
 import axios from 'axios';
 import {ToastrService} from 'ngx-toastr'
-import { $ } from 'protractor';
+// import { $ } from 'protractor';
 declare var $:any;
 // import { threadId } from 'worker_threads';
 //declare function subs(id):any ;

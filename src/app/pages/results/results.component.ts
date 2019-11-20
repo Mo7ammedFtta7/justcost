@@ -17,6 +17,7 @@ export class ResultsComponent implements OnInit {
   products: any[];
   filterProducts = [];
   le: number;
+  p: number = 1;
   search: string;
   category: string;
   sub: any;

@@ -17,6 +17,7 @@ declare function success(msg):any;
 export class ProfileComponent implements OnInit {
   edit:NgForm
   cities;
+  p: number = 1;
   getprofile;
   editResponse = false;
   myAds;

@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
   page: any = 1;
   limit: any = 100;
   p: number = 1;
+  formRating;
   commentForm: NgForm
   public comment: string
   public commments: any; 
