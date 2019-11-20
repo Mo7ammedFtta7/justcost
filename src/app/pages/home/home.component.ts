@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public categories: Icategory[];
   categoriesurl = environment.ApiUrl + 'nest';
   countries: any[];
+  loaded = true;
   lang : string =this.translate.getlocalLang();
 
   public errorMsg;
@@ -70,6 +71,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       console.log(xx)
      this.items=xx;
+     if(this.items.length > 0)
+     this.loaded = false;
     });
     this._api.sub("getitems", sub)
   }

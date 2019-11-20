@@ -14,6 +14,8 @@ export class Axios {
         const headers = {
             Authorization:  `Bearer  ${this.auth.user().token}`,
             'Content-Type': 'multipart/form-data',
+            
+            
         };
         return this.axios.post(environment.ApiUrl + url, data , { headers } );
     }

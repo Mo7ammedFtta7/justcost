@@ -81,7 +81,8 @@
             <div *ngFor="let product of filterProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | filter: filterBrand "  class="item row">
 
                     <div class="photo text-center col-sm-3">
-                        <img src="assets/images/user.png"  alt="Image" class="img-fluid">
+                        <img appImage src="{{item?.media[0].url}}"  alt="Image" class="img-fluid">
+                    
                     </div>
                     <div class="about-photo  col-sm-9">
                         <div class="post-title">
@@ -102,12 +103,13 @@
                                         class="fas fa-chevron-right fa-sm"></i> {{product.category}} </small><br>
                                 <!-- <small>Usage: 6 - 8 Month</small>
                                 <small>Status: Very Good</small> -->
-                                <span class="star">3/5
+                                <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
+                                <!-- <span class="star">3/5
                                     <i class="far fa-star"></i>
                                     <i class="far fa-star"></i>
                                     <i class="far fa-star"></i>
                                     <i class="far fa-star"></i>
-                                </span>
+                                </span> -->
                             </div>
                             <div>
                                 <a href="#" class="button2"><i class="fas fa-phone"></i> +971501111112</a>

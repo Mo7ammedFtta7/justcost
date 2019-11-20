@@ -1,60 +1,70 @@
-
-            <div class="main-title" style="margin-bottom: 30px;">
-                <h5 style="margin: 0; color: #383F4C; font-size: 20px;">{{'Post New Ad' | translate}} </h5>
-            </div>
-            <!-- End Title -->
-            <div class="post-new">
-                <div class="row">
-                    <div class="col-xl-4 col-sm-12">
-                        <div class="new">
-                            <div class="person">
-                                <img appImage src="{{user?.image}}" class="rounded-circle" alt="User Image" width="70">
-                                <div class="data-person">
-                                    <h6>{{user?.name}}</h6>
-                                    <span>Member Since {{user?.created_at | date }}</span>
-                                </div>
-                            </div>
-                            <!-- Start List Links -->
-                            <ul class="list-unstyled text-uppercase">
-                                <!-- <li><a href="#"><i class="fas fa-user"></i> <span>about me</span></a></li> -->
-                                <li>
-                                    <a href="#"><i class="fas fa-suitcase"></i> <span>{{'my ads' | translate}}</span></a>
-                                    <span class="count float-right">10</span>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fas fa-heart"></i> <span>{{'watch later ads' | translate}}</span></a>
-                                    <span class="count float-right">44</span>
-                                </li>
-                                <!-- <li><a href="#"><i class="fas fa-cogs"></i> <span>profile settings</span></a></li>
-                                <li><a href="#"><i class="fas fa-sign-out-alt"></i> log out</a></li> -->
-                            </ul>
-                        </div>
-                        <!-- End New -->
+<div class="main-title" style="margin-bottom: 30px;">
+    <h5 style="margin: 0; color: #383F4C; font-size: 20px;">{{'Post New Ad' | translate}} </h5>
+</div>
+<!-- End Title -->
+<div class="post-new">
+    <div class="row">
+        <div class="col-xl-4 col-sm-12">
+            <div class="new">
+                <div class="person">
+                    <img appImage src="{{user?.image}}" class="rounded-circle" alt="User Image" width="70">
+                    <div class="data-person">
+                        <h6>{{user?.name}}</h6>
+                        <span>Member Since {{user?.created_at | date }}</span>
                     </div>
-                    <!-- Col #1 -->
+                </div>
+                <!-- Start List Links -->
+                <ul class="list-unstyled text-uppercase">
+                    <!-- <li><a href="#"><i class="fas fa-user"></i> <span>about me</span></a></li> -->
+                    <li>
+                        <a href="#"><i class="fas fa-suitcase"></i> <span>{{'my ads' | translate}}</span></a>
+                        <span class="count float-right">10</span>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-heart"></i> <span>{{'watch later ads' | translate}}</span></a>
+                        <span class="count float-right">44</span>
+                    </li>
+                    <!-- <li><a href="#"><i class="fas fa-cogs"></i> <span>profile settings</span></a></li>
+                                <li><a href="#"><i class="fas fa-sign-out-alt"></i> log out</a></li> -->
+                </ul>
+            </div>
+            <!-- End New -->
+        </div>
+        <!-- Col #1 -->
 
-                    <div class="col-xl-8 col-sm-12">
-                        <div class="details">
-                            <h6 class="small-title">{{ 'ad Details' | translate}} :</h6>
-                            <span class="line"></span>
-                            <!-- Start Form -->
-                            <form #create="ngForm" (ngSubmit)="createadd(create)" class="dropzone dz-clickable">
-                                <div class="form-group row">
-                                    <span class="col-sm-4 col-form-label">{{'Ad Title' | translate}} :<span class="red">*</span></span>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control mb-2" placeholder="{{'Write a title for your ad' | translate}}" [class.is-valid]="ad_title.valid && ad_title.touched" [class.is-invalid]="ad_title.invalid && (ad_title.touched || create.submitted)" dir="auto" #ad_title="ngModel" name="ad_title" ngModel required>
-                                        <small *ngIf="ad_title.invalid && ad_title.touched"  id="ad_title" class="form-text">Please provide a valid title.</small>
-                                        <small class="form-text text-muted text-danger">{{'Type minimum 5 characters' | translate}}</small>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <span class="col-sm-4 col-form-label">{{'Ad Description' | translate}} :<span class="red">*</span></span>
-                                    <div class="col-sm-8">
-                                        <textarea class="form-control mb-2" dir="auto"   #description="ngModel" [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || create.submitted)"  name="description"  ngModel required   ></textarea>
-                                        <small class="form-text text-muted">{{'Write description' | translate}}</small>
-                                    </div>
-                                </div>
-                                <!-- <div class="form-group row">
+        <div class="col-xl-8 col-sm-12">
+            <div class="details">
+                <h6 class="small-title">{{ 'ad Details' | translate}} :</h6>
+                <span class="line"></span>
+                <!-- Start Form -->
+                <form #create="ngForm" (ngSubmit)="createadd(create)" class="dropzone dz-clickable">
+                    <div class="form-group row">
+                        <span class="col-sm-4 col-form-label">{{'Ad Title' | translate}} :<span
+                                class="red">*</span></span>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control mb-2"
+                                placeholder="{{'Write a title for your ad' | translate}}"
+                                [class.is-valid]="ad_title.valid && ad_title.touched"
+                                [class.is-invalid]="ad_title.invalid && (ad_title.touched || create.submitted)"
+                                dir="auto" #ad_title="ngModel" name="ad_title" ngModel required>
+                            <small *ngIf="ad_title.invalid && ad_title.touched" id="ad_title" class="form-text">Please
+                                provide a valid title.</small>
+                            <small
+                                class="form-text text-muted text-danger">{{'Type minimum 5 characters' | translate}}</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <span class="col-sm-4 col-form-label">{{'Ad Description' | translate}} :<span
+                                class="red">*</span></span>
+                        <div class="col-sm-8">
+                            <textarea class="form-control mb-2"
+                            [class.is-valid]="description.valid && description.touched"
+                                [class.is-invalid]="description.invalid && (description.touched )"
+                                dir="auto" #description="ngModel" name="description" ngModel required></textarea>
+                            <small class="form-text text-muted">{{'Write description' | translate}}</small>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group row">
                                     <span class="col-sm-4 col-form-label">{{'Keywords' | translate}} :</span>
                                     <div class="col-sm-8">
                                         <div class="input-group mb-2">
@@ -66,204 +76,304 @@
                                         <small class="form-text text-muted">{{'Keywords Example' | translate}} : ads, car, cat,business</small>
                                     </div>
                                 </div> -->
-                                <div class="form-group row">
-                                    <span class="col-sm-4 col-form-label">{{'Phone Number' | translate}} :</span>
-                                    <div class="col-sm-8">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-phone-square"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text" class="form-control control2" placeholder="{{'Write your phone number' | translate}}"  [(ngModel)]="user.phone" #mobile="ngModel" [class.is-valid]="mobile.valid && mobile.touched" [class.is-invalid]="mobile.invalid && (mobile.touched || create.submitted)" dir="auto" name="mobile" ngModel  required>
-                                        </div>
+                    <div class="form-group row">
+                        <span class="col-sm-4 col-form-label">{{'Phone Number' | translate}} :</span>
+                        <div class="col-sm-8">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-phone-square"></i>
                                     </div>
                                 </div>
-
-                               
-                                <div class="form-group row">
-                                    <span class="col-sm-4 col-form-label">{{'Select Country' | translate}} :<span class="red">*</span></span>
-                                    <div class="col-sm-8">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-globe"></i></div>
-                                            </div>
-                                            <select class="form-control control2" ngModel #country="ngModel" (change)='getCitisOfCountry(country.value)'  name="country"  required>
-                                                <option selected="">{{'Select Country' | translate}}</option>
-                                                <option [value]="country.id" *ngFor="let country of countries">{{country.name}}</option>
-                                    
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <span class="col-sm-4 col-form-label">{{'Select City' | translate}} :<span class="red">*</span></span>
-                                    <div class="col-sm-8">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-globe"></i></div>
-                                            </div>
-                                            <select class="form-control control2" ngModel #cityId="ngModel" name ="cityId" required>
-                                                <option selected="">{{'Select City' | translate}}</option>
-                                                <option [value]="city.id" *ngFor="let city of citis">{{city.name}}</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-  <!-- Start Ad Products -->
-  <h6 class="small-title">ad Products :</h6>
-  <span class="line"></span>
-
-  <div class="form-group">
-      <div class="table-add">
-          <div class="table-responsive">
-              <table id="test-table" class="table table-condensed">
-                  <thead>
-                      <tr>
-                          <th>Product Name</th>
-                          <th>Quantity</th>
-                          <th>Old Price</th>
-                          <th>New Price</th>
-                          <th>Product Details</th>
-                          <th></th>
-                      </tr>
-                  </thead>
-                  <tbody id="test-body">
-                      <tr id="row0">
-                          <td>
-                              <input name='' type='text' class='form-control mt-29' placeholder="Product Name" style="width: 160px">
-                          </td>
-                          <td>
-                              <input name='' type='number' class='form-control input-sm mt-29' placeholder="3232">
-                          </td>
-                          <td>
-                              <small class="mb-1 d-inline-block">AED</small>
-                              <input name='' type='text' class='form-control input-sm' placeholder="3232">
-                          </td>
-                          <td>
-                              <small class="mb-1 d-inline-block">AED</small>
-                              <input name='' type='text' class='form-control input-sm' placeholder="500">
-                              <span class="alert-yellow mt-2">0% off</span>
-                          </td>
-                          <td>
-                              <div class="btn btn-info mt-29" data-toggle="modal" data-target="#moreDetailsModal">Details <i class="fa fa-external-link-alt"></i></div>
-                              <!-- Product Details Modal  -->
-                              <div class="modal more-product fade" id="moreDetailsModal" tabindex="-1" role="dialog" aria-labelledby="moreDetailsModalTitle" aria-hidden="true">
-                                  <div class="modal-dialog modal-xl" role="document">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title" id="moreDetailsModalTitle">Products Details</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                              </button>
-                                          </div>
-                                          <div class="modal-body">
-                                              <small class=" d-inline-block">Prodcut Description</small>
-                                              <textarea name="" id="" cols="30" rows="10" class="form-control mt-10" placeholder="Write Description for the Product"></textarea>
-
-                                              <small class=" d-inline-block">Select the Prodcut Categories</small>
-                                              <!-- Start Select Category -->
-                                              <span>Product Category :</span>
-                                              <ul class="list-unstyled row Select-category category-list">
-                                                  <li><a href="#" class="select">Automotive</a></li>
-                                                  <li><a href="#">Property for sale</a></li>
-                                                  <li><a href="#">Property for rent</a></li>
-                                                  <li><a href="#">Shopping</a></li>
-                                                  <li><a href="#">Services</a></li>
-                                                  <li><a href="#">Electronics </a></li>
-                                              </ul>
-
-                                              <!-- Start Sub Category -->
-                                              <span>Sub Category :</span>
-                                              <ul class="list-unstyled row category-list">
-                                                  <li><a href="#">Bikes </a></li>
-                                                  <li><a href="#">Used Cars for Sale</a></li>
-                                                  <li><a href="#">Motorcycles</a></li>
-                                                  <li><a href="#">Heavy Vehicles</a></li>
-                                              </ul>
-                                              <!-- Start Media Details -->
-                                              <h6 class="small-title">ad Media :</h6>
-                                              <span class="line"></span>
-
-                                              <div class="form-group row">
-                                                  <span class="col-sm-4 col-form-label">Ad Photos & Videos :</span>
-                                                  <div class="col-sm-8">
-                                                      <div class="col-sm-12">
-                                                          <i class="fas fa-cloud-upload-alt float-left"></i>
-                                                          <div class="text float-left px-4">
-                                                              <span>Select ﬁles to upload</span>
-                                                              <small class="form-text text-muted">You can upload 4 Images
-                                                                  maximum.</small>
-                                                          </div>
-                                                          <div class="clearfix"></div>
-                                                      </div>
-                                                      <div class="col-sm-12">
-                                                          <div class="file-loading">
-                                                              <input id="kv-explorer" type="file" multiple>
-                                                          </div>
-                                                          <br>
-                                                          <div class="file-loading">
-                                                              <input id="file-0a" class="file" type="file" multiple data-min-file-count="1" data-theme="fas">
-                                                          </div>
-                                                      </div>
-                                                      <!-- Col Upload -->
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                              <button type="button" class="btn btn-success">Save changes</button>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <!-- Product Details Modal  -->
-                          </td>
-                          <td>
-                              <button class='delete-row button dis mt-29' disabled>
-                                  <i class="fas fa-times fa-fw"></i></button>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-              <button id='add-row' class="button"><i class="fas fa-plus"></i></button>
-          </div>
-      </div>
-  </div>
-
-  <!-- Start Location Details -->
-
-                                <div class="form-group row">
-                                    <span class="col-sm-4 col-form-label">{{'Map Location' | translate}} :</span>
-                                    <div class="col-sm-8">
-                                        <div class="map">
-                                            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232565.37346064637!2d54.41853622413337!3d24.387078860425174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f723ef2b9%3A0xc7cc2e9341971108!2sAbu+Dhabi+-+United+Arab+Emirates!5e0!3m2!1sen!2s!4v1552388228569" width="400" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe> -->
-                                            <agm-map [latitude]="25.276987" [longitude]="55.296249"  (mapClick)="onSelectLocation($event)">
-                                                <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" ></agm-marker>
-                                            </agm-map>
-                                        
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group" style="margin-bottom: 15px;">
-                                    <button type="submit" class="button "><i class="far fa-check-circle"></i> {{'Publish My Ad' | translate}}</button>
-                                </div>
-                                <div class="dz-default dz-message"><span>{{'Drop files here to upload' | translate}}</span>
-                                </div>
-                        </form>
-                            <!-- End Form-->
-                            <p>By clicking "Publish Ad", you agree to our <a href="#">Terms of Use</a> and acknowledge that you are the rightful owner of this item</p>
+                                <input type="text" class="form-control control2"
+                                    placeholder="{{'Write your phone number' | translate}}" [(ngModel)]="user.phone"
+                                    #mobile="ngModel" [class.is-valid]="mobile.valid && mobile.touched"
+                                    [class.is-invalid]="mobile.invalid && (mobile.touched || create.submitted)"
+                                    dir="auto" name="mobile" ngModel required>
+                            </div>
                         </div>
-                        <!-- End Details -->
                     </div>
-                    <!-- Col #2 -->
+
+
+                    <div class="form-group row">
+                        <span class="col-sm-4 col-form-label">{{'Select Country' | translate}} :<span
+                                class="red">*</span></span>
+                        <div class="col-sm-8">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-globe"></i></div>
+                                </div>
+                                <select class="form-control control2" ngModel #country="ngModel"
+                                    (change)='getCitisOfCountry(country.value)' name="country" required>
+                                    <option selected="">{{'Select Country' | translate}}</option>
+                                    <option [value]="country.id" *ngFor="let country of countries">{{country.name}}
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <span class="col-sm-4 col-form-label">{{'Select City' | translate}} :<span
+                                class="red">*</span></span>
+                        <div class="col-sm-8">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-globe"></i></div>
+                                </div>
+                                <select class="form-control control2" ngModel #cityId="ngModel" name="cityId" required>
+                                    <option selected="">{{'Select City' | translate}}</option>
+                                    <option [value]="city.id" *ngFor="let city of citis">{{city.name}}</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <span class="col-sm-4 col-form-label">{{'Map Location' | translate}} :</span>
+                        <div class="col-sm-8">
+                            <div class="map">
+                                <agm-map [latitude]="25.276987" [longitude]="55.296249"
+                                    (mapClick)="onSelectLocation($event)">
+                                    <agm-marker [latitude]="marker.lat" [longitude]="marker.lng"></agm-marker>
+                                </agm-map>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Start Ad Products -->
+                    <h6 class="small-title">ad Products :</h6>
+                    <span class="line"></span>
+
+                    <div class="form-group">
+                        <div class="table-add">
+                            <div class="table-responsive">
+
+
+
+                                <button type="button" class="button" data-toggle="modal" data-target="#addproduct">
+                                    <i class="fas fa-plus"> Add Product</i>
+                                </button>
+
+                                <table id="test-table" class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Old Price</th>
+                                            <th>New Price</th>
+                                            <th>Product Details</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="test-body">
+                                        <tr *ngFor="let newProduct of showProduct">
+                                            <td>
+                                                    {{newProduct.title}}
+                                                <!-- <input name='' type='text' class='form-control mt-29'
+                                                    placeholder="Product Name" style="width: 160px"> -->
+                                            </td>
+                                            <td>
+                                                {{newProduct.qty}}
+                                                <!-- <input name='' type='number' class='form-control input-sm mt-29'
+                                                    placeholder="3232"> -->
+                                            </td>
+                                            <td>
+                                                {{newProduct.reg_price}}
+                                                <!-- <small class="mb-1 d-inline-block">AED</small>
+                                                <input name='' type='text' class='form-control input-sm'
+                                                    placeholder="3232"> -->
+                                            </td>
+                                            <td>
+                                                {{newProduct.sale_price}}
+                                                <!-- <small class="mb-1 d-inline-block">AED</small>
+                                                <input name='' type='text' class='form-control input-sm'
+                                                    placeholder="500"> -->
+                                                <span class="alert-yellow mt-2"> {{ math(newProduct.reg_price,newProduct.sale_price) }} % off</span>
+                                            </td>
+                                            <td>
+                                                    <small class="mb-1 d-inline-block">Details</small>
+                                                    {{newProduct.description}}
+                                                    <!-- <textarea  [value]="newProduct.description" class='form-control input-sm' cols="30" rows="10"></textarea> -->
+
+                                            </td>
+                                            <td>
+                                                <button class='delete-row button dis mt-29' disabled>
+                                                    <i class="fas fa-times fa-fw"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Start Location Details -->
+
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <button type="submit" class="button "><i class="far fa-check-circle"></i>
+                            {{'Publish My Ad' | translate}} <i *ngIf="subAds" class="fa fa-spinner fa-spin"></i> </button>
+                    </div>
+                    <!--  <div class="dz-default dz-message"><span>{{'Drop files here to upload' | translate}}</span>
+                                </div> -->
+                </form>
+                <!-- Product Details Modal  -->
+                <div class="modal more-product fade" id="moreDetailsModal" tabindex="-1" role="dialog"
+                    aria-labelledby="moreDetailsModalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="moreDetailsModalTitle">Products Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <small class=" d-inline-block">Prodcut Description</small>
+                                <textarea name="" id="" cols="30" rows="10" class="form-control mt-10"
+                                    placeholder="Write Description for the Product"></textarea>
+
+                                <small class=" d-inline-block">Select the Prodcut Categories</small>
+                                <!-- Start Select Category -->
+                                <span>Product Category :</span>
+                                <ul class="list-unstyled row Select-category category-list">
+                                    <li><a href="#" class="select">Automotive</a></li>
+                                    <li><a href="#">Property for sale</a></li>
+                                    <li><a href="#">Property for rent</a></li>
+                                    <li><a href="#">Shopping</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Electronics </a></li>
+                                </ul>
+
+                                <!-- Start Sub Category -->
+                                <span>Sub Category :</span>
+                                <ul class="list-unstyled row category-list">
+                                    <li><a href="#">Bikes </a></li>
+                                    <li><a href="#">Used Cars for Sale</a></li>
+                                    <li><a href="#">Motorcycles</a></li>
+                                    <li><a href="#">Heavy Vehicles</a></li>
+                                </ul>
+                                <!-- Start Media Details -->
+                                <h6 class="small-title">ad Media :</h6>
+                                <span class="line"></span>
+
+                                <div class="form-group row">
+                                    <span class="col-sm-4 col-form-label">Ad Photos & Videos :</span>
+                                    <div class="col-sm-8">
+                                        <div class="col-sm-12">
+                                            <i class="fas fa-cloud-upload-alt float-left"></i>
+                                            <div class="text float-left px-4">
+                                                <span>Select ﬁles to upload</span>
+                                                <small class="form-text text-muted">You can upload 4 Images
+                                                    maximum.</small>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="file-loading">
+                                                <input id="kv-explorer" type="file" multiple>
+                                            </div>
+                                            <br>
+                                            <div class="file-loading">
+                                                <input id="file-0a" class="file" type="file" multiple
+                                                    data-min-file-count="1" data-theme="fas">
+                                            </div>
+                                        </div>
+                                        <!-- Col Upload -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- End Row -->
+                <!-- Product Details Modal  -->
+
+                <!--  -------------------- Edit Here -------------------- -->
+                <div>
+                    <!-- Button trigger modal -->
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="addproduct" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg addproduct" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form #newProduct="ngForm" (ngSubmit)="addproduct(newProduct)" class="row">
+                                        <div class="form-group col-xl-6">
+                                            <span class="mb-2 d-block">Product Name</span>
+                                            <input type="text" name="title" #name="ngModel"  [class.is-valid]="name.valid && name.touched" [class.is-invalid]="name.invalid && (name.touched || newProduct.submitted)"   ngModel required class="form-control" placeholder="Product Name">
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                            <span class="mb-2 d-block">Quantity</span>
+                                            <input type="text" class="form-control"name="qty" #qty="ngModel"  [class.is-valid]="qty.valid && qty.touched" [class.is-invalid]="qty.invalid && (qty.touched || newProduct.submitted)"   ngModel required placeholder="Quantity">
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                            <span class="mb-2 d-block">Old Price</span>
+                                            <input type="text" class="form-control" placeholder="Old Price" name="reg_price"  #reg_price="ngModel" [class.is-valid]="reg_price.valid && reg_price.touched" [class.is-invalid]="reg_price.invalid && (reg_price.touched || newProduct.submitted)"  ngModel required>
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                            <span class="mb-2 d-block">New Price</span>
+                                            <input type="text" class="form-control"  placeholder="Sale Price" name="sale_price"  #sale_price="ngModel" [class.is-valid]="sale_price.valid && sale_price.touched" [class.is-invalid]="sale_price.invalid && (sale_price.touched || newProduct.submitted)"  ngModel required>
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                            <span class="mb-2 d-block">Product Category</span>
+                                            <select (change)="getBrands(category_id.value)" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"   ngModel required>
+                                                <option *ngFor="let item of Icategory" [value]="item.id"> {{item.name}} </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-xl-6">
+                                                <span class="mb-2 d-block"> Brands </span>
+                                                <select class="form-control" name="brand_id" #brand_id="ngModel"  [class.is-valid]="brand_id.valid && brand_id.touched" [class.is-invalid]="brand_id.invalid && (brand_id.touched || newProduct.submitted)"   ngModel>
+                                                    <option *ngFor="let item of Brands" [value]="item.id"> {{item.name}} </option>
+                                                </select>
+                                            </div>
+                                        <div class="form-group col-xl-6">
+                                            <span class="mb-2 d-block">Product Image</span>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile" multiple  (change)="onFileSelect($event)" name="media" #media="ngModel"  [class.is-valid]="media.valid && media.touched" [class.is-invalid]="media.invalid && (media.touched || newProduct.submitted)"   ngModel required >
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-xl-12">
+                                            <span class="mb-2 d-block">Description</span>
+                                            <textarea class="form-control" id="" rows="3"
+                                                placeholder="Write Description" name="description" #description="ngModel"  [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || newProduct.submitted)"   ngModel required></textarea>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <button type="submit" class="button">Save Data</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -------------------- /** Edit Here -------------------- -->
+
+
+                <!-- End Form-->
+                <p>By clicking "Publish Ad", you agree to our <a href="#">Terms of Use</a> and acknowledge that you are
+                    the rightful owner of this item</p>
             </div>
-            <!-- End Post-New -->
-   
+            <!-- End Details -->
+        </div>
+        <!-- Col #2 -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Post-New -->

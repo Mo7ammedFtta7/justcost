@@ -35,6 +35,7 @@
     "ngx-bar-rating": "^1.1.0",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-pagination": "^3.2.1",
+    "ngx-skeleton-loader": "^1.2.2",
     "ngx-slideshow-acracode": "^1.3.0",
     "ngx-toastr": "^11.2.1",
     "owl.carousel": "^2.3.4",

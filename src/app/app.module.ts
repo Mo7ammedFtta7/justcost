@@ -1,4 +1,5 @@
 import { AuthGuard } from './auth.guard';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import {ToastrModule} from 'ngx-toastr'
 import { NgxSlideshowAcracodeModule } from 'ngx-slideshow-acracode';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -65,6 +66,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
   ],
   imports: [
     ToastrModule.forRoot(),
+    NgxSkeletonLoaderModule,
     NgxSlideshowAcracodeModule,
     BrowserAnimationsModule,
     BrowserModule,
