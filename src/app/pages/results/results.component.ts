@@ -42,7 +42,7 @@ export class ResultsComponent implements OnInit {
       });
       this.getAttributes(this.paramsa);
     });
-   //  console.log(this.auth.user().userInfo.likedProducts);
+    console.log(this.auth.user());
   }
 
   public math(aa: any, bb: any) {
