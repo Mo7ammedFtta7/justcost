@@ -1,6 +1,33 @@
 {
+  "Add Product": {
+    "ar": "أضف منتج"
+  },
+  "Email": {
+    "ar": "الايميل"
+  },
+  "Mobile": {
+    "ar": " رقم الهاتف"
+  },
+  "Password": {
+    "ar": "كلمة السر"
+  },
+  "Re-Password": {
+    "ar": " اعد كلمة السر"
+  },
+  "Username": {
+    "ar": "اسم المستخدم"
+  },
+  "Full name": {
+    "ar": " الاسم كامل"
+  },
+  "Please Write a valid password": {
+    "ar": " ادخل كلمة سر صحيحة"
+  },
   "Login": {
     "ar": "تسجيل الدخول"
+  },
+  "Please Write a valid email": {
+    "ar": "الرجاء ادخال بريد صحيح"
   },
   "Logout": {
     "ar": "تسجيل الخروج"

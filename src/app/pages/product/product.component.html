@@ -16,13 +16,13 @@
                     <span class="alert-yellow float-right">{{math(product?.reg_price,product?.sale_price)}}% {{'off' | translate }}</span>
                     <div class="clearfix"></div>
                 </div>
-                <ngx-slideshow-acracode 
+                <ngx-slideshow-acracode
                  [images]="imagesUrl"
                  [auto]="true"
                   [timeLap]="6000">
                 </ngx-slideshow-acracode>
-                <!-- Start Slider 
-                    
+                <!-- Start Slider
+
                 <div class="slider2">
                     <div class="owl-carousel">
                         <div *ngFor="let url of product?.media" class="item">
@@ -34,7 +34,7 @@
                   <!-- Start Slider -->
                   <!-- <div class="slider2">
                         <div [innerHTML]="slides" id="slider" class="owl-carousel">
-                            
+
                         </div>
                     </div> -->
                     <!-- End Slider -->
@@ -67,8 +67,8 @@
                     <h6>{{'You may also like' | translate }} :</h6>
 
                     <div class="row">
-                        <div (click)="goToSim(item.id)" *ngFor="let item of simillarProduct" class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
-                            <div class="image"><img appImage src="images/honor-magic-1.png" alt="Image" style="height: 126px;" class="short"></div>
+                        <div (click)="goToSim(item.productId)" *ngFor="let item of simillarProduct" class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
+                            <div class="image"><img appImage [src]="item?.media[0].url" alt="Image" style="height: 126px;" class="short"></div>
                             <span class="offer"> {{math(item.reg_price,item.sale_price)}}% </span>
                             <h6> {{item.title}} </h6>
                         </div><!-- End Item -->
@@ -96,10 +96,10 @@
                             <ng-template #Template>
                                     <button type="submit" class="button">{{'Post Comment' | translate }} &nbsp; <i *ngIf="postLoaded" class="fa fa-spinner fa-spin"></i> </button>
                             </ng-template>
-                           
+
                         </div>
                     </form>
-                    
+
                     <!-- Start Reply area -->
                     <div class="reply-area">
 
@@ -148,13 +148,13 @@
                         <a href="javascript:;"  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 </ng-container>
                 <ng-template #elseTemplate> -->
-                          
+
                                     <a appLogin href="javascript:;" (click)="onLike(isLike)"  class="red"> <i [class.fas]="liked" id="likeClass"  [appLike]="id" class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
 
                         <a href="javascript:;" appLogin  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 <!-- </ng-template> -->
-                
-               
+
+
             </div><!-- #2 -->
             <div class="border">
                 <div class="person" style="overflow: hidden;">

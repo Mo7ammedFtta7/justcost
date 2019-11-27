@@ -65,8 +65,8 @@ export class PostaddComponent implements OnInit {
   }
   ngOnInit() {
     nav("hide");
-    this._api.get('myads').subscribe((next)=>{  
-      this.totalMyAds = next.data.length; 
+    this._api.get('myads').subscribe((next)=>{
+      this.totalMyAds = next.data.length;
     });
 
     this._rea.getCountries().subscribe(
@@ -164,6 +164,7 @@ export class PostaddComponent implements OnInit {
 
               this.send(res['data'])
               this.subAds = false;
+              ad.resetForm();
               this.toastr.success("Product Add succsefuly!");
             },
             err => {

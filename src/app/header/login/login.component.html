@@ -1,11 +1,15 @@
 <form  #f="ngForm" (ngSubmit)="onSubmit(f)">
   <div class="form-group">
-      <input type="text" class="form-control" placeholder="Username" name="username"  #username="ngModel"  [class.is-valid]="username.valid && username.touched" [class.is-invalid]="username.invalid && (username.touched || f.submitted)"   ngModel email required >
-      <small  *ngIf="username.invalid && (username.touched || f.submitted)" class="form-text " >Please Write a valid email.</small>
+      <input type="text" class="form-control" placeholder="example@email.com" name="username"  #username="ngModel"  [class.is-valid]="username.valid && username.touched" [class.is-invalid]="username.invalid && (username.touched || f.submitted)"   ngModel email required >
+      <small  *ngIf="username.invalid && (username.touched || f.submitted)" class="form-text " >
+        {{"Please Write a valid email" | translate}}
+      </small>
   </div>
   <div class="form-group">
-      <input type="password" class="form-control" placeholder="Password" name="password" #password="ngModel"  [class.is-valid]="password.valid && password.touched" [class.is-invalid]="password.invalid && (password.touched || f.submitted)"  ngModel required >
-      <small *ngIf="password.invalid && (password.touched || f.submitted)"  class="form-text" >Please Write a valid password.</small>
+      <input type="password" class="form-control" placeholder="************" name="password" #password="ngModel"  [class.is-valid]="password.valid && password.touched" [class.is-invalid]="password.invalid && (password.touched || f.submitted)"  ngModel required >
+      <small *ngIf="password.invalid && (password.touched || f.submitted)"  class="form-text" >
+        {{"Please Write a valid password" | translate}}
+      </small>
 
   </div>
   <div class="form-group form-check">

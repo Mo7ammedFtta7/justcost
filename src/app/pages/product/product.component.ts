@@ -43,14 +43,15 @@ export class ProductComponent implements OnInit {
   constructor(private router : Router,private _rea: RestService, private _api: ApiService, private route: ActivatedRoute, public _authService: AuthService) {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-      console.log(params);
     });
 
 
   }
 
   ngOnInit() {
-     this.arr = this._authService.user().userInfo['likedProducts'];
+     if (this._authService.loggedIn()) {
+      this.arr = this._authService.user().userInfo['likedProducts'];
+     }
     if (_.includes(this.arr,this.id)) {
       this.isLike = true;
       this.liked = true;
@@ -70,7 +71,6 @@ export class ProductComponent implements OnInit {
     this._api.get('similarProducts/'+this.id).subscribe(
       (next)=> {
         this.simillarProduct = next.data;
-        console.log(this.simillarProduct);
       },
       (error)=>{
         console.log(error);

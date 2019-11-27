@@ -1,26 +1,26 @@
  <form  #f="ngForm" (ngSubmit)="regSubmit(f)">
       <div class="form-group">
-          <input type="text" class="form-control" placeholder="Full name" name="name" #name="ngModel"  [class.is-valid]="name.valid && name.touched" [class.is-invalid]="name.invalid && (name.touched || f.submitted)" ngModel required >
+          <input type="text" class="form-control" placeholder="{{'Full name'| translate}}" name="name" #name="ngModel"  [class.is-valid]="name.valid && name.touched" [class.is-invalid]="name.invalid && (name.touched || f.submitted)" ngModel required >
                   <small *ngIf="name.invalid && name.touched"  id="emailHelp1" class="form-text">Please provide a valid username.</small>
       </div>
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Username" name="username" #username="ngModel"  [class.is-valid]="username.valid && username.touched" [class.is-invalid]="username.invalid && (username.touched || f.submitted)" ngModel required>
+        <input type="text" class="form-control" placeholder="{{'Username'| translate}}" name="username" #username="ngModel"  [class.is-valid]="username.valid && username.touched" [class.is-invalid]="username.invalid && (username.touched || f.submitted)" ngModel required>
         <small *ngIf="username.invalid && username.touched" id="emailHelp2" class="form-text">Please provide a valid username.</small>
     </div>
     <div class="form-group">
-        <input type="email" class="form-control" placeholder="E-mail" name="email" #email="ngModel"  [class.is-valid]="email.valid && email.touched" [class.is-invalid]="email.invalid && (email.touched || f.submitted)" ngModel required email>
+        <input type="email" class="form-control" placeholder="{{'Email'| translate}}" name="email" #email="ngModel"  [class.is-valid]="email.valid && email.touched" [class.is-invalid]="email.invalid && (email.touched || f.submitted)" ngModel required email>
         <small  *ngIf="email.invalid && email.touched" id="emailHelp3" class="form-text">Please provide a valid email.</small>
     </div>
     <div class="form-group">
-        <input type="number" class="form-control" placeholder="Mobile" name="mobile" #mobile="ngModel"  [class.is-valid]="mobile.valid && mobile.touched" [class.is-invalid]="mobile.invalid && (mobile.touched || f.submitted)" ngModel minlength="5" required>
+        <input type="number" class="form-control" placeholder="{{'Mobile'| translate}}" name="mobile" #mobile="ngModel"  [class.is-valid]="mobile.valid && mobile.touched" [class.is-invalid]="mobile.invalid && (mobile.touched || f.submitted)" ngModel minlength="5" required>
         <small *ngIf="mobile.invalid && mobile.touched" class="form-text">Your mobile must be more than 8.</small>
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Password" name="password"  #password="ngModel"  [class.is-valid]="password.valid && password.touched" [class.is-invalid]="password.invalid && (password.touched || f.submitted)" ngModel minlength="6" required>
+        <input type="password" class="form-control" placeholder="{{'Password'| translate}}" name="password"  #password="ngModel"  [class.is-valid]="password.valid && password.touched" [class.is-invalid]="password.invalid && (password.touched || f.submitted)" ngModel minlength="6" required>
         <small *ngIf="password.invalid && password.touched" id="emailHelp4" class="form-text">Your Password must be more than Six.</small>
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Re-Password" name="c_password" #c_password="ngModel"  [class.is-valid]="f.value.password === f.value.c_password && c_password.valid && c_password.touched " [class.is-invalid]="c_password.invalid && (c_password.touched || f.submitted)" ngModel required>
+        <input type="password" class="form-control" placeholder="{{'Re-Password'| translate}}" name="c_password" #c_password="ngModel"  [class.is-valid]="f.value.password === f.value.c_password && c_password.valid && c_password.touched " [class.is-invalid]="c_password.invalid && (c_password.touched || f.submitted)" ngModel required>
         <small *ngIf="f.value.password !== f.value.c_password && c_password.dirty" class="form-text">Passwords don't match..</small>
         <input type="hidden"  name="city" ngModel >
         <input type="hidden" value="{{ FromWeb }}" name="FromWeb"  ngModel >

@@ -65,6 +65,8 @@ import { TranslateService } from '../pipe/translate.service';
    }
 
    getProductss(params: HttpParams): Observable<any> {
+     console.log('parms');
+     console.log(params);
     return this.http.get(environment.ApiUrl + 'getAllProducts', {params}).pipe(
       map(this.extractData));
   }
