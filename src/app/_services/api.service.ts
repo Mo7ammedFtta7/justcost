@@ -120,12 +120,38 @@ export class ApiService {
   }
   toggleLike(id) {
     if (this._authService.user().userInfo.likedProducts.includes(id)) {
-      return this.http.post(environment.ApiUrl + 'like/deslike', {id: id}, this.httpOptions()).pipe(catchError(this.errorHandler));
+      return this.http.post(environment.ApiUrl + 'like/deslike', {id: id}, this.httpOptions())
+      // @ts-ignore
+        .pipe(catchError(this.errorHandler)).subscribe(next => this.updateUserDataAfterLikeProduct(next.data.product_id));
     }
     return  this.likeProduct(id).subscribe(next => {
       // @ts-ignore
-      this._authService.user().userInfo.likedProducts.push(next.data.product_id);
+      this.updateUserDataAfterLikeProduct(next.data.product_id);
     });
+  }
+  updateUserDataAfterLikeProduct(id) {
+    const likes =  this._authService.user().userInfo.likedProducts;
+    likes.push(id);
+    const up = {
+      token: this._authService.user().token,
+      userInfo: {
+        city: this._authService.user().userInfo.city,
+        country: this._authService.user().userInfo.country,
+        email: this._authService.user().userInfo.email,
+        email_verified_at: this._authService.user().userInfo.email_verified_at,
+        firebaseToken: this._authService.user().userInfo.firebaseToken,
+        gender: this._authService.user().userInfo.gender,
+        id: this._authService.user().userInfo.id,
+        image: this._authService.user().userInfo.image,
+        isVerified: this._authService.user().userInfo.isVerified,
+        likedProducts: likes,
+        mobile: this._authService.user().userInfo.mobile,
+        name: this._authService.user().userInfo.name,
+        username: this._authService.user().userInfo.username,
+        verificationCode: this._authService.user().userInfo.verificationCode,
+      }
+    };
+    return this._authService.setToken(up);
   }
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 422) {
