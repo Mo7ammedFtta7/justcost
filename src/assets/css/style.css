@@ -48,6 +48,7 @@ button:focus {
     padding: 15px 14px 10px;
     border-radius: 5px;
     margin: 20px 0;
+    cursor: pointer;
 }
 
 .main-title {
@@ -216,6 +217,7 @@ header .navbar {
     background-image: url("../images/cancel.svg");
   }
   .navbar .navbar-nav .nav-item .nav-link {
+    cursor: pointer;
     padding-right: 0.7rem !important;
     padding-left: 0.7rem !important;
   }

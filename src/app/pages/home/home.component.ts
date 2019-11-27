@@ -41,26 +41,18 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.countries = res.data
       },
       err => {
-        console.log(err)
       })
 
     // owl();
     this.getitems();
     this.getCategoris()
   }
-
+  goToProduct(id){
+    this.router.navigate(['/product/', id]);
+  }
   getitems() {
     var sub = this.rest.getFavProducts().subscribe(data=> {
       var xx:any[] = data['data'];
-      //  = data['data'].map(item=>{
-      //   if (item.media.length==0) {
-      //     item.media.push({id: 172, product_id: 0, url: "#", flag: 1, type: "jpeg"})
-      //   }
-      //   // item['discount']=this.math(item.reg_price,item.sale_price)
-      //   // console.log(item)
-
-      // });
-
       xx.map(item=>{
         if (item.media.length==0) {
           item.media.push({id: 0, product_id: 0, url: "#", flag: 1, type: "jpeg"})
@@ -68,8 +60,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         item['discount']=this.math(item.reg_price,item.sale_price)+"%";
         return item;
       })
-
-      console.log(xx)
      this.items=xx;
      if(this.items.length > 0)
      this.loaded = false;
@@ -79,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getCategoris() {
     var sub = this._api.categoris().subscribe(
-      res => this.categories = res['data'],
+      res => {this.categories = res['data']; console.log(this.categories); },
       error => this.errorMsg = error)
       this._api.sub("getCategoris", sub)
   }

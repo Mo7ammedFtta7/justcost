@@ -13,14 +13,9 @@ declare function success(msg): any;
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  lodaed = false;
   pass_match = false;
   public FromWeb = 1
-  // regForm = new FormGroup({
-  //   username: new FormControl(''),
-  //   password: new FormControl(''),
-  // });
-
-
   registerUserData = {}
   constructor(private _auth: AuthService, private _router: Router, private _api: ApiService) { };
 
@@ -39,12 +34,15 @@ export class RegisterComponent implements OnInit {
   }
 
   reqUser(user) {
+    this.lodaed = true;
     console.log(user.value)
     this._api.post("customer/register", user.value).subscribe(
       res => {
+        this.lodaed = false;
         success("registration successful please check your email for confirmation");
       },
       err => {
+        this.lodaed = false;
         if (err.status === 422) {
           Object.keys(err.error.data).forEach(kye => {
             Swal.fire("Opps",err.error.data[kye][0],"error");

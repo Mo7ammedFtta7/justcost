@@ -27,5 +27,5 @@
 
         <input type="hidden"  name="firebaseToken" ngModel >
     </div>
-    <button type="submit" class="btn btn-primary register ">{{'Register' | translate}} </button>
+    <button type="submit" class="btn btn-primary register ">{{'Register' | translate}} <i *ngIf="lodaed" style="font-size: 20px;" class="fa fa-spinner fa-spin"></i> </button>
 </form>

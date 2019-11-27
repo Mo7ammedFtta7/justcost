@@ -17,6 +17,7 @@ declare function success(msg):any;
 export class ProfileComponent implements OnInit {
   edit:NgForm
   cities;
+  loaded = true;
   p: number = 1;
   getprofile;
   editResponse = false;
@@ -35,13 +36,15 @@ export class ProfileComponent implements OnInit {
       profile: ['']
     });
     this.api.get('myads').subscribe((next)=>{  
-      this.myAds = next.data; 
+      this.myAds = next.data;
+      this.loaded = false;
       this.totalMyAds = this.myAds.length; 
       this.totalActive =_.filter(this.myAds,['status.id',3]).length;
       this.totalPaid =_.filter(this.myAds,['ispaided',"1"]).length;
     });
     this.api.get('like/likedProducts').subscribe((next)=>{this.LikedProducts = next.data;});
     this.api.get('cities').subscribe((next)=>{this.cities = next.data;});
+    this.loaded = false;
   }
    onImgSubmit() {
     const fd = new FormData();

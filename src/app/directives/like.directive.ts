@@ -10,11 +10,9 @@ export class LikeDirective {
   constructor(private _auth: AuthService, private renderer: Renderer2, private hostElement: ElementRef) { }
 
   ngOnInit() {
-
-    if (this._auth.loggedIn && this._auth.user()['userInfo']['likedProducts'].includes(this.producID)) {
+    if (this._auth.loggedIn() && this._auth.user()['userInfo']['likedProducts'].includes(this.producID)) {
       this.renderer.addClass(this.hostElement.nativeElement, 'fas');
       console.log(this.producID)
-
     }
 
   }

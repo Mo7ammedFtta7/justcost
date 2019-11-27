@@ -30,7 +30,30 @@ export class AuthService {
   getUser() {
     return this.user();
   }
+  arrayRemove(arr, value) {
 
+    return arr.filter(function(ele){
+        return ele != value;
+    });
+ 
+ }
+setLike(id){
+  let userInfo = this.user()['userInfo'];
+  userInfo['likedProducts'].push(id)
+  let payload = {}; 
+  payload['token'] =  this.user().token;
+  payload['userInfo'] = userInfo;
+  this.setToken(payload);
+}
+setDisLike(id){
+  let userInfo = this.user()['userInfo'];
+  userInfo['likedProducts']=this.arrayRemove(userInfo['likedProducts'],id);
+  let payload = {}; 
+  payload['token'] =  this.user().token;
+  payload['userInfo'] = userInfo;
+  this.setToken(payload);
+  console.log(this.user()['userInfo']);
+}
   getUserToken() {
     return this.user().token;
   }

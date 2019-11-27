@@ -1,4 +1,62 @@
-<div class="profile">
+<div *ngIf="loaded" class="fb-item">
+        <div class="first-section-wrapper">
+          <div class="gravatar">
+            <ngx-skeleton-loader appearance="circle" [theme]="{ width: '100px', height: '100px' }">
+            </ngx-skeleton-loader>
+          </div>
+          <div class="gravatar-title">
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '200px',
+                  'border-radius': '0',
+                  height: '25px',
+                  'margin-bottom': '10px'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{ width: '170px', 'border-radius': '0', height: '25px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </div>
+        </div>
+        <div class="second-section-wrapper">
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '80%',
+                'border-radius': '0',
+                height: '25px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '90%',
+                'border-radius': '0',
+                height: '25px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '60%',
+                'border-radius': '0',
+                height: '25px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+      <!-- loading -->
+<div *ngIf="!loaded" class="profile">
     <h3 style="font-size: 25px;">my profile</h3>
     <div class="row">
         <div class="col-xl-4 col-sm-12">

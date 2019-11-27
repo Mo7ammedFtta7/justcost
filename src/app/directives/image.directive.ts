@@ -15,7 +15,6 @@ export class ImageDirective {
   @HostListener('error')
   onError() {
     this.src = this.default;
-    console.log("error");
   }
 
 }

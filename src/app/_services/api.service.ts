@@ -43,7 +43,6 @@ export class ApiService {
 
 
   public sub(key:string,func:Subscription){
-    console.log(`sub : ${key}`)
     this.subscriptions[key]=func;
   }
 
@@ -82,25 +81,27 @@ export class ApiService {
     return this.http.post<any>(environment.ApiUrl + 'like/addlike', {id:id}, this.httpOptions())
       .catch(this.errorHandler);
   }
+  dislikeProduct(id: any) {
+    return this.http.post<any>(environment.ApiUrl + 'like/dislike', {id:id}, this.httpOptions())
+      .catch(this.errorHandler);
+  }
 
 
   like(id: any) {
      this.likeProduct(id).subscribe((data: {}) => {
-       console.log( data['data'])
      },
      err => {
       console.log(err)
      });
 
   }
-  deslike(productId: any) {
-
+  deslike(id: any) {
+    this.dislikeProduct(id).subscribe((data: {}) => {
+    },
+    err => {
+    });
   }
-   likes(){
-    return [1,2,3,4,224,5];
-  }
-
-
+  
   handleError(handleError: any): Observable<any> {
     throw new Error("Method not implemented.");
   }

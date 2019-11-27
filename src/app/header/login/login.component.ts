@@ -21,11 +21,11 @@ declare function nav(msg): any;
 export class LoginComponent implements OnInit,OnDestroy {
 
   constructor(private _auth: AuthService, private _router: Router, public apis: ApiService) { }
-
+  lodaed = false;
   ngOnInit() {
     nav("hide");
   }
-
+  
   onSubmit(f: NgForm) {
     if (f.valid) {
       this.loginUser(f);
@@ -33,8 +33,10 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
 
   loginUser(user) {
+    this.lodaed= true;
    var sub= this.apis.post("customer/login", user.value).subscribe(
         res => {
+          this.lodaed= false;
           if (res.success != true) {
             Swal.fire("Oops", " sorry we don't recognize this email", "error")
           } else {
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit,OnDestroy {
           }
         },
         err => {
+          this.lodaed= false;
           if (err.status == 401) {
             user.reset();
             Swal.fire("Oops", "Please Write a valid username and password", "error")

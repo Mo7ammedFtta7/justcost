@@ -4,36 +4,34 @@
     <h3 class="main-title">{{ 'Featured ads' | translate }}</h3>
     <div *ngIf="loaded" class="item">
             <ngx-skeleton-loader [theme]="{
-            width: '20%',
+            width: '24%',
             'border-radius': '25',
-            height: '200px',
+            height: '270px',
             'margin-left': '10px',
             'margin-bottom': '10px'
           }" count="4"> 
         </ngx-skeleton-loader>
         <ngx-skeleton-loader [theme]="{
-            width: '20%',
+            width: '24%',
             'border-radius': '25',
-            height: '200px',
+            height: '270px',
             'margin-left': '10px',
             'margin-bottom': '10px'
           }" count="4"> 
         </ngx-skeleton-loader>
         <ngx-skeleton-loader [theme]="{
-            width: '20%',
+            width: '24%',
             'border-radius': '25',
-            height: '200px',
+            height: '270px',
             'margin-left': '10px',
             'margin-bottom': '10px'
           }" count="4"> 
         </ngx-skeleton-loader>
         </div>
+
     <div class="ads py-4">
         <div class="row">
-          
-
-
-            <div *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
+            <div (click)="goToProduct(item?.productId)" *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
                 <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
                     <div class="item">
                         <img appImage src="{{item?.media[0].url}}"  alt="Image" class="img">
@@ -45,11 +43,6 @@
                     </div>
                     <div class="end-info">
                         <bar-rating [rate]="item?.ratings" [max]="5" [readOnly]="true"></bar-rating> 
-                        <!-- <a href="#"><i class="far fa-star"></i></a>
-                        <a href="#"><i class="far fa-star"></i></a>
-                        <a href="#"><i class="far fa-star"></i></a>
-                        <a href="#"><i class="far fa-star"></i></a> -->
-                         <!-- <a href="#" class="button float-right"><i class="far fa-heart"></i> save</a> -->
                         <div class="claerfix"></div>
                     </div>
                 </div>
@@ -77,11 +70,12 @@
                                 <div *ngIf="lang=='ar'"> {{sub.name_ar}}</div>
                                
                             </a>
-                                <span>{{sub.count}}</span>
+                                <span>{{sub.productsCount}}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
+                
             </div><!-- Col #1 -->
         </div><!-- End Row -->
     </div><!-- End Category -->

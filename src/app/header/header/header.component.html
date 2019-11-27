@@ -15,8 +15,8 @@
         <div class="collapse navbar-collapse " id="navbarResponsive">
           <ul class="navbar-nav selection ml-auto">
             <li class="nav-item">
-              <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"(click)="translate.setlocalLang('ar')"> <img class="flag" src="assets/images/emirian-flag-medium.gif">عربي</a>
-              <a *ngIf="translate.getlocalLang()=='ar'" class="nav-link"(click)="translate.setlocalLang('en')"> <img class="flag" src="assets/images/e-flag.png" alt="">English</a>
+              <a *ngIf="translate.getlocalLang()=='en'" class="nav-link"(click)="translate.setlocalLang('ar')"> <img class="flag" src="assets/images/emirian-flag-medium.gif"> عربي </a>
+              <a *ngIf="translate.getlocalLang()=='ar'" class="nav-link"(click)="translate.setlocalLang('en')"> <img class="flag" src="assets/images/e-flag.png" alt=""> English </a>
             </li>
             <li class="nav-item">
               <select class="custom-select" #CitisOfCountry (change)='getCitisOfCountry(CitisOfCountry.value)'>
@@ -209,8 +209,8 @@
   <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content text-center py-4">
           <div class="modal-body row px-5">
-             <button class="button mr-3 col" style="background:#FACB33; padding: 9px 10px;" data-dismiss="modal" aria-label="Close" routerLink="/postadd"   ><i class="fas fa-shopping-cart"></i> Single Product</button>
-             <button class="button col" style="background:#FACB33; padding: 9px 10px;"  data-dismiss="modal" aria-label="Close" routerLink="/postadd"><i class="fas fa-shopping-cart"></i> Multi Products</button>
+             <button class="button mr-3 col" style="background:#FACB33; padding: 9px 10px;" data-dismiss="modal" aria-label="Close" routerLink="/postadd" [queryParams]="{wholeSale: 0}"   ><i class="fas fa-shopping-cart"></i> Single Product</button>
+             <button class="button col" style="background:#FACB33; padding: 9px 10px;"  data-dismiss="modal" aria-label="Close" routerLink="/postadd"  [queryParams]="{wholeSale: 1}"><i class="fas fa-shopping-cart"></i> Multi Products</button>
           </div>
       </div>
   </div>

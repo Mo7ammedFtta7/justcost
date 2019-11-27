@@ -1,3 +1,8 @@
+<ngx-skeleton-loader *ngIf="loaded"
+    count="9"
+    [theme]="{ 'border-radius': '0', height: '50px' }"
+  ></ngx-skeleton-loader>
+<ng-container *ngIf="!loaded">
 <div class="main-title main-title2" style="margin-bottom: 30px;">
     <small><a href="/">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a href="/">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{product?.category}}</small>
 </div><!-- End Title -->
@@ -41,7 +46,7 @@
                     <li class="col-md-4 col-sm-6">Condition : Used </li> -->
                     <li class="col-md-4 col-sm-6 ">{{'Regular Price' | translate }} : <span class="red oldPrice">{{product?.reg_price }} AED</span></li>
                     <li class="col-md-4 col-sm-6">{{'Sell Price' | translate }} : <span class="red">{{product?.sale_price }} AED</span></li>
-                    <li class="col-md-4 col-sm-6">{{'Brand' | translate }} : <img src="{{product?.brand_image}}" alt="Image" width="70" style="max-width: 25px;"></li>
+                    <li class="col-md-4 col-sm-6">{{'Brand' | translate }} : <img [src]="product?.brand_image" appImage alt="Image" width="70" style="max-width: 25px;"></li>
                     <li class="col-md-4 col-sm-6" *ngFor="let attri of attributes" >
                     {{attri.group}}:  {{attri.attributes}}</li>
                 </ul>
@@ -52,11 +57,6 @@
                 <!-- Start border -->
                 <div class="border" style="margin-bottom: 25px;">
                     <h6>{{product?.description}}</h6>
-
-                    <!-- <span style="font-size: 15px;">Share with Friends</span>
-                    <a href="javascript:;" title="Facebook" deisabled><i class="fab fa-facebook-f fa-fw"></i></a>
-                    <a href="javascript:;" title="Twitter"><i class="fab fa-twitter fa-fw"></i></a>
-                    <a href="javascript:;" title="Whatsapp"><i class="fab fa-whatsapp fa-fw"></i></a> -->
                 </div>
                 <!-- End Border -->
 
@@ -67,35 +67,10 @@
                     <h6>{{'You may also like' | translate }} :</h6>
 
                     <div class="row">
-                        <div class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
-                            <div class="image"><img src="images/honor-magic-1.png" alt="Image" style="height: 126px;" class="short"></div>
-                            <span class="offer">15% off</span>
-                            <h6>Honor Magic 2 for sale</h6>
-                        </div><!-- End Item -->
-                        <div class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay=".3s">
-                            <div class="image"><img src="images/oneplus-3t-5898.png" alt="Image" class="img-fluid"></div>
-                            <span class="offer">30% off</span>
-                            <h6>OnePlus 3T for sale</h6>
-                        </div><!-- End Item -->
-                        <div class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay=".6s">
-                            <div class="image"><img src="images/Xiaomi-Mi-MIX-3.png" alt="Image" class="img-fluid"></div>
-                            <span class="offer">10% off</span>
-                            <h6>Xiaomi Mi Mix 3for sale</h6>
-                        </div><!-- End Item -->
-                        <div class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay=".9s">
-                            <div class="image"><img src="images/10_759.png" alt="Image" class="img-fluid"></div>
-                            <span class="offer">20% off</span>
-                            <h6>Nokia 7.1 for sale</h6>
-                        </div><!-- End Item -->
-                        <div class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="1.2s">
-                            <div class="image"><img src="images/ssga-fund-gadgets.png" style="height: 126px;" class="short"></div>
-                            <span class="offer">12% off</span>
-                            <h6>Nokia 2 for sale</h6>
-                        </div><!-- End Item -->
-                        <div class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="1.5s">
-                            <div class="image"><img src="images/oneplus-3t-5898.png" alt="Image" class="img-fluid"></div>
-                            <span class="offer">7% off</span>
-                            <h6>Nokia 1 Plus for sale</h6>
+                        <div (click)="goToSim(item.id)" *ngFor="let item of simillarProduct" class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
+                            <div class="image"><img appImage src="images/honor-magic-1.png" alt="Image" style="height: 126px;" class="short"></div>
+                            <span class="offer"> {{math(item.reg_price,item.sale_price)}}% </span>
+                            <h6> {{item.title}} </h6>
                         </div><!-- End Item -->
                     </div>
                 </div>
@@ -111,15 +86,15 @@
                             <textarea class="form-control" name="comment" ngModel placeholder="Write your comment here"></textarea>
                         </div>
                         <div class="form-group mb-3 text-right">
-                                <bar-rating (rateChange)="setRate(formRating)" name="rating" [(ngModel)]="formRating"  [rate]="0" [max]="5" ></bar-rating>
+                                <bar-rating *ngIf="!_authService.loggedIn()" (rateChange)="getModalLogin(formRating)" name="rating" [(ngModel)]="formRating"  [rate]="0" [max]="5" ></bar-rating>
+                                <bar-rating *ngIf="_authService.loggedIn()" (rateChange)="setRate(formRating)" name="rating" [(ngModel)]="formRating"  [rate]="0" [max]="5" ></bar-rating>
                                 <!-- <pre> {{ formRating }} </pre> -->
                             <ng-container *ngIf="!_authService.loggedIn(); else Template">
                                     <button type="submit"  data-target=".bd-example-modal-xl" data-toggle="modal" class="button">{{'Post Comment' | translate }}</button>
 
                             </ng-container>
                             <ng-template #Template>
-                                    <button type="submit" class="button">{{'Post Comment' | translate }}</button>
-
+                                    <button type="submit" class="button">{{'Post Comment' | translate }} &nbsp; <i *ngIf="postLoaded" class="fa fa-spinner fa-spin"></i> </button>
                             </ng-template>
                            
                         </div>
@@ -174,7 +149,7 @@
                 </ng-container>
                 <ng-template #elseTemplate> -->
                           
-                                    <a appLogin href="javascript:;"  (click)="onLike(like)"  class="red"> <i [appLike]="id"   Class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
+                                    <a appLogin href="javascript:;" (click)="onLike(isLike)"  class="red"> <i [class.fas]="liked" id="likeClass"  [appLike]="id" class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
 
                         <a href="javascript:;" appLogin  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 <!-- </ng-template> -->
@@ -183,7 +158,7 @@
             </div><!-- #2 -->
             <div class="border">
                 <div class="person" style="overflow: hidden;">
-                    <img src="{{product?.customerPic}}" alt="User Image" class="float-left rounded-circle" width="70">
+                    <img appImage src="{{product?.customerPic}}" alt="User Image" class="float-left rounded-circle" width="70">
                     <div class="float-left data-person">
                         <h6>{{product?.customerName}}</h6>
                         <!-- <span>Member Since : 19-01-2019</span> -->
@@ -207,3 +182,4 @@
         </div><!-- Col #2 -->
     </div><!-- End Row -->
 </div><!-- End Account -->
+</ng-container>
