@@ -19,22 +19,22 @@ declare var $;
 })
 export class ProductComponent implements OnInit {
   _ = _ ;
-  isLike:boolean
+  isLike:boolean;
   id: number;
   sub: any;
   simillarProduct:any;
   loaded = true;
   postLoaded = false;
   // formRating;
-  liked:boolean;
+  liked: boolean;
   page: any = 1;
   limit: any = 100;
-  p: number = 1;
+  p: number =1;
   formRating;
   arr = [];
   commentForm: NgForm
   public comment: string
-  public commments: any; 
+  public commments: any;
   public product: any;
   public attributes: any;
   like: boolean = false;
@@ -43,12 +43,12 @@ export class ProductComponent implements OnInit {
   constructor(private router : Router,private _rea: RestService, private _api: ApiService, private route: ActivatedRoute, public _authService: AuthService) {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-      
+      console.log(params);
     });
 
 
   }
-  
+
   ngOnInit() {
      this.arr = this._authService.user().userInfo['likedProducts'];
     if (_.includes(this.arr,this.id)) {
@@ -68,7 +68,7 @@ export class ProductComponent implements OnInit {
     this.getcomments()
     this.getAttributes(this.id);
     this._api.get('similarProducts/'+this.id).subscribe(
-      (next)=> { 
+      (next)=> {
         this.simillarProduct = next.data;
         console.log(this.simillarProduct);
       },
@@ -87,7 +87,7 @@ export class ProductComponent implements OnInit {
     if (rate) {
       $('#mainmodel').modal('show');
     }
-    
+
   }
   setRate(rate){
     if(this.product && rate){
