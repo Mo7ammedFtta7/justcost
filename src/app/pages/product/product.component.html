@@ -83,7 +83,7 @@
                     <h6>{{'Comments' | translate }} :</h6>
                     <form #commentForm="ngForm" (ngSubmit)="addcomment(commentForm,product?.productId)">
                         <div class="form-group mb-3">
-                            <textarea class="form-control" name="comment" ngModel placeholder="Write your comment here"></textarea>
+                            <textarea class="form-control" name="comment" ngModel placeholder=" {{'Write your comment here'|translate}} "></textarea>
                         </div>
                         <div class="form-group mb-3 text-right">
                                 <bar-rating *ngIf="!_authService.loggedIn()" (rateChange)="getModalLogin(formRating)" name="rating" [(ngModel)]="formRating"  [rate]="0" [max]="5" ></bar-rating>

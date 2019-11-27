@@ -48,9 +48,13 @@
                                 [class.is-invalid]="ad_title.invalid && (ad_title.touched || create.submitted)"
                                 dir="auto" #ad_title="ngModel" name="ad_title" ngModel required>
                             <small *ngIf="ad_title.invalid && ad_title.touched" id="ad_title" class="form-text">Please
-                                provide a valid title.</small>
-                            <small
-                                class="form-text text-muted text-danger">{{'Type minimum 5 characters' | translate}}</small>
+                                provide a valid title.
+                              <br>
+                              {{'Type minimum 5 characters' | translate}}
+                              </small>
+                            <!-- <small class="form-text text-muted text-danger">
+
+                              </small> -->
                         </div>
                     </div>
                     <div class="form-group row">
@@ -320,15 +324,15 @@
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block"> {{"Quantity" | translate}} </span>
-                                            <input type="text" class="form-control"name="qty" #qty="ngModel"  [class.is-valid]="qty.valid && qty.touched" [class.is-invalid]="qty.invalid && (qty.touched || newProduct.submitted)"   ngModel required>
+                                            <input type="number" min="1" class="form-control"name="qty" #qty="ngModel"  [class.is-valid]="qty.valid && qty.touched" [class.is-invalid]="qty.invalid && (qty.touched || newProduct.submitted)"   ngModel required>
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block"> {{"Old Price" | translate}}</span>
-                                            <input type="text" class="form-control" name="reg_price"  #reg_price="ngModel" [class.is-valid]="reg_price.valid && reg_price.touched" [class.is-invalid]="reg_price.invalid && (reg_price.touched || newProduct.submitted)"  ngModel required>
+                                            <input type="number" min="1" class="form-control" name="reg_price"  #reg_price="ngModel" [class.is-valid]="reg_price.valid && reg_price.touched" [class.is-invalid]="reg_price.invalid && (reg_price.touched || newProduct.submitted)"  ngModel required>
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block"> {{"New Price" | translate}}</span>
-                                            <input type="text" class="form-control"  name="sale_price"  #sale_price="ngModel" [class.is-valid]="sale_price.valid && sale_price.touched" [class.is-invalid]="sale_price.invalid && (sale_price.touched || newProduct.submitted)"  ngModel required>
+                                            <input type="number" min="1" class="form-control"  name="sale_price"  #sale_price="ngModel" [class.is-valid]="sale_price.valid && sale_price.touched" [class.is-invalid]="sale_price.invalid && (sale_price.touched || newProduct.submitted)"  ngModel required>
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block"> {{"Product Category" | translate}}</span>
@@ -357,12 +361,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-xl-12">
-                                            <span class="mb-2 d-block"> {{"Ad Description" | translate}</span>
+                                            <span class="mb-2 d-block"> {{"Ad Description" | translate}}</span>
                                             <textarea class="form-control" id="" rows="3"
-                                                placeholder="Write Description" name="description" #description="ngModel"  [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || newProduct.submitted)"   ngModel required></textarea>
+                                                name="description" #description="ngModel"  [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || newProduct.submitted)"   ngModel required></textarea>
                                         </div>
                                         <div class="col-xl-12">
-                                            <button type="submit" class="button">Save Data</button>
+                                            <button type="submit" class="button">{{"Save Data" | translate}} <i class="fa fa-save"></i> </button>
                                         </div>
                                     </form>
                                 </div>
@@ -374,8 +378,10 @@
 
 
                 <!-- End Form-->
-                <p>By clicking "Publish Ad", you agree to our <a href="#">Terms of Use</a> and acknowledge that you are
-                    the rightful owner of this item</p>
+                <p>
+                  {{"By clicking 'Publish Ad', you agree to our"|translate}}
+                  <a href="#"> {{"Terms of Use" | translate}} </a>
+                  {{"and acknowledge that you are the rightful owner of this item" | translate}} </p>
             </div>
             <!-- End Details -->
         </div>
