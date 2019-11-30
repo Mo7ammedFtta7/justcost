@@ -33,12 +33,13 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  reqUser(user) {
+  reqUser(user:NgForm) {
     this.lodaed = true;
     console.log(user.value)
     this._api.post("customer/register", user.value).subscribe(
       res => {
         this.lodaed = false;
+        user.resetForm;
         success("registration successful please check your email for confirmation");
       },
       err => {

@@ -36,9 +36,10 @@ import { ImageDirective } from './directives/image.directive';
 import { LikeDirective } from './directives/like.directive';
 import { LoginDirective } from './directives/login/login.directive';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
-import { OwlModule } from 'ngx-owl-carousel';  
+import { OwlModule } from 'ngx-owl-carousel';
 import {AgmCoreModule} from '@agm/core';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     TimeAgoPipe
   ],
   imports: [
+    Ng2ImgMaxModule,
     ToastrModule.forRoot(),
     NgxSkeletonLoaderModule,
     NgxSlideshowAcracodeModule,

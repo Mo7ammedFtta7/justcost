@@ -31,7 +31,7 @@
 
                             </ul>
                         </div>
-                        <div class="brand" *ngIf="attributes?.length">
+                        <div class="brand" *ngIf="attributes?.length > 0">
                           <h6>{{ 'Attributes' | translate }}</h6>
                           <ul class="list-unstyled check-ul">
                             <li *ngFor="let atr of attributes">
@@ -56,11 +56,9 @@
                         <div class="row">
                             <span class="col-xl-3  col-sm-12 sort"
                                 style="margin-top:7px; text-transform: none">{{'Sort by' | translate }}</span>
-                            <select class="form-control col-xl-9 col-sm-12">
-                                <option selected>Top Rated</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select #sort class="form-control col-xl-9 col-sm-12"  (change)="sortP(sort.value)">
+                                <option selected value="1">Select ..</option>
+                                <option  value="1" >Top Rated</option>
                             </select>
                         </div>
                     </div>
@@ -76,13 +74,71 @@
     <img class="mt-3 ml-5" src="assets/images/empty.png" alt="">
     <p> {{"empty" | translate}}</p>
 </div>
-
+<div *ngIf="loadedResult"  [class.text-right] ="translate.getlocalLang()=='ar'" [class.text-left] ="translate.getlocalLang()=='en'">
+    <div class="fb-item" *ngFor="let item of skeleton" >
+        <div class="first-section-wrapper">
+          <div class="gravatar" >
+            <ngx-skeleton-loader  [theme]="{ width: '200px', height: '100px' }">
+            </ngx-skeleton-loader>
+          </div>
+          <div class="gravatar-title">
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{ width: '170px', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+            <div>
+                <ngx-skeleton-loader
+                  [theme]="{
+                    width: '200px',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"
+                ></ngx-skeleton-loader>
+              </div>
+          </div>
+        </div>
+        <div class="second-section-wrapper">
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '80%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '90%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '60%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+</div>
 
             <div *ngFor="let product of filterProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | filter: filterBrand "  class="item row">
 
                     <div class="photo text-center col-sm-3">
-                        <img appImage src="{{item?.media[0].url}}"  alt="Image" class="img-fluid">
-                    
+                        <img appImage src="{{product?.media[0].url}}"  alt="Image" class="img-fluid">
+
                     </div>
                     <div class="about-photo  col-sm-9">
                         <div class="post-title">
@@ -100,23 +156,20 @@
                             <div>
                                 <small style="margin-right: 0;">{{ 'Home' | translate }} <i
                                         class="fas fa-chevron-right fa-sm"></i> {{ 'Categories' | translate }} <i
-                                        class="fas fa-chevron-right fa-sm"></i> {{product.category}} </small><br>
-                                <!-- <small>Usage: 6 - 8 Month</small>
-                                <small>Status: Very Good</small> -->
+                                        class="fas fa-chevron-right fa-sm">
+                                      </i>
+                                      <label *ngIf="translate.getlocalLang()=='ar'" > {{product.category}}  </label>
+                                      <label *ngIf="translate.getlocalLang()=='en'" > {{product.category}}  </label>
+                                    </small><br>
                                 <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
-                                <!-- <span class="star">3/5
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </span> -->
+
                             </div>
                             <div>
-                                <a href="#" class="button2"><i class="fas fa-phone"></i> +971501111112</a>
+                                <label href="#" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
                                 <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
                                   <i class="fas fa-map-marker-alt"></i> View Location
                                 </a>
-                                <div class="text-right grey">
+                                <div [class.text-right] ="translate.getlocalLang()=='en'" [class.text-left] ="translate.getlocalLang()=='ar'" class="grey">
                                     <a  (click)="like(product.productId)" href="javascript:;" class="button2"><i [appLike]="product.productId" class="far fa-heart"></i></a>
                                 </div>
                             </div>

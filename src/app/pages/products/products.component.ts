@@ -48,7 +48,7 @@ export class ProductsComponent implements OnInit {
     this.masterSelected = false;
     goup()
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']; 
+      this.id = +params['id'];
    });
    this.getAttributes(this.id);
   this.getProducts(this.page,'');
@@ -115,6 +115,6 @@ export class ProductsComponent implements OnInit {
         })
       this.getCheckedItemList();
     }
-  
+
 
 }

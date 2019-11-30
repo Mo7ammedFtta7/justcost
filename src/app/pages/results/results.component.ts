@@ -6,6 +6,7 @@ import { HttpParams } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../auth.service';
 import {ApiService} from '../../_services/api.service';
+import { TranslateService } from '../../pipe/translate.service';
 declare function nav(type: any);
 @Component({
   selector: 'app-results',
@@ -14,6 +15,8 @@ declare function nav(type: any);
 })
 export class ResultsComponent implements OnInit {
   @ViewChildren('res') res;
+  skeleton=[1,2,3,4];
+  loadedResult = true;
   products: any[];
   filterProducts = [];
   le: number;
@@ -32,22 +35,21 @@ export class ResultsComponent implements OnInit {
   attrs = [];
   public paramsa: any[] = new Array();
 
-  constructor(public rest: RestService, private api: ApiService, private route: ActivatedRoute, public auth: AuthService) {
+  constructor(public translate: TranslateService,public rest: RestService, private api: ApiService, private route: ActivatedRoute, public auth: AuthService) {
   }
 
   ngOnInit() {
-    nav('sma ll');
+    nav('small');
     this.route.queryParams.subscribe(param => {
       Object.keys(param).map(i => {
         this.paramsa[i] = param[i];
       });
       this.getAttributes(this.paramsa);
     });
-    console.log(this.auth.user());
   }
 
   public math(aa: any, bb: any) {
-    return ((aa - bb) / aa * 100).toFixed(2);
+    return ((aa - bb) / aa * 100).toFixed(0);
   }
 
   public filter(filterForm) {
@@ -68,14 +70,18 @@ export class ResultsComponent implements OnInit {
 
       this.products = data.data;
       this.filterProducts = data.data;
+      console.log(this.filterProducts);
+      this.loadedResult = false;
       this.le = this.products.length;
       const att = [];
       data.data.forEach(item => {
         if (!att.includes(item.attributes) && item.attributes != null) {
           att.push(item.attributes);
         }
+        this.attributes = att;
       });
       this.attributes = _.split(att[0], ',');
+      console.log(this.attributes)
       data['data'].forEach(item => {
         if (!this.brands.includes(item.brand)) {
           this.brands.push(item.brand);
@@ -83,7 +89,16 @@ export class ResultsComponent implements OnInit {
       });
     });
   }
+  sortP(id){
+    switch (id) {
+      case "1":
+          this.filterProducts = _.orderBy(this.filterProducts,['ratings'],['desc']);
+        break;
 
+      default:
+        break;
+    }
+  }
   getInfoMap(product) {
     this.product = product;
     if (this.product) {

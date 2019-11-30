@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   getitems() {
     var sub = this.rest.getFavProducts().subscribe(data=> {
+      this.loaded = false;
       var xx:any[] = data['data'];
       xx.map(item=>{
         if (item.media.length==0) {

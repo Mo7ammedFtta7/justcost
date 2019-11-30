@@ -98,13 +98,20 @@
         <div class="col-md-3">
           <select class="custom-select my-2" (change)="selectCity($event)"  id="inputGroupSelect01">
             <option value="0" selected>{{'Select City.' | translate}}</option>
-            <option *ngFor="let city of citis" [ngValue]="city.id">{{city.name}}</option>
+            <option *ngFor="let city of citis" [ngValue]="city.id">
+              <label *ngIf="translate.getlocalLang()=='en'" > {{city.name}} </label>
+              <label *ngIf="translate.getlocalLang()=='ar'" > {{city.arName}} </label>
+            </option>
           </select>
         </div>
         <div class="col-md-3">
           <select class="custom-select my-2" (change)="selectCat($event)" id="inputGroupSelect02">
             <option selected value="0">{{'Select Category' | translate}}</option>
-            <option *ngFor="let category of categories" [value]="category.name" >{{category.name}}</option>
+            <option *ngFor="let category of categories" [value]="category.name" >
+
+              <label *ngIf="translate.getlocalLang()=='en'" > {{category.name}} </label>
+              <label *ngIf="translate.getlocalLang()=='ar'" > {{category.name_ar}}</label>
+            </option>
           </select>
         </div>
 
@@ -167,8 +174,7 @@
 
                   <div class="password">
                     <a  [routerLink]="['/forgetPass']" routerLinkActive="router-link-active"  >{{ 'forget password' | translate }}</a>
-                    <p>{{'I don’t have account' | translate }} <a
-                      href="#">{{ 'Create new' | translate }}</a></p>
+
                   </div><!-- End Password-->
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

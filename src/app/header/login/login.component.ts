@@ -25,14 +25,14 @@ export class LoginComponent implements OnInit,OnDestroy {
   ngOnInit() {
     nav("hide");
   }
-  
+
   onSubmit(f: NgForm) {
     if (f.valid) {
       this.loginUser(f);
     }
   }
 
-  loginUser(user) {
+  loginUser(user:NgForm) {
     this.lodaed= true;
    var sub= this.apis.post("customer/login", user.value).subscribe(
         res => {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit,OnDestroy {
             if (res.data.userInfo.isVerified != true) {
               Swal.fire("Oops", "you have to confirm your account before continuing check your email", "error")
             } else {
-              console.log(res.data)
+              user.resetForm;
               this._auth.setToken(res.data);
               success("Welcome :)");
             }
