@@ -12,7 +12,6 @@ export class LikeDirective {
   ngOnInit() {
     if (this._auth.loggedIn() && this._auth.user()['userInfo']['likedProducts'].includes(this.producID)) {
       this.renderer.addClass(this.hostElement.nativeElement, 'fas');
-      console.log(this.producID)
     }
 
   }

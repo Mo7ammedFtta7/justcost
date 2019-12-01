@@ -81,7 +81,6 @@ export class ResultsComponent implements OnInit {
         this.attributes = att;
       });
       this.attributes = _.split(att[0], ',');
-      console.log(this.attributes)
       data['data'].forEach(item => {
         if (!this.brands.includes(item.brand)) {
           this.brands.push(item.brand);

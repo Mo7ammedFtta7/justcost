@@ -20,19 +20,19 @@ export class EmailverifyComponent implements OnInit
               this.route.params.subscribe(params => {
               this.id = +params['token'] });
               this.getEmailValidation(this.id)
-              
+
             }
 
         getEmailValidation(id:any )
             {
               this.rest.getEmailValidation (this.id)
               .subscribe(
-                res => {console.log(res.success)
+                res => {
                   if (res.success==true) {
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('data', JSON.stringify(res.data))
-                  } 
-              
+                  }
+
               // .subscribe(data => {
               //     this.val = data;
               //     if (this.val['success']==true)
@@ -44,5 +44,5 @@ export class EmailverifyComponent implements OnInit
               //     }
               });
                 }
-              
+
   }

@@ -124,7 +124,6 @@ export class ProductComponent implements OnInit {
         this.imagesUrl.push(new NgxSlideshowAcracodeModel(r['url']));
       })
       this.product = data['data'][0];
-      console.log(this.product);
       this.like = data['data'][0]['likes']
       this.loaded = false;
     });
@@ -148,7 +147,6 @@ export class ProductComponent implements OnInit {
         res => {
           commentForm.reset();
           this.postLoaded = false;
-          console.log(res);
           this.getcomments()
         },
         err => {

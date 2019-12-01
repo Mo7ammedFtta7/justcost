@@ -48,7 +48,7 @@ export class ApiService {
 
   public unsub(func:string[]){
     func.forEach(element => {
-      console.log(`unsub : ${element}`)
+
      this.subscriptions[element].unsubscribe()
     });
   }
@@ -91,7 +91,6 @@ export class ApiService {
      this.likeProduct(id).subscribe((data: {}) => {
      },
      err => {
-      console.log(err)
      });
 
   }
@@ -101,7 +100,7 @@ export class ApiService {
     err => {
     });
   }
-  
+
   handleError(handleError: any): Observable<any> {
     throw new Error("Method not implemented.");
   }
@@ -156,14 +155,14 @@ export class ApiService {
   errorHandler(error: HttpErrorResponse) {
     if (error.status === 422) {
       Object.keys(error.error.errors).forEach(key => {
-        console.log(error.error.errors[key][0]);
+
       });
     }
     if (error.status === 401) {
-        console.log(error.status)
+
         this.router.navigate(['/login']);
     }
-    console.log(error);
+  
     return throwError(error);
   }
 }

@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getCategoris() {
     var sub = this._api.categoris().subscribe(
-      res => {this.categories = res['data']; console.log(this.categories); },
+      res => {this.categories = res['data'];  },
       error => this.errorMsg = error)
       this._api.sub("getCategoris", sub)
   }

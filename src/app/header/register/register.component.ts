@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
 
   reqUser(user:NgForm) {
     this.lodaed = true;
-    console.log(user.value)
     this._api.post("customer/register", user.value).subscribe(
       res => {
         this.lodaed = false;

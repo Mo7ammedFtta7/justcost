@@ -1,3 +1,4 @@
+import { AdsComponent } from './pages/ads/ads.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './header/login/login.component'
@@ -19,6 +20,13 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
+    pathMatch: 'full'
+  }
+  ,
+  {
+  path: 'ads/:id',
+    component: AdsComponent
+    ,
     pathMatch: 'full'
   }
   ,
@@ -55,7 +63,7 @@ const routes: Routes = [
     ,
     pathMatch: 'full'
   },
-  
+
   {
     path: 'profile',
     component: ProfileComponent,

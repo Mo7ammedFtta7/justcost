@@ -10,8 +10,6 @@ export class LoginDirective {
 
   @HostListener('click',  ['$event'])
   click(e) {
-
-    console.log("login")
     if (! this.auht.loggedIn()) {
         e.preventDefault();
         e.stopPropagation();

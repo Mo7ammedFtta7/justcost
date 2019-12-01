@@ -7,6 +7,7 @@ import { ApiService} from '../../_services/api.service';
 import * as _ from 'lodash';
 import {Axios} from '../../_services/axios';
 import { CompressImage } from '../../_services/image';
+import { TranslateService } from '../../pipe/translate.service';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 declare function nav(type): any;
 declare function success(msg):any;
@@ -47,7 +48,9 @@ export class ProfileComponent implements OnInit {
       this.totalActive =_.filter(this.myAds,['status.id',3]).length;
       this.totalPaid =_.filter(this.myAds,['ispaided',"1"]).length;
     });
-    this.api.get('like/likedProducts').subscribe((next)=>{this.LikedProducts = next.data;});
+    this.api.get('like/likedProducts').subscribe((next)=>{
+      this.LikedProducts = next.data;
+    });
     this.api.get('cities').subscribe((next)=>{this.cities = next.data;});
   }
   // compress(image) {
@@ -57,14 +60,13 @@ export class ProfileComponent implements OnInit {
   //       return image;
   //     },
   //     error => {
-  //       console.log('😢 Oh no!', error);
+  //       ('😢 Oh no!', error);
   //     }
   //   );
   // }
    onImgSubmit() {
     const fd = new FormData();
     let oldImage = this.uploadForm.get('profile').value;
-    console.log(oldImage.size);
     if (oldImage.size > 40000) {
       this.MaxSize = true;
       return;
@@ -75,12 +77,10 @@ export class ProfileComponent implements OnInit {
     this.ng2ImgMax.compressImage(oldImage,0.040).subscribe(
       result => {
         let newIimage = new File([result], result.name);
-        console.log(newIimage);
         fd.append('image',newIimage);
         this.axios.post('customer/uploadImage', fd).then(r => {
           this.imageLoaded = false;
           this.toastr.success('Image Uploaded Succesfull');
-          console.log(r.data.data.userInfo.image);
            this._auth.setUserImg(r.data.data.userInfo.image)
           }
           );

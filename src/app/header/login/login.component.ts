@@ -43,16 +43,17 @@ export class LoginComponent implements OnInit,OnDestroy {
             if (res.data.userInfo.isVerified != true) {
               Swal.fire("Oops", "you have to confirm your account before continuing check your email", "error")
             } else {
-              user.resetForm;
+              user.resetForm();
               this._auth.setToken(res.data);
               success("Welcome :)");
+              user.resetForm();
             }
           }
         },
         err => {
           this.lodaed= false;
           if (err.status == 401) {
-            user.reset();
+            user.resetForm();
             Swal.fire("Oops", "Please Write a valid username and password", "error")
           } else {
             console.log(err)

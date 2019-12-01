@@ -18,7 +18,6 @@ export class AppComponent {
   constructor(public _translate : TranslateService,private router: Router){}
 
   ngOnInit() {
-    console.log(this.router.url);
     // small-header
     if ( this._translate.getlocalLang()=="ar") {
       dir();
