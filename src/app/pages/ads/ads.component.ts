@@ -12,6 +12,7 @@ export class AdsComponent implements OnInit {
   lat: number;
   lng: number;
   p:number = 1;
+  itemsPerPage = 4;
   constructor(private api: ApiService,public translate: TranslateService) { }
 
   ngOnInit() {
