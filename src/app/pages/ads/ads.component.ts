@@ -11,6 +11,7 @@ export class AdsComponent implements OnInit {
   product: any;
   lat: number;
   lng: number;
+  p:number = 1;
   constructor(private api: ApiService,public translate: TranslateService) { }
 
   ngOnInit() {
