@@ -165,6 +165,8 @@ export class PostaddComponent implements OnInit {
               this.send(res['data'])
               this.subAds = false;
               ad.resetForm();
+              delete this.showProduct;
+              delete this.newProducts;
               this.toastr.success("Product Add succsefuly!");
             },
             err => {
@@ -211,7 +213,7 @@ export class PostaddComponent implements OnInit {
       'sale_price': product.value.sale_price,
       'description': product.value.description
     };
-    alert(product.value.brand_id);
+    // alert(product.value.brand_id);
     fd.set('category_id', product.value.sub);
     fd.set('reg_price', product.value.reg_price);
     fd.set('sale_price', product.value.sale_price);

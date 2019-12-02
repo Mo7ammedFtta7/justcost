@@ -1,49 +1,137 @@
-<div class="row">
-    <div class="col-xl-8 col-sm-12">
-        <div class="item row" *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
-            <div class="photo text-center col-sm-3">
-                <img appImage src="{{product?.media[0]?.url}}" alt="Image" class="img-fluid">
-            </div><!-- Photo -->
-            <div class="about-photo  col-sm-9">
-                <div class="float-left py-3">
-                    <h6><a routerLink="/product/{{product?.productId}}">{{product?.title}}</a></h6>
-                    <small>{{(product.postedOn*1000)  | date }}</small>
-                </div>
-                <div class="float-right one one2 py-3">
-                    <span class="alert-yellow">
-                        {{math(product.reg_price,product.sale_price)}}%
-                        {{ 'off' | translate }}
-                      </span>
-                    <span class="red">AED {{product.sale_price}}</span>
-                </div>
-                <div class="clearfix"></div>
-                <span class="line"></span>
-                <div class="float-left py-3">
-                    <small style="margin-right: 0;">{{'Home' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
-                      {{ 'Categories' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
-                       <label *ngIf="translate.getlocalLang()=='ar'" > {{product.category}}  </label>
-                       <label *ngIf="translate.getlocalLang()=='en'" > {{product.category}}  </label>
-                      </small><br>
-                    <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
-                </div>
-                <div>
-                    <label href="#" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
-                    <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
-                      <i class="fas fa-map-marker-alt"></i> {{ "View Location" | translate}}
-                    </a>
-                    <div [class.text-right] ="translate.getlocalLang()=='en'" [class.text-left] ="translate.getlocalLang()=='ar'" class="grey">
-                        <a  (click)="like(product.productId)" href="javascript:;" class="button2"><i [appLike]="product.productId" class="far fa-heart"></i></a>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div><!-- About Photo-->
+<div *ngIf="loaded"  [class.text-right] ="translate.getlocalLang()=='ar'" [class.text-left] ="translate.getlocalLang()=='en'">
+    <div class="fb-item" *ngFor="let item of skeleton" >
+        <div class="first-section-wrapper">
+          <div class="gravatar" >
+            <ngx-skeleton-loader  [theme]="{ width: '200px', height: '100px' }">
+            </ngx-skeleton-loader>
+          </div>
+          <div class="gravatar-title">
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{ width: '170px', 'border-radius': '0', height: '15px' }"
+              ></ngx-skeleton-loader>
+            </div>
+            <div>
+                <ngx-skeleton-loader
+                  [theme]="{
+                    width: '200px',
+                    'border-radius': '0',
+                    height: '15px',
+                    'margin-bottom': '10px'
+                  }"
+                ></ngx-skeleton-loader>
+              </div>
+          </div>
         </div>
-
-        <div class="paginaion text-center">
-            <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+        <div class="second-section-wrapper">
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '80%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '90%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+          <div class="wrapper">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '60%',
+                'border-radius': '0',
+                height: '15px',
+                'margin-bottom': '10px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
         </div>
-    </div>
-    <div class="col-xl-8 col-sm-12">
-
       </div>
 </div>
+
+<div class="account">
+    <div  *ngIf="!loaded" class="row">
+        <div class="col-xl-8 col-sm-12">
+            <div class="item row" *ngFor="let product of ads?.products | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                <div class="photo text-center col-sm-3">
+                    <img appImage src="{{product?.media[0]?.url}}" alt="Image" class="img-fluid">
+                </div><!-- Photo -->
+                <div class="about-photo  col-sm-9">
+                    <div class="float-left py-3">
+                        <h6><a routerLink="/product/{{product?.productId}}">{{product?.title}}</a></h6>
+                        <small>{{(product.postedOn*1000)  | date }}</small>
+                    </div>
+                    <div class="float-right one one2 py-3">
+                        <span class="alert-yellow">
+                            {{math(product.reg_price,product.sale_price)}}%
+                            {{ 'off' | translate }}
+                          </span>
+                        <span class="red" style="color: red;" >AED {{product.sale_price}}</span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <span class="line"></span>
+                    <div class="float-left py-3">
+                        <small style="margin-right: 0;">{{'Home' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
+                          {{ 'Categories' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
+                           <label *ngIf="translate.getlocalLang()=='ar'" > {{product.category}}  </label>
+                           <label *ngIf="translate.getlocalLang()=='en'" > {{product.category}}  </label>
+                          </small><br>
+                        <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
+                    </div>
+                    <div>
+                        <label href="#" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
+                        <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
+                          <i class="fas fa-map-marker-alt"></i> {{ "View Location" | translate}}
+                        </a>
+                        <div [class.text-right] ="translate.getlocalLang()=='en'" [class.text-left] ="translate.getlocalLang()=='ar'" class="grey">
+                            <a  (click)="like(product.productId)" href="javascript:;" class="button2"><i [appLike]="product.productId" class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div><!-- About Photo-->
+            </div>
+
+            <div class="paginaion text-center">
+                <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-sm-12">
+          <label > {{"Ad Title"|translate}} </label>
+            <div class="border">
+                <p>
+                  {{ads?.ad_title}}
+                </p>
+            </div><!-- #1 -->
+            <label > {{ "Ad Description" | translate }} </label>
+            <div class="border">
+             <p>
+               {{ ads?.ad_description }}
+             </p>
+            </div><!-- #2 -->
+            <div class="border">
+                <div class="person" style="overflow: hidden;">
+                    <img appImage [src]="ads?.customerId?.image"  alt="User Image" class="float-left rounded-circle" width="70">
+                    <div class="float-left data-person">
+                        <h6> {{ads?.customerId?.name}} </h6>
+                    </div>
+                    <div class="clarfix"></div>
+                </div>
+            </div><!-- #3 -->
+            <div class="border">
+                <i class="fas fa-mobile-alt"></i>
+                <span class="phone"> {{ads?.customerId?.mobile}} </span>
+            </div><!-- #3 -->
+        </div><!-- Col #2 -->
+    </div>
+</div>
+

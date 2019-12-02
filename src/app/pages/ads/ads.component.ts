@@ -1,24 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../pipe/translate.service';
 import {ApiService} from '../../_services/api.service';
+import { ActivatedRoute } from '@angular/router';
+import { error } from '@angular/compiler/src/util';
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
   styleUrls: ['./ads.component.css']
 })
 export class AdsComponent implements OnInit {
-  products;
+  ads:any;
+  loaded = true;
   product: any;
   lat: number;
+  id:number;
   lng: number;
   p:number = 1;
+  skeleton=[1,2,3,4];
   itemsPerPage = 4;
-  constructor(private api: ApiService,public translate: TranslateService) { }
+  constructor(private route: ActivatedRoute,private api: ApiService,public translate: TranslateService) {
+    this.route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
+   }
 
   ngOnInit() {
-    this.api.get("adsget/1").subscribe(
+    this.api.get("adsget/"+this.id).subscribe(
       next => {
+        this.ads = next.data;
+        this.loaded = false;
         console.log(next.data);
+      }
+      ,
+      error => {
+        this.loaded = false;
       }
     );
   }
