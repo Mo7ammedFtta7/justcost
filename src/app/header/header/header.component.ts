@@ -69,9 +69,9 @@ export class HeaderComponent implements OnInit {
       queryParams['city'] = this.city;
     }
 
-    // console.log(queryParams)
+    console.log(queryParams)
 
-    this.router.navigate(['/results'], { queryParams: { search: this.Search } });
+    this.router.navigate(['/results'], { queryParams: queryParams });
   }
 
   getCitisOfCountry(countryId) {

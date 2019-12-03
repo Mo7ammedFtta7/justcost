@@ -150,7 +150,7 @@
 
 
                     <!-- Start Ad Products -->
-                    <h6 class="small-title">ad Products :</h6>
+                    <h6 class="small-title"> {{"ad Products"| translate}} </h6>
                     <span class="line"></span>
 
                     <div class="form-group">
@@ -166,11 +166,11 @@
                                 <table id="test-table" class="table table-condensed">
                                     <thead>
                                         <tr>
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th>Old Price</th>
-                                            <th>New Price</th>
-                                            <th>Product Details</th>
+                                            <th> {{"Product Name" | translate}} </th>
+                                            <th> {{"Quantity" | translate}} </th>
+                                            <th> {{"Old Price" | translate}} </th>
+                                            <th>{{"New Price"|translate}}</th>
+                                            <th> {{"Product Details"|translate}} </th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -332,7 +332,8 @@
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block"> {{"New Price" | translate}}</span>
-                                            <input type="number" min="1" class="form-control"  name="sale_price"  #sale_price="ngModel" [class.is-valid]="sale_price.valid && sale_price.touched" [class.is-invalid]="sale_price.invalid && (sale_price.touched || newProduct.submitted)"  ngModel required>
+                                            <input type="number" min="1" class="form-control"  name="sale_price"  #sale_price="ngModel" [class.is-valid]="sale_price.valid && sale_price.touched && (sale_price.value < reg_price.value)" [class.is-invalid]="sale_price.invalid && (sale_price.touched || newProduct.submitted) && (sale_price.value >= reg_price.value)"  ngModel required>
+                                            <span style="color: red;" *ngIf="(sale_price.touched || newProduct.submitted) && (sale_price.value >= reg_price.value)" > new price must be less Than old price </span>
                                         </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block"> {{"Product Category" | translate}}</span>

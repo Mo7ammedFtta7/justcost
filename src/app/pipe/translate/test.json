@@ -68,8 +68,14 @@
   "Badr on your Mobile !": {
     "ar": "تطبيق صرح على هاتفك"
   },
+  "Google Play": {
+    "ar": "متجر قوقل "
+  },
+  "Apple Store": {
+    "ar": "متجر أبل "
+  },
   "Download": {
-    "ar": "تحميل"
+    "ar": "تنزيل"
   },
   "About us": {
     "ar": "عنا"
@@ -124,6 +130,12 @@
   },
   "Cookies policy": {
     "ar": "شروط الكوكيز"
+  },
+  "Active Ads": {
+    "ar": "الاعلانات النشطة"
+  },
+  "Payed Ads": {
+    "ar": "الاعلانات المدفوعة"
   },
   "Help": {
     "ar": "مساعدة"
@@ -316,6 +328,12 @@
   },
   "watch later ads": {
     "ar": "الإعلانات المفضلة"
+  },
+  "Multi Products": {
+    "ar": " إعلان متعدد "
+  },
+  "Single Product": {
+    "ar": "منتج واحد "
   },
   "ad Details": {
     "ar": "تفاصيل"

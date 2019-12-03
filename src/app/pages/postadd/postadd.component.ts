@@ -167,7 +167,7 @@ export class PostaddComponent implements OnInit {
               ad.resetForm();
               delete this.showProduct;
               delete this.newProducts;
-              this.toastr.success("Product Add succsefuly!");
+              this.toastr.success("Product Added succsefuly!");
             },
             err => {
               this.subAds = false;
