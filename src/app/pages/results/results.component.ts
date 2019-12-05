@@ -19,12 +19,13 @@ export class ResultsComponent implements OnInit {
   loadedResult = true;
   products: any[];
   filterProducts = [];
+  oregenal = [];
   le: number;
   p: number = 1;
   search: string;
   category: string;
   sub: any;
-  itemsPerPage = 3;
+  itemsPerPage = 4;
   product: any;
   lat: number;
   lng: number;
@@ -69,6 +70,7 @@ export class ResultsComponent implements OnInit {
       // @ts-ignore
 
       this.products = data.data;
+      this.oregenal = data.data;
       this.filterProducts = data.data;
       console.log(this.filterProducts);
       this.loadedResult = false;
@@ -92,6 +94,12 @@ export class ResultsComponent implements OnInit {
     switch (id) {
       case "1":
           this.filterProducts = _.orderBy(this.filterProducts,['ratings'],['desc']);
+        break;
+      case "2":
+          this.filterProducts = _.orderBy(this.filterProducts,['sale_price'],['desc']);
+        break;
+      case "3":
+          this.filterProducts = _.orderBy(this.filterProducts,['sale_price'],['asc']);
         break;
 
       default:

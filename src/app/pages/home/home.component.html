@@ -9,7 +9,7 @@
             height: '270px',
             'margin-left': '10px',
             'margin-bottom': '10px'
-          }" count="4"> 
+          }" count="4">
         </ngx-skeleton-loader>
         <ngx-skeleton-loader [theme]="{
             width: '24%',
@@ -17,7 +17,7 @@
             height: '270px',
             'margin-left': '10px',
             'margin-bottom': '10px'
-          }" count="4"> 
+          }" count="4">
         </ngx-skeleton-loader>
         <ngx-skeleton-loader [theme]="{
             width: '24%',
@@ -25,13 +25,12 @@
             height: '270px',
             'margin-left': '10px',
             'margin-bottom': '10px'
-          }" count="4"> 
+          }" count="4">
         </ngx-skeleton-loader>
         </div>
-
     <div class="ads py-4">
         <div class="row">
-            <div (click)="goToProduct(item?.productId)" *ngFor="let item of items; let i=index" class="col-xl-3 col-sm-6">
+            <div (click)="goToProduct(item?.productId)" *ngFor="let item of items | slice: 0 : 8 ; let i=index" class="col-xl-3 col-sm-6">
                 <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
                     <div class="item">
                         <img appImage src="{{item?.media[0].url}}"  alt="Image" class="img">
@@ -42,7 +41,7 @@
                         <span>{{item?.category}}</span>
                     </div>
                     <div class="end-info">
-                        <bar-rating [rate]="item?.ratings" [max]="5" [readOnly]="true"></bar-rating> 
+                        <bar-rating [rate]="item?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                         <div class="claerfix"></div>
                     </div>
                 </div>
@@ -65,17 +64,17 @@
                     </div>
                     <div class="links" style="max-height: 250px;scroll-behavior: smooth;overflow-y: scroll;">
                         <ul class="list-unstyled">
-                            <li *ngFor="let sub of category.subs;"><a [routerLink]="['/results']" [queryParams]="{ category: sub.name}"> 
+                            <li *ngFor="let sub of category.subs;"><a [routerLink]="['/results']" [queryParams]="{ category: sub.name}">
                                 <div *ngIf="lang=='en'"> {{sub.name}}</div>
                                 <div *ngIf="lang=='ar'"> {{sub.name_ar}}</div>
-                               
+
                             </a>
                                 <span>{{sub.productsCount}}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-                
+
             </div><!-- Col #1 -->
         </div><!-- End Row -->
     </div><!-- End Category -->

@@ -7,6 +7,7 @@ import { TranslateService } from '../../pipe/translate.service';
 import { ApiService } from '../../_services/api.service';
 import {EncryptService} from '../../_services/encrypt.service';
 import {environment} from '../../../environments/environment';
+import * as _ from 'lodash';
 
 
 
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
   Category = '';
   city = '';
   env = environment;
+  _ = _;
   lang: string = this.translate.getlocalLang();
   constructor(public _authService: AuthService,
               private _rea: RestService,
