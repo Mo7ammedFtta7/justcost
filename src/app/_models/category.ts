@@ -1,7 +1,9 @@
     export interface Isub {
         id: number;
         name: string;
+        name_ar: string;
         count: number;
+        productsCount: number;
     }
 
     export interface Icategory {
@@ -16,7 +18,7 @@
 
 
 
-    
+
 
 
 

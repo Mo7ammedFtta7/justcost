@@ -64,12 +64,12 @@
                     </div>
                     <div class="links" style="max-height: 250px;scroll-behavior: smooth;overflow-y: scroll;">
                         <ul class="list-unstyled">
-                            <li *ngFor="let sub of category.subs;"><a [routerLink]="['/results']" [queryParams]="{ category: sub.name}">
+                            <li *ngFor="let sub of category.subs;">
+                              <a [routerLink]="['/results']" [queryParams]="{ category: sub.name}">
                                 <div *ngIf="lang=='en'"> {{sub.name}}</div>
                                 <div *ngIf="lang=='ar'"> {{sub.name_ar}}</div>
-
                             </a>
-                                <span>{{sub.productsCount}}</span>
+                            <span>{{sub.productsCount}}</span>
                             </li>
                         </ul>
                     </div>

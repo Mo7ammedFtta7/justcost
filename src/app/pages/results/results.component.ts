@@ -93,13 +93,13 @@ export class ResultsComponent implements OnInit {
   sortP(id){
     switch (id) {
       case "1":
-          this.filterProducts = _.orderBy(this.filterProducts,['ratings'],['desc']);
+          this.filterProducts = _.orderBy(this.oregenal,['ratings'],['desc']);
         break;
       case "2":
-          this.filterProducts = _.orderBy(this.filterProducts,['sale_price'],['desc']);
+          this.filterProducts = _.orderBy(this.oregenal,['sale_price'],['desc']);
         break;
       case "3":
-          this.filterProducts = _.orderBy(this.filterProducts,['sale_price'],['asc']);
+          this.filterProducts = _.orderBy(this.oregenal,['sale_price'],['asc']);
         break;
 
       default:
@@ -117,7 +117,9 @@ export class ResultsComponent implements OnInit {
     // @ts-ignore
     this.api.toggleLike(id);
   }
-
+checkFav(id){
+  return this.auth.user().userInfo.likedProducts.includes(id) ? true : false ;
+}
   filterByBrand(brand) {
     this.filterBrand = brand;
   }

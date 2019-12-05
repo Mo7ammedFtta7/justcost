@@ -187,6 +187,7 @@ export class PostaddComponent implements OnInit {
     this._api.get('subCategories/'+id).subscribe((next)=>{
       this.subload =  false;
       this.subCate = next.data;
+      // console.log(this.subCate);
     },
     (err)=>{
     }
@@ -195,6 +196,7 @@ export class PostaddComponent implements OnInit {
     // get brands
     this.rest.getBrands(id).subscribe((data: {}) => {
       this.Brands = data['data'];
+      console.log(this.Brands);
     });
   }
   addproduct(product: NgForm) {

@@ -98,7 +98,7 @@
         <div class="col-md-3">
           <select class="custom-select my-2" (change)="selectCity($event)"  id="inputGroupSelect01">
             <option value="0" selected>{{'Select City.' | translate}}</option>
-            <option *ngFor="let city of citis" [ngValue]="city.id">
+            <option *ngFor="let city of citis" [value]="city.id">
               <label *ngIf="translate.getlocalLang()=='en'" > {{city.name}} </label>
               <label *ngIf="translate.getlocalLang()=='ar'" > {{city.arName}} </label>
             </option>
@@ -107,7 +107,7 @@
         <div class="col-md-3">
           <select class="custom-select my-2" (change)="selectCat($event)" id="inputGroupSelect02">
             <option selected value="0">{{'Select Category' | translate}}</option>
-            <option *ngFor="let category of categories" [value]="category.name" >
+            <option *ngFor="let category of categories" [value]="category.id" >
 
               <label *ngIf="translate.getlocalLang()=='en'" > {{category.name}} </label>
               <label *ngIf="translate.getlocalLang()=='ar'" > {{category.name_ar}}</label>
