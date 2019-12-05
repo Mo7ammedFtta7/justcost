@@ -115,6 +115,7 @@ export class ResultsComponent implements OnInit {
   }
   like(id) {
     // @ts-ignore
+    this.checkFav(id)
     this.api.toggleLike(id);
   }
 checkFav(id){
