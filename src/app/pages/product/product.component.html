@@ -153,9 +153,9 @@
                 </ng-container>
                 <ng-template #elseTemplate> -->
 
-                                    <a appLogin href="javascript:;" (click)="onLike(isLike)"  class="red"> <i [class.fas]="liked" id="likeClass"  [appLike]="id" class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
+                       <a appLogin href="javascript:;" (click)="onLike(isLike)"  class="red"> <i [class.fas]="liked" id="likeClass"  [appLike]="id" class="far fa-heart"></i> {{'Add to favorite' | translate }}</a>
 
-                        <a href="javascript:;" appLogin  data-target=".bd-example-modal-xl" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
+                        <a href="javascript:;" appLogin data-target="#addReport" data-toggle="modal" class="red"><i class="fas fa-frown"></i> {{'Report Ad' | translate }}</a>
                 <!-- </ng-template> -->
 
 
@@ -197,7 +197,22 @@
           <div>
             <textarea class="form-control"  name="comment" [(ngModel)]="replyComment" placeholder=" {{'Write your comment here'|translate}} " rows="10"></textarea>
           </div>
-          <button  (click)="saveReply()" [disabled]="replyComment == null || replyComment == '' " type="button" class="btn btn-primary"><i class="fa fa-spinner fa-spin" *ngIf="replySaving"></i>  Save changes</button>
+          <button  (click)="saveReply()" [disabled]="replyComment == null || replyComment == '' " type="button" class="btn btn-primary"><i class="fa fa-spinner fa-spin" *ngIf="replySaving"></i>{{"send" | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="addReport" tabindex="-1" role="dialog" aria-labelledby="addReply" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div>
+            <textarea class="form-control"  name="comment" [(ngModel)]="reportText" placeholder=" {{'Write your report here'|translate}} " rows="10"></textarea>
+          </div>
+          <button  (click)="saveReport()" class="btn btn-primary"><i class="fa fa-spinner fa-spin" *ngIf="replySaving"></i>  {{"Send Report" | translate}} </button>
         </div>
       </div>
     </div>

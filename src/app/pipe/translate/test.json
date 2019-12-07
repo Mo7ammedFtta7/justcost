@@ -23,6 +23,15 @@
   "Email": {
     "ar": "الايميل"
   },
+  "Send Report": {
+    "ar": "ارسال التقرير "
+  },
+  "Write your report here": {
+    "ar": " أكتب تقريرك  "
+  },
+  "send": {
+    "ar": " إرسال "
+  },
   "Mobile": {
     "ar": " رقم الهاتف"
   },

@@ -43,6 +43,7 @@ export class ProductComponent implements OnInit {
   commentForReply: any;
   replyComment: string;
   replySaving = false;
+  reportText: string;
   constructor(private router : Router,private _rea: RestService, private _api: ApiService, private route: ActivatedRoute, public _authService: AuthService) {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -169,5 +170,9 @@ export class ProductComponent implements OnInit {
       const   reply = {customerName: this._authService.user().userInfo.name, postedOn: Date.now(),  comment: this.replyComment };
       this.commentForReply.replyes.push(reply);
     });
+  }
+
+  saveReport() {
+    console.log(this.reportText);
   }
 }
