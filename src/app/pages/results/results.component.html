@@ -155,8 +155,8 @@
                         <div class="clearfix"></div>
                         <span class="line"></span>
                         <div class="float-left py-3">
-                            <small style="margin-right: 0;">{{'Home' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
-                              {{ 'Categories' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
+                          <small style="margin-right: 0;"> <a href="" routerLink="/home"> {{'Home' | translate }}</a> <i class="fas fa-chevron-right fa-sm"></i>
+                            <a href="" routerLink="/home"> {{ 'Categories' | translate }} </a> <i class="fas fa-chevron-right fa-sm"></i>
                                <label *ngIf="translate.getlocalLang()=='ar'" > {{product.category}}  </label>
                                <label *ngIf="translate.getlocalLang()=='en'" > {{product.category}}  </label>
                               </small><br>

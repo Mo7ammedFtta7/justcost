@@ -40,6 +40,9 @@ export class ProductComponent implements OnInit {
   like: boolean = false;
   imagesUrl = [
 ];
+  commentForReply: any;
+  replyComment: string;
+  replySaving = false;
   constructor(private router : Router,private _rea: RestService, private _api: ApiService, private route: ActivatedRoute, public _authService: AuthService) {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -147,11 +150,24 @@ export class ProductComponent implements OnInit {
         res => {
           commentForm.reset();
           this.postLoaded = false;
-          this.getcomments()
+          this.getcomments();
         },
         err => {
         }
+      );
+  }
+  addReply(comment: number) {
+    this.commentForReply = comment;
+  }
 
-      )
+  saveReply() {
+    this.replySaving = true;
+    const payload = {parent_id: this.commentForReply.commentId, productid: this.product.productId, comment: this.replyComment};
+    this._rea.addcomment(payload).subscribe(next => {
+      this.replySaving = false;
+      $('#addReply').modal('hide');
+      const   reply = {customerName: this._authService.user().userInfo.name, postedOn: Date.now(),  comment: this.replyComment };
+      this.commentForReply.replyes.push(reply);
+    });
   }
 }

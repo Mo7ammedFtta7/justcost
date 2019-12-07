@@ -108,7 +108,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mx-1">
-                                        <h6>{{comment.customerName}} <a href="javascript:;"><i class="fas fa-reply"></i> {{'Reply' | translate }}</a></h6>
+                                        <h6>{{comment.customerName}} <a href="javascript:;" (click)="addReply(comment)" data-toggle="modal" data-target="#addReply"><i class="fas fa-reply"></i> {{'Reply' | translate }}</a></h6>
                                         <small>{{comment.postedOn}}</small>
                                     </div>
                                 </div>
@@ -118,6 +118,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div  *ngFor="let reply of comment.replyes" class="panel panel-reply">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -129,11 +130,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- Main Panel -->
+                        </div>
+
                     </div>
                     <!-- End Reply area -->
                 </div>
                 <!-- End Comments Area -->
+
+
 
             </div>
         </div><!-- Col #1 -->
@@ -182,4 +186,22 @@
         </div><!-- Col #2 -->
     </div><!-- End Row -->
 </div><!-- End Account -->
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="addReply" tabindex="-1" role="dialog" aria-labelledby="addReply" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div>
+            <textarea class="form-control"  name="comment" [(ngModel)]="replyComment" placeholder=" {{'Write your comment here'|translate}} " rows="10"></textarea>
+          </div>
+          <button  (click)="saveReply()" [disabled]="replyComment == null || replyComment == '' " type="button" class="btn btn-primary"><i class="fa fa-spinner fa-spin" *ngIf="replySaving"></i>  Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </ng-container>
