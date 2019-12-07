@@ -70,7 +70,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Select Image</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">{{"Select Image"| translate}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -80,13 +80,12 @@
                             <div class="form-group">
                               <input (change)="onImgSelect($event)" type="file" class="form-control-file" name="profile">
                             </div>
-                            <p *ngIf="MaxSize"  style="color: red;">max size of image is 40kb </p>
                           </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"Close" | translate}}</button>
               <button [disabled]="imageLoaded" (click)="onImgSubmit()" type="button" class="btn btn-primary">
-                Save changes
+                {{"Save changes"|translate}}
                 <i *ngIf="imageLoaded"  class="fa fa-spinner fa-spin"></i>
               </button>
             </div>
@@ -149,7 +148,7 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                        <div class="classic" *ngFor="let item of myAds | paginate:  { id: 'myAds', itemsPerPage: 5, currentPage: p }">
+                        <div class="classic" *ngFor="let item of myAds | paginate:  { id: 'myAds', itemsPerPage: 4, currentPage: p2 }">
                             <div class="ads">
 
                                 <div class="image float-left">
@@ -183,7 +182,7 @@
                             </div>
                         </div><!-- End Classic -->
                         <div class="paginaion text-center">
-                            <pagination-controls id="myAds" class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+                            <pagination-controls id="myAds" class="my-pagination" (pageChange)="p2 = $event"></pagination-controls>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -260,7 +259,7 @@
                                     <input type="email" class="form-control mb-2" placeholder="Enter Phone No" dir="auto">
                                 </div>
                             </div> -->
-                            <button type="submit" class="button">Edit Data <i *ngIf="editResponse" class="fa fa-spinner fa-spin" ></i> </button>
+                            <button type="submit" class="button"> {{"Save Data" | translate}} <i *ngIf="editResponse" class="fa fa-spinner fa-spin" ></i> </button>
                         </form>
                     </div><!-- Tab #3 -->
                 </div>

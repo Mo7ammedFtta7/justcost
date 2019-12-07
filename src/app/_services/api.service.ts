@@ -95,6 +95,7 @@ export class ApiService {
 
   }
   deslike(id: any) {
+    this._authService.setDisLike(id);
     this.dislikeProduct(id).subscribe((data: {}) => {
     },
     err => {
@@ -119,10 +120,9 @@ export class ApiService {
   }
   toggleLike(id) {
     if (this._authService.user().userInfo.likedProducts.includes(id)) {
-      return this.http.post(environment.ApiUrl + 'like/deslike', {id: id}, this.httpOptions())
-      // @ts-ignore
-        .pipe(catchError(this.errorHandler)).subscribe(next => this.updateUserDataAfterLikeProduct(next.data.product_id));
+      return this.deslike(id);
     }
+    this._authService.setLike(id);
     return  this.likeProduct(id).subscribe(next => {
       // @ts-ignore
       this.updateUserDataAfterLikeProduct(next.data.product_id);

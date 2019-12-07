@@ -46,8 +46,8 @@ export class AdsComponent implements OnInit {
   getInfoMap(product) {
     this.product = product;
     if (this.product) {
-      this.lat = parseInt(product.location.split(',')[0], 0);
-      this.lng = parseInt(product.location.split(',')[1], 0);
+      this.lat = parseInt(product.location.lat);
+      this.lng = parseInt(product.location.long);
     }
   }
 }
