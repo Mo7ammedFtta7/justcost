@@ -156,9 +156,9 @@
                         <span class="line"></span>
                         <div class="float-left py-3">
                           <small style="margin-right: 0;"> <a href="" routerLink="/home"> {{'Home' | translate }}</a> <i class="fas fa-chevron-right fa-sm"></i>
-                            <a href="" routerLink="/home"> {{ 'Categories' | translate }} </a> <i class="fas fa-chevron-right fa-sm"></i>
-                               <label *ngIf="translate.getlocalLang()=='ar'" > {{product.category}}  </label>
-                               <label *ngIf="translate.getlocalLang()=='en'" > {{product.category}}  </label>
+
+                               <label *ngIf="translate.getlocalLang()=='ar'" > <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category}">  {{product.category}} </a> </label>
+                               <label *ngIf="translate.getlocalLang()=='en'" > <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category}">  {{product.category}} </a> </label>
                               </small><br>
                             <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                         </div>

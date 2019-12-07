@@ -4,7 +4,7 @@
   ></ngx-skeleton-loader>
 <ng-container *ngIf="!loaded">
 <div class="main-title main-title2" style="margin-bottom: 30px;">
-    <small><a href="/">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a href="/">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{product?.category}}</small>
+    <small><a href="/" routerLink="/home">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i>   <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category}">  {{product.category}} </a></small>
 </div><!-- End Title -->
 
 <div class="account">
