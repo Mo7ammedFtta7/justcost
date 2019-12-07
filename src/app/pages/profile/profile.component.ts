@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   cities;
   loaded = true;
   p: number = 1;
+  p2: number = 1;
   getprofile;
   editResponse = false;
   myAds;
@@ -67,12 +68,12 @@ export class ProfileComponent implements OnInit {
    onImgSubmit() {
     const fd = new FormData();
     let oldImage = this.uploadForm.get('profile').value;
-    if (oldImage.size > 40000) {
-      this.MaxSize = true;
-      return;
-    } else{
-      this.MaxSize = false;
-    }
+    // if (oldImage.size > 40000) {
+    //   this.MaxSize = true;
+    //   return;
+    // } else{
+    //   this.MaxSize = false;
+    // }
     this.imageLoaded = true;
     this.ng2ImgMax.compressImage(oldImage,0.040).subscribe(
       result => {
