@@ -122,13 +122,14 @@ export class ProductComponent implements OnInit {
   }
 
   getProduct() {
-    this._rea.getProduct(this.id).subscribe((data: {}) => {
-      let imgUrl:[] = data['data'][0].media;
+    this._rea.getProduct(this.id).subscribe( next => {
+      this.product = next.data;
+      console.log(this.product);
+      this.like = this.product.likes
+      let imgUrl:[] = this.product.media;
       imgUrl.forEach((r)=>{
         this.imagesUrl.push(new NgxSlideshowAcracodeModel(r['url']));
       })
-      this.product = data['data'][0];
-      this.like = data['data'][0]['likes']
       this.loaded = false;
     });
   }

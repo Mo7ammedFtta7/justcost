@@ -92,9 +92,7 @@
                         <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
                           <i class="fas fa-map-marker-alt"></i> {{ "View Location" | translate}}
                         </a>
-                        <div [class.text-right] ="translate.getlocalLang()=='en'" [class.text-left] ="translate.getlocalLang()=='ar'" class="grey">
-                            <a  (click)="like(product.productId)" href="javascript:;" class="button2"><i [appLike]="product.productId" class="far fa-heart"></i></a>
-                        </div>
+                     
                     </div>
                     <div class="clearfix"></div>
                 </div><!-- About Photo-->

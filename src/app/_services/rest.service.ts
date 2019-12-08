@@ -64,6 +64,10 @@ import { TranslateService } from '../pipe/translate.service';
        map(this.extractData));
    }
 
+   search(params: HttpParams): Observable<any> {
+    return this.http.get(environment.ApiUrl + 'search', {params}).pipe(
+      map(this.extractData));
+  }
    getProductss(params: HttpParams): Observable<any> {
     return this.http.get(environment.ApiUrl + 'getAllProducts', {params}).pipe(
       map(this.extractData));

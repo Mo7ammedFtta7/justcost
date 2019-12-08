@@ -8,6 +8,7 @@ import {ApiService} from '../../_services/api.service';
 import axios from 'axios';
 import {ToastrService} from 'ngx-toastr'
 import { ActivatedRoute,Params } from '@angular/router';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 // import { $ } from 'protractor';
 declare var $:any;
 // import { threadId } from 'worker_threads';
@@ -23,6 +24,7 @@ declare function nav(type): any;
   styleUrls: ['./postadd.component.css']
 })
 export class PostaddComponent implements OnInit {
+  attriGroup;
   subAds = false;
   subload = false;
   subCate:any;
@@ -56,7 +58,7 @@ export class PostaddComponent implements OnInit {
   countries: any;
   images: FileList;
 
-  constructor(private routerActive: ActivatedRoute,private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {
+  constructor(private ng2ImgMax: Ng2ImgMaxService,private routerActive: ActivatedRoute,private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {
     const param = this.routerActive.queryParams.subscribe((params: Params) => {
       if (params.wholeSale) {
         this.wholeSale =  params.wholeSale;
@@ -187,17 +189,22 @@ export class PostaddComponent implements OnInit {
     this._api.get('subCategories/'+id).subscribe((next)=>{
       this.subload =  false;
       this.subCate = next.data;
-      console.log(this.subCate);
     },
     (err)=>{
     }
     );
-
     // get brands
     this.rest.getBrands(id).subscribe((data: {}) => {
       this.Brands = data['data'];
       // console.log(this.Brands);
     });
+    //
+     // get attripute
+     this._api.get("categories/"+id).subscribe(next =>{
+       this.attriGroup = next.data.attributes_group;
+       console.log(this.attriGroup);
+     })
+
   }
   addproduct(product: NgForm) {
     if (product.invalid) {
@@ -206,7 +213,16 @@ export class PostaddComponent implements OnInit {
     const fd = new FormData();
     for (let index = 0; index < this.images.length; index++) {
       const image = this.images[index];
-      fd.append('media[]', image);
+      this.ng2ImgMax.compressImage(image,0.040).subscribe(
+        result => {
+          let newIimage = new File([result], result.name);
+          fd.append('media[]', newIimage);
+        },
+        error => {
+          console.log('😢 Oh no!', error);
+        }
+      );
+
     }
     let newProduct = {
       'title': product.value.title,
@@ -219,7 +235,7 @@ export class PostaddComponent implements OnInit {
     fd.set('category_id', product.value.sub);
     fd.set('reg_price', product.value.reg_price);
     fd.set('sale_price', product.value.sale_price);
-    fd.set('brand_id', "1");
+    fd.set('brand_id', product.value.brand_id);
     fd.set('media', product.value.media);
     fd.set('qty', product.value.qty);
     fd.set('ad_id', "125");

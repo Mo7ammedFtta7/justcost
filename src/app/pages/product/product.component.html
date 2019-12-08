@@ -51,7 +51,7 @@
                     {{attri.group}}:  {{attri.attributes}}</li>
                 </ul>
                 <!-- End List -->
-                <bar-rating  name="rating" [rate]="product?.rating" [max]="5" [readOnly]="true"></bar-rating>
+                <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                 <span class="line"></span>
 
                 <!-- Start border -->
@@ -109,7 +109,7 @@
                                 <div class="col-sm-6">
                                     <div class="mx-1">
                                         <h6>{{comment.customerName}} <a href="javascript:;" (click)="addReply(comment)" data-toggle="modal" data-target="#addReply"><i class="fas fa-reply"></i> {{'Reply' | translate }}</a></h6>
-                                        <small>{{comment.postedOn}}</small>
+                                        <small>{{comment.postedOn | date}}</small>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 text-right">
@@ -123,7 +123,7 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6>{{reply.customerName}}</h6>
-                                        <small>{{reply.postedOn}}</small>
+                                        <small>{{reply.postedOn | date}}</small>
                                     </div>
                                     <div class="col-sm-9 text-right">
                                         <p>{{reply.comment}}</p>
@@ -172,7 +172,7 @@
             </div><!-- #3 -->
             <div class="border">
                 <i class="fas fa-mobile-alt"></i>
-                <span class="phone">{{product?.customerMobile}}</span>
+                <span class="phone">{{product?.mobile}}</span>
             </div><!-- #3 -->
             <!--<div class="border">
                 <i class="fab fa-whatsapp tow"></i>

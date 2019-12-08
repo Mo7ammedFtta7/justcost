@@ -137,8 +137,8 @@
   <div class="container">
     <ul class="nav">
       <li *ngFor="let category of  categories | slice: 0 : 12" class="nav-item">
-        <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name_ar}}</a>
-        <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.name}">{{category.name}}</a>
+        <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id}">{{category.name_ar}}</a>
+        <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id}">{{category.name}}</a>
       </li>
     </ul>
   </div>

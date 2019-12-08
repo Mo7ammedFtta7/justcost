@@ -354,6 +354,12 @@
                                                     <option *ngFor="let item of Brands" [value]="item.id"> {{item.name}} </option>
                                                 </select>
                                             </div>
+                                            <div class="form-group col-xl-6" *ngFor="let item of attriGroup"  >
+                                                <span class="mb-2 d-block">  {{ item.name }} </span>
+                                                <select class="form-control" name="brand_id" ngModel>
+                                                    <option *ngFor="let item of Brands" [value]="item.id"> {{item.name}} </option>
+                                                </select>
+                                            </div>
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block">{{"Ad Photos" | translate}}</span>
                                             <div class="custom-file">

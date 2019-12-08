@@ -66,7 +66,7 @@ export class ResultsComponent implements OnInit {
     this.attributes = [];
     this.brands = [];
     params['limit'] = '100';
-    this.rest.getProductss(params).subscribe((data) => {
+    this.rest.search(params).subscribe((data) => {
       // @ts-ignore
 
       this.products = data.data;
@@ -109,8 +109,8 @@ export class ResultsComponent implements OnInit {
   getInfoMap(product) {
     this.product = product;
     if (this.product) {
-      this.lat = parseInt(product.location.split(',')[0], 0);
-      this.lng = parseInt(product.location.split(',')[1], 0);
+      this.lat = parseInt(product.location.lat);
+      this.lng = parseInt(product.location.long);
     }
   }
   like(id) {
