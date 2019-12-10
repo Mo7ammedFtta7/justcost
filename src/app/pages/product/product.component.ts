@@ -126,10 +126,16 @@ export class ProductComponent implements OnInit {
       this.product = next.data;
       console.log(this.product);
       this.like = this.product.likes
-      let imgUrl:[] = this.product.media;
-      imgUrl.forEach((r)=>{
-        this.imagesUrl.push(new NgxSlideshowAcracodeModel(r['url']));
-      })
+      let imgUrl = [];
+      imgUrl = this.product.media;
+      if (imgUrl.length > 0) {
+        imgUrl.forEach((r)=>{
+          this.imagesUrl.push(new NgxSlideshowAcracodeModel(r['url']));
+        });
+      } else {
+        this.imagesUrl.push(new NgxSlideshowAcracodeModel('assets/images/no-image.png'));
+      }
+
       this.loaded = false;
     });
   }
