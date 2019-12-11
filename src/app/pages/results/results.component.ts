@@ -15,6 +15,7 @@ declare function nav(type: any);
 })
 export class ResultsComponent implements OnInit {
   @ViewChildren('res') res;
+  attrsFilter = [];
   skeleton=[1,2,3,4];
   loadedResult = true;
   products: any[];
@@ -31,7 +32,8 @@ export class ResultsComponent implements OnInit {
   lng: number;
   brands = [];
   Brands: any[] = [];
-  attributes = [];
+  attributes:any[]= [];
+  attrs2: any;
   filterBrand: string;
   attrs = [];
   public paramsa: any[] = new Array();
@@ -77,12 +79,16 @@ export class ResultsComponent implements OnInit {
       this.le = this.products.length;
       const att = [];
       data.data.forEach(item => {
-        if (!att.includes(item.attributes) && item.attributes != null) {
-          att.push(item.attributes);
-        }
+        item.attributes.forEach(element => {
+          console.log(element);
+          att.push({name:element.attributes_group.name,attributes:element.attribute})
+        });
         this.attributes = att;
       });
+      console.log(_.groupBy(att,'name'));
+      this.attrs2 = _.groupBy(att,'name');
       this.attributes = _.split(att[0], ',');
+
       data['data'].forEach(item => {
         if (!this.brands.includes(item.brand)) {
           this.brands.push(item.brand);
@@ -122,13 +128,28 @@ checkFav(id){
   return this.auth.user().userInfo.likedProducts.includes(id) ? true : false ;
 }
   filterByBrand(brand) {
-    this.filterBrand = brand;
+    this.filterProducts = _.filter(this.oregenal,['brand',brand])
   }
-  filterByAttributes(attr) {
-    this.filterProducts = this.products;
-    this.attrs.includes(attr) ? _.remove(this.attrs, r => r === attr) : this.attrs.push(attr);
-    this.attrs.forEach(r => {
-      this.filterProducts = _.filter(this.filterProducts, atr =>  _.includes(atr.attributes, r));
+  getAll(value) {
+    if (value) {
+      this.filterProducts = this.oregenal;
+    }
+
+  }
+  filterByAttributes(event) {
+    let isCheck = event.currentTarget.checked;
+    let value = event.target.value
+    if (isCheck) {
+      this.attrsFilter.push(value)
+    } else {
+      this.attrsFilter = _.remove(this.attrsFilter ,function(n) {
+        return n != value;
+      });
+    }
+    console.log(this.oregenal[6])
+    this.filterProducts = _.filter(this.oregenal,function(o) {
+      return _.filter(o,{'attributes.attribute.id':value})
     });
+    console.log(this.attrsFilter);
   }
 }

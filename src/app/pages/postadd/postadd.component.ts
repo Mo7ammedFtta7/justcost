@@ -253,6 +253,7 @@ json:JSON =  JSON;
       'description': product.value.description
     };
     alert(product.value.brand_id);
+    fd.set('fromWeb','1')
     fd.set('category_id', product.value.sub);
     fd.set('reg_price', product.value.reg_price);
     fd.set('sale_price', product.value.sale_price);
