@@ -8,6 +8,7 @@ import { ApiService } from '../../_services/api.service';
 import {EncryptService} from '../../_services/encrypt.service';
 import {environment} from '../../../environments/environment';
 import * as _ from 'lodash';
+import {FirebaseMessageService} from '../../_services/firebase.messege.service';
 
 
 
@@ -25,14 +26,20 @@ export class HeaderComponent implements OnInit {
   Category = '';
   city = '';
   env = environment;
+  notification;
+  notificationArray = [];
   _ = _;
   lang: string = this.translate.getlocalLang();
   constructor(public _authService: AuthService,
               private _rea: RestService,
               private _api: ApiService,
               public encrypt: EncryptService,
+              public firebaseMessage: FirebaseMessageService,
               public router: Router, public translate: TranslateService) { }
   ngOnInit() {
+    this.notification = this.firebaseMessage.receiveMessage();
+    this.firebaseMessage.receiveMessage().subscribe(message => this.notificationArray.push(message));
+
 
     // this.getCitisOfCountry(this._authService.getUser().country.id);
     this._rea.getCountries().subscribe(
@@ -89,5 +96,10 @@ export class HeaderComponent implements OnInit {
 
   selectCity(event: any) {
     this.city = event.target.value;
+  }
+  readNotify(notify) {
+    console.log(notify);
+    _.remove(this.notificationArray, notify);
+    this.router.navigate([notify.notification.icon]);
   }
 }

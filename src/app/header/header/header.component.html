@@ -39,18 +39,18 @@
 
               <!-- dropdown container -->
               <div class="dropdown">
-                <a class="nav-link icon-top" href="#">
+                <a class="nav-link icon-top" href="javascript:;">
                   <i class="fa fa-user">
 
                   </i>
-                  <span class="link-name">{{'Notifications' | translate}} </span>
+                  <span class="link-name">{{'Notifications' | translate}} <span *ngIf="notificationArray.length" class="badge badge-pill badge-danger">{{notificationArray.length}}</span></span>
                 </a>
                 <!-- dropdown menu -->
                 <ul class="dropdown-menu">
-                  <!-- <li><a href="javascript:;"><span></span></a></li>
-                  <li><a href="javascript:;">About</a></li> -->
-                  <!-- <div class="dropdown-divider"></div>
-                  <li><a href="#contact">Contact</a></li> -->
+                  <ng-container *ngFor="let notify of notificationArray">
+                   <li> <a href="javascript:;" (click)="readNotify(notify)">{{notify.notification.title}}</a></li>
+                   <div class="dropdown-divider"></div>
+                  </ng-container>
                 </ul>
               </div>
 
