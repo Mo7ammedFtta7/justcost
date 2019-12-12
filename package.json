@@ -33,6 +33,7 @@
     "file-system": "^2.2.2",
     "firebase": "^7.5.2",
     "jquery": "^3.4.1",
+    "json-form-data": "^1.6.0",
     "lodash": "^4.17.15",
     "ng2-img-max": "^2.1.18",
     "ng2-search-filter": "^0.5.1",

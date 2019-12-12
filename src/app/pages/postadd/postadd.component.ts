@@ -6,6 +6,7 @@ import {Icategory, Isub} from '../../_models/category';
 import {AuthService} from '../../auth.service';
 import {ApiService} from '../../_services/api.service';
 import axios from 'axios';
+import * as _ from 'lodash';
 import {ToastrService} from 'ngx-toastr'
 import { ActivatedRoute,Params } from '@angular/router';
 import { Ng2ImgMaxService } from 'ng2-img-max';
@@ -28,6 +29,7 @@ export class PostaddComponent implements OnInit {
   subAds = false;
   subload = false;
   subCate:any;
+  isCe
   axios = axios;
   categoriesurl = environment.ApiUrl + 'nest';
   errorMsg: any;
@@ -38,7 +40,10 @@ export class PostaddComponent implements OnInit {
   showProduct = [];
   newProduct: NgForm
   newProducts: any[] = []
+  selectedValue = [];
   Brands;
+  selectedAtrr:any
+  attVal = [];
   totalMyAds;
   category_id: number = 5;
   Icategory: Icategory[]
@@ -57,7 +62,7 @@ export class PostaddComponent implements OnInit {
   }
   countries: any;
   images: FileList;
-
+json:JSON =  JSON;
   constructor(private ng2ImgMax: Ng2ImgMaxService,private routerActive: ActivatedRoute,private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {
     const param = this.routerActive.queryParams.subscribe((params: Params) => {
       if (params.wholeSale) {
@@ -115,7 +120,7 @@ export class PostaddComponent implements OnInit {
 
 
 
-  send(categoryId) {
+  send(ad_id) {
 
 
     const headers = {
@@ -126,7 +131,7 @@ export class PostaddComponent implements OnInit {
 
 
     this.newProducts.forEach(product => {
-      product.set('ad_id', categoryId);
+      product.set('ad_id', ad_id);
 
 
 
@@ -169,6 +174,8 @@ export class PostaddComponent implements OnInit {
               ad.resetForm();
               delete this.showProduct;
               delete this.newProducts;
+              this.showProduct = [];
+              this.newProducts = [];
               this.toastr.success("Product Added succsefuly!");
             },
             err => {
@@ -181,8 +188,23 @@ export class PostaddComponent implements OnInit {
     }
 
   }
+   removeDuplicates(a, param){
+    return a.filter(function(item, pos, array){
+        return array.map(function(mapItem){ return mapItem[param]; }).indexOf(item[param]) === pos;
+    })
+}
 
+  check(id){
 
+    let parse = JSON.parse(this.selectedValue[id][0]);
+     this.attVal = _.remove(this.attVal, function(n) {
+      return n.attributes_group_id  != parse.group_id;
+    });
+    this.selectedValue[id].forEach((r)=>{
+      let item = JSON.parse(r);
+      this.attVal.push({attribute_id:item.id,attributes_group_id:item.group_id})
+    });
+  }
   getBrands(id) {
     // get subCategories
     this.subload =  true;
@@ -196,13 +218,11 @@ export class PostaddComponent implements OnInit {
     // get brands
     this.rest.getBrands(id).subscribe((data: {}) => {
       this.Brands = data['data'];
-      // console.log(this.Brands);
     });
     //
      // get attripute
      this._api.get("categories/"+id).subscribe(next =>{
        this.attriGroup = next.data.attributes_group;
-       console.log(this.attriGroup);
      })
 
   }
@@ -231,7 +251,8 @@ export class PostaddComponent implements OnInit {
       'sale_price': product.value.sale_price,
       'description': product.value.description
     };
-    // alert(product.value.brand_id);
+    alert(product.value.brand_id);
+    fd.set('fromWeb','1')
     fd.set('category_id', product.value.sub);
     fd.set('reg_price', product.value.reg_price);
     fd.set('sale_price', product.value.sale_price);
@@ -243,12 +264,17 @@ export class PostaddComponent implements OnInit {
     fd.set('title', product.value.title);
     fd.set('description', product.value.description);
     fd.set('ispaided', "0");
+    let attrs = _.uniqWith(this.attVal, _.isEqual);
+    attrs.forEach(r => {
+      fd.append('attributes[]',JSON.stringify(r));
+    });
+    // fd.set('attributes[]',attrs);
     this.showProduct.push(newProduct);
     this.newProducts.push(fd);
-    this.images = null
-
-    console.table(this.newProducts)
+    this.images = null;
     product.resetForm();
+    delete this.attVal;
+    delete this.attriGroup;
     $("#addproduct").modal('hide');
 
   }

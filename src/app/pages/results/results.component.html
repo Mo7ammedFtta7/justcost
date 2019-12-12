@@ -22,6 +22,16 @@
                     </div><!-- Brand -->
                     <div id="attrips">
                         <div class="brand">
+                            <h6>  </h6>
+                            <ul class="list-unstyled check-ul">
+                                <li >
+                                    <input #all type="checkbox" (change)="getAll($event.currentTarget.checked)">
+                                    <label  > {{ " All " | translate}} </label>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="brand">
                             <h6>{{ 'Brands' | translate }}</h6>
                             <ul class="list-unstyled check-ul">
                                 <li *ngFor="let brand of brands">
@@ -31,15 +41,28 @@
 
                             </ul>
                         </div>
-                        <div class="brand" *ngIf="attributes?.length > 0">
+                        <div class="brand" *ngIf="attrs2">
                           <h6>{{ 'Attributes' | translate }}</h6>
-                          <ul class="list-unstyled check-ul">
-                            <li *ngFor="let atr of attributes">
-                              <input type="checkbox" name="attr" [value]="atr" (change)="filterByAttributes($event.target.value)">
-                              <label  >{{atr}} </label>
-                            </li>
+                          <ng-container *ngFor="let atr of attrs2 | keyvalue">
+                            <h6> {{atr.key}} </h6>
+                            <ul class="list-unstyled check-ul">
+                              <li *ngFor="let item of atr.value">
+                                  <input type="checkbox" name="brand" [value]="item.attributes.id" (change)="filterByAttributes($event)">
+                                  <label  > {{item.attributes.name}} </label>
 
-                          </ul>
+                              </li>
+                            </ul>
+                          </ng-container>
+
+                          <!-- <ul class="list-unstyled check-ul">
+                            <li *ngFor="let atr of attrs2 | keyvalue">
+                                <b>{{atr.key}} </b>
+                                <span *ngFor="let item of atr.value" > {{item.attributes.name}} </span> -->
+                              <!-- <input type="checkbox" name="attr" [value]="atr" (change)="filterByAttributes($event.target.value)"> -->
+                              <!-- <label  >{{atr}} </label> -->
+                            <!-- </li>
+
+                          </ul> -->
 
                         </div>
                     </div>
@@ -135,8 +158,11 @@
         </div>
       </div>
 </div>
+
+<!-- | filter: filterBrand -->
+
  <!-- list of result -->
-                <div class="item row" *ngFor="let product of filterProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p } | filter: filterBrand ">
+                <div class="item row" *ngFor="let product of filterProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
                     <div class="photo text-center col-sm-3">
                         <img appImage src="{{product?.media[0]?.url}}" alt="Image" class="img-fluid">
                     </div><!-- Photo -->
