@@ -35,10 +35,22 @@ export class ApiService {
     headers = headers.append('Lang', this.trans.getlocalLang());
     if (this._authService.loggedIn()) {
       headers = headers.append('Authorization', `Bearer  ${this._authService.user().token}`);
+    }
+    return { headers };
+  }
+
+  httpOptions2(): any {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Content-Type', 'multipart/form-data');
+    headers = headers.append('Lang', this.trans.getlocalLang());
+    if (this._authService.loggedIn()) {
+      headers = headers.append('Authorization', `Bearer  ${this._authService.user().token}`);
       headers = headers.append('Authorization', `key=${this.firebaseAppServer}`);
     }
     return { headers };
   }
+
 
 
   public GetFromApi(url) {
@@ -120,7 +132,7 @@ export class ApiService {
     return this.http.post<any>(environment.ApiUrl + url, data, header).pipe(catchError(this.errorHandler));
   }
 
-  fire(data, header = this.httpOptions()): Observable<any> {
+  fire(data, header = this.httpOptions2()): Observable<any> {
     return this.http.post<any>('https://fcm.googleapis.com/fcm/send', data, header).pipe(catchError(this.errorHandler));
   }
   delete(url: string): Observable<any> {
