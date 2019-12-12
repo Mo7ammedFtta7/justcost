@@ -146,10 +146,18 @@ checkFav(id){
         return n != value;
       });
     }
-    console.log(this.oregenal[6])
-    this.filterProducts = _.filter(this.oregenal,function(o) {
-      return _.filter(o,{'attributes.attribute.id':value})
-    });
-    console.log(this.attrsFilter);
+    this.filterProducts = this.filterByArray(this.attrsFilter);
   }
+
+  filterByArray(values=[]) {
+    let o = [];
+    if (values.length < 1) {
+      return this.oregenal;
+    }
+    values.forEach(element => {
+     o = _.concat(_.filter(this.oregenal, { attributes: [{ attribute: {id: Number(element)} }] }),o);
+    });
+    return  _.uniqWith(o , _.isEqual);
+  }
+
 }
