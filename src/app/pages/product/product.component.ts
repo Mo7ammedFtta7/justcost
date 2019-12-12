@@ -1,50 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '../../_services/rest.service';
 import { NgxSlideshowAcracodeModel } from 'ngx-slideshow-acracode';
 import { AuthService } from '../../auth.service';
 import { NgForm } from '@angular/forms';
 import { ApiService } from '../../_services/api.service';
 import * as _ from 'lodash';
+import {Report} from '../../_models/category';
+import {Subscription} from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 declare function goup(): any;
 declare function success(msg): any;
 declare function ViewMap(): any;
 declare function nav(type): any;
 declare var $;
-//declare function owl2():any ;
+// declare function owl2():any ;
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   _ = _ ;
-  isLike:boolean;
+  isLike: boolean;
   id: number;
   sub: any;
-  simillarProduct:any;
+  simillarProduct: any;
   loaded = true;
   postLoaded = false;
   // formRating;
   liked: boolean;
   page: any = 1;
   limit: any = 100;
-  p: number =1;
+  p = 1;
   formRating;
   arr = [];
-  commentForm: NgForm
-  public comment: string
+  commentForm: NgForm;
+  public comment: string;
   public commments: any;
   public product: any;
   public attributes: any;
-  like: boolean = false;
+  like = false;
   imagesUrl = [
 ];
   commentForReply: any;
   replyComment: string;
   replySaving = false;
   reportText: string;
-  constructor(private router : Router,private _rea: RestService, private _api: ApiService, private route: ActivatedRoute, public _authService: AuthService) {
+  report: Report = new Report();
+  reasons: any;
+  reportSending = false;
+  subscription: Subscription[] = [];
+  constructor(private router: Router, private _rea: RestService,
+              private _api: ApiService, private route: ActivatedRoute,
+              public toastr: ToastrService,
+              public _authService: AuthService) {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -53,53 +63,54 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getReasons();
      if (this._authService.loggedIn()) {
       this.arr = this._authService.user().userInfo['likedProducts'];
      }
-    if (_.includes(this.arr,this.id)) {
+    if (_.includes(this.arr, this.id)) {
       this.isLike = true;
       this.liked = true;
       this.like = true;
-    }else{
+    } else {
       this.liked = false;
       this.like = false;
     }
-    nav("small");
+    nav('small');
     //  ViewMap()
-    goup()
+    goup();
 
 
-    this.getProduct()
-    this.getcomments()
+    this.getProduct();
+    this.getcomments();
     this.getAttributes(this.id);
-    this._api.get('similarProducts/'+this.id).subscribe(
-      (next)=> {
+    this._api.get('similarProducts/' + this.id).subscribe(
+      (next) => {
         this.simillarProduct = next.data;
       },
-      (error)=>{
+      (error) => {
         console.log(error);
       }
       );
   }
   goToSim(id) {
-        window.open("/product/"+id, "_blank");
+        window.open('/product/' + id, '_blank');
 }
 //   goToSim(id){
 // this.router.navigate(["/product/",id]);
 //   }
-  getModalLogin(rate){
+  getModalLogin(rate) {
     if (rate) {
       $('#mainmodel').modal('show');
     }
 
   }
-  setRate(rate){
-    if(this.product && rate){
-    this._api.post('ratings',{rate:rate,product:this.product.productId}).subscribe((next)=>{
+  setRate(rate) {
+    if (this.product && rate) {
+    this._api.post('ratings', {rate: rate, product: this.product.productId}).subscribe((next) => {
     },
-    (error=>{
+    (error => {
     }));
-  };
+  }
 }
   onLike(like) {
     if (like) {
@@ -118,18 +129,18 @@ export class ProductComponent implements OnInit {
   }
 
   public math(aa: any, bb: any) {
-    return ((aa - bb) / aa * 100).toFixed(0)
+    return ((aa - bb) / aa * 100).toFixed(0);
   }
 
   getProduct() {
     this._rea.getProduct(this.id).subscribe( next => {
       this.product = next.data;
       console.log(this.product);
-      this.like = this.product.likes
-      let imgUrl:[] = this.product.media;
-      imgUrl.forEach((r)=>{
+      this.like = this.product.likes;
+      const imgUrl: [] = this.product.media;
+      imgUrl.forEach((r) => {
         this.imagesUrl.push(new NgxSlideshowAcracodeModel(r['url']));
-      })
+      });
       this.loaded = false;
     });
   }
@@ -163,17 +174,47 @@ export class ProductComponent implements OnInit {
   }
 
   saveReply() {
+    const  notify = {
+      notification:
+        {
+          title: '1',
+          body: 'one'
+        },
+      to: 'eC5iR4panTPT4c0eyX33R-:APA91bECwvT5LyhfiSOlPsmfHzptNGQPVxKXS5XR2EK9UiPmd0fiKKAsZlMBGYc4u7hurOAEHIoZUGWKLF4El0ZY6iD78wGeMzuKLAuyB-FMcI7-wgIbm11mbgVOaeFz1w4nSqga2kcA'
+
+    };
     this.replySaving = true;
     const payload = {parent_id: this.commentForReply.commentId, productid: this.product.productId, comment: this.replyComment};
     this._rea.addcomment(payload).subscribe(next => {
       this.replySaving = false;
       $('#addReply').modal('hide');
+      this._api.fire( notify).subscribe(console.log, console.warn);
       const   reply = {customerName: this._authService.user().userInfo.name, postedOn: Date.now(),  comment: this.replyComment };
       this.commentForReply.replyes.push(reply);
     });
   }
 
-  saveReport() {
-    console.log(this.reportText);
+  getReasons() {
+    const reasonSub = this._api.get('reports/reasons').subscribe(reason => this.reasons = reason.data);
+    this.subscription.push(reasonSub);
+  }
+
+  async saveReport() {
+    this.reportSending = true;
+    this.report.controller_id = 1;
+    this.report.object_id = this.product.productId;
+    this.report.tbl_account_reporter_id = this._authService.user().userInfo.id;
+    this.report.tbl_account_id = this.product.customerId;
+   const addReportSub = await this._api.post('reports', this.report).subscribe(
+      next => { this.toastr.success('تم ارسال البلاغ بنجاح ');  this.reportSending = false; },
+      error => { this.toastr.error(error.error.message); this.reportSending = false; }
+    );
+
+    $('#addReport').modal('hide');
+    this.subscription.push(addReportSub);
+
+  }
+  ngOnDestroy(): void {
+    this.subscription.forEach(subscribe => subscribe.unsubscribe() );
   }
 }

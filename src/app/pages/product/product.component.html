@@ -209,10 +209,16 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <div>
-            <textarea class="form-control"  name="comment" [(ngModel)]="reportText" placeholder=" {{'Write your report here'|translate}} " rows="10"></textarea>
+          <div class="form-group">
+            <label for="reason"> {{'reason' | translate}}</label>
+            <select class="form-control" name="reason"  id="reason" [(ngModel)]="report.reason_id">
+              <option *ngFor="let reason of reasons" [value]="reason.id">{{reason.reason_ar}}</option>
+            </select>
           </div>
-          <button  (click)="saveReport()" class="btn btn-primary"><i class="fa fa-spinner fa-spin" *ngIf="replySaving"></i>  {{"Send Report" | translate}} </button>
+          <div>
+            <textarea class="form-control"  name="comment" [(ngModel)]="report.description" placeholder=" {{'Write your report here'|translate}} " rows="10"></textarea>
+          </div>
+          <button  (click)="saveReport()" class="btn btn-primary"><i class="fa fa-spinner fa-spin" *ngIf="reportSending"></i>  {{"Send Report" | translate}} </button>
         </div>
       </div>
     </div>

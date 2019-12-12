@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import {AngularFireMessaging} from '@angular/fire/messaging';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FirebaseMessageService {
+
+  constructor(private angularFireMessaging: AngularFireMessaging) {
+    this.angularFireMessaging.messaging.subscribe((messagingContext) => {
+        messagingContext.onMessage = messagingContext.onMessage.bind(messagingContext);
+        messagingContext.onTokenRefresh = messagingContext.onTokenRefresh.bind(messagingContext);
+      }
+    );
+  }
+  requestPermission = () => this.angularFireMessaging.requestToken;
+
+  receiveMessage = () => this.angularFireMessaging.messages;
+}

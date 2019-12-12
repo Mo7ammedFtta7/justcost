@@ -18,7 +18,7 @@ declare function nav(msg): any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private _auth: AuthService, private _router: Router, public apis: ApiService) { }
   lodaed = false;

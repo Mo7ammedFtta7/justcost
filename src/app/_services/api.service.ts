@@ -20,9 +20,12 @@ export class ApiService {
 
   url = environment.ApiUrl + 'sliders';
   public subscriptions: Subscription[] = [];
+  firebaseAppServer = 'AAAAZcnuF8E:APA91bEj3MbJel16qe-XThK0JLD2vqFteKJBv2UCUz1w6NMlsu074_GTvXsOdCr2eT8KhSkazbDnKSJDFKM-7jYbf_DWpBvWJnFL_mSxidijhClUK9-Ov0aMvaRtgaifTOcAtDt-jLS8';
+
 
 
   constructor(private trans: TranslateService,private http: HttpClient,private router: Router, public _authService: AuthService, private crypt: EncryptService) { }
+
 
 
   httpOptions(): any {
@@ -32,6 +35,7 @@ export class ApiService {
     headers = headers.append('Lang', this.trans.getlocalLang());
     if (this._authService.loggedIn()) {
       headers = headers.append('Authorization', `Bearer  ${this._authService.user().token}`);
+      headers = headers.append('Authorization', `key=${this.firebaseAppServer}`);
     }
     return { headers };
   }
@@ -114,6 +118,10 @@ export class ApiService {
   }
   post(url: string, data: any, header = this.httpOptions()): Observable<any> {
     return this.http.post<any>(environment.ApiUrl + url, data, header).pipe(catchError(this.errorHandler));
+  }
+
+  fire(data, header = this.httpOptions()): Observable<any> {
+    return this.http.post<any>('https://fcm.googleapis.com/fcm/send', data, header).pipe(catchError(this.errorHandler));
   }
   delete(url: string): Observable<any> {
     return this.http.delete(environment.ApiUrl + url, this.httpOptions()).pipe(catchError(this.errorHandler));

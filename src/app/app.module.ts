@@ -41,6 +41,11 @@ import {AgmCoreModule} from '@agm/core';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import { AdsComponent } from './pages/ads/ads.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireMessagingModule} from '@angular/fire/messaging';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {FirebaseMessageService} from './_services/firebase.messege.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,9 +90,12 @@ import { AdsComponent } from './pages/ads/ads.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule,
+    AngularFireAuthModule
   ],
 
-  providers: [ApiService, AuthService, AuthGuard, EventService, TranslatePipe, Axios
+  providers: [ApiService, AuthService, FirebaseMessageService, AuthGuard, EventService, TranslatePipe, Axios
 ],
   bootstrap: [AppComponent]
 })

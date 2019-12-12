@@ -16,6 +16,18 @@
         subs: Isub[];
     }
 
+    export class Report {
+      controller_id: number;
+      tbl_account_reporter_id: number;
+      tbl_account_id: number;
+      object_id: number;
+      reason_id: number;
+      description: string;
+      created_at: any;
+      updated_at: any;
+      deleted_at: any;
+    }
+
 
 
 
