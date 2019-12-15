@@ -46,7 +46,7 @@
                           <ng-container *ngFor="let atr of attrs2 | keyvalue">
                             <h6> {{atr.key}} </h6>
                             <ul class="list-unstyled check-ul">
-                              <li *ngFor="let item of atr.value">
+                              <li *ngFor="let item of  _.uniqWith(atr.value, _.isEqual)">
                                   <input type="checkbox" name="brand" [value]="item.attributes.id" (change)="filterByAttributes($event)">
                                   <label  > {{item.attributes.name}} </label>
 

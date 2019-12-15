@@ -22,6 +22,7 @@ export class ResultsComponent implements OnInit {
   filterProducts = [];
   oregenal = [];
   le: number;
+  _ = _ ;
   p: number = 1;
   search: string;
   category: string;
@@ -87,6 +88,8 @@ export class ResultsComponent implements OnInit {
       });
       console.log(_.groupBy(att,'name'));
       this.attrs2 = _.groupBy(att,'name');
+      // this.attrs2 =  _.uniqWith(this.attrs2, _.isEqual);
+      console.log(this.attrs2);
       this.attributes = _.split(att[0], ',');
 
       data['data'].forEach(item => {
