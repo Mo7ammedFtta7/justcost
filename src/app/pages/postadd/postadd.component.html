@@ -163,7 +163,12 @@
                                     <i class="fas fa-plus"> {{'Add Product' | translate}} </i>
                                     <i *ngIf="wholeSale == 0 && showProduct.length >=1"  class="fa fa-ban" style="color: red;"></i>
                                 </button>
-
+                                <div *ngIf="wholeSale == 0 && showProduct.length >=1" class="alert alert-warning" role="alert">
+                                    <b>
+                                        this is single ad
+                                        <br> if you want add more ads change to multi ads
+                                    </b>
+                                  </div>
                                 <table id="test-table" class="table table-condensed">
                                     <thead>
                                         <tr>

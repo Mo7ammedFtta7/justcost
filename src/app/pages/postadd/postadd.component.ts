@@ -88,6 +88,7 @@ json:JSON =  JSON;
 
     this._api.categoris().subscribe(res => {
         this.Icategory = res['data'];
+        console.log(this.Icategory);
         this.getBrands(res['data'][0]['id']);
       },
       error => this.errorMsg = error);
@@ -208,13 +209,9 @@ json:JSON =  JSON;
   getBrands(id) {
     // get subCategories
     this.subload =  true;
-    this._api.get('subCategories/'+id).subscribe((next)=>{
-      this.subload =  false;
-      this.subCate = next.data;
-    },
-    (err)=>{
-    }
-    );
+    this.subload =  false;
+    let mainCategory = this.Icategory.find(e => e.id == id);
+    this.subCate = mainCategory.subs;
     // get brands
     this.rest.getBrands(id).subscribe((data: {}) => {
       this.Brands = data['data'];
