@@ -46,6 +46,7 @@ import {environment} from '../environments/environment';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {FirebaseMessageService} from './_services/firebase.messege.service';
+import { EditAdsComponent } from './pages/edit-ads/edit-ads.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import {FirebaseMessageService} from './_services/firebase.messege.service';
     LoginDirective,
     ForgetPasswordComponent,
     TimeAgoPipe,
-    AdsComponent
+    AdsComponent,
+    EditAdsComponent
   ],
   imports: [
     Ng2ImgMaxModule,

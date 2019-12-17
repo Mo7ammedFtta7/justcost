@@ -20,12 +20,11 @@ declare function getMarker(): any;
 declare function nav(type): any;
 
 @Component({
-  selector: 'app-postadd',
-  templateUrl: './postadd.component.html',
-  styleUrls: ['./postadd.component.css']
+  selector: 'app-edit-ads',
+  templateUrl: './edit-ads.component.html',
+  styleUrls: ['./edit-ads.component.css']
 })
-export class PostaddComponent implements OnInit
-{
+export class EditAdsComponent implements OnInit {
   attriGroup;
   subAds = false;
   subload = false;
@@ -65,8 +64,8 @@ export class PostaddComponent implements OnInit
   images: FileList;
 json:JSON =  JSON;
   constructor(private ng2ImgMax: Ng2ImgMaxService,private routerActive: ActivatedRoute,private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {
-    const param = this.routerActive.queryParams.subscribe((params: Params) => {
-      if (params.wholeSale) {
+    const param = this.routerActive.params.subscribe((params: Params) => {
+      if (params.id) {
         this.wholeSale =  params.wholeSale;
       }
     });
@@ -89,7 +88,6 @@ json:JSON =  JSON;
 
     this._api.categoris().subscribe(res => {
         this.Icategory = res['data'];
-        console.log(this.Icategory);
         this.getBrands(res['data'][0]['id']);
       },
       error => this.errorMsg = error);

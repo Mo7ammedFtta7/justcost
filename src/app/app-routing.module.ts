@@ -1,3 +1,4 @@
+import { EditAdsComponent } from './pages/edit-ads/edit-ads.component';
 import { AdsComponent } from './pages/ads/ads.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -20,6 +21,13 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
+    pathMatch: 'full'
+  }
+  ,
+  {
+  path: 'edit-ads/:id',
+    component: EditAdsComponent
+    ,
     pathMatch: 'full'
   }
   ,

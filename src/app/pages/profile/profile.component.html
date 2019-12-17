@@ -158,10 +158,10 @@
                                 </div><!-- Image -->
 
                                 <div class="text-image float-left">
-                                    <h6> <a routerLink="/ads/{{item?.id}}"> {{item.ad_title}} </a>  </h6>
-                                    <a href="#"><i class="far fa-map"></i> {{item.cityId.name}} </a> |
+                                    <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
+                                    <a href="#"><i class="far fa-map"></i> {{item?.cityId?.name}} </a> |
                                     <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i> {{ (item.created_at*1000) | timeAgo}} </a>
+                                    <a href="#"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
                                 </div>
 
                                 <!-- <div class="view float-left text-center">
@@ -208,7 +208,7 @@
 
 
                                 <div class="view float-right  text-center" style="margin-top: -9px">
-                                    <span class="alert-yellow"> {{ (((item.reg_price-item.sale_price)/item.reg_price)*100) | number:'1.0-0' }}% off</span>
+                                    <span class="alert-yellow"> {{ (((item.reg_price-item.sale_price)/item.reg_price)*100) | number:'1.0-0' }}% {{"off" | translate}} </span>
                                     <span class="red">AED {{item.sale_price}}</span>
                                 </div>
 

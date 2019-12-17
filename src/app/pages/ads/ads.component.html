@@ -67,7 +67,10 @@
                 </div><!-- Photo -->
                 <div class="about-photo  col-sm-9">
                     <div class="float-left py-3">
-                        <h6><a routerLink="/product/{{product?.productId}}">{{product?.title}}</a></h6>
+                        <h6><a routerLink="/product/{{product?.productId}}">{{product?.title}}</a>
+                          &nbsp;&nbsp;
+                        <button (click)="selectProduct(product)" data-toggle="modal" data-target="#addproduct"> Edit Product </button>
+                        </h6>
                         <small>{{(product.postedOn*1000)  | date }}</small>
                     </div>
                     <div class="float-right one one2 py-3">
@@ -92,7 +95,7 @@
                         <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
                           <i class="fas fa-map-marker-alt"></i> {{ "View Location" | translate}}
                         </a>
-                     
+
                     </div>
                     <div class="clearfix"></div>
                 </div><!-- About Photo-->
@@ -104,19 +107,24 @@
         </div>
 
         <div class="col-xl-4 col-sm-12">
+            <label class="float-right" for="editAble">
+              <a class="text-primary" href="javascript:;" (click)="editAble=true" > Edit Ads </a>
+            </label> <br>
           <label > {{"Ad Title"|translate}} </label>
             <div class="border">
-                <p>
+                <p *ngIf="!editAble">
                   {{ads?.ad_title}}
                 </p>
+                <input *ngIf="editAble" class="form-control" type="text" name="ad_title" [(ngModel)]="ads.ad_title" >
             </div><!-- #1 -->
             <label > {{ "Ad Description" | translate }} </label>
             <div class="border">
-             <p>
+             <p *ngIf="!editAble">
                {{ ads?.ad_description }}
              </p>
+             <input *ngIf="editAble" class="form-control" type="text" name="ad_description" [(ngModel)]="ads.ad_description" >
             </div><!-- #2 -->
-            <div class="border">
+            <!-- <div class="border">
                 <div class="person" style="overflow: hidden;">
                     <img appImage [src]="ads?.customerId?.image"  alt="User Image" class="float-left rounded-circle" width="70">
                     <div class="float-left data-person">
@@ -124,11 +132,55 @@
                     </div>
                     <div class="clarfix"></div>
                 </div>
-            </div><!-- #3 -->
+            </div> -->
+            <!-- #3 -->
             <div class="border">
                 <i class="fas fa-mobile-alt"></i>
-                <span class="phone"> {{ads?.customerId?.mobile}} </span>
+                <span *ngIf="!editAble" class="phone"> {{ads?.mobile}} </span>
+                <span *ngIf="editAble" class="phone">
+                  <input  class="form-control" type="number" name="mobie" [(ngModel)]="ads.mobile" >
+                </span>
             </div><!-- #3 -->
+            <label > {{"City"|translate}} </label>
+            <div class="border">
+                <p *ngIf="!editAble">
+                  {{ads?.cityId?.name}}
+                </p>
+                <ng-container *ngIf="editAble">
+                    <div class="form-group">
+                        <select class="form-control"  name="cuontry" (change)="getCity($event.target.value)" >
+                            <option selected disabled> Select Country</option>
+                            <option *ngFor="let item of country" [value] ="item.id" > {{ item?.name }} </option>
+                          </select>
+                    </div>
+                    <div class="form-group">
+                        <select [(ngModel)]="ads.cityId" class="form-control"  name="city">
+                            <option selected disabled> Select City</option>
+                            <option *ngFor="let item of city" [ngValue]="item" > {{ item?.name }} </option>
+                          </select>
+                    </div>
+
+                </ng-container>
+            </div><!-- #1 -->
+            <div class="border">
+              <label> Whole Sale </label>
+                <input [disabled]="!editAble" [(ngModel)]="ads.iswholesale" class="form-control" type="checkbox" [checked]="ads.iswholesale" [value]="ads.iswholesale">
+              </div>
+              <div >
+                  <div class="map">
+                      <agm-map [latitude]="toNumber(ads.lat)" [longitude]="toNumber(ads.lng)"
+                          (mapClick)="onSelectLocation($event)">
+                          <agm-marker [latitude]="ads.lat" [longitude]="ads.lng"></agm-marker>
+                      </agm-map>
+                  </div>
+              </div>
+              <div *ngIf="editAble"  style="margin-top: 25px;" class="container">
+                <button (click)="editAds()" class="btn btn-warning">
+                   {{"Edit Data" | translate }}
+                   <i class="fa fa-edit"></i> &nbsp;
+                   <i *ngIf="editLoad"  class="fa fa-spin fa-spinner"></i>
+                   </button>
+              </div>
         </div><!-- Col #2 -->
     </div>
 </div>
@@ -160,4 +212,84 @@
       </div>
     </div>
   </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="addproduct" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg addproduct" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{'Add Product' | translate}} <i class="fa fa-plus-circle"></i> </h5>
+              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button> -->
+          </div>
+          <div class="modal-body">
+              <form *ngIf="currentProduct"  #newProduct="ngForm" class="row">
+                  <div class="form-group col-xl-6">
+                      <span class="mb-2 d-block"> {{"Product Name" | translate}} </span>
+                      <input type="text" name="title" #name="ngModel"  [class.is-valid]="name.valid && name.touched" [class.is-invalid]="name.invalid && (name.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.title" required class="form-control">
+                  </div>
+                  <div class="form-group col-xl-6">
+                      <span class="mb-2 d-block"> {{"Quantity" | translate}} </span>
+                      <input type="number" min="1" class="form-control"name="qty" #qty="ngModel"  [class.is-valid]="qty.valid && qty.touched" [class.is-invalid]="qty.invalid && (qty.touched || newProduct.submitted)"   ngModel required>
+                  </div>
+                  <div class="form-group col-xl-6">
+                      <span class="mb-2 d-block"> {{"Old Price" | translate}}</span>
+                      <input type="number" min="1" class="form-control" name="reg_price"  #reg_price="ngModel" [class.is-valid]="reg_price.valid && reg_price.touched" [class.is-invalid]="reg_price.invalid && (reg_price.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.reg_price" required>
+                  </div>
+                  <div class="form-group col-xl-6">
+                      <span class="mb-2 d-block"> {{"New Price" | translate}}</span>
+                      <input type="number" min="1" class="form-control"  name="sale_price"  #sale_price="ngModel" [class.is-valid]="sale_price.valid && sale_price.touched && (sale_price.value < reg_price.value)" [class.is-invalid]="sale_price.invalid && (sale_price.touched || newProduct.submitted) && (sale_price.value >= reg_price.value)"   [(ngModel)]="currentProduct.sale_price" required>
+                      <span style="color: red;" *ngIf="(sale_price.touched || newProduct.submitted) && (sale_price.value >= reg_price.value)" > new price must be less Than old price </span>
+                  </div>
+                  <div class="form-group col-xl-6">
+                      <span class="mb-2 d-block"> {{"Product Category" | translate}}</span>
+                      <select (change)="getBrands(category_id.value)" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"   ngModel required>
+                          <option *ngFor="let item of Icategory" [value]="item.id"> {{item.name}} </option>
+                      </select>
+                  </div>
+                  <div class="form-group col-xl-6">
+                      <span class="mb-2 d-block">  Sub Category</span>
+                      <select  class="form-control" name="sub" #sub="ngModel"  [class.is-valid]="sub.valid && sub.touched" [class.is-invalid]="sub.invalid && (sub.touched || newProduct.submitted)"   ngModel required>
+                          <option selected value="0"> Select .. </option>
+                          <option *ngFor="let item of subCate" [value]="item.id"> {{item.name}} </option>
+                      </select>
+                  </div>
+                  <div class="form-group col-xl-6">
+                          <span class="mb-2 d-block">  {{"Brand" | translate}} </span>
+                          <select class="form-control" name="brand_id" #brand_id="ngModel"  [class.is-valid]="brand_id.valid && brand_id.touched" [class.is-invalid]="brand_id.invalid && (brand_id.touched || newProduct.submitted)" ngModel required>
+                            <option value="0" selected> select brands</option>
+                            <option *ngFor="let item of Brands" [value]="item.id" > {{item.name}} </option>
+                          </select>
+                      </div>
+                      <div class="form-group col-xl-6" *ngFor="let item of attriGroup"  >
+                          <span class="mb-2 d-block">  {{ item.name }} </span>
+                          <select [(ngModel)]="selectedValue[item.id]" multiple class="form-control attribute" name="{{item.name}}" (change)="check(item.id)" ngModel>
+                              <option *ngFor="let item of item?.attributes" [ngValue]="item"> {{item.name}} </option>
+                          </select>
+                          <input style="margin-top: 5px;" type="text" class="form-control">
+                      </div>
+                  <div class="form-group col-xl-6">
+                      <span class="mb-2 d-block">{{"Ad Photos" | translate}}</span>
+                      <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="customFile" multiple (change)="onFileSelect($event)" name="media" #media="ngModel"  [class.is-valid]="media.valid && media.touched" [class.is-invalid]="media.invalid && (media.touched || newProduct.submitted)"   ngModel required >
+                          <label class="custom-file-label" for="customFile">Choose file</label>
+                      </div>
+                  </div>
+                  <div class="form-group col-xl-12">
+                      <span class="mb-2 d-block"> {{"Ad Description" | translate}}</span>
+                      <textarea class="form-control" id="" rows="3"
+                          name="description" #description="ngModel"  [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.description" required></textarea>
+                  </div>
+                  <div class="col-xl-12">
+                      <button type="submit" class="button">{{"Save Data" | translate}} <i class="fa fa-save"></i> </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
 
