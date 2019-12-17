@@ -34,9 +34,9 @@
                         <div class="brand">
                             <h6>{{ 'Brands' | translate }}</h6>
                             <ul class="list-unstyled check-ul">
-                                <li *ngFor="let brand of brands">
-                                    <input type="radio" name="brand" [value]="brand" (change)="filterByBrand($event.target.value)">
-                                    <label  >{{brand}} </label>
+                                <li *ngFor="let brand of _.uniqWith(brands, _.isEqual) ">
+                                    <input type="radio" name="brand" [value]="brand.id" (change)="filterByBrand($event.target.value)">
+                                    <label  >{{brand?.name}} </label>
                                 </li>
 
                             </ul>
@@ -44,7 +44,7 @@
                         <div class="brand" *ngIf="attrs2">
                           <h6>{{ 'Attributes' | translate }}</h6>
                           <ng-container *ngFor="let atr of attrs2 | keyvalue">
-                            <h6> {{atr.key}} </h6>
+                            <h6> {{atr.key}} ** </h6>
                             <ul class="list-unstyled check-ul">
                               <li *ngFor="let item of  _.uniqWith(atr.value, _.isEqual)">
                                   <input type="checkbox" name="brand" [value]="item.attributes.id" (change)="filterByAttributes($event)">
@@ -183,8 +183,8 @@
                         <div class="float-left py-3">
                           <small style="margin-right: 0;"> <a href="" routerLink="/home"> {{'Home' | translate }}</a> <i class="fas fa-chevron-right fa-sm"></i>
 
-                               <label *ngIf="translate.getlocalLang()=='ar'" > <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category}">  {{product.category}} </a> </label>
-                               <label *ngIf="translate.getlocalLang()=='en'" > <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category}">  {{product.category}} </a> </label>
+                               <label *ngIf="translate.getlocalLang()=='ar'" > <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.id}">  {{product.category.name_ar}} </a> </label>
+                               <label *ngIf="translate.getlocalLang()=='en'" > <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.id}">  {{product.category.name}} </a> </label>
                               </small><br>
                             <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                         </div>

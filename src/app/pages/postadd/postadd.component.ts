@@ -197,8 +197,8 @@ json:JSON =  JSON;
 }
 
   check(id){
-
     let parse = JSON.parse(this.selectedValue[id][0]);
+    if(parse)
      this.attVal = _.remove(this.attVal, function(n) {
       return n.attributes_group_id  != parse.group_id;
     });
@@ -221,6 +221,7 @@ json:JSON =  JSON;
      // get attripute
      this._api.get("categories/"+id).subscribe(next =>{
        this.attriGroup = next.data.attributes_group;
+       console.log(this.attriGroup);
      })
 
   }
@@ -249,7 +250,7 @@ json:JSON =  JSON;
       'sale_price': product.value.sale_price,
       'description': product.value.description
     };
-    alert(product.value.brand_id);
+    // alert(product.value.brand_id);
     fd.set('fromWeb','1')
     fd.set('category_id', product.value.sub);
     fd.set('reg_price', product.value.reg_price);

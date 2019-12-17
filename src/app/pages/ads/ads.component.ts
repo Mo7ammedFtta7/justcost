@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../pipe/translate.service';
 import {ApiService} from '../../_services/api.service';
+import {Axios} from '../../_services/axios';
 import { ActivatedRoute } from '@angular/router';
 import {ToastrService} from 'ngx-toastr'
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { NgForm } from '@angular/forms';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
@@ -12,10 +14,12 @@ import { NgForm } from '@angular/forms';
 })
 export class AdsComponent implements OnInit {
   images: FileList;
-  Icategory:any;
-  Brands:any;
+  attVal = [];
+  subCategoryList:any;
+  Icategory = [];
+  brands:any;
   attriGroup:any;
-  selectedValue:[];
+  selectedValue = [];
   editLoad = false;
   currentProduct:any;
   ads:any;
@@ -31,7 +35,7 @@ export class AdsComponent implements OnInit {
   p:number = 1;
   skeleton=[1,2,3,4];
   itemsPerPage = 4;
-  constructor(private ng2ImgMax: Ng2ImgMaxService,private toastr:ToastrService,private route: ActivatedRoute,private api: ApiService,public translate: TranslateService) {
+  constructor(private axios: Axios,private ng2ImgMax: Ng2ImgMaxService,private toastr:ToastrService,private route: ActivatedRoute,private api: ApiService,public translate: TranslateService) {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -66,15 +70,31 @@ export class AdsComponent implements OnInit {
   this.api.get('nest').subscribe(
     next=> {
       this.Icategory = next.data;
+      console.log(this.Icategory)
     }
   );
   //  ** End api of categories
   }
-  selectProduct(item){
-    this.currentProduct =item;
-    console.log(item);
+  selectProduct(product){
+    this.currentProduct =product;
+    this.getBrands(product.category.parent_id,product);
+
   }
-  getBrands(item){}
+  getBrands(id,product){
+    let cate = this.Icategory.find(x=> x.id== id);
+    this.subCategoryList = cate.subs;
+    this.brands = cate.brands;
+    this.attriGroup = cate.attributes_group;
+    this.attriGroup.forEach(element => {
+      let value = [];
+      product.attributes.forEach(item => {
+        if (element.id == item.attribute.group_id) {
+          value.push(item.attribute);
+        }
+      });
+      this.selectedValue[element.id] = value;
+    });
+  }
   editAds(){
     this.editLoad = true;
     let payload ={
@@ -100,7 +120,16 @@ export class AdsComponent implements OnInit {
       }
     );
   }
-  check(){}
+  check(id){
+    // let parse = this.selectedValue[id][0];
+    this.attVal = _.remove(this.attVal, function(n) {
+      return n.attributes_group_id  !=id;
+    });
+    this.selectedValue[id].forEach((item)=>{
+      this.attVal.push({attribute_id:item.id,attributes_group_id:item.group_id})
+    });
+    console.log(this.attVal);
+  }
   editProduct(form:NgForm){
     if (form.invalid) {
       return;
@@ -119,6 +148,26 @@ export class AdsComponent implements OnInit {
         }
       );
   }
+  fd.set('fromWeb','1')
+  fd.set('category_id', this.currentProduct.category.id);
+  fd.set('reg_price', this.currentProduct.reg_price);
+  fd.set('sale_price', this.currentProduct.sale_price);
+  fd.set('brand_id',this.currentProduct.brand.id);
+  // fd.set('media', product.value.media);
+  fd.set('qty', this.currentProduct.qty);
+  fd.set('ad_id', "125");
+  fd.set('iswholesale', this.ads.iswholesale);
+  fd.set('title', this.currentProduct.title);
+  fd.set('description', this.currentProduct.description);
+  fd.set('ispaided', "0");
+  let attrs = _.uniqWith(this.attVal, _.isEqual);
+  attrs.forEach(r => {
+    fd.append('attributes[]',JSON.stringify(r));
+  });
+  this.axios.post('product',fd).then(
+    next=>{
+      console.log(next);
+    })
 }
   onFileSelect(event) {
     if (event.target.files.length > 0) {

@@ -85,8 +85,8 @@
                     <div class="float-left py-3">
                         <small style="margin-right: 0;">{{'Home' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
                           {{ 'Categories' | translate }} <i class="fas fa-chevron-right fa-sm"></i>
-                           <label *ngIf="translate.getlocalLang()=='ar'" > {{product.category}}  </label>
-                           <label *ngIf="translate.getlocalLang()=='en'" > {{product.category}}  </label>
+                           <label *ngIf="translate.getlocalLang()=='ar'" > {{product.category.name_ar}}  </label>
+                           <label *ngIf="translate.getlocalLang()=='en'" > {{product.category.name}}  </label>
                           </small><br>
                         <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                     </div>
@@ -144,7 +144,8 @@
             <label > {{"City"|translate}} </label>
             <div class="border">
                 <p *ngIf="!editAble">
-                  {{ads?.cityId?.name}}
+                  <label *ngIf="translate.getlocalLang()=='ar'" >{{ads?.cityId?.arName}}</label>
+                  <label *ngIf="translate.getlocalLang()=='en'" >{{ads?.cityId?.name}}</label>
                 </p>
                 <ng-container *ngIf="editAble">
                     <div class="form-group">
@@ -165,8 +166,8 @@
             <div class="border">
               <label> Whole Sale </label>
                 <input [disabled]="!editAble" [(ngModel)]="ads.iswholesale" class="form-control" type="checkbox" [checked]="ads.iswholesale" [value]="ads.iswholesale">
-              </div>
-              <div >
+            </div>
+              <div>
                   <div class="map">
                       <agm-map [latitude]="toNumber(ads.lat)" [longitude]="toNumber(ads.lng)"
                           (mapClick)="onSelectLocation($event)">
@@ -234,7 +235,7 @@
                   </div>
                   <div class="form-group col-xl-6">
                       <span class="mb-2 d-block"> {{"Quantity" | translate}} </span>
-                      <input type="number" min="1" class="form-control"name="qty" #qty="ngModel"  [class.is-valid]="qty.valid && qty.touched" [class.is-invalid]="qty.invalid && (qty.touched || newProduct.submitted)"   ngModel required>
+                      <input type="number" min="1" class="form-control"name="qty" #qty="ngModel"  [class.is-valid]="qty.valid && qty.touched" [class.is-invalid]="qty.invalid && (qty.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.qty" required>
                   </div>
                   <div class="form-group col-xl-6">
                       <span class="mb-2 d-block"> {{"Old Price" | translate}}</span>
@@ -247,22 +248,26 @@
                   </div>
                   <div class="form-group col-xl-6">
                       <span class="mb-2 d-block"> {{"Product Category" | translate}}</span>
-                      <select (change)="getBrands(category_id.value)" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"   ngModel required>
-                          <option *ngFor="let item of Icategory" [ngValue]="item"> {{item.name}} </option>
+                      <select (change)="getBrands(category_id.value)" [(ngModel)]="currentProduct.category.parent_id" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"  required>
+                          <!-- <option value=""> hi </option> -->
+                        <option *ngFor="let item of Icategory" [ngValue]="item.id">
+                           {{item.name}}
+                        </option>
+
                       </select>
                   </div>
                   <div class="form-group col-xl-6">
                       <span class="mb-2 d-block">  Sub Category</span>
-                      <select  class="form-control" name="sub" #sub="ngModel"  [class.is-valid]="sub.valid && sub.touched" [class.is-invalid]="sub.invalid && (sub.touched || newProduct.submitted)"   ngModel required>
+                      <select  class="form-control" name="sub" #sub="ngModel"  [class.is-valid]="sub.valid && sub.touched" [class.is-invalid]="sub.invalid && (sub.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.category.id" required>
                           <option selected value="0"> Select .. </option>
-                          <option *ngFor="let item of category_id.value?.subs" [value]="item.id"> {{item.name}} </option>
+                          <option *ngFor="let item of subCategoryList" [value]="item.id"> {{item.name}} </option>
                       </select>
                   </div>
                   <div class="form-group col-xl-6">
                           <span class="mb-2 d-block">  {{"Brand" | translate}} </span>
-                          <select class="form-control" name="brand_id" #brand_id="ngModel"  [class.is-valid]="brand_id.valid && brand_id.touched" [class.is-invalid]="brand_id.invalid && (brand_id.touched || newProduct.submitted)" ngModel required>
+                          <select class="form-control" name="brand_id" #brand_id="ngModel"  [class.is-valid]="brand_id.valid && brand_id.touched" [class.is-invalid]="brand_id.invalid && (brand_id.touched || newProduct.submitted)" [(ngModel)]="currentProduct.brand.id" required>
                             <option value="0" selected> select brands</option>
-                            <option *ngFor="let item of Brands" [value]="item.id" > {{item.name}} </option>
+                            <option *ngFor="let item of brands" [value]="item.id" > {{item.name}} </option>
                           </select>
                       </div>
                       <div class="form-group col-xl-6" *ngFor="let item of attriGroup"  >
