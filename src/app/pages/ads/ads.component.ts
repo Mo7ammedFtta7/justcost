@@ -3,14 +3,16 @@ import { TranslateService } from '../../pipe/translate.service';
 import {ApiService} from '../../_services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import {ToastrService} from 'ngx-toastr'
+import { Ng2ImgMaxService } from 'ng2-img-max';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
   styleUrls: ['./ads.component.css']
 })
 export class AdsComponent implements OnInit {
-  Icategory:any
-  subCate:any;
+  images: FileList;
+  Icategory:any;
   Brands:any;
   attriGroup:any;
   selectedValue:[];
@@ -29,7 +31,7 @@ export class AdsComponent implements OnInit {
   p:number = 1;
   skeleton=[1,2,3,4];
   itemsPerPage = 4;
-  constructor(private toastr:ToastrService,private route: ActivatedRoute,private api: ApiService,public translate: TranslateService) {
+  constructor(private ng2ImgMax: Ng2ImgMaxService,private toastr:ToastrService,private route: ActivatedRoute,private api: ApiService,public translate: TranslateService) {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -38,11 +40,11 @@ export class AdsComponent implements OnInit {
      return Number(num);
    }
   ngOnInit() {
-    // this.ads['lat'] = 25.276987;
-    // this.ads['lng'] = 55.296249;
+    //  **  api of ads
     this.api.get("adsget/"+this.id).subscribe(
       next => {
         this.ads = next.data;
+        console.log(this.ads);
         this.loaded = false;
       }
       ,
@@ -50,12 +52,23 @@ export class AdsComponent implements OnInit {
         this.loaded = false;
       }
     );
-
+//  ** End  api of countries
+// ------------------------------------------------------------------------------------------------------
+  //  **  api of countries
     this.api.get('countries').subscribe(
       next=> {
         this.country = next.data;
       }
-    )
+    );
+    //  ** End api of countries
+    // ------------------------------------------------------------------------------------------------------
+  //  **  api of categories
+  this.api.get('nest').subscribe(
+    next=> {
+      this.Icategory = next.data;
+    }
+  );
+  //  ** End api of categories
   }
   selectProduct(item){
     this.currentProduct =item;
@@ -88,7 +101,32 @@ export class AdsComponent implements OnInit {
     );
   }
   check(){}
-  onFileSelect(event) {}
+  editProduct(form:NgForm){
+    if (form.invalid) {
+      return;
+    }
+    console.log(this.currentProduct);
+    const fd = new FormData(); // ** Form data that is Hold Data
+    for (let index = 0; index < this.images.length; index++) { // append images to form data
+      const image = this.images[index];
+      this.ng2ImgMax.compressImage(image,0.040).subscribe( // comapress image to 40 kb
+        result => {
+          let newIimage = new File([result], result.name); // comapress image to 40 kb
+          fd.append('media[]', newIimage); // append comopress image to form data
+        },
+        error => {
+          console.log('😢 Oh no!', error);
+        }
+      );
+  }
+}
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const files = event.target.files;
+      console.log(files);
+      this.images = files;
+    }
+  }
   onSelectLocation(event) {
     this.ads.lat = event.coords.lat;
     this.ads.lng = event.coords.lng;
