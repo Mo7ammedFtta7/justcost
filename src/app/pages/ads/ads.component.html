@@ -61,7 +61,12 @@
 <div class="account">
     <div  *ngIf="!loaded" class="row">
         <div class="col-xl-8 col-sm-12">
+          <span>
+            <button (click)="showNewProduct()" style="margin-bottom:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addproduct">
+               Add New Product <i class="fa fa-plus-circle"></i>
+              </button> </span>
             <div class="item row" *ngFor="let product of ads?.products | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+              {{product}}
                 <div class="photo text-center col-sm-3">
                     <img appImage src="{{product?.media[0]?.url}}" alt="Image" class="img-fluid">
                 </div><!-- Photo -->
@@ -108,7 +113,8 @@
 
         <div class="col-xl-4 col-sm-12">
             <label class="float-right" for="editAble">
-              <a class="text-primary" href="javascript:;" (click)="editAble=true" > Edit Ads </a>
+              <a *ngIf="!editAble" class="text-primary" href="javascript:;" (click)="editAble=true" > Edit Ads </a>
+              <a *ngIf="editAble"  class="text-primary" href="javascript:;" (click)="editAble=false" > canel </a>
             </label> <br>
           <label > {{"Ad Title"|translate}} </label>
             <div class="border">
@@ -163,10 +169,10 @@
 
                 </ng-container>
             </div><!-- #1 -->
-            <div class="border">
+            <!-- <div class="border">
               <label> Whole Sale </label>
                 <input [disabled]="!editAble" [(ngModel)]="ads.iswholesale" class="form-control" type="checkbox" [checked]="ads.iswholesale" [value]="ads.iswholesale">
-            </div>
+            </div> -->
               <div>
                   <div class="map">
                       <agm-map [latitude]="toNumber(ads.lat)" [longitude]="toNumber(ads.lng)"
@@ -248,7 +254,7 @@
                   </div>
                   <div class="form-group col-xl-6">
                       <span class="mb-2 d-block"> {{"Product Category" | translate}}</span>
-                      <select (change)="getBrands(category_id.value)" [(ngModel)]="currentProduct.category.parent_id" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"  required>
+                      <select (change)="getBrands(category_id.value,currentProduct)" [(ngModel)]="currentProduct.category.parent_id" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"  required>
                           <!-- <option value=""> hi </option> -->
                         <option *ngFor="let item of Icategory" [ngValue]="item.id">
                            {{item.name}}

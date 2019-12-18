@@ -81,15 +81,12 @@ export class ResultsComponent implements OnInit {
       const att = [];
       data.data.forEach(item => {
         item.attributes.forEach(element => {
-          console.log(element);
           att.push({name:element.attributes_group.name,attributes:element.attribute})
         });
         this.attributes = att;
       });
-      console.log(_.groupBy(att,'name'));
       this.attrs2 = _.groupBy(att,'name');
       // this.attrs2 =  _.uniqWith(this.attrs2, _.isEqual);
-      console.log(this.attrs2);
       this.attributes = _.split(att[0], ',');
 
       data['data'].forEach(item => {

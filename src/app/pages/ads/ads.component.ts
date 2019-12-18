@@ -77,8 +77,14 @@ export class AdsComponent implements OnInit {
   }
   selectProduct(product){
     this.currentProduct =product;
+    console.log(product);
+
     this.getBrands(product.category.parent_id,product);
 
+  }
+  showNewProduct(){
+    this.currentProduct = this.ads.products[0];
+    this.getBrands(this.currentProduct.category.parent_id,this.currentProduct);
   }
   getBrands(id,product){
     let cate = this.Icategory.find(x=> x.id== id);
@@ -87,11 +93,14 @@ export class AdsComponent implements OnInit {
     this.attriGroup = cate.attributes_group;
     this.attriGroup.forEach(element => {
       let value = [];
-      product.attributes.forEach(item => {
-        if (element.id == item.attribute.group_id) {
-          value.push(item.attribute);
-        }
-      });
+      if (product) {
+        product.attributes.forEach(item => {
+          if (element.id == item.attribute.group_id) {
+            value.push(item.attribute);
+          }
+        });
+      }
+
       this.selectedValue[element.id] = value;
     });
   }
@@ -156,7 +165,7 @@ export class AdsComponent implements OnInit {
   // fd.set('media', product.value.media);
   fd.set('qty', this.currentProduct.qty);
   fd.set('ad_id', "125");
-  fd.set('iswholesale', this.ads.iswholesale);
+  // fd.set('iswholesale', this.ads.iswholesale);
   fd.set('title', this.currentProduct.title);
   fd.set('description', this.currentProduct.description);
   fd.set('ispaided', "0");

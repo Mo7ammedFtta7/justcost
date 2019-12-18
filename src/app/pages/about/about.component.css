@@ -1,0 +1,13 @@
+.about-us p {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.about-us .box-about {
+  margin: 20px 0;
+}
+
+.about-us .box-about h5 {
+  font-weight: 600;
+  font-size: 17px;
+}
