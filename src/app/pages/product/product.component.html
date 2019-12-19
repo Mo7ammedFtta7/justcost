@@ -4,7 +4,11 @@
   ></ngx-skeleton-loader>
 <ng-container *ngIf="!loaded">
 <div class="main-title main-title2" style="margin-bottom: 30px;">
-    <small><a href="/" routerLink="/home">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i>   <a href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category}">  {{product.category}} </a></small>
+    <small>
+      <a href="/" routerLink="/home">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i>
+         <a *ngIf="translate.getlocalLang()=='ar'" href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category.id}">  {{product?.category?.name_ar}} </a>
+         <a *ngIf="translate.getlocalLang()=='en'" href=""  [routerLink]="['/results']" [queryParams]="{ category: product.category.id}">  {{product?.category?.name}} </a>
+        </small>
 </div><!-- End Title -->
 
 <div class="account">
@@ -41,12 +45,15 @@
 
                 <!-- Start List -->
                 <ul class="list-unstyled row">
-                    <li class="col-md-4 col-sm-6">{{'City' | translate }} :{{product?.city }}</li>
+                    <li class="col-md-4 col-sm-6">{{'City' | translate }} :
+                      <span *ngIf="translate.getlocalLang()=='ar'"  >  {{product?.city?.arName}}  </span>
+                      <span *ngIf="translate.getlocalLang()=='en'">  {{product?.city?.name}}  </span>
+                     </li>
                     <!-- <li class="col-md-4 col-sm-6">Model : Google Pixel 3 XL </li>
                     <li class="col-md-4 col-sm-6">Condition : Used </li> -->
                     <li class="col-md-4 col-sm-6 ">{{'Regular Price' | translate }} : <span class="red oldPrice">{{product?.reg_price }} AED</span></li>
                     <li class="col-md-4 col-sm-6">{{'Sell Price' | translate }} : <span class="red">{{product?.sale_price }} AED</span></li>
-                    <li class="col-md-4 col-sm-6">{{'Brand' | translate }} : <img [src]="product?.brand_image" appImage alt="Image" width="70" style="max-width: 25px;"></li>
+                    <li class="col-md-4 col-sm-6">{{'Brand' | translate }} : <img [src]="product?.brand?.img" appImage alt="Image" width="70" style="max-width: 25px;"></li>
                     <li class="col-md-4 col-sm-6" *ngFor="let attri of attributes" >
                     {{attri.group}}:  {{attri.attributes}}</li>
                 </ul>
@@ -68,7 +75,7 @@
 
                     <div class="row">
                         <div (click)="goToSim(item.productId)" *ngFor="let item of simillarProduct" class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
-                            <div class="image"><img appImage [src]="item?.media[0].url" alt="Image" style="height: 126px;" class="short"></div>
+                            <div class="image"><img appImage [src]="item?.media[0]?.url" alt="Image" style="height: 126px;" class="short"></div>
                             <span class="offer"> {{math(item.reg_price,item.sale_price)}}% </span>
                             <h6> {{item.title}} </h6>
                         </div><!-- End Item -->

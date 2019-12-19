@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { TranslateService } from '../../pipe/translate.service';
 import {ApiService} from '../../_services/api.service';
 import {Axios} from '../../_services/axios';
@@ -13,7 +13,10 @@ import * as _ from 'lodash';
   styleUrls: ['./ads.component.css']
 })
 export class AdsComponent implements OnInit {
+  @ViewChild('newProduct', {static: false}) public form: NgForm;
   images: FileList;
+  editSubmit = false;
+  addSubmit = false;
   attVal = [];
   subCategoryList:any;
   Icategory = [];
@@ -76,33 +79,101 @@ export class AdsComponent implements OnInit {
   //  ** End api of categories
   }
   selectProduct(product){
+    this.addSubmit = false;
+    this.editSubmit = true;
     this.currentProduct =product;
     console.log(product);
 
     this.getBrands(product.category.parent_id,product);
 
   }
-  showNewProduct(){
-    this.currentProduct = this.ads.products[0];
+  showNewProduct(f: NgForm){
+    this.editSubmit = false;
+    this.addSubmit = true;
+    // this.currentProduct = this.ads.products[0];
+    let obj = {
+      "productId": 0,
+      "title": "",
+      "category": {
+        "id": '',
+        "name": "",
+        "name_ar": "",
+        "parent_id": 0,
+        "image": null,
+        "sort_order": 0,
+        "status": 0,
+        "flag": 0,
+        "created_at": "2019-09-16 02:22:26",
+        "updated_at": null,
+        "deleted_at": null
+      },
+      "customerId": 0,
+      "customerName": "",
+      "customerMobile": "123456",
+      "customerPic": "",
+      "description": "",
+      "mobile": "",
+      "location": {
+        "long": "",
+        "lat": ""
+      },
+      "reg_price": '',
+      "sale_price": '',
+      "qty": null,
+      "city": {
+        "id": 0,
+        "name": "",
+        "arName": "",
+        "countryId": 0
+      },
+      "brand": {
+        "id": 0,
+        "category_id": 0,
+        "name": "HP",
+        "img": "g",
+        "created_at": null,
+        "deleted_at": null,
+        "updated_at": null
+      },
+      "ratings": 0,
+      "media": [
+        {
+          "id": 0,
+          "product_id": 0,
+          "url": "",
+          "flag": 0,
+          "type": ""
+        }
+      ],
+      "postedOn": 1111111111111,
+      "likes": 0,
+      "attributes": []
+    }
+    this.currentProduct = obj;
     this.getBrands(this.currentProduct.category.parent_id,this.currentProduct);
+    setTimeout(()=>{this.form.resetForm();},200);
+
   }
   getBrands(id,product){
     let cate = this.Icategory.find(x=> x.id== id);
-    this.subCategoryList = cate.subs;
-    this.brands = cate.brands;
-    this.attriGroup = cate.attributes_group;
-    this.attriGroup.forEach(element => {
-      let value = [];
-      if (product) {
-        product.attributes.forEach(item => {
-          if (element.id == item.attribute.group_id) {
-            value.push(item.attribute);
-          }
-        });
-      }
+    if(cate){
+      this.subCategoryList = cate.subs;
+      this.brands = cate.brands;
+      this.attriGroup = cate.attributes_group;
+      this.attriGroup.forEach(element => {
+        let value = [];
+        if (product) {
+          product.attributes.forEach(item => {
+            if (element.id == item.attribute.group_id) {
+              value.push(item.attribute);
+            }
+          });
+        }
+        this.selectedValue[element.id] = value;
+      });
+    }
 
-      this.selectedValue[element.id] = value;
-    });
+
   }
   editAds(){
     this.editLoad = true;
@@ -140,10 +211,11 @@ export class AdsComponent implements OnInit {
     console.log(this.attVal);
   }
   editProduct(form:NgForm){
+    console.log(this.currentProduct);
     if (form.invalid) {
       return;
     }
-    console.log(this.currentProduct);
+
     const fd = new FormData(); // ** Form data that is Hold Data
     for (let index = 0; index < this.images.length; index++) { // append images to form data
       const image = this.images[index];
@@ -164,8 +236,8 @@ export class AdsComponent implements OnInit {
   fd.set('brand_id',this.currentProduct.brand.id);
   // fd.set('media', product.value.media);
   fd.set('qty', this.currentProduct.qty);
-  fd.set('ad_id', "125");
-  // fd.set('iswholesale', this.ads.iswholesale);
+  fd.set('ad_id', this.ads.id);
+  fd.set('iswholesale', '1');
   fd.set('title', this.currentProduct.title);
   fd.set('description', this.currentProduct.description);
   fd.set('ispaided', "0");
@@ -173,10 +245,24 @@ export class AdsComponent implements OnInit {
   attrs.forEach(r => {
     fd.append('attributes[]',JSON.stringify(r));
   });
-  this.axios.post('product',fd).then(
-    next=>{
-      console.log(next);
-    })
+setTimeout(() => {
+  if (this.editSubmit) {
+    this.axios.put('products/'+this.currentProduct.productId,fd).then(
+      next=>{
+        console.log(next.data.data);
+      });
+  }
+  if (this.addSubmit) {
+    this.axios.post('products',fd).then(
+      next=>{
+        console.log(next.data.data);
+        this.form.resetForm();
+        this.ads.products.push(next.data.data);
+      });
+  }
+}, 500);
+
+
 }
   onFileSelect(event) {
     if (event.target.files.length > 0) {

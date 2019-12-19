@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import {Report} from '../../_models/category';
 import {Subscription} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
+import { TranslateService } from '../../pipe/translate.service';
 declare function goup(): any;
 declare function success(msg): any;
 declare function ViewMap(): any;
@@ -54,7 +55,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private _rea: RestService,
               private _api: ApiService, private route: ActivatedRoute,
               public toastr: ToastrService,
-              public _authService: AuthService) {
+              public _authService: AuthService,
+              public translate: TranslateService) {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
