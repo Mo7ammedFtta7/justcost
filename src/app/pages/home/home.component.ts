@@ -11,6 +11,7 @@ import { RestService } from '../../_services/rest.service';
 import { Router } from '@angular/router';
 import { ApiService } from '../../_services/api.service';
 import { TranslateService } from '../../pipe/translate.service';
+
 declare function nav(type): any;
 
 //declare function owl():any ;
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   lang : string =this.translate.getlocalLang();
 
   public errorMsg;
-  constructor(private translate: TranslateService, private _api: ApiService, public rest: RestService, private router: Router) { }
+  constructor(public translate: TranslateService, private _api: ApiService, public rest: RestService, private router: Router) { }
 
   ngOnInit() {
 

@@ -38,7 +38,8 @@
                     </div>
                     <div class="info" style="padding: 15px 15px 0px 15px;">
                         <h5> <a routerLink="/product/{{item?.productId}}">{{item?.title}}</a></h5>
-                        <span>{{item?.category}}</span>
+                        <span *ngIf="translate.getlocalLang()=='ar'" > {{item.category.name_ar}}  </span>
+                        <span *ngIf="translate.getlocalLang()=='en'" > {{item.category.name}}  </span>
                     </div>
                     <div class="end-info">
                         <bar-rating [rate]="item?.ratings" [max]="5" [readOnly]="true"></bar-rating>

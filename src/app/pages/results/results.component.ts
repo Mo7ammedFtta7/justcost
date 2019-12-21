@@ -69,6 +69,7 @@ export class ResultsComponent implements OnInit {
     this.attributes = [];
     this.brands = [];
     params['limit'] = '100';
+    this.loadedResult = true;
     this.rest.search(params).subscribe((data) => {
       // @ts-ignore
 

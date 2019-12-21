@@ -65,7 +65,7 @@
             <button (click)="showNewProduct(newProduct)" style="margin-bottom:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addproduct">
                Add New Product <i class="fa fa-plus-circle"></i>
               </button> </span>
-            <div class="item row" *ngFor="let product of ads?.products | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+            <div class="item row" *ngFor="let product of _.orderBy(ads?.products,'productId','desc')  | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
                 <div class="photo text-center col-sm-3">
                     <img appImage src="{{product?.media[0]?.url}}" alt="Image" class="img-fluid">
                 </div><!-- Photo -->
@@ -295,8 +295,18 @@
                           name="description" #description="ngModel"  [class.is-valid]="description.valid && description.touched" [class.is-invalid]="description.invalid && (description.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.description" required></textarea>
                   </div>
                   <div class="col-xl-12">
-                      <button *ngIf="editSubmit"  type="submit" class="button">{{"Save Data" | translate}} <i class="fa fa-save"></i> </button>
-                      <button *ngIf="addSubmit" type="submit" class="button">{{"Add Product" | translate}} <i class="fa fa-save"></i> </button>
+                      <button *ngIf="editSubmit"  type="submit" class="button btn btn-primary">
+                        {{"Save Data" | translate}}
+                         <i class="fa fa-save"></i>
+                         &nbsp;&nbsp;
+                         <i style="font-size: 20px;" *ngIf="loadSubmit" class="fa fa-spinner fa-spin"></i>
+                         </button>
+                      <button *ngIf="addSubmit" type="submit" class="button btn-primary btn-sm">
+                        {{"Add Product" | translate}}
+                         <i class="fa fa-save"></i>
+                         &nbsp;&nbsp;
+                         <i style="font-size: 20px;" *ngIf="loadSubmit" class="fa fa-spinner fa-spin"></i>
+                        </button>
                   </div>
               </form>
           </div>

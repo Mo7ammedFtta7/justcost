@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr'
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { NgForm } from '@angular/forms';
 import * as _ from 'lodash';
+declare var $;
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
@@ -15,6 +16,8 @@ import * as _ from 'lodash';
 export class AdsComponent implements OnInit {
   @ViewChild('newProduct', {static: false}) public form: NgForm;
   images: FileList;
+  _=_;
+  loadSubmit = false;
   editSubmit = false;
   addSubmit = false;
   attVal = [];
@@ -215,7 +218,7 @@ export class AdsComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-
+    this.loadSubmit = true;
     const fd = new FormData(); // ** Form data that is Hold Data
     for (let index = 0; index < this.images.length; index++) { // append images to form data
       const image = this.images[index];
@@ -250,14 +253,20 @@ setTimeout(() => {
     this.axios.put('products/'+this.currentProduct.productId,fd).then(
       next=>{
         console.log(next.data.data);
+        this.loadSubmit = false;
+        $('#addproduct').modal('hide');
+        this.toastr.success('product updated successfuly');
       });
   }
   if (this.addSubmit) {
     this.axios.post('products',fd).then(
       next=>{
+        this.loadSubmit = false;
         console.log(next.data.data);
         this.form.resetForm();
-        this.ads.products.push(next.data.data);
+        $('#addproduct').modal('hide');
+        this.toastr.success('product add successfuly');
+        this.ads.products.unshift(next.data.data);
       });
   }
 }, 500);
