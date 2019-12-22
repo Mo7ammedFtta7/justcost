@@ -63,7 +63,7 @@
         <div class="col-xl-8 col-sm-12">
           <span>
             <button (click)="showNewProduct(newProduct)" style="margin-bottom:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addproduct">
-               {{"Add New Product"|translate}}t <i class="fa fa-plus-circle"></i>
+               {{"Add New Product"|translate}}<i class="fa fa-plus-circle"></i>
               </button> </span>
             <div class="item row" *ngFor="let product of _.orderBy(ads?.products,'productId','desc')  | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
                 <div class="photo text-center col-sm-3">
@@ -112,8 +112,8 @@
 
         <div class="col-xl-4 col-sm-12">
             <label class="float-right" for="editAble">
-              <a *ngIf="!editAble" class="text-primary" href="javascript:;" (click)="editAble=true" > Edit Ads </a>
-              <a *ngIf="editAble"  class="text-primary" href="javascript:;" (click)="editAble=false" > canel </a>
+              <a *ngIf="!editAble" class="text-primary" href="javascript:;" (click)="editAble=true" > {{'Edit Ads'|translate}} </a>
+              <a *ngIf="editAble"  class="text-primary" href="javascript:;" (click)="editAble=false" > {{"cancel"|translate}} </a>
             </label> <br>
           <label > {{"Ad Title"|translate}} </label>
             <div class="border">
