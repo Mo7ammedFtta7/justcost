@@ -46,6 +46,7 @@ import {environment} from '../environments/environment';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {FirebaseMessageService} from './_services/firebase.messege.service';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { EditAdsComponent } from './pages/edit-ads/edit-ads.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { FaqComponent } from './pages/faq/faq.component';
@@ -101,6 +102,7 @@ import { AboutComponent } from './pages/about/about.component';
       apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'
     }),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     AngularFireMessagingModule,
     AngularFireAuthModule
   ],

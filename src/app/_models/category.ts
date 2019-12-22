@@ -27,6 +27,14 @@
       updated_at: any;
       deleted_at: any;
     }
+    export interface FireBaseNotification {
+      notification?: {
+        title?: string,
+        body?: string,
+        icon?: string,
+        click_action?: string
+      };
+    }
 
 
 
