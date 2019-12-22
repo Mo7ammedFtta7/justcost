@@ -6,7 +6,18 @@
     -o-box-sizing: border-box;
     box-sizing: border-box;
 }
+.terms-content {
+  margin-bottom: 70px;
+}
 
+.terms-content div {
+  margin-bottom: 20px;
+}
+
+.terms-content div p {
+  line-height: 1.7;
+  font-size: 14px;
+}
 body {
     text-transform: capitalize;
     color: #383F4C;

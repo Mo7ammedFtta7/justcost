@@ -1,0 +1,4 @@
+agm-map { height: 300px; }
+.is-valid[required], .ng-valid.required  {
+   border-left: 5px solid #42A948; /* green */
+ }

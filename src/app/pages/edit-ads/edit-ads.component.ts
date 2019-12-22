@@ -20,12 +20,11 @@ declare function getMarker(): any;
 declare function nav(type): any;
 
 @Component({
-  selector: 'app-postadd',
-  templateUrl: './postadd.component.html',
-  styleUrls: ['./postadd.component.css']
+  selector: 'app-edit-ads',
+  templateUrl: './edit-ads.component.html',
+  styleUrls: ['./edit-ads.component.css']
 })
-export class PostaddComponent implements OnInit
-{
+export class EditAdsComponent implements OnInit {
   attriGroup;
   subAds = false;
   subload = false;
@@ -65,8 +64,8 @@ export class PostaddComponent implements OnInit
   images: FileList;
 json:JSON =  JSON;
   constructor(private ng2ImgMax: Ng2ImgMaxService,private routerActive: ActivatedRoute,private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {
-    const param = this.routerActive.queryParams.subscribe((params: Params) => {
-      if (params.wholeSale) {
+    const param = this.routerActive.params.subscribe((params: Params) => {
+      if (params.id) {
         this.wholeSale =  params.wholeSale;
       }
     });
@@ -89,7 +88,6 @@ json:JSON =  JSON;
 
     this._api.categoris().subscribe(res => {
         this.Icategory = res['data'];
-        console.log(this.Icategory);
         this.getBrands(res['data'][0]['id']);
       },
       error => this.errorMsg = error);
@@ -197,8 +195,8 @@ json:JSON =  JSON;
 }
 
   check(id){
+
     let parse = JSON.parse(this.selectedValue[id][0]);
-    if(parse)
      this.attVal = _.remove(this.attVal, function(n) {
       return n.attributes_group_id  != parse.group_id;
     });
@@ -221,7 +219,6 @@ json:JSON =  JSON;
      // get attripute
      this._api.get("categories/"+id).subscribe(next =>{
        this.attriGroup = next.data.attributes_group;
-       console.log(this.attriGroup);
      })
 
   }
@@ -250,7 +247,7 @@ json:JSON =  JSON;
       'sale_price': product.value.sale_price,
       'description': product.value.description
     };
-    // alert(product.value.brand_id);
+    alert(product.value.brand_id);
     fd.set('fromWeb','1')
     fd.set('category_id', product.value.sub);
     fd.set('reg_price', product.value.reg_price);

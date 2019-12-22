@@ -1,0 +1,44 @@
+.contact-us .panel h6 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 7px 0;
+}
+
+.contact-us .panel span {
+  font-size: 14px;
+}
+
+.contact-us form {
+  padding-top: 20px;
+}
+
+.contact-us form .form-control {
+  border-radius: 25px;
+  border: 1px solid #98a6ad75;
+  font-size: 15px;
+}
+
+.contact-us form .form-control::-webkit-input-placeholder {
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.contact-us form .btn.btn-primary {
+  background: transparent;
+  border-radius: 25px;
+  padding: .375rem 3rem;
+  border: none;
+  box-shadow: 0 0 0 2em #FACB33 inset;
+  color: #383F4C;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  transition: all .4s ease;
+  font-size: 16px;
+}
+
+.contact-us form .btn.btn-primary:hover,
+.contact-us form .btn.btn-primary:hover {
+  box-shadow: 0 0 0 1px #383F4C inset;
+}

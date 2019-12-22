@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
     });
     this.api.get('myads').subscribe((next)=>{
       this.myAds = next.data;
-      console.log(this.myAds);
+      // console.log(this.myAds);
       this.loaded = false;
       this.totalMyAds = this.myAds.length;
       this.totalActive =_.filter(this.myAds,['status.id',3]).length;
@@ -51,6 +51,7 @@ export class ProfileComponent implements OnInit {
     });
     this.api.get('like/likedProducts').subscribe((next)=>{
       this.LikedProducts = next.data;
+      console.log(this.LikedProducts)
     });
     this.api.get('cities').subscribe((next)=>{this.cities = next.data;});
   }

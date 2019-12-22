@@ -47,6 +47,11 @@ import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {FirebaseMessageService} from './_services/firebase.messege.service';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { EditAdsComponent } from './pages/edit-ads/edit-ads.component';
+import { TermsComponent } from './pages/terms/terms.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +76,12 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     LoginDirective,
     ForgetPasswordComponent,
     TimeAgoPipe,
-    AdsComponent
+    AdsComponent,
+    EditAdsComponent,
+    TermsComponent,
+    FaqComponent,
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     Ng2ImgMaxModule,

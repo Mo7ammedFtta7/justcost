@@ -22,6 +22,7 @@ export class ResultsComponent implements OnInit {
   filterProducts = [];
   oregenal = [];
   le: number;
+  _ = _ ;
   p: number = 1;
   search: string;
   category: string;
@@ -68,6 +69,7 @@ export class ResultsComponent implements OnInit {
     this.attributes = [];
     this.brands = [];
     params['limit'] = '100';
+    this.loadedResult = true;
     this.rest.search(params).subscribe((data) => {
       // @ts-ignore
 
@@ -80,13 +82,12 @@ export class ResultsComponent implements OnInit {
       const att = [];
       data.data.forEach(item => {
         item.attributes.forEach(element => {
-          console.log(element);
           att.push({name:element.attributes_group.name,attributes:element.attribute})
         });
         this.attributes = att;
       });
-      console.log(_.groupBy(att,'name'));
       this.attrs2 = _.groupBy(att,'name');
+      // this.attrs2 =  _.uniqWith(this.attrs2, _.isEqual);
       this.attributes = _.split(att[0], ',');
 
       data['data'].forEach(item => {
@@ -127,8 +128,10 @@ export class ResultsComponent implements OnInit {
 checkFav(id){
   return this.auth.user().userInfo.likedProducts.includes(id) ? true : false ;
 }
-  filterByBrand(brand) {
-    this.filterProducts = _.filter(this.oregenal,['brand',brand])
+  filterByBrand(id) {
+    this.filterProducts = _.filter(this.oregenal,function(o){
+      return o.brand.id == id;
+    });
   }
   getAll(value) {
     if (value) {

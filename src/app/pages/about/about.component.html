@@ -1,0 +1,38 @@
+<ngx-skeleton-loader *ngIf="loaded"
+    count="5"
+    [theme]="{
+      'border-radius': '5px',
+      height: '50px',
+      border: '1px solid white'
+    }"
+  ></ngx-skeleton-loader>
+
+<div *ngIf="!loaded"  class="about-us">
+    <h3 style="font-size: 25px; text-transform: none">{{'About us'|translate}}</h3>
+    <p *ngIf="translte.getlocalLang() == 'ar'" > {{data?.about_us}} </p>
+    <p *ngIf="translte.getlocalLang() == 'en'" > {{data?.en_about_us}} </p>
+    <div class="row">
+        <div class="col-xl-4 col-sm-12">
+            <div class="box-about">
+                <h5>{{'Our Mission'|translate}}</h5>
+                <p *ngIf="translte.getlocalLang() == 'ar'" > {{data?.our_misson}} </p>
+                <p *ngIf="translte.getlocalLang() == 'en'" > {{data?.en_our_misson}} </p>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-12">
+            <div class="box-about">
+                <h5>{{'Our Vission'|translate}}</h5>
+                <p *ngIf="translte.getlocalLang() == 'ar'" > {{data?.our_vission}} </p>
+                <p *ngIf="translte.getlocalLang() == 'en'" > {{data?.en_our_vission}} </p>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-12">
+            <div class="box-about">
+                <h5>{{'Why us'|translate}}</h5>
+                <p *ngIf="translte.getlocalLang() == 'ar'" > {{data?.why_us}} </p>
+                <p *ngIf="translte.getlocalLang() == 'en'" > {{data?.en_why_us}} </p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- End Profile -->

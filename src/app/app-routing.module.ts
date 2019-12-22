@@ -1,3 +1,8 @@
+import { EditAdsComponent } from './pages/edit-ads/edit-ads.component';
+import { TermsComponent } from './pages/terms/terms.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { AdsComponent } from './pages/ads/ads.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -20,6 +25,39 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
+    pathMatch: 'full'
+  }
+  ,
+  {
+    path: 'about',
+      component: AboutComponent
+      ,
+      pathMatch: 'full'
+    }
+    ,
+  {
+    path: 'contact',
+      component: ContactComponent
+      ,
+      pathMatch: 'full'
+    }
+    ,
+  {
+    path: 'faq',
+      component: FaqComponent
+      ,
+      pathMatch: 'full'
+    },
+  {
+    path: 'terms',
+      component: TermsComponent
+      ,
+      pathMatch: 'full'
+    },
+  {
+  path: 'edit-ads/:id',
+    component: EditAdsComponent
+    ,
     pathMatch: 'full'
   }
   ,
