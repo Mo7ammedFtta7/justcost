@@ -19,6 +19,7 @@ declare function success(msg):any;
 })
 export class ProfileComponent implements OnInit {
   edit:NgForm
+  public _ = _;
   MaxSize = false
   imageLoaded = false;
   cities;
