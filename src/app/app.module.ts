@@ -46,6 +46,7 @@ import {environment} from '../environments/environment';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {FirebaseMessageService} from './_services/firebase.messege.service';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,6 +92,7 @@ import {FirebaseMessageService} from './_services/firebase.messege.service';
       apiKey: 'AIzaSyDZrJqJiS4HHqw8vEgc30ZTDcfZoUYVpSk'
     }),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     AngularFireMessagingModule,
     AngularFireAuthModule
   ],

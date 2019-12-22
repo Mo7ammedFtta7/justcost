@@ -13,7 +13,6 @@ import { ApiService } from '../../_services/api.service';
 import { TranslateService } from '../../pipe/translate.service';
 declare function nav(type): any;
 
-//declare function owl():any ;
 
 @Component({
   selector: 'app-home',
@@ -76,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public math(aa: any, bb: any) {
-    return ((aa - bb) / aa * 100).toFixed(0)
+    return ((aa - bb) / aa * 100).toFixed(0);
   }
 
   ngOnDestroy() {

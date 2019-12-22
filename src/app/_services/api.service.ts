@@ -34,8 +34,8 @@ export class ApiService {
     headers = headers.append('Content-Type', 'multipart/form-data');
     headers = headers.append('Lang', this.trans.getlocalLang());
     if (this._authService.loggedIn()) {
-      headers = headers.append('Authorization', `Bearer  ${this._authService.user().token}`);
-      headers = headers.append('Authorization', `key=${this.firebaseAppServer}`);
+      headers = headers.append('Authorization', `Bearer ${this._authService.user().token}`);
+     // headers = headers.append('Authorization', `key=${this.firebaseAppServer}`);
     }
     return { headers };
   }

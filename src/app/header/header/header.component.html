@@ -26,11 +26,25 @@
               </select>
             </li>
             <li class="nav-item">
+              {{ }}
               <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;"  data-toggle="modal" data-target="#addtype" ><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
 
               <!-- <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>     -->
 
             </li>
+          </ul>
+          <ul class="navbar-nav ml-auto" *ngIf="!(firebaseToken | async ) && _authService.loggedIn()">
+            <a href="javascript:;">
+              <span class="link-name" (click)="subscribeNotification($event)">subscribe to notifications</span>
+            </a>
+
+          </ul>
+
+          <ul class="navbar-nav ml-auto" *ngIf="(firebaseToken | async) && _authService.loggedIn()">
+            <a href="javascript:;">
+              <span class="link-name" (click)="unSubscribeNotification($event)">unsubscribe to notifications</span>
+            </a>
+
           </ul>
 
           <ul class="navbar-nav ml-auto">
@@ -52,6 +66,7 @@
                    <div class="dropdown-divider"></div>
                   </ng-container>
                 </ul>
+
               </div>
 
             </li>
