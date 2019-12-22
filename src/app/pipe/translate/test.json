@@ -98,6 +98,9 @@
   "Download": {
     "ar": "تنزيل"
   },
+  "Edit Product": {
+    "ar": "تعديل "
+  },
   "About us": {
     "ar": "من نحن"
   },
@@ -106,6 +109,9 @@
   },
   "Our Vission": {
     "ar": "رؤيتنا"
+  },
+  "Add New Product": {
+    "ar": "اضافة منتج جديد ؟"
   },
   "Why us": {
     "ar": "لماذا نحن؟"

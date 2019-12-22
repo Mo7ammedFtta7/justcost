@@ -63,7 +63,7 @@
         <div class="col-xl-8 col-sm-12">
           <span>
             <button (click)="showNewProduct(newProduct)" style="margin-bottom:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addproduct">
-               Add New Product <i class="fa fa-plus-circle"></i>
+               {{"Add New Product"|translate}}t <i class="fa fa-plus-circle"></i>
               </button> </span>
             <div class="item row" *ngFor="let product of _.orderBy(ads?.products,'productId','desc')  | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
                 <div class="photo text-center col-sm-3">
@@ -73,7 +73,7 @@
                     <div class="float-left py-3">
                         <h6><a routerLink="/product/{{product?.productId}}">{{product?.title}}</a>
                           &nbsp;&nbsp;
-                        <button (click)="selectProduct(product)" data-toggle="modal" data-target="#addproduct"> Edit Product </button>
+                        <button (click)="selectProduct(product)" data-toggle="modal" data-target="#addproduct"> {{"Edit Product"|translate}} </button>
                         </h6>
                         <small>{{(product.postedOn*1000)  | date }}</small>
                     </div>
