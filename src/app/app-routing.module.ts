@@ -1,4 +1,5 @@
 import { EditAdsComponent } from './pages/edit-ads/edit-ads.component';
+import { RestPassComponent } from './pages/rest-pass/rest-pass.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -22,6 +23,12 @@ import { ResultsComponent } from './pages/results/results.component';
 import { TranslateComponent } from './pipe/translate/translate.component';
 
 const routes: Routes = [
+  {
+    path: 'reset-password/:token',
+      component: RestPassComponent
+      ,
+      pathMatch: 'full'
+    },
   {
     path: '',
     redirectTo: '/home',

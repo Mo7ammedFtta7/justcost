@@ -173,15 +173,13 @@ export class ApiService {
     return this._authService.setToken(up);
   }
   errorHandler(error: HttpErrorResponse) {
-    if (error.status === 422) {
-      Object.keys(error.error.errors).forEach(key => {
+    // if (error.status === 422) {
 
-      });
-    }
-    if (error.status === 401) {
+    // }
+    // if (error.status === 401) {
 
-        this.router.navigate(['/login']);
-    }
+    //     this.router.navigate(['/login']);
+    // }
 
     return throwError(error);
   }

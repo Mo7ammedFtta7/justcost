@@ -52,6 +52,7 @@ import { TermsComponent } from './pages/terms/terms.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
+import { RestPassComponent } from './pages/rest-pass/rest-pass.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import { AboutComponent } from './pages/about/about.component';
     TermsComponent,
     FaqComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    RestPassComponent
   ],
   imports: [
     Ng2ImgMaxModule,
