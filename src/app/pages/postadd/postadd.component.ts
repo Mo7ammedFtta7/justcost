@@ -89,7 +89,6 @@ json:JSON =  JSON;
 
     this._api.categoris().subscribe(res => {
         this.Icategory = res['data'];
-        console.log(this.Icategory);
         this.getBrands(res['data'][0]['id']);
       },
       error => this.errorMsg = error);
@@ -221,7 +220,6 @@ json:JSON =  JSON;
      // get attripute
      this._api.get("categories/"+id).subscribe(next =>{
        this.attriGroup = next.data.attributes_group;
-       console.log(this.attriGroup);
      })
 
   }

@@ -139,8 +139,6 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                             <i class="fas fa-shopping-cart"></i>{{"My Ads"| translate}} </a>
-                        <a class="nav-item nav-link" id="nav-home-pending" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-profile" aria-selected="false">
-                            <i class="fas fa-shopping-cart"></i>{{"Pending"| translate}} </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
                             <i class="fas fa-heart"></i>{{"My Fav"| translate}} </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-profile" aria-selected="false">
@@ -185,45 +183,6 @@
                         </div><!-- End Classic -->
                         <div class="paginaion text-center">
                             <pagination-controls id="myAds" class="my-pagination" (pageChange)="p2 = $event"></pagination-controls>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="nav-nav-pending" role="tabpanel" aria-labelledby="nav-home-pending">
-
-                        <div class="classic" *ngFor="let item of myAds | paginate:  { id: 'pending', itemsPerPage: 4, currentPage: p2 }">
-                            <div class="ads">
-
-                                <div class="image float-left">
-                                    <img appImage [src]="item.brand_name" alt="Image" width="100">
-                                    <span> {{item.status.name}} </span>
-
-                                </div><!-- Image -->
-
-                                <div class="text-image float-left">
-                                    <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
-                                    <a href="#"><i class="far fa-map"></i> {{item?.cityId?.name}} </a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
-                                </div>
-
-                                <!-- <div class="view float-left text-center">
-                                    <h6><i class="far fa-eye"></i> View</h6>
-                                    <span>( 520 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="far fa-comments"></i>Comments</h6>
-                                    <span>( 71 )</span>
-                                </div>
-                                <div class="view float-left  text-center">
-                                    <h6><i class="fas fa-star"></i> Rating</h6>
-                                    <span>( +3 )</span>
-                                </div> -->
-                                <div class="clearfix"></div>
-
-
-                            </div>
-                        </div><!-- End Classic -->
-                        <div class="paginaion text-center">
-                            <pagination-controls id="pending" class="my-pagination" (pageChange)="p2 = $event"></pagination-controls>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">

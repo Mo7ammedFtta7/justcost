@@ -137,7 +137,6 @@ export class ProductComponent implements OnInit, OnDestroy {
   getProduct() {
     this._rea.getProduct(this.id).subscribe( next => {
       this.product = next.data;
-      console.log(this.product);
       this.like = this.product.likes
       let imgUrl = [];
       imgUrl = this.product.media;

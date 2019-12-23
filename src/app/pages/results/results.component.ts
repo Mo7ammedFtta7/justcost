@@ -76,7 +76,6 @@ export class ResultsComponent implements OnInit {
       this.products = data.data;
       this.oregenal = data.data;
       this.filterProducts = data.data;
-      console.log(this.filterProducts);
       this.loadedResult = false;
       this.le = this.products.length;
       const att = [];

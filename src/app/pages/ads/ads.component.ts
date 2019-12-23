@@ -1,3 +1,4 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { TranslateService } from '../../pipe/translate.service';
 import {ApiService} from '../../_services/api.service';
@@ -17,6 +18,7 @@ export class AdsComponent implements OnInit {
   @ViewChild('newProduct', {static: false}) public form: NgForm;
   images: FileList;
   _=_;
+  disableSubmit = false;
   loadSubmit = false;
   editSubmit = false;
   addSubmit = false;
@@ -90,6 +92,35 @@ export class AdsComponent implements OnInit {
     this.getBrands(product.category.parent_id,product);
 
   }
+  enableToggel(item){  // ** this function make ads enable  or disabled
+    this.disableSubmit = true; // ** to show spinner loading
+    if (this.ads.status.id == 3) {  // ** if ads is enable make it disabled
+      this.api.post('ads/'+this.ads.id+'/disable',{}).subscribe( // ** call API for disable Ads
+        next => {
+          this.disableSubmit = false; // ** stop spinner loading
+          this.ads.status.id = 5; // ** make it disable
+          this.toastr.success('ads disabled successful'); // ** alert message
+        },
+        error => {
+          this.disableSubmit = false; // ** stop spinner loading
+          console.log(error);
+        }
+      ); // ** end API
+    } // ** end if
+    if (this.ads.status.id == 5) { // ** if ads is disabled make it enable
+      this.api.post('ads/'+this.ads.id+'/enable ',{}).subscribe( // ** call API for enable Ads
+        next => {
+          this.disableSubmit = false; // ** stop spinner loading
+          this.ads.status.id = 3; // ** make it enable
+          this.toastr.success('ads enabled successful'); // ** alert message
+        },
+        error => {
+          this.disableSubmit = false; // ** stop spinner loading
+          console.log(error);
+        }
+      ); // ** end API
+    } // ** end if
+  } // ** end function
   showNewProduct(f: NgForm){
     this.editSubmit = false;
     this.addSubmit = true;
@@ -220,18 +251,21 @@ export class AdsComponent implements OnInit {
     }
     this.loadSubmit = true;
     const fd = new FormData(); // ** Form data that is Hold Data
-    for (let index = 0; index < this.images.length; index++) { // append images to form data
-      const image = this.images[index];
-      this.ng2ImgMax.compressImage(image,0.040).subscribe( // comapress image to 40 kb
-        result => {
-          let newIimage = new File([result], result.name); // comapress image to 40 kb
-          fd.append('media[]', newIimage); // append comopress image to form data
-        },
-        error => {
-          console.log('😢 Oh no!', error);
-        }
-      );
-  }
+    if(this.images){
+      for (let index = 0; index < this.images.length; index++) { // append images to form data
+        const image = this.images[index];
+        this.ng2ImgMax.compressImage(image,0.040).subscribe( // comapress image to 40 kb
+          result => {
+            let newIimage = new File([result], result.name); // comapress image to 40 kb
+            fd.append('media[]', newIimage); // append comopress image to form data
+          },
+          error => {
+            console.log('😢 Oh no!', error);
+          }
+        );
+    } // ** end for
+    }
+
   fd.set('fromWeb','1')
   fd.set('category_id', this.currentProduct.category.id);
   fd.set('reg_price', this.currentProduct.reg_price);
@@ -250,7 +284,7 @@ export class AdsComponent implements OnInit {
   });
 setTimeout(() => {
   if (this.editSubmit) {
-    this.axios.put('products/'+this.currentProduct.productId,fd).then(
+    this.axios.post('products/'+this.currentProduct.productId,fd).then(
       next=>{
         console.log(next.data.data);
         this.loadSubmit = false;
