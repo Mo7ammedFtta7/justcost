@@ -31,7 +31,9 @@ check:boolean;
         this.toastr.success('password updated successfulley')
         if (next.success) {
           $('#mainmodel').modal('show');
-          this.router.navigate(['/home/']);
+          setTimeout(() => {
+            this.router.navigate(['/home/']);
+          }, 3000);
         }
       },
       error => {
