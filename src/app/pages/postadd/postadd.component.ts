@@ -10,6 +10,7 @@ import * as _ from 'lodash';
 import {ToastrService} from 'ngx-toastr'
 import { ActivatedRoute,Params } from '@angular/router';
 import { Ng2ImgMaxService } from 'ng2-img-max';
+import { TranslateService } from '../../pipe/translate.service';
 // import { $ } from 'protractor';
 declare var $:any;
 // import { threadId } from 'worker_threads';
@@ -64,7 +65,7 @@ export class PostaddComponent implements OnInit
   countries: any;
   images: FileList;
 json:JSON =  JSON;
-  constructor(private ng2ImgMax: Ng2ImgMaxService,private routerActive: ActivatedRoute,private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {
+  constructor(public translate: TranslateService,private ng2ImgMax: Ng2ImgMaxService,private routerActive: ActivatedRoute,private toastr:ToastrService,public rest: RestService, public _authService: AuthService, private _api: ApiService, private _rea: RestService) {
     const param = this.routerActive.queryParams.subscribe((params: Params) => {
       if (params.wholeSale) {
         this.wholeSale =  params.wholeSale;
@@ -96,13 +97,10 @@ json:JSON =  JSON;
     this.user = this._authService.getUser().userInfo
     this.phone = this.user.phone
   }
-  getCitisOfCountry(countryId) {
-    this._rea.getCitis(countryId).subscribe(
-      res => {
-        this.citis = res.data;
-      },
-      err => {
-      });
+  getCitisOfCountry(id) {
+    let country = this.countries.find(e => e.id == id);
+    console.log(country);
+    this.citis = country.cities;
   }
   ref(id) {
     this.create.value.category_id = 5
@@ -212,16 +210,9 @@ json:JSON =  JSON;
     this.subload =  false;
     let mainCategory = this.Icategory.find(e => e.id == id);
     this.subCate = mainCategory.subs;
-    // get brands
-    this.rest.getBrands(id).subscribe((data: {}) => {
-      this.Brands = data['data'];
-    });
-    //
-     // get attripute
-     this._api.get("categories/"+id).subscribe(next =>{
-       this.attriGroup = next.data.attributes_group;
-     })
-
+    this.Brands = mainCategory.brands;
+    this.attriGroup = mainCategory.attributes_group;
+  
   }
   addproduct(product: NgForm) {
     if (product.invalid) {

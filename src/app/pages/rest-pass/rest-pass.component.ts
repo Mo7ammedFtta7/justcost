@@ -13,6 +13,7 @@ declare var $:any;
 export class RestPassComponent implements OnInit {
 token: any;
 load = false;
+submitting = false;
 check:boolean;
   constructor( private router: Router,private route: ActivatedRoute,private api: ApiService,private toastr:ToastrService) {
 
@@ -21,6 +22,7 @@ check:boolean;
     if (f.invalid || f.value.password !== f.value.c_password) { // ** check data of form is valid
       return;
     }
+    this.submitting = true;
     let payload = {
       password: f.value.password,
       token :this.token,
@@ -28,6 +30,7 @@ check:boolean;
     }
     this.api.post('resets',payload).subscribe(
       next => {
+        this.submitting = false;
         this.toastr.success('password updated successfulley')
         if (next.success) {
           $('#mainmodel').modal('show');
@@ -37,7 +40,7 @@ check:boolean;
         }
       },
       error => {
-
+        this.submitting = false;
       }
     );
   }

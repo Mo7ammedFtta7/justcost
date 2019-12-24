@@ -14,6 +14,8 @@
         sort_order: number;
         flag?: number;
         subs: Isub[];
+        brands:[]
+        attributes_group:[]
     }
 
     export class Report {

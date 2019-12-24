@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   Search: string;
   categories: any[];
   errorMsg: any;
-  Category = '';
+  Category:any;
   city = '';
   env = environment;
   notification;
@@ -81,6 +81,11 @@ export class HeaderComponent implements OnInit {
     if (this.Category != '0' || this.Category != null) {
       queryParams['category'] = this.Category;
     }
+    
+      if (this.Category == 0) {
+        queryParams['category'] = '';
+      }
+    
 
     if (this.city != '0' || this.Category != null) {
       queryParams['city'] = this.city;

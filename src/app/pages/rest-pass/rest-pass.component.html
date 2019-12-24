@@ -24,17 +24,20 @@
         <div class="form-row my-0">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <span>New Password</span>
+                    <span>{{"New Password" | translate}}</span>
                     <input type="password" class="form-control" placeholder="*******************" name="password"  #password="ngModel"  [class.is-valid]="password.valid && password.touched" [class.is-invalid]="password.invalid && (password.touched || f.submitted)" ngModel minlength="6" required>
                 </div>
                 <div class="form-group">
-                    <span>Confirm New Password</span>
+                    <span>{{"Confirm New Password" | translate}}</span>
                     <input type="password" class="form-control" placeholder="*******************" name="c_password" #c_password="ngModel"  [class.is-valid]="f.value.password === f.value.c_password && c_password.valid && c_password.touched " [class.is-invalid]="c_password.invalid && (c_password.touched || f.submitted)" ngModel required>
                     <small style="color: red;" *ngIf="f.value.password !== f.value.c_password && c_password.dirty" class="form-text">Passwords don't match..</small>
                 </div>
             </div>
             <div class="form-group text-center my-0" style="border:none;">
-                <button type="submit" class="btn btn-primary">Change Password</button>
+                <button type="submit" class="btn btn-primary"> 
+                  {{ "Change Password" | translate }}
+                  <i *ngIf="submitting"  class="fa fa-spin fa-spinner"></i>
+                </button>
             </div>
         </div>
     </form>

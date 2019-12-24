@@ -159,8 +159,8 @@
 
                                 <div class="text-image float-left">
                                     <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
-                                    <a href="#"><i class="far fa-map"></i> {{item?.cityId?.name}} </a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
+                                    <a *ngIf="translate.getlocalLang()=='en'"  href="#"><i class="far fa-map"></i> {{item?.cityId?.name}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="#"><i class="far fa-map"></i> {{item?.cityId?.arName}} </a>
                                     <a href="#"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
                                 </div>
 
@@ -201,8 +201,12 @@
 
                                 <div class="text-image float-left">
                                     <h6> <a routerLink="/product/{{item?.productId}}">  {{item.title}} </a> </h6>
-                                    <a href="javascript:;"><i class="far fa-map"></i>{{item.city}}</a> |
-                                    <a href="javascript:;"><i class="fas fa-tag"></i> {{item.category}} </a> |
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="far fa-map"></i>{{item?.city?.arName}}</a>
+                                    <a *ngIf="translate.getlocalLang()=='en'" href="javascript:;"><i class="far fa-map"></i>{{item?.city?.name}}</a>
+                                     |
+
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="fas fa-tag"></i>  {{item?.category?.name_ar}} </a> 
+                                    <a *ngIf="translate.getlocalLang()=='en'" href="javascript:;"><i class="fas fa-tag"></i>  {{item?.category?.name}} </a> |
                                     <a href="javascript:;"><i class="far fa-calendar"></i>{{ (item.postedOn*1000) | timeAgo}}</a>
                                 </div>
 

@@ -107,7 +107,6 @@ export class ResultsComponent implements OnInit {
       case "3":
           this.filterProducts = _.orderBy(this.oregenal,['sale_price'],['asc']);
         break;
-
       default:
         break;
     }

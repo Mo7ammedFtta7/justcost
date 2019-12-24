@@ -26,7 +26,7 @@
                             <ul class="list-unstyled check-ul">
                                 <li >
                                     <input #all type="checkbox" (change)="getAll($event.currentTarget.checked)">
-                                    <label  > {{ " All " | translate}} </label>
+                                    <label> &nbsp; {{ "All" | translate}} </label>
                                 </li>
 
                             </ul>
@@ -81,9 +81,9 @@
                                 style="margin-top:7px; text-transform: none">{{'Sort by' | translate }}</span>
                             <select #sort class="form-control col-xl-9 col-sm-12"  (change)="sortP(sort.value)">
                                 <option selected value="1">Select ..</option>
-                                <option  value="1" >Top Rated</option>
-                                <option  value="2" >Heigh Price</option>
-                                <option  value="3" >Low Price</option>
+                                <option  value="1" >{{"Top Rated" | translate }}</option>
+                                <option  value="2" >{{"Heigh Price" | translate}}</option>
+                                <option  value="3" >{{"Low Price" | translate}}</option>
                             </select>
                         </div>
                     </div>

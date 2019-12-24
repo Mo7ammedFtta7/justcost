@@ -14,6 +14,30 @@
   "Save Data": {
     "ar": "حفظ البيانات"
   },
+  "All": {
+    "ar": "الكل"
+  },
+  "reason": {
+    "ar": "السبب"
+  },
+  "Change Password": {
+    "ar": "تغير كلمة السر"
+  },
+  "Confirm New Password": {
+    "ar": "تأكيد كلمة السر الجديدة"
+  },
+  "New Password": {
+    "ar": "كلمة السر الجديدة"
+  },
+  "Enter your email address and we'll send you an email with instructions to reset your password": {
+    "ar": "أدخل البريد الالكتروني وسوف تصلك رسالة تعين كلمة سر جديدة"
+  },
+  "Reset Password": {
+    "ar": "أعادة تعيين كلمة السر"
+  },
+  "Sub Category": {
+    "ar": "التصنيف الثاني"
+  },
   "Write your comment here": {
     "ar": " أكتب تعليقا"
   },
@@ -115,6 +139,21 @@
   },
   "Edit Ads": {
     "ar": "تعديل الاعلان"
+  },
+  "Top Rated": {
+    "ar": "الاعلي تقييما"
+  },
+  "Low Price": {
+    "ar": "الاقل سعرا"
+  },
+  "Brands": {
+    "ar": "العلامات التجارية"
+  },
+  "Attributes": {
+    "ar": "الخصائص"
+  },
+  "Heigh Price": {
+    "ar": "الاعلي سعرا "
   },
   "This is ads under revision !": {
     "ar": "هذا الاعلان تحت المراجعة ! "

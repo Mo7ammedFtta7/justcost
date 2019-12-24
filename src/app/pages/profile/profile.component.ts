@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   totalPaid;
   LikedProducts
   uploadForm: FormGroup;
-  constructor(private ng2ImgMax: Ng2ImgMaxService, private toastr:ToastrService, private axios: Axios,private _rest: RestService,private _auth: AuthService,public api:ApiService,private formBuilder: FormBuilder) { }
+  constructor(public translate:TranslateService,private ng2ImgMax: Ng2ImgMaxService, private toastr:ToastrService, private axios: Axios,private _rest: RestService,private _auth: AuthService,public api:ApiService,private formBuilder: FormBuilder) { }
   ngOnInit() {
     // this.toastr.success('hi','suhail');
     nav('hide');
