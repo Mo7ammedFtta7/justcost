@@ -159,9 +159,9 @@
 
                                 <div class="text-image float-left">
                                     <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
-                                    <a *ngIf="translate.getlocalLang()=='en'"  href="#"><i class="far fa-map"></i> {{item?.cityId?.name}} </a>
-                                    <a *ngIf="translate.getlocalLang()=='ar'" href="#"><i class="far fa-map"></i> {{item?.cityId?.arName}} </a>
-                                    <a href="#"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='en'"  href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.name}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.arName}} </a>
+                                    <a href="javascript:;"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
                                 </div>
 
                                 <!-- <div class="view float-left text-center">
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <!-- <a href="#" class="button button2">Remove Selected</a> -->
+                        <!-- <a href="javascript:;" class="button button2">Remove Selected</a> -->
                         <div class="classic classic2" *ngFor="let item of LikedProducts | paginate:  { itemsPerPage: 4, currentPage: p }">
                             <div class="ads">
 

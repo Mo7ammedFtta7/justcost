@@ -59,21 +59,21 @@
                                                                             <!-- Start Select Category -->
                                                                             <span>{{'Product Category' | translate}} :</span>
                                                                             <ul class="list-unstyled row Select-category category-list">
-                                                                                <li><a href="#" class="">Automotive</a></li>
-                                                                                <li><a href="#" class="">Property for sale</a></li>
-                                                                                <li><a href="#" class="select">Property for rent</a></li>
-                                                                                <li><a href="#">Shopping</a></li>
-                                                                                <li><a href="#">Services</a></li>
-                                                                                <li><a href="#">Electronics </a></li>
+                                                                                <li><a href="javascript:;" class="">Automotive</a></li>
+                                                                                <li><a href="javascript:;" class="">Property for sale</a></li>
+                                                                                <li><a href="javascript:;" class="select">Property for rent</a></li>
+                                                                                <li><a href="javascript:;">Shopping</a></li>
+                                                                                <li><a href="javascript:;">Services</a></li>
+                                                                                <li><a href="javascript:;">Electronics </a></li>
                                                                             </ul>
 
                                                                             <!-- Start Sub Category -->
                                                                             <span>Sub Category :</span>
                                                                             <ul class="list-unstyled row category-list">
-                                                                                <li><a href="#">Bikes </a></li>
-                                                                                <li><a href="#">Used Cars for Sale</a></li>
-                                                                                <li><a href="#">Motorcycles</a></li>
-                                                                                <li><a href="#">Heavy Vehicles</a></li>
+                                                                                <li><a href="javascript:;">Bikes </a></li>
+                                                                                <li><a href="javascript:;">Used Cars for Sale</a></li>
+                                                                                <li><a href="javascript:;">Motorcycles</a></li>
+                                                                                <li><a href="javascript:;">Heavy Vehicles</a></li>
                                                                             </ul>
                                                                             <!-- Start Media Details -->
                                                                             <h6 class="small-title">{{'ad Media' | translate}} :</h6>

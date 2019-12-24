@@ -1,6 +1,6 @@
 <div class="main-title main-title2">
-    <small><a href="#">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a
-            href="#">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{category}}</small>
+    <small><a href="javascript:;">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a
+            href="javascript:;">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{category}}</small>
 </div><!-- End Title -->
 
 <div class="catogery">
@@ -189,7 +189,7 @@
                             <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                         </div>
                         <div>
-                            <label href="#" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
+                            <label href="javascript:;" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
                             <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
                               <i class="fas fa-map-marker-alt"></i> {{ "View Location" | translate}}
                             </a>
