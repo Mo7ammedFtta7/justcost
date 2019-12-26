@@ -29,10 +29,10 @@
 
     <h3 style="font-size: 25px; text-transform: none;" class="text-center">Get in touch</h3>
 
-    <form action="" class="row col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-12">
+    <form  #f="ngForm" (ngSubmit)="submitForm(f)" class="row col-lg-10 offset-lg-1 col-md-12 col-sm-12 col-12">
         <div class="col-sm-6">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder=" {{'first name'| translate}} " name="">
+                <input type="text" class="form-control" placeholder=" {{'first name'| translate}} "  name="first_name"  #first_name ="ngModel"  [class.is-valid]="first_name.valid && first_name.touched" [class.is-invalid]="first_name.invalid && (first_name.touched || f.submitted)" ngModel required>
             </div>
         </div>
           <div class="col-sm-6">
@@ -42,17 +42,17 @@
         </div>
           <div class="col-sm-6">
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="{{'Email' | translate}}" name="">
+                <input type="email" class="form-control" placeholder="{{'Email' | translate}}" name="email"  #email ="ngModel"  [class.is-valid]="email.valid && email.touched" [class.is-invalid]=" email.invalid && (email.touched || f.submitted)" ngModel email required>
             </div>
         </div>
           <div class="col-sm-6">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="{{'Subject'| translate}}" name="">
+                <input type="text" class="form-control" placeholder="{{'Subject'| translate}}" name="subject"  #subject ="ngModel"  [class.is-valid]="subject.valid && subject.touched" [class.is-invalid]=" subject.invalid && (subject.touched || f.submitted)" ngModel required>
             </div>
         </div>
           <div class="col-sm-12">
             <div class="form-group">
-                <textarea name="" id="" cols="30" rows="10" class="form-control" style="resize: none;" placeholder="{{'Message' | translate}}"></textarea>
+                <textarea cols="30" rows="10" class="form-control" style="resize: none;" placeholder="{{'Message' | translate}}" name="message"  #message ="ngModel"  [class.is-valid]="message.valid && message.touched" [class.is-invalid]=" message.invalid && (message.touched || f.submitted)" ngModel required></textarea>
             </div>
         </div>
         <div class="col-sm-12 text-center">

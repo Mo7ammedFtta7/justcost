@@ -1,7 +1,6 @@
 <!-- START FEATURED ADS -->
 <!-- <section class="featured-ads"> -->
         <section class="">
-    <h3 class="main-title">{{ 'Featured ads' | translate }}</h3>
     <div *ngIf="loaded" class="item">
             <ngx-skeleton-loader [theme]="{
             width: '24%',
@@ -28,9 +27,10 @@
           }" count="4">
         </ngx-skeleton-loader>
         </div>
+    <h3 class="main-title">{{ 'Featured ads' | translate }}</h3>
     <div class="ads py-4">
         <div class="row">
-            <div (click)="goToProduct(item?.productId)" *ngFor="let item of items | slice: 0 : 8 ; let i=index" class="col-xl-3 col-sm-6">
+            <div (click)="goToProduct(item?.productId)" *ngFor="let item of items | slice: 0 : numberFeaturAds ; let i=index" class="col-xl-3 col-sm-6">
                 <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
                     <div class="item">
                         <img appImage src="{{item?.media[0].url}}"  alt="Image" class="img">
@@ -48,7 +48,35 @@
                 </div>
             </div>
         </div>
+        <button *ngIf="numberFeaturAds < items.length"  (click)="numberAds=numberFeaturAds+4"  class="btn btn-outline-secondary"> {{"More" | translate}} </button>
+        <button *ngIf="numberFeaturAds >= items.length"  (click)="numberAds=numberFeaturAds-4"  class="btn btn-outline-secondary"> {{"Less" | translate}} </button>
     </div>
+    <!-- // New Ads -->
+    <h3 class="main-title">{{ 'New ads' | translate }}</h3>
+    <div class="ads py-4">
+        <div class="row">
+            <div (click)="goToProduct(item?.productId)" *ngFor="let item of newAds | slice: 0 : numberNewAds ; let i=index" class="col-xl-3 col-sm-6">
+                <div class="panel wow fadeIn" data-wow-offset="0" data-wow-delay="0s">
+                    <div class="item">
+                        <img appImage src="{{item?.media[0].url}}"  alt="Image" class="img">
+                        <span class="discount">{{ 'off' | translate }} {{item?.discount}}</span>
+                    </div>
+                    <div class="info" style="padding: 15px 15px 0px 15px;">
+                        <h5> <a routerLink="/product/{{item?.productId}}">{{item?.title}}</a></h5>
+                        <span *ngIf="translate.getlocalLang()=='ar'" > {{item.category.name_ar}}  </span>
+                        <span *ngIf="translate.getlocalLang()=='en'" > {{item.category.name}}  </span>
+                    </div>
+                    <div class="end-info">
+                        <bar-rating [rate]="item?.ratings" [max]="5" [readOnly]="true"></bar-rating>
+                        <div class="claerfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button *ngIf="numberNewAds < items.length"  (click)="numberNewAds=numberNewAds+4"  class="btn btn-outline-secondary"> {{"More" | translate}} </button>
+        <button *ngIf="numberNewAds >= items.length"  (click)="numberNewAds=numberNewAds-4"  class="btn btn-outline-secondary"> {{"Less" | translate}} </button>
+    </div>
+    <!-- // end of new Ads  -->
 </section>
 
 <section class="browse-Categories">

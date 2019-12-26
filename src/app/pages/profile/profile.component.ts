@@ -26,6 +26,9 @@ export class ProfileComponent implements OnInit {
   loaded = true;
   p: number = 1;
   p2: number = 1;
+  p3: number = 1;
+  p4: number = 1;
+  p5: number = 1;
   getprofile;
   editResponse = false;
   myAds;
@@ -44,7 +47,6 @@ export class ProfileComponent implements OnInit {
     });
     this.api.get('myads').subscribe((next)=>{
       this.myAds = next.data;
-      console.log(this.myAds);
       this.loaded = false;
       this.totalMyAds = this.myAds.length;
       this.totalActive =_.filter(this.myAds,['status.id',3]).length;
@@ -83,6 +85,7 @@ export class ProfileComponent implements OnInit {
         this.axios.post('customer/uploadImage', fd).then(r => {
           this.imageLoaded = false;
           this.toastr.success('Image Uploaded Succesfull');
+          this.getprofile.image = r.data.data.userInfo.image;
            this._auth.setUserImg(r.data.data.userInfo.image)
           }
           );
@@ -107,7 +110,7 @@ export class ProfileComponent implements OnInit {
 getMyAds(){
 }
 openImg(){
-
+console.log(this.getprofile.image)
 }
   editprofile(edit:NgForm)
     {

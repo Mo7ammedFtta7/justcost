@@ -67,6 +67,16 @@ export class HeaderComponent implements OnInit {
     // this.getCitisOfCountry(this.countries[0]);
 
   }
+  logoutUser() {
+    this._api.post('customer/logout',{}).subscribe(
+      next => {
+        console.log(next.data);
+      }
+    );
+    localStorage.removeItem(this._authService.secretKey);
+    localStorage.removeItem('data');
+    this.router.navigate(['/home']);
+  }
   selectCat(event: any) {
     this.Category = event.target.value;
   }
