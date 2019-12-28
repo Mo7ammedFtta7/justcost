@@ -48,8 +48,8 @@
                 </div>
             </div>
         </div>
-        <button *ngIf="numberFeaturAds < items.length"  (click)="numberAds=numberFeaturAds+4"  class="btn btn-outline-secondary"> {{"More" | translate}} </button>
-        <button *ngIf="numberFeaturAds >= items.length"  (click)="numberAds=numberFeaturAds-4"  class="btn btn-outline-secondary"> {{"Less" | translate}} </button>
+        <button *ngIf="numberFeaturAds < items.length"  (click)="numberFeaturAds=numberFeaturAds+4"  class="btn btn-outline-secondary"> {{"More" | translate}} </button>
+        <button *ngIf="numberFeaturAds >= items.length"  (click)="numberFeaturAds=numberFeaturAds-4"  class="btn btn-outline-secondary"> {{"Less" | translate}} </button>
     </div>
     <!-- // New Ads -->
     <h3 class="main-title">{{ 'New ads' | translate }}</h3>

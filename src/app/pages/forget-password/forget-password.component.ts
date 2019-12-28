@@ -27,8 +27,9 @@ payload['FromWeb'] =1 ;
 this.submitting = true;
 this.apis.post("password_resets",payload).subscribe(
   next => {
-  console.log(next);
+  // console.log(next);
   this.submitting = false;
+  f.resetForm();
   this.toastr.success("resest password has sent to your email");
 },
   err => {

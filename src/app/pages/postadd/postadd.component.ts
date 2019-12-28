@@ -99,7 +99,6 @@ json:JSON =  JSON;
   }
   getCitisOfCountry(id) {
     let country = this.countries.find(e => e.id == id);
-    console.log(country);
     this.citis = country.cities;
   }
   ref(id) {
@@ -212,7 +211,7 @@ json:JSON =  JSON;
     this.subCate = mainCategory.subs;
     this.Brands = mainCategory.brands;
     this.attriGroup = mainCategory.attributes_group;
-  
+
   }
   addproduct(product: NgForm) {
     if (product.invalid) {

@@ -26,7 +26,7 @@
               </select>
             </li>
             <li class="nav-item">
-              
+
               <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;"  data-toggle="modal" data-target="#addtype" ><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
 
               <!-- <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>     -->
@@ -120,7 +120,7 @@
           </select>
         </div>
         <div class="col-md-3">
-          <select class="custom-select my-2" (change)="selectCat($event)" id="inputGroupSelect02">
+          <select class="custom-select my-2" (change)="Category = $event.target.value" id="inputGroupSelect02">
             <option selected value="0">{{'Select Category' | translate}}</option>
             <option *ngFor="let category of categories" [value]="category.id" >
 
@@ -152,8 +152,8 @@
   <div class="container">
     <ul class="nav">
       <li *ngFor="let category of  categories | slice: 0 : 12" class="nav-item">
-        <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id}">{{category.name_ar}}</a>
-        <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id}">{{category.name}}</a>
+        <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id,city:'',Search:''}">{{category.name_ar}}</a>
+        <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id,city:'',Search:''}">{{category.name}}</a>
       </li>
     </ul>
   </div>

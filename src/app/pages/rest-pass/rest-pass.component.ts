@@ -31,6 +31,7 @@ check:boolean;
     this.api.post('resets',payload).subscribe(
       next => {
         this.submitting = false;
+        f.resetForm();
         this.toastr.success('password updated successfulley')
         if (next.success) {
           $('#mainmodel').modal('show');

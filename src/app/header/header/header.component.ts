@@ -13,7 +13,7 @@ import {FireBaseNotification} from '../../_models/category';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs';
 
-
+declare function nav(type): any;
 
 @Component({
   selector: 'app-header',
@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit {
               public firebaseMessage: FirebaseMessageService,
               public router: Router, public translate: TranslateService) { }
    ngOnInit() {
+     nav('large');
     // if (this._authService.loggedIn()) { console.log(this._authService.user()); }
      this.firebaseToken =  this.firebaseMessage.token;
      this.firebaseMessage.token.subscribe(console.log);
@@ -83,24 +84,19 @@ export class HeaderComponent implements OnInit {
 
   GoSearch(Search) {
     const queryParams = {};
+    queryParams['city'] ='';
+    // queryParams['category'] = 0;
     // search:this.Search
     if (this.Search != undefined) {
       queryParams['Search'] = this.Search;
     }
-
-    if (this.Category != '0' || this.Category != null) {
-      queryParams['category'] = this.Category;
-    }
-    
-      if (this.Category == 0) {
-        queryParams['category'] = '';
-      }
-    
-
     if (this.city != '0' || this.Category != null) {
       queryParams['city'] = this.city;
     }
-
+    queryParams['category'] = this.Category;
+    if (!this.Category){
+      queryParams['category'] = 0;
+    }
     console.log(queryParams);
 
     this.router.navigate(['/results'], { queryParams: queryParams });
@@ -138,7 +134,7 @@ export class HeaderComponent implements OnInit {
 
   saveFirebaseToken(token) {
     return this._api.post('firebase_tokens', {firebaseToken: token}).subscribe(
-      next => { this.toastr.info('تم الاشتراك بنجاح '); console.log(token); },
+      next => { this.toastr.info('تم الاشتراك بنجاح '); },
       err => this.toastr.error('فشلت العملية ')
     );
   }

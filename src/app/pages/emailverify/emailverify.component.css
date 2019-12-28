@@ -1,0 +1,11 @@
+.icon-box {
+  color: #fff;
+  width: 95px;
+  height: 95px;
+  display: inline-block;
+  /* border-radius: 50%; */
+  z-index: 9;
+  /* border: 5px solid #fff; */
+  padding: 15px;
+  text-align: center;
+}
