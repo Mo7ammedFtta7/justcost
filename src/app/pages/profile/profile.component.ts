@@ -1,3 +1,4 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder,FormGroup  } from '@angular/forms';
 import {ToastrService} from 'ngx-toastr'
@@ -91,6 +92,8 @@ export class ProfileComponent implements OnInit {
           );
       },
       error => {
+        this.imageLoaded = false;
+        this.toastr.error('Image not Upload Succesfull');
         console.log('😢 Oh no!', error);
       }
     );
