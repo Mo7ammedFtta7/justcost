@@ -206,10 +206,11 @@ json:JSON =  JSON;
   showBrands(id){
     let subs=[];
     _.forEach(this.Icategory, function(value) {
-      subs = subs.concat(value.subs)
+      subs = subs.concat(value.subs);
     });
     let subCategory = subs.find(e => e.id == id);
     this.Brands = subCategory.brands;
+    this.attriGroup = subCategory.attributes_group;
   }
   getBrands(id) {
     // get subCategories
@@ -217,8 +218,6 @@ json:JSON =  JSON;
     this.subload =  false;
     let mainCategory = this.Icategory.find(e => e.id == id);
     this.subCate = mainCategory.subs;
-    this.Brands = mainCategory.brands;
-    this.attriGroup = mainCategory.attributes_group;
 
   }
   addproduct(product: NgForm) {

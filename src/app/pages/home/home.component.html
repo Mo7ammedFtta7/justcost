@@ -73,8 +73,8 @@
                 </div>
             </div>
         </div>
-        <button *ngIf="numberNewAds < items.length"  (click)="numberNewAds=numberNewAds+4"  class="btn btn-outline-secondary"> {{"More" | translate}} </button>
-        <button *ngIf="numberNewAds >= items.length"  (click)="numberNewAds=numberNewAds-4"  class="btn btn-outline-secondary"> {{"Less" | translate}} </button>
+        <button *ngIf="numberNewAds < items.length && items.length >=4"  (click)="numberNewAds=numberNewAds+4"  class="btn btn-outline-secondary"> {{"More" | translate}} </button>
+        <button *ngIf="numberNewAds >= items.length && items.length >=4"  (click)="numberNewAds=numberNewAds-4"  class="btn btn-outline-secondary"> {{"Less" | translate}} </button>
     </div>
     <!-- // end of new Ads  -->
 </section>

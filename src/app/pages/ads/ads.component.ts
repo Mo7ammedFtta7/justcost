@@ -180,6 +180,7 @@ export class AdsComponent implements OnInit {
       "likes": 0,
       "attributes": []
     }
+    delete this.attriGroup;
     this.currentProduct = obj;
     this.getBrands(this.currentProduct.category.parent_id,this.currentProduct);
     setTimeout(()=>{this.form.resetForm();},200);
@@ -192,27 +193,30 @@ export class AdsComponent implements OnInit {
     });
     let subCategory = subs.find(e => e.id == id);
     this.brands = subCategory.brands;
+    this.attriGroup = subCategory.attributes_group;
+    if (this.editSubmit) {
+      let product = this.currentProduct;
+      if(subCategory){
+        this.attriGroup.forEach(element => {
+          let value = [];
+          if (product) {
+            product.attributes.forEach(item => {
+              if (element.id == item.attribute.group_id) {
+                value.push(item.attribute);
+              }
+            });
+          }
+          this.selectedValue[element.id] = value;
+
+        });
+      }
+    }
   }
   getBrands(id,product){
     let cate = this.Icategory.find(x=> x.id== id);
     if(cate){
       this.subCategoryList = cate.subs;
-      // this.brands = cate.brands;
-      this.attriGroup = cate.attributes_group;
-      this.attriGroup.forEach(element => {
-        let value = [];
-        if (product) {
-          product.attributes.forEach(item => {
-            if (element.id == item.attribute.group_id) {
-              value.push(item.attribute);
-            }
-          });
-        }
-        this.selectedValue[element.id] = value;
-      });
     }
-
-
   }
   editAds(){
     this.editLoad = true;
