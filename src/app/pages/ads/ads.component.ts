@@ -194,7 +194,6 @@ export class AdsComponent implements OnInit {
       subs = subs.concat(value.subs)
     });
     let subCategory = subs.find(e => e.id == id);
-    console.log(subCategory);
     this.brands = subCategory.brands;
   }
   getBrands(id,product){
