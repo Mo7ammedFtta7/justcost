@@ -56,7 +56,6 @@ export class AdsComponent implements OnInit {
     this.api.get("adsget/"+this.id).subscribe(
       next => {
         this.ads = next.data;
-        // console.log(this.ads);
         this.loaded = false;
       }
       ,
@@ -78,7 +77,6 @@ export class AdsComponent implements OnInit {
   this.api.get('nest').subscribe(
     next=> {
       this.Icategory = next.data;
-      // console.log(this.Icategory)
     }
   );
   //  ** End api of categories
@@ -87,7 +85,6 @@ export class AdsComponent implements OnInit {
     this.addSubmit = false;
     this.editSubmit = true;
     this.currentProduct =product;
-    console.log(product);
     this.showBrands(product.category.id);
     this.getBrands(product.category.parent_id,product);
 
@@ -228,11 +225,9 @@ export class AdsComponent implements OnInit {
       lng: this.ads.lng,
       iswholesale: this.ads.iswholesale
     }
-    // console.log(payload);
     this.api.post('ads/'+this.ads.id,payload).subscribe(
       next =>{
         this.editLoad = false;
-        // console.log(next.data);
         this.ads = next.data;
         this.editAble = false;
         this.toastr.success('ads successfull updated','ads');
@@ -250,10 +245,8 @@ export class AdsComponent implements OnInit {
     this.selectedValue[id].forEach((item)=>{
       this.attVal.push({attribute_id:item.id,attributes_group_id:item.group_id})
     });
-    // console.log(this.attVal);
   }
   editProduct(form:NgForm){
-    // console.log(this.currentProduct);
     if (form.invalid) {
       return;
     }
@@ -294,7 +287,6 @@ setTimeout(() => {
   if (this.editSubmit) {
     this.axios.post('products/'+this.currentProduct.productId,fd).then(
       next=>{
-        // console.log(next.data.data);
         this.loadSubmit = false;
         $('#addproduct').modal('hide');
         this.toastr.success('product updated successfuly');
@@ -304,7 +296,6 @@ setTimeout(() => {
     this.axios.post('products',fd).then(
       next=>{
         this.loadSubmit = false;
-        // console.log(next.data.data);
         this.form.resetForm();
         $('#addproduct').modal('hide');
         this.toastr.success('product add successfuly');
