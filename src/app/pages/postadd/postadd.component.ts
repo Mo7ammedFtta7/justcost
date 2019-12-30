@@ -203,6 +203,14 @@ json:JSON =  JSON;
       this.attVal.push({attribute_id:item.id,attributes_group_id:item.group_id})
     });
   }
+  showBrands(id){
+    let subs=[];
+    _.forEach(this.Icategory, function(value) {
+      subs = subs.concat(value.subs)
+    });
+    let subCategory = subs.find(e => e.id == id);
+    this.Brands = subCategory.brands;
+  }
   getBrands(id) {
     // get subCategories
     this.subload =  true;

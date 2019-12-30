@@ -87,8 +87,8 @@ export class AdsComponent implements OnInit {
     this.addSubmit = false;
     this.editSubmit = true;
     this.currentProduct =product;
-    // console.log(product);
-
+    console.log(product);
+    this.showBrands(product.category.id);
     this.getBrands(product.category.parent_id,product);
 
   }
@@ -188,11 +188,20 @@ export class AdsComponent implements OnInit {
     setTimeout(()=>{this.form.resetForm();},200);
 
   }
+  showBrands(id){
+    let subs=[];
+    _.forEach(this.Icategory, function(value) {
+      subs = subs.concat(value.subs)
+    });
+    let subCategory = subs.find(e => e.id == id);
+    console.log(subCategory);
+    this.brands = subCategory.brands;
+  }
   getBrands(id,product){
     let cate = this.Icategory.find(x=> x.id== id);
     if(cate){
       this.subCategoryList = cate.subs;
-      this.brands = cate.brands;
+      // this.brands = cate.brands;
       this.attriGroup = cate.attributes_group;
       this.attriGroup.forEach(element => {
         let value = [];
