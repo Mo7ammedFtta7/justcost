@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   itemCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
 
-
   constructor(public _translate: TranslateService,
               private router: Router,
               private afs: AngularFirestore,
