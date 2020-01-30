@@ -9,12 +9,12 @@ export class SubsComponent implements OnInit {
 @Input() cat:any;
 
   constructor() { }
-  
+
   ngOnInit() {
-   // this.name=this.categoty 
+   // this.name=this.categoty
   //console.log("-------")
 
   // console.log(this.cat)
   }
-  
+
 }

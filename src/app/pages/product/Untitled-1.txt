@@ -15,18 +15,18 @@
               </div>
               <!-- Start List Links -->
               <ul class="list-unstyled text-uppercase">
-                  <li><a href="#"><i class="fas fa-user"></i> about me</a></li>
+                  <li><a href="javascript:;"><i class="fas fa-user"></i> about me</a></li>
                   <li>
-                      <a href="#"><i class="fas fa-suitcase"></i> my ads</a>
+                      <a href="javascript:;"><i class="fas fa-suitcase"></i> my ads</a>
                       <span class="count float-right">10</span>
                       <div class="clearfix"></div>
                   </li>
                   <li>
-                      <a href="#"><i class="fas fa-heart"></i> watch later ads</a>
+                      <a href="javascript:;"><i class="fas fa-heart"></i> watch later ads</a>
                       <span class="count float-right">44</span>
                   </li>
-                  <li><a href="#"><i class="fas fa-cogs"></i> profile settings</a></li>
-                  <li><a href="#"><i class="fas fa-sign-out-alt"></i> log out</a></li>
+                  <li><a href="javascript:;"><i class="fas fa-cogs"></i> profile settings</a></li>
+                  <li><a href="javascript:;"><i class="fas fa-sign-out-alt"></i> log out</a></li>
               </ul>
           </div><!-- End New -->
       </div><!-- Col #1 -->
@@ -226,7 +226,7 @@
                   </div>
               </form>
               <!-- End Form-->
-              <p>By clicking "Publish Ad", you agree to our <a href="#">Terms of Use</a> and acknowledge that you are the rightful owner of this item</p>
+              <p>By clicking "Publish Ad", you agree to our <a href="javascript:;">Terms of Use</a> and acknowledge that you are the rightful owner of this item</p>
           </div><!-- End Details -->
       </div><!-- Col #2 -->
   </div><!-- End Row -->

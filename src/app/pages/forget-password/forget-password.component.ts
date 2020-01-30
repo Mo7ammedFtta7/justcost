@@ -21,21 +21,21 @@ export class ForgetPasswordComponent implements OnInit {
   }
   onSubmit(f:NgForm){
     if (f.valid) {
-let payload = f.form.value;
+let payload:any;
+payload= f.form.value;
+payload['FromWeb'] =1 ;
 this.submitting = true;
-this.apis.post("customer/reset/password/email",payload).subscribe(
+this.apis.post("password_resets",payload).subscribe(
   next => {
-  console.log(next);
+  // console.log(next);
   this.submitting = false;
+  f.resetForm();
   this.toastr.success("resest password has sent to your email");
 },
   err => {
-  console.log(err);
   this.submitting = false;
-  if (err.status === 400) {
-    Object.keys(err.error.data).forEach(kye => {
-      this.toastr.error(err.error.data.ValidationError[kye][0]);
-    });
+  if (err.status === 404 ) {
+    this.toastr.error('email not found');
   }
   });
     }

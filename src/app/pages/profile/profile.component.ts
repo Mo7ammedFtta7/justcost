@@ -1,3 +1,4 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder,FormGroup  } from '@angular/forms';
 import {ToastrService} from 'ngx-toastr'
@@ -19,12 +20,16 @@ declare function success(msg):any;
 })
 export class ProfileComponent implements OnInit {
   edit:NgForm
+  public _ = _;
   MaxSize = false
   imageLoaded = false;
   cities;
   loaded = true;
   p: number = 1;
   p2: number = 1;
+  p3: number = 1;
+  p4: number = 1;
+  p5: number = 1;
   getprofile;
   editResponse = false;
   myAds;
@@ -33,7 +38,7 @@ export class ProfileComponent implements OnInit {
   totalPaid;
   LikedProducts
   uploadForm: FormGroup;
-  constructor(private ng2ImgMax: Ng2ImgMaxService, private toastr:ToastrService, private axios: Axios,private _rest: RestService,private _auth: AuthService,public api:ApiService,private formBuilder: FormBuilder) { }
+  constructor(public translate:TranslateService,private ng2ImgMax: Ng2ImgMaxService, private toastr:ToastrService, private axios: Axios,private _rest: RestService,private _auth: AuthService,public api:ApiService,private formBuilder: FormBuilder) { }
   ngOnInit() {
     // this.toastr.success('hi','suhail');
     nav('hide');
@@ -43,7 +48,6 @@ export class ProfileComponent implements OnInit {
     });
     this.api.get('myads').subscribe((next)=>{
       this.myAds = next.data;
-      // console.log(this.myAds);
       this.loaded = false;
       this.totalMyAds = this.myAds.length;
       this.totalActive =_.filter(this.myAds,['status.id',3]).length;
@@ -51,7 +55,6 @@ export class ProfileComponent implements OnInit {
     });
     this.api.get('like/likedProducts').subscribe((next)=>{
       this.LikedProducts = next.data;
-      console.log(this.LikedProducts)
     });
     this.api.get('cities').subscribe((next)=>{this.cities = next.data;});
   }
@@ -83,11 +86,14 @@ export class ProfileComponent implements OnInit {
         this.axios.post('customer/uploadImage', fd).then(r => {
           this.imageLoaded = false;
           this.toastr.success('Image Uploaded Succesfull');
+          this.getprofile.image = r.data.data.userInfo.image;
            this._auth.setUserImg(r.data.data.userInfo.image)
           }
           );
       },
       error => {
+        this.imageLoaded = false;
+        this.toastr.error('Image not Upload Succesfull');
         console.log('😢 Oh no!', error);
       }
     );
@@ -107,7 +113,7 @@ export class ProfileComponent implements OnInit {
 getMyAds(){
 }
 openImg(){
-
+console.log(this.getprofile.image)
 }
   editprofile(edit:NgForm)
     {

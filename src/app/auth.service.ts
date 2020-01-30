@@ -9,7 +9,7 @@ import { EncryptService } from './_services/encrypt.service';
 export class AuthService {
 
   private _loginUrl = environment.ApiUrl+"customer/login";
-  protected secretKey = 'sfsdfkjblsfgmb@asd^gsaj)s9hfds^f@3s4!';
+  secretKey = 'sfsdfkjblsfgmb@asd^gsaj)s9hfds^f@3s4!';
 
   constructor(private http: HttpClient,private _router: Router,private crypt: EncryptService) { }
 

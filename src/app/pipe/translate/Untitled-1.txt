@@ -3,7 +3,7 @@
  <div class="nav-small">
   <div class="container">
       <div class="logo-small float-left" style="margin-left: -30px;">
-          <a href="#"><img src="assets/images/logo.png" alt="Logo" width="140"></a>
+          <a href="javascript:;"><img src="assets/images/logo.png" alt="Logo" width="140"></a>
       </div><!-- End Logo -->
       <div class="menu-small float-rigt text-right">
           <i class="fas fa-bars"></i>
@@ -15,14 +15,14 @@
   <div class="drop-small">
       <div class="container">
           <ul class="list-unstyled">
-              <li><a href="#"><i class="fas fa-car fa-md fa-fw"></i> Cars</a></li>
-              <li><a href="#"><i class="fas fa-tv fa-md fa-fw"></i> Electronics</a></li>
-              <li><a href="#"><i class="fas fa-home fa-md fa-fw"></i> Miscellaneous</a></li>
+              <li><a href="javascript:;"><i class="fas fa-car fa-md fa-fw"></i> Cars</a></li>
+              <li><a href="javascript:;"><i class="fas fa-tv fa-md fa-fw"></i> Electronics</a></li>
+              <li><a href="javascript:;"><i class="fas fa-home fa-md fa-fw"></i> Miscellaneous</a></li>
               <li><a href="post_ad.html"><i class="fas fa-edit fa-fw"></i> Post Ad</a></li>
               <!-- trigger modal -->
-              <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-search"></i> Search</a></li>
-              <li><a href="#"><i class="fas fa-language"></i> English</a></li>
-              <li ><a href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle"></i> Login</a></li>
+              <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-search"></i> Search</a></li>
+              <li><a href="javascript:;"><i class="fas fa-language"></i> English</a></li>
+              <li ><a href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle"></i> Login</a></li>
           </ul>
 
           <!-- Modal -->
@@ -64,7 +64,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav one">
               <li class="nav-item active">
-                  <a routerLink="/products/11" class="nav-link" href="#"><i class="fas fa-car fa-md fa-fw"></i> Cars</a>
+                  <a routerLink="/products/11" class="nav-link" href="javascript:;"><i class="fas fa-car fa-md fa-fw"></i> Cars</a>
               </li>
 
               <li class="nav-item">
@@ -76,7 +76,7 @@
               </li>
 
               <li class="nav-item d-none search">
-                  <a class="nav-link" href="#" data-toggle="modal" data-target="#modal"><i class="fas fa-search fa-md fa-fw"></i> Search</a>
+                  <a class="nav-link" href="javascript:;" data-toggle="modal" data-target="#modal"><i class="fas fa-search fa-md fa-fw"></i> Search</a>
               </li>
 
 
@@ -120,32 +120,32 @@
                   <a class="nav-link" href="post_ad.html"><i class="fas fa-edit fa-fw"></i> Post Ad</a>
               </li>
               <li class="nav-item dropdown">
-                  <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link text-uppercase" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="far fa-bell fa-lg fa-fw"></i>
                       <span class="alerts">0</span>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <!-- <a class="dropdown-item" href="#">
+                      <!-- <a class="dropdown-item" href="javascript:;">
                           Ahmed Salah comment
                           <small>5 seconds ago</small>
                       </a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="javascript:;">
                           Ahmed Salah review in your ad
                           <small>5 seconds ago</small>
                       </a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="javascript:;">
                           Hamza Alhamedi like your add
                           <small>55 seconds ago</small>
                       </a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="javascript:;">
                           Folan comment in your ad
                           <small>1 minute ago</small>
                       </a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="javascript:;">
                           Elan like your ad
                           <small>12 minute ago</small>
                       </a>
@@ -154,7 +154,7 @@
               </li>
 
               <li class="nav-item dropdown">
-                  <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link text-uppercase" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <img src="assets/images/emirian-flag-medium.gif" alt="Flag Image" width="30">
                       <span class="mx-1">{{_authService.getUserCountry()}}</span>
                       <i class="fas fa-chevron-down fa-sm fa-fw"></i>
@@ -186,15 +186,15 @@
             </li>
 
               <!-- <li class="nav-item">
-                  <a class="nav-link" href="#">English</a>
+                  <a class="nav-link" href="javascript:;">English</a>
               </li> -->
 
               <li *ngIf="!_authService.loggedIn()"  class="nav-item">
-                  <a  class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle fa-md fa-fw"></i> {{ 'Login' | translate }} </a>    
+                  <a  class="nav-link" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-user-circle fa-md fa-fw"></i> {{ 'Login' | translate }} </a>    
                 </li>
 
                 <li *ngIf="_authService.loggedIn()"  class="nav-item dropdown">
-                        <a class="nav-link text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-uppercase" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mx-1">{{_authService.getUserName()}}</span>
                             <i class="fas fa-chevron-down fa-sm fa-fw"></i>
                         </a>
@@ -244,7 +244,7 @@
 
                               <div class="password">
                                   <a href="reset_p.html">{{ 'forget password' | translate }}</a>
-                                  <p>{{ 'I don’t have account' | translate }} <a href="#">{{ 'Create new' | translate }}</a></p>
+                                  <p>{{ 'I don’t have account' | translate }} <a href="javascript:;">{{ 'Create new' | translate }}</a></p>
                               </div><!-- End Password-->
                           </div>
                           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -253,7 +253,7 @@
                               </app-register>
 
                               <div class="password">
-                                  <a href="#">{{ 'forget password' | translate }}</a>
+                                  <a href="javascript:;">{{ 'forget password' | translate }}</a>
                               </div><!-- End Password-->
                           </div>
                       </div>
@@ -261,9 +261,9 @@
 
                   <!-- Start About us -->
                   <div class="about-us text-center">
-                      <a href="#">{{ 'About us' | translate }} | <a href="#"> <i class="fas fa-comment fa-md fa-fw"></i> {{ 'get help' | translate }}</a></a>
+                      <a href="javascript:;">{{ 'About us' | translate }} | <a href="javascript:;"> <i class="fas fa-comment fa-md fa-fw"></i> {{ 'get help' | translate }}</a></a>
                       <p>Copyright &copy; 2019 , {{ 'All rights reserved.' | translate }}</p>
-                      <a href="#" class="privacy">{{ 'Privacy' | translate }} <span>|</span> Terms of services</a>
+                      <a href="javascript:;" class="privacy">{{ 'Privacy' | translate }} <span>|</span> Terms of services</a>
                   </div>
                   <!-- End About us -->
               </div><!-- End Col #1 -->

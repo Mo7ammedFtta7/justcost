@@ -1,4 +1,5 @@
 import { EditAdsComponent } from './pages/edit-ads/edit-ads.component';
+import { RestPassComponent } from './pages/rest-pass/rest-pass.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -19,9 +20,20 @@ import { EmailverifyComponent } from './pages/emailverify/emailverify.component'
 import { PostaddComponent } from './pages/postadd/postadd.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResultsComponent } from './pages/results/results.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TranslateComponent } from './pipe/translate/translate.component';
 
 const routes: Routes = [
+
+
+  // {path: '**', redirectTo: '/404'},
+
+  {
+    path: 'reset-password/:token',
+      component: RestPassComponent
+      ,
+      pathMatch: 'full'
+    },
   {
     path: '',
     redirectTo: '/home',
@@ -142,7 +154,9 @@ const routes: Routes = [
   path: 'translate',
   component: TranslateComponent,
     canActivate: [AuthGuard]
-}
+},
+{path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '404'},
 ];
 
 @NgModule({

@@ -74,7 +74,7 @@
                     <h6>{{'You may also like' | translate }} :</h6>
 
                     <div class="row">
-                        <div (click)="goToSim(item.productId)" *ngFor="let item of simillarProduct" class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
+                        <div (click)="goToSim(item.productId)" *ngFor="let item of simillarProduct | slice:0:6" class="item col-md-4 col-sm-6 wow fadeIn" data-wow-offset="350" data-wow-delay="0s">
                             <div class="image"><img appImage [src]="item?.media[0]?.url" alt="Image" style="height: 126px;" class="short"></div>
                             <span class="offer"> {{math(item.reg_price,item.sale_price)}}% </span>
                             <h6> {{item.title}} </h6>

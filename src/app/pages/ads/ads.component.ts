@@ -1,3 +1,4 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { TranslateService } from '../../pipe/translate.service';
 import {ApiService} from '../../_services/api.service';
@@ -17,6 +18,7 @@ export class AdsComponent implements OnInit {
   @ViewChild('newProduct', {static: false}) public form: NgForm;
   images: FileList;
   _=_;
+  disableSubmit = false;
   loadSubmit = false;
   editSubmit = false;
   addSubmit = false;
@@ -54,7 +56,6 @@ export class AdsComponent implements OnInit {
     this.api.get("adsget/"+this.id).subscribe(
       next => {
         this.ads = next.data;
-        console.log(this.ads);
         this.loaded = false;
       }
       ,
@@ -76,7 +77,6 @@ export class AdsComponent implements OnInit {
   this.api.get('nest').subscribe(
     next=> {
       this.Icategory = next.data;
-      console.log(this.Icategory)
     }
   );
   //  ** End api of categories
@@ -85,11 +85,39 @@ export class AdsComponent implements OnInit {
     this.addSubmit = false;
     this.editSubmit = true;
     this.currentProduct =product;
-    console.log(product);
-
+    this.showBrands(product.category.id);
     this.getBrands(product.category.parent_id,product);
 
   }
+  enableToggel(item){  // ** this function make ads enable  or disabled
+    this.disableSubmit = true; // ** to show spinner loading
+    if (this.ads.status.id == 3) {  // ** if ads is enable make it disabled
+      this.api.post('ads/'+this.ads.id+'/disable',{}).subscribe( // ** call API for disable Ads
+        next => {
+          this.disableSubmit = false; // ** stop spinner loading
+          this.ads.status.id = 5; // ** make it disable
+          this.toastr.success('ads disabled successful'); // ** alert message
+        },
+        error => {
+          this.disableSubmit = false; // ** stop spinner loading
+          console.log(error);
+        }
+      ); // ** end API
+    } // ** end if
+    if (this.ads.status.id == 5) { // ** if ads is disabled make it enable
+      this.api.post('ads/'+this.ads.id+'/enable ',{}).subscribe( // ** call API for enable Ads
+        next => {
+          this.disableSubmit = false; // ** stop spinner loading
+          this.ads.status.id = 3; // ** make it enable
+          this.toastr.success('ads enabled successful'); // ** alert message
+        },
+        error => {
+          this.disableSubmit = false; // ** stop spinner loading
+          console.log(error);
+        }
+      ); // ** end API
+    } // ** end if
+  } // ** end function
   showNewProduct(f: NgForm){
     this.editSubmit = false;
     this.addSubmit = true;
@@ -152,31 +180,43 @@ export class AdsComponent implements OnInit {
       "likes": 0,
       "attributes": []
     }
+    delete this.attriGroup;
     this.currentProduct = obj;
     this.getBrands(this.currentProduct.category.parent_id,this.currentProduct);
     setTimeout(()=>{this.form.resetForm();},200);
 
   }
+  showBrands(id){
+    let subs=[];
+    _.forEach(this.Icategory, function(value) {
+      subs = subs.concat(value.subs)
+    });
+    let subCategory = subs.find(e => e.id == id);
+    this.brands = subCategory.brands;
+    this.attriGroup = subCategory.attributes_group;
+    if (this.editSubmit) {
+      let product = this.currentProduct;
+      if(subCategory){
+        this.attriGroup.forEach(element => {
+          let value = [];
+          if (product) {
+            product.attributes.forEach(item => {
+              if (element.id == item.attribute.group_id) {
+                value.push(item.attribute);
+              }
+            });
+          }
+          this.selectedValue[element.id] = value;
+
+        });
+      }
+    }
+  }
   getBrands(id,product){
     let cate = this.Icategory.find(x=> x.id== id);
     if(cate){
       this.subCategoryList = cate.subs;
-      this.brands = cate.brands;
-      this.attriGroup = cate.attributes_group;
-      this.attriGroup.forEach(element => {
-        let value = [];
-        if (product) {
-          product.attributes.forEach(item => {
-            if (element.id == item.attribute.group_id) {
-              value.push(item.attribute);
-            }
-          });
-        }
-        this.selectedValue[element.id] = value;
-      });
     }
-
-
   }
   editAds(){
     this.editLoad = true;
@@ -189,11 +229,9 @@ export class AdsComponent implements OnInit {
       lng: this.ads.lng,
       iswholesale: this.ads.iswholesale
     }
-    console.log(payload);
     this.api.post('ads/'+this.ads.id,payload).subscribe(
       next =>{
         this.editLoad = false;
-        console.log(next.data);
         this.ads = next.data;
         this.editAble = false;
         this.toastr.success('ads successfull updated','ads');
@@ -211,27 +249,28 @@ export class AdsComponent implements OnInit {
     this.selectedValue[id].forEach((item)=>{
       this.attVal.push({attribute_id:item.id,attributes_group_id:item.group_id})
     });
-    console.log(this.attVal);
   }
   editProduct(form:NgForm){
-    console.log(this.currentProduct);
     if (form.invalid) {
       return;
     }
     this.loadSubmit = true;
     const fd = new FormData(); // ** Form data that is Hold Data
-    for (let index = 0; index < this.images.length; index++) { // append images to form data
-      const image = this.images[index];
-      this.ng2ImgMax.compressImage(image,0.040).subscribe( // comapress image to 40 kb
-        result => {
-          let newIimage = new File([result], result.name); // comapress image to 40 kb
-          fd.append('media[]', newIimage); // append comopress image to form data
-        },
-        error => {
-          console.log('😢 Oh no!', error);
-        }
-      );
-  }
+    if(this.images){
+      for (let index = 0; index < this.images.length; index++) { // append images to form data
+        const image = this.images[index];
+        this.ng2ImgMax.compressImage(image,0.040).subscribe( // comapress image to 40 kb
+          result => {
+            let newIimage = new File([result], result.name); // comapress image to 40 kb
+            fd.append('media[]', newIimage); // append comopress image to form data
+          },
+          error => {
+            console.log('😢 Oh no!', error);
+          }
+        );
+    } // ** end for
+    }
+
   fd.set('fromWeb','1')
   fd.set('category_id', this.currentProduct.category.id);
   fd.set('reg_price', this.currentProduct.reg_price);
@@ -250,9 +289,8 @@ export class AdsComponent implements OnInit {
   });
 setTimeout(() => {
   if (this.editSubmit) {
-    this.axios.put('products/'+this.currentProduct.productId,fd).then(
+    this.axios.post('products/'+this.currentProduct.productId,fd).then(
       next=>{
-        console.log(next.data.data);
         this.loadSubmit = false;
         $('#addproduct').modal('hide');
         this.toastr.success('product updated successfuly');
@@ -262,7 +300,6 @@ setTimeout(() => {
     this.axios.post('products',fd).then(
       next=>{
         this.loadSubmit = false;
-        console.log(next.data.data);
         this.form.resetForm();
         $('#addproduct').modal('hide');
         this.toastr.success('product add successfuly');
@@ -276,7 +313,7 @@ setTimeout(() => {
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const files = event.target.files;
-      console.log(files);
+      // console.log(files);
       this.images = files;
     }
   }

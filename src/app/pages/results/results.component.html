@@ -1,6 +1,6 @@
 <div class="main-title main-title2">
-    <small><a href="#">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a
-            href="#">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{category}}</small>
+    <small><a href="javascript:;">{{'Home' | translate }}</a> <i class="fas fa-chevron-right"></i> <a
+            href="javascript:;">{{'Categories' | translate }} </a> <i class="fas fa-chevron-right"></i> {{category}}</small>
 </div><!-- End Title -->
 
 <div class="catogery">
@@ -26,7 +26,7 @@
                             <ul class="list-unstyled check-ul">
                                 <li >
                                     <input #all type="checkbox" (change)="getAll($event.currentTarget.checked)">
-                                    <label  > {{ " All " | translate}} </label>
+                                    <label> &nbsp; {{ "All" | translate}} </label>
                                 </li>
 
                             </ul>
@@ -81,9 +81,9 @@
                                 style="margin-top:7px; text-transform: none">{{'Sort by' | translate }}</span>
                             <select #sort class="form-control col-xl-9 col-sm-12"  (change)="sortP(sort.value)">
                                 <option selected value="1">Select ..</option>
-                                <option  value="1" >Top Rated</option>
-                                <option  value="2" >Heigh Price</option>
-                                <option  value="3" >Low Price</option>
+                                <option  value="1" >{{"Top Rated" | translate }}</option>
+                                <option  value="2" >{{"Heigh Price" | translate}}</option>
+                                <option  value="3" >{{"Low Price" | translate}}</option>
                             </select>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                             <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                         </div>
                         <div>
-                            <label href="#" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
+                            <label href="javascript:;" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
                             <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
                               <i class="fas fa-map-marker-alt"></i> {{ "View Location" | translate}}
                             </a>

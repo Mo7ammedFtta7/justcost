@@ -76,7 +76,6 @@ export class ResultsComponent implements OnInit {
       this.products = data.data;
       this.oregenal = data.data;
       this.filterProducts = data.data;
-      console.log(this.filterProducts);
       this.loadedResult = false;
       this.le = this.products.length;
       const att = [];
@@ -108,7 +107,6 @@ export class ResultsComponent implements OnInit {
       case "3":
           this.filterProducts = _.orderBy(this.oregenal,['sale_price'],['asc']);
         break;
-
       default:
         break;
     }

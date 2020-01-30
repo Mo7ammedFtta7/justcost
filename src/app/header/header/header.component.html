@@ -26,7 +26,7 @@
               </select>
             </li>
             <li class="nav-item">
-              
+
               <a appLogin  class="nav-link btn-add-post mt-1" href="javascript:;"  data-toggle="modal" data-target="#addtype" ><i class="fa fa-plus"></i><span>{{'Post your ad' | translate}}</span></a>
 
               <!-- <a *ngIf="!_authService.loggedIn()" class="nav-link btn-add-post mt-1" href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fa fa-plus"></i> <span>{{'Post your ad' | translate}}</span></a>     -->
@@ -91,7 +91,7 @@
                   <!-- <li><a href="#about">About</a></li> -->
                   <div class="dropdown-divider"></div>
                   <li><a href="javascript:;"
-                         (click)="_authService.logoutUser()">{{'Logout' | translate}}</a></li>
+                         (click)="logoutUser()">{{'Logout' | translate}}</a></li>
                 </ul>
               </div>
 
@@ -120,7 +120,7 @@
           </select>
         </div>
         <div class="col-md-3">
-          <select class="custom-select my-2" (change)="selectCat($event)" id="inputGroupSelect02">
+          <select class="custom-select my-2" (change)="Category = $event.target.value" id="inputGroupSelect02">
             <option selected value="0">{{'Select Category' | translate}}</option>
             <option *ngFor="let category of categories" [value]="category.id" >
 
@@ -152,8 +152,8 @@
   <div class="container">
     <ul class="nav">
       <li *ngFor="let category of  categories | slice: 0 : 12" class="nav-item">
-        <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id}">{{category.name_ar}}</a>
-        <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id}">{{category.name}}</a>
+        <a *ngIf="lang=='ar'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id,city:'',Search:''}">{{category.name_ar}}</a>
+        <a *ngIf="lang=='en'" class="nav-link" [routerLink]="['/results']" [queryParams]="{ category: category.id,city:'',Search:''}">{{category.name}}</a>
       </li>
     </ul>
   </div>
@@ -199,7 +199,7 @@
                   </app-register>
 
                   <div class="password">
-                    <a href="#">{{ 'forget password' | translate }}</a>
+                      <a  [routerLink]="['/forgetPass']" routerLinkActive="router-link-active"  >{{ 'forget password' | translate }}</a>
                   </div><!-- End Password-->
                 </div>
               </div>
@@ -207,10 +207,10 @@
 
             <!-- Start About us -->
             <div class="about-us text-center">
-              <a href="#">{{ 'About us' | translate }} | <a href="#"> <i
+              <a href="javascript:;">{{ 'About us' | translate }} | <a href="javascript:;"> <i
                 class="fas fa-comment fa-md fa-fw"></i> {{ 'get help' | translate }}</a></a>
               <p>Copyright &copy; 2019 , {{ 'All rights reserved.' | translate }}</p>
-              <a href="#" class="privacy">{{ 'Privacy' | translate }} <span>|</span> {{"Terms & conditions" | translate}}</a>
+              <a href="javascript:;" class="privacy">{{ 'Privacy' | translate }} <span>|</span> {{"Terms & conditions" | translate}}</a>
             </div>
           </div>
           <!-- End About us -->

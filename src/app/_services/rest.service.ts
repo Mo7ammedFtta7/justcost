@@ -55,7 +55,12 @@ import { TranslateService } from '../pipe/translate.service';
   }
   getFavProducts(): Observable<any> {
     // console.log(params);
-     return this.http.get(environment.ApiUrl + 'getAllProducts/').pipe(
+     return this.http.get(environment.ApiUrl + 'getfeaturedProducts?skip=0&take=20').pipe(
+       map(this.extractData));
+   }
+   getNewProducts(): Observable<any> {
+    // console.log(params);
+     return this.http.get(environment.ApiUrl + 'getAllProducts?skip=0&take=20').pipe(
        map(this.extractData));
    }
 

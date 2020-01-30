@@ -1,18 +1,42 @@
+<div *ngIf="!loaded" style="float:auto">
+  <ngx-skeleton-loader [theme]="{
+    width: '45%',
+    'border-radius': '25',
+    height: '500px',
+    'margin-left': '100px',
+    'margin-bottom': '10px'
+  }" count="1">
+  </ngx-skeleton-loader>
+</div>
+<div *ngIf="loaded">
+  <div *ngIf="check" id="myModal" >
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #47c9a2">
+          <div class="icon-box">
+            <i style="font-size: 90px;" class="fa fa-check-circle"></i>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h4>{{"Great!" | translate}}</h4>
+          <p>{{"Your account has been confirmed successfully"|translate}}.</p>
+          <a [routerLink]="['/home']">
+            <button class="btn btn-success" data-dismiss="modal"><span>
+              {{"Home" | translate}}
+            </span> <i class="material-icons"></i>
+          </button>
+          </a>
 
-<div class="container">
-    <div class="reset-page" style="position: static; transform: none; margin: auto; margin-top: 20px;">
-  <div class="panel text-center">
-      <img src="http://admin.just-cost.com/storage/products_media/dd.jpg" alt="Just Coast Logo" width="250">
-      <div>
-          <h4 style="text-transform: none;">Hi, {{name | json}}</h4>
+        </div>
       </div>
-      <div>
-          <p style="text-transform: none;">We got a request to reset your Account Password.</p>
-      </div>
-      <form action="" method="" class="mt-4 mb-4">
-          <a routerLink="/home" class="btn btn-primary">Go Back Home</a>
-      </form>
-      <p style="text-transform: none">if you ignore this message, your password won't be changed.</p>
+    </div>
   </div>
+
+  <div *ngIf="!check"  class="text-center">
+    <img class="mt-3 ml-5" src="assets/images/empty.png">
+    <p > link was expire </p>
+  </div>
+
 </div>
-</div>
+

@@ -139,6 +139,12 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                             <i class="fas fa-shopping-cart"></i>{{"My Ads"| translate}} </a>
+                        <a class="nav-item nav-link" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="false">
+                            <i class="fas fa-hourglass"></i>{{"Pending Ads"| translate}} </a>
+                        <a class="nav-item nav-link" id="nav-rejected-tab" data-toggle="tab" href="#nav-rejected" role="tab" aria-controls="nav-rejected" aria-selected="false">
+                            <i class="fas fa-ban"></i>{{"Rejected Ads"| translate}} </a>
+                        <a class="nav-item nav-link" id="nav-revision-tab" data-toggle="tab" href="#nav-revision" role="tab" aria-controls="nav-revision" aria-selected="false">
+                            <i class="fas fa-exclamation-circle"></i>{{"Under Revision Ads"| translate}} </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
                             <i class="fas fa-heart"></i>{{"My Fav"| translate}} </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-profile" aria-selected="false">
@@ -148,7 +154,7 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                        <div class="classic" *ngFor="let item of myAds | paginate:  { id: 'myAds', itemsPerPage: 4, currentPage: p2 }">
+                        <div class="classic" *ngFor="let item of _.filter(myAds,['status.id',3]) | paginate:  { id: 'myAds', itemsPerPage: 4, currentPage: p2 }">
                             <div class="ads">
 
                                 <div class="image float-left">
@@ -159,9 +165,9 @@
 
                                 <div class="text-image float-left">
                                     <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
-                                    <a href="#"><i class="far fa-map"></i> {{item?.cityId?.name}} </a> |
-                                    <a href="#"><i class="fas fa-tag"></i>Cars</a> |
-                                    <a href="#"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='en'"  href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.name}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.arName}} </a>
+                                    <a href="javascript:;"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
                                 </div>
 
                                 <!-- <div class="view float-left text-center">
@@ -185,8 +191,135 @@
                             <pagination-controls id="myAds" class="my-pagination" (pageChange)="p2 = $event"></pagination-controls>
                         </div>
                     </div>
+
+                    <!-- pending ads -->
+                    <div class="tab-pane fade  " id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+
+                        <div class="classic" *ngFor="let item of _.filter(myAds,['status.id',1]) | paginate:  { id: 'PendingAds', itemsPerPage: 4, currentPage: p3 }">
+                            <div class="ads">
+
+                                <div class="image float-left">
+                                    <img appImage [src]="item.brand_name" alt="Image" width="100">
+                                    <span> {{item.status.name}} </span>
+
+                                </div><!-- Image -->
+
+                                <div class="text-image float-left">
+                                    <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
+                                    <a *ngIf="translate.getlocalLang()=='en'"  href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.name}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.arName}} </a>
+                                    <a href="javascript:;"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
+                                </div>
+
+                                <!-- <div class="view float-left text-center">
+                                    <h6><i class="far fa-eye"></i> View</h6>
+                                    <span>( 520 )</span>
+                                </div>
+                                <div class="view float-left  text-center">
+                                    <h6><i class="far fa-comments"></i>Comments</h6>
+                                    <span>( 71 )</span>
+                                </div>
+                                <div class="view float-left  text-center">
+                                    <h6><i class="fas fa-star"></i> Rating</h6>
+                                    <span>( +3 )</span>
+                                </div> -->
+                                <div class="clearfix"></div>
+
+
+                            </div>
+                        </div><!-- End Classic -->
+                        <div class="paginaion text-center">
+                            <pagination-controls id="PendingAds" class="my-pagination" (pageChange)="p3 = $event"></pagination-controls>
+                        </div>
+                    </div>
+                      <!-- end of pending  -->
+
+                    <!-- rejected ads -->
+                    <div class="tab-pane fade  " id="nav-rejected" role="tabpanel" aria-labelledby="nav-rejected-tab">
+
+                        <div class="classic" *ngFor="let item of _.filter(myAds,['status.id',2]) | paginate:  { id: 'RejectedAds', itemsPerPage: 4, currentPage: p4 }">
+                            <div class="ads">
+
+                                <div class="image float-left">
+                                    <img appImage [src]="item.brand_name" alt="Image" width="100">
+                                    <span> {{item.status.name}} </span>
+
+                                </div><!-- Image -->
+
+                                <div class="text-image float-left">
+                                    <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
+                                    <a *ngIf="translate.getlocalLang()=='en'"  href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.name}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.arName}} </a>
+                                    <a href="javascript:;"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
+                                </div>
+
+                                <!-- <div class="view float-left text-center">
+                                    <h6><i class="far fa-eye"></i> View</h6>
+                                    <span>( 520 )</span>
+                                </div>
+                                <div class="view float-left  text-center">
+                                    <h6><i class="far fa-comments"></i>Comments</h6>
+                                    <span>( 71 )</span>
+                                </div>
+                                <div class="view float-left  text-center">
+                                    <h6><i class="fas fa-star"></i> Rating</h6>
+                                    <span>( +3 )</span>
+                                </div> -->
+                                <div class="clearfix"></div>
+
+
+                            </div>
+                        </div><!-- End Classic -->
+                        <div class="paginaion text-center">
+                            <pagination-controls id="RejectedAds" class="my-pagination" (pageChange)="p4 = $event"></pagination-controls>
+                        </div>
+                    </div>
+                      <!-- end of rejected ADs  -->
+
+                    <!-- Under Revision ads -->
+                    <div class="tab-pane fade  " id="nav-revision" role="tabpanel" aria-labelledby="nav-revision-tab">
+
+                        <div class="classic" *ngFor="let item of _.filter(myAds,['status.id',4]) | paginate:  { id: 'RevisionAds', itemsPerPage: 4, currentPage: p5 }">
+                            <div class="ads">
+
+                                <div class="image float-left">
+                                    <img appImage [src]="item.brand_name" alt="Image" width="100">
+                                    <span> {{item.status.name}} </span>
+
+                                </div><!-- Image -->
+
+                                <div class="text-image float-left">
+                                    <h6> <a routerLink="/ads/{{item?.id}}"> {{item?.ad_title}} </a>  </h6>
+                                    <a *ngIf="translate.getlocalLang()=='en'"  href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.name}} </a>
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="far fa-map"></i> {{item?.cityId?.arName}} </a>
+                                    <a href="javascript:;"><i class="far fa-calendar"></i> {{ (item?.created_at*1000) | timeAgo}} </a>
+                                </div>
+
+                                <!-- <div class="view float-left text-center">
+                                    <h6><i class="far fa-eye"></i> View</h6>
+                                    <span>( 520 )</span>
+                                </div>
+                                <div class="view float-left  text-center">
+                                    <h6><i class="far fa-comments"></i>Comments</h6>
+                                    <span>( 71 )</span>
+                                </div>
+                                <div class="view float-left  text-center">
+                                    <h6><i class="fas fa-star"></i> Rating</h6>
+                                    <span>( +3 )</span>
+                                </div> -->
+                                <div class="clearfix"></div>
+
+
+                            </div>
+                        </div><!-- End Classic -->
+                        <div class="paginaion text-center">
+                            <pagination-controls id="RevisionAds" class="my-pagination" (pageChange)="p5 = $event"></pagination-controls>
+                        </div>
+                    </div>
+                      <!-- end of Under Revision ADs  -->
+
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <!-- <a href="#" class="button button2">Remove Selected</a> -->
+                        <!-- <a href="javascript:;" class="button button2">Remove Selected</a> -->
                         <div class="classic classic2" *ngFor="let item of LikedProducts | paginate:  { itemsPerPage: 4, currentPage: p }">
                             <div class="ads">
 
@@ -201,8 +334,12 @@
 
                                 <div class="text-image float-left">
                                     <h6> <a routerLink="/product/{{item?.productId}}">  {{item.title}} </a> </h6>
-                                    <a href="javascript:;"><i class="far fa-map"></i>{{item.city}}</a> |
-                                    <a href="javascript:;"><i class="fas fa-tag"></i> {{item.category}} </a> |
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="far fa-map"></i>{{item?.city?.arName}}</a>
+                                    <a *ngIf="translate.getlocalLang()=='en'" href="javascript:;"><i class="far fa-map"></i>{{item?.city?.name}}</a>
+                                     |
+
+                                    <a *ngIf="translate.getlocalLang()=='ar'" href="javascript:;"><i class="fas fa-tag"></i>  {{item?.category?.name_ar}} </a> 
+                                    <a *ngIf="translate.getlocalLang()=='en'" href="javascript:;"><i class="fas fa-tag"></i>  {{item?.category?.name}} </a> |
                                     <a href="javascript:;"><i class="far fa-calendar"></i>{{ (item.postedOn*1000) | timeAgo}}</a>
                                 </div>
 

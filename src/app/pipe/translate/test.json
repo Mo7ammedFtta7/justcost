@@ -14,6 +14,45 @@
   "Save Data": {
     "ar": "حفظ البيانات"
   },
+  "All": {
+    "ar": "الكل"
+  },
+  "More": {
+    "ar": "المزيد"
+  },
+  "Less": {
+    "ar": "عرض أقل"
+  },
+  "Under Revision Ads": {
+    "ar": " تحت المراجعة"
+  },
+  "Rejected Ads": {
+    "ar": " تم رفضها"
+  },
+  "Pending Ads": {
+    "ar": " تحت الانتظار"
+  },
+  "reason": {
+    "ar": "السبب"
+  },
+  "Change Password": {
+    "ar": "تغير كلمة السر"
+  },
+  "Confirm New Password": {
+    "ar": "تأكيد كلمة السر الجديدة"
+  },
+  "New Password": {
+    "ar": "كلمة السر الجديدة"
+  },
+  "Enter your email address and we'll send you an email with instructions to reset your password": {
+    "ar": "أدخل البريد الالكتروني وسوف تصلك رسالة تعين كلمة سر جديدة"
+  },
+  "Reset Password": {
+    "ar": "أعادة تعيين كلمة السر"
+  },
+  "Sub Category": {
+    "ar": "التصنيف الثاني"
+  },
   "Write your comment here": {
     "ar": " أكتب تعليقا"
   },
@@ -98,6 +137,9 @@
   "Download": {
     "ar": "تنزيل"
   },
+  "Edit Product": {
+    "ar": "تعديل"
+  },
   "About us": {
     "ar": "من نحن"
   },
@@ -107,8 +149,41 @@
   "Our Vission": {
     "ar": "رؤيتنا"
   },
+  "Add New Product": {
+    "ar": "اضافة منتج جديد"
+  },
+  "Edit Ads": {
+    "ar": "تعديل الاعلان"
+  },
+  "Top Rated": {
+    "ar": "الاعلي تقييما"
+  },
+  "Low Price": {
+    "ar": "الاقل سعرا"
+  },
+  "Brands": {
+    "ar": "العلامات التجارية"
+  },
+  "Attributes": {
+    "ar": "الخصائص"
+  },
+  "Heigh Price": {
+    "ar": "الاعلي سعرا "
+  },
+  "This is ads under revision !": {
+    "ar": "هذا الاعلان تحت المراجعة ! "
+  },
+  "enable": {
+    "ar": "تنشيط الاعلان"
+  },
+  "disable": {
+    "ar": "تعطيل الاعلان"
+  },
   "Why us": {
     "ar": "لماذا نحن؟"
+  },
+  "cancel": {
+    "ar": " الغاء"
   },
   "Need Help ?": {
     "ar": "هل تحتاج للمساعدة؟"
@@ -200,6 +275,18 @@
   "What you are looking for ?": {
     "ar": "ابحث هنا"
   },
+  "Your account has been confirmed successfully": {
+    "ar": " لقد تم تفعيل حسابك بنجاح"
+  },
+  "Great!": {
+    "ar": "رائــع !"
+  },
+  "Back to Home": {
+    "ar": "الرجوع الي الصفحة الرئيسية"
+  },
+  "The page you are looking for was not found.": {
+    "ar": "هذه الصفحة غير موجودة"
+  },
   "Home": {
     "ar": "الرئيسية"
   },
@@ -282,7 +369,7 @@
     "ar": "اضف للمفضلة"
   },
   "Report Ad": {
-    "ar": "التبلي عن الإعلان"
+    "ar": "التبليغ عن الإعلان"
   },
   "You may also like": {
     "ar": "اعلانات مشابهة"
@@ -331,6 +418,9 @@
   },
   "My Ads":{
     "ar":"إعلانتي"
+  },
+  "New ads":{
+    "ar":"الاعلانات الجديدة"
   },
   "My Fav":{
     "ar":" المفضلة "

@@ -24,7 +24,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public sliders = [];
   public items:any[] = [];
+  public newAds:any[] = [];
   public categories: Icategory[];
+  numberFeaturAds = 4;
+  numberNewAds = 4;
   categoriesurl = environment.ApiUrl + 'nest';
   countries: any[];
   loaded = true;
@@ -45,10 +48,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // owl();
     this.getitems();
+    this.getNewAds();
     this.getCategoris()
   }
   goToProduct(id){
     this.router.navigate(['/product/', id]);
+  }
+  getNewAds() {
+    var sub = this.rest.getNewProducts().subscribe(data=> {
+      this.loaded = false;
+      var xx:any[] = data['data'];
+      xx.map(item=>{
+        if (item.media.length==0) {
+          item.media.push({id: 0, product_id: 0, url: "#", flag: 1, type: "jpeg"})
+        }
+        item['discount']=this.math(item.reg_price,item.sale_price)+"%";
+        return item;
+      })
+     this.newAds=xx;
+     if(this.newAds.length > 0)
+     this.loaded = false;
+    });
+    this._api.sub("getitems", sub);
   }
   getitems() {
     var sub = this.rest.getFavProducts().subscribe(data=> {

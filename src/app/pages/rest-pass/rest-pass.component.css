@@ -1,0 +1,46 @@
+ .sign-box {
+  width: 460px;
+  background: white;
+  margin: auto;
+}
+
+ .sign-box .sign-face span {
+  text-transform: none;
+}
+
+ .sign-box .sign-face span {
+  font-size: 14px;
+}
+
+ .sign-box .sign-face span:nth-of-type(2) {
+  position: relative;
+}
+
+ .sign-box .sign-face span:nth-of-type(2)::after,
+ .sign-box .sign-face span:nth-of-type(2)::before {
+  content: "";
+  background: #98a6ad75;
+  height: 1px;
+  width: 160px;
+  position: absolute;
+  left: 30px;
+  top: 12px;
+
+}
+
+ .sign-box .sign-face span:nth-of-type(2)::after {
+  right: 30px;
+  left: auto;
+  width: 158px;
+}
+
+ .sign-box .sign-face .button {
+  font-size: 16px;
+  color: white;
+  background: #3C5A99;
+  padding: 8px 15px;
+}
+
+ .sign-box form {
+  padding: 0 3rem;
+}

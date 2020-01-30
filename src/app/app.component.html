@@ -22,7 +22,7 @@
     <!-- START DOWN BUTTON SECTION -->
     <div class="down-button">
       <div class="container">
-          <a href="#">
+          <a [href]="'https://'+google_play">
               <div class="button-down wow fadeIn" data-wow-offset="450" data-wow-delay="0">
                   <img class=" float-left img-fluid" src="assets/images/icons/google-play.png" alt="Google Play Icon" width="30">
                   <div class="text float-left text-center">
@@ -33,7 +33,7 @@
               </div><!-- Button Down -->
           </a>
 
-          <a href="#">
+          <a [href]="'https://'+app_store">
               <div class="button-down wow fadeIn" data-wow-offset="450" data-wow-delay=".3s">
                   <img class=" float-left img-fluid" src="assets/images/icons/app-store.png" alt="App store Icon" width="30">
                   <div class="text float-left text-center">
@@ -63,14 +63,14 @@
                       <ul class="list-unstyled">
                           <li><a routerLink="/home">{{ 'Home' | translate }}</a></li>
                           <li><a routerLink="/about">{{ 'About' | translate }}</a></li>
-                          <!-- <li><a href="#">{{ 'Blog' | translate }}</a></li>
-                          <li><a href="#">{{ 'Login' | translate }}</a></li>
-                          <li><a href="#">{{ 'Register' | translate }}</a></li> -->
+                          <!-- <li><a href="javascript:;">{{ 'Blog' | translate }}</a></li>
+                          <li><a href="javascript:;">{{ 'Login' | translate }}</a></li>
+                          <li><a href="javascript:;">{{ 'Register' | translate }}</a></li> -->
                       </ul>
                       <ul class="list-unstyled">
-                          <li><a href="#">{{ 'Pricing Plans' | translate }}</a></li>
+                          <!-- <li><a href="javascript:;">{{ 'Pricing Plans' | translate }}</a></li> -->
                           <li><a routerLink="/faq" >{{ 'FAQ' | translate }}</a></li>
-                          <!-- <li><a href="#">{{ 'All Ads' | translate }}</a></li> -->
+                          <!-- <li><a href="javascript:;">{{ 'All Ads' | translate }}</a></li> -->
                           <li><a routerLink="/contact">{{ 'Help & Contact us' | translate }}</a></li>
                           <li><a routerLink="/terms">{{ 'Terms & Conditions' | translate }}</a></li>
                       </ul>
@@ -83,10 +83,10 @@
                   <div class="end-foot text-center">
                       <h6>{{'Contact with us' | translate}} </h6>
                       <div class="links-social">
-                          <a href="#" title="Facebook"><img src="assets/images/icons/facebook.png"></a>
-                          <a href="#" title="Twitter"><img src="assets/images/icons/twitter.png"></a>
-                          <a href="#" title="Instagram"><img src="assets/images/icons/instagram.png"></a>
-                          <a href="#" title="Linkedin"><img src="assets/images/icons/linkedin.png"></a>
+                          <a [href]="'https://'+facebook" title="Facebook"><img src="assets/images/icons/facebook.png"></a>
+                          <a [href]="'https://'+twitter" title="Twitter"><img src="assets/images/icons/twitter.png"></a>
+                          <a [href]="'https://'+instagram" title="Instagram"><img src="assets/images/icons/instagram.png"></a>
+                          <a [href]="'https://'+linkedin" title="Linkedin"><img src="assets/images/icons/linkedin.png"></a>
                       </div>
                   </div>
               </div><!-- Col #3 -->

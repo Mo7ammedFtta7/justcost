@@ -15,17 +15,17 @@
                 </div>
                 <!-- Start List Links -->
                 <ul class="list-unstyled text-uppercase">
-                    <!-- <li><a href="#"><i class="fas fa-user"></i> <span>about me</span></a></li> -->
+                    <!-- <li><a href="javascript:;"><i class="fas fa-user"></i> <span>about me</span></a></li> -->
                     <li>
-                        <a href="#"><i class="fas fa-suitcase"></i> <span>{{'my ads' | translate}}</span></a>
+                        <a href="javascript:;"><i class="fas fa-suitcase"></i> <span>{{'my ads' | translate}}</span></a>
                         <span class="count float-right"> {{totalMyAds}} </span>
                     </li>
                     <!-- <li>
-                        <a href="#"><i class="fas fa-heart"></i> <span>{{'watch later ads' | translate}}</span></a>
+                        <a href="javascript:;"><i class="fas fa-heart"></i> <span>{{'watch later ads' | translate}}</span></a>
                         <span class="count float-right">44</span>
                     </li> -->
-                    <!-- <li><a href="#"><i class="fas fa-cogs"></i> <span>profile settings</span></a></li>
-                                <li><a href="#"><i class="fas fa-sign-out-alt"></i> log out</a></li> -->
+                    <!-- <li><a href="javascript:;"><i class="fas fa-cogs"></i> <span>profile settings</span></a></li>
+                                <li><a href="javascript:;"><i class="fas fa-sign-out-alt"></i> log out</a></li> -->
                 </ul>
             </div>
             <!-- End New -->
@@ -109,7 +109,9 @@
                                 <select class="form-control control2" ngModel #country="ngModel"
                                     (change)='getCitisOfCountry(country.value)' name="country" required>
                                     <option selected="">{{'Select Country' | translate}}</option>
-                                    <option [value]="country.id" *ngFor="let country of countries">{{country.name}}
+                                    <option [value]="country.id" *ngFor="let country of countries">
+                                     <label *ngIf="translate.getlocalLang()=='en'" >  {{country.name}} </label>
+                                     <label *ngIf="translate.getlocalLang()=='ar'" >  {{country.arName}} </label>
                                     </option>
 
                                 </select>
@@ -126,7 +128,10 @@
                                 </div>
                                 <select class="form-control control2" ngModel #cityId="ngModel" name="cityId" required>
                                     <option selected="">{{'Select City' | translate}}</option>
-                                    <option [value]="city.id" *ngFor="let city of citis">{{city.name}}</option>
+                                    <option [value]="city.id" *ngFor="let city of citis">
+                                        <label *ngIf="translate.getlocalLang()=='en'" >  {{city.name}} </label>
+                                        <label *ngIf="translate.getlocalLang()=='ar'" >  {{city.arName}} </label>
+                                    </option>
 
                                 </select>
                             </div>
@@ -250,21 +255,21 @@
                                 <!-- Start Select Category -->
                                 <span>Product Category :</span>
                                 <ul class="list-unstyled row Select-category category-list">
-                                    <li><a href="#" class="select">Automotive</a></li>
-                                    <li><a href="#">Property for sale</a></li>
-                                    <li><a href="#">Property for rent</a></li>
-                                    <li><a href="#">Shopping</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Electronics </a></li>
+                                    <li><a href="javascript:;" class="select">Automotive</a></li>
+                                    <li><a href="javascript:;">Property for sale</a></li>
+                                    <li><a href="javascript:;">Property for rent</a></li>
+                                    <li><a href="javascript:;">Shopping</a></li>
+                                    <li><a href="javascript:;">Services</a></li>
+                                    <li><a href="javascript:;">Electronics </a></li>
                                 </ul>
 
                                 <!-- Start Sub Category -->
                                 <span>Sub Category :</span>
                                 <ul class="list-unstyled row category-list">
-                                    <li><a href="#">Bikes </a></li>
-                                    <li><a href="#">Used Cars for Sale</a></li>
-                                    <li><a href="#">Motorcycles</a></li>
-                                    <li><a href="#">Heavy Vehicles</a></li>
+                                    <li><a href="javascript:;">Bikes </a></li>
+                                    <li><a href="javascript:;">Used Cars for Sale</a></li>
+                                    <li><a href="javascript:;">Motorcycles</a></li>
+                                    <li><a href="javascript:;">Heavy Vehicles</a></li>
                                 </ul>
                                 <!-- Start Media Details -->
                                 <h6 class="small-title">ad Media :</h6>
@@ -343,14 +348,20 @@
                                         <div class="form-group col-xl-6">
                                             <span class="mb-2 d-block"> {{"Product Category" | translate}}</span>
                                             <select (change)="getBrands(category_id.value)" class="form-control" name="category_id" #category_id="ngModel"  [class.is-valid]="category_id.valid && category_id.touched" [class.is-invalid]="category_id.invalid && (category_id.touched || newProduct.submitted)"   ngModel required>
-                                                <option *ngFor="let item of Icategory" [value]="item.id"> {{item.name}} </option>
+                                                <option *ngFor="let item of Icategory" [value]="item.id">
+                                                  <label *ngIf="translate.getlocalLang()=='ar'" > {{item.name_ar}}  </label>
+                                                  <label *ngIf="translate.getlocalLang()=='en'" > {{item.name}}  </label>
+                                                 </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-xl-6">
-                                            <span class="mb-2 d-block">  <i *ngIf="subload" class="fa fa-spinner fa-spin"> </i> Sub Category</span>
-                                            <select [disabled]="subload" class="form-control" name="sub" #sub="ngModel"  [class.is-valid]="sub.valid && sub.touched" [class.is-invalid]="sub.invalid && (sub.touched || newProduct.submitted)"   ngModel required>
+                                            <span class="mb-2 d-block">  <i *ngIf="subload" class="fa fa-spinner fa-spin"> </i> {{"Sub Category" | translate}} </span>
+                                            <select (change)="showBrands(sub.value)" [disabled]="subload" class="form-control" name="sub" #sub="ngModel"  [class.is-valid]="sub.valid && sub.touched" [class.is-invalid]="sub.invalid && (sub.touched || newProduct.submitted)"   ngModel required>
                                                 <option selected value="0"> Select .. </option>
-                                                <option *ngFor="let item of subCate" [value]="item.id"> {{item.name}} </option>
+                                                <option *ngFor="let item of subCate" [value]="item.id">
+                                                  <label *ngIf="translate.getlocalLang()=='ar'" > {{item.name_ar}}  </label>
+                                                  <label *ngIf="translate.getlocalLang()=='en'" > {{item.name}}  </label>
+                                                  </option>
                                             </select>
                                         </div>
                                         <div class="form-group col-xl-6">
@@ -394,7 +405,7 @@
                 <!-- End Form-->
                 <p>
                   {{"By clicking 'Publish Ad', you agree to our"|translate}}
-                  <a href="#"> {{"Terms of Use" | translate}} </a>
+                  <a href="javascript:;"> {{"Terms of Use" | translate}} </a>
                   {{"and acknowledge that you are the rightful owner of this item" | translate}} </p>
             </div>
             <!-- End Details -->

@@ -63,8 +63,22 @@
         <div class="col-xl-8 col-sm-12">
           <span>
             <button (click)="showNewProduct(newProduct)" style="margin-bottom:20px;" class="btn btn-primary" data-toggle="modal" data-target="#addproduct">
-               Add New Product <i class="fa fa-plus-circle"></i>
-              </button> </span>
+               {{"Add New Product"|translate}} <i class="fa fa-plus-circle"></i>
+              </button>
+              &nbsp;
+              <button *ngIf="ads.status.id==3" (click)="enableToggel(newProduct)" style="margin-bottom:20px;" class="btn btn-danger">
+                  {{"disable"|translate}}
+                  <i style="font-size: 20px;" *ngIf="disableSubmit" class="fa fa-spinner fa-spin"></i>
+              </button>
+              &nbsp;
+              <button *ngIf="ads.status.id==5"  (click)="enableToggel(newProduct)" style="margin-bottom:20px;" class="btn btn-success">
+                  {{"enable"|translate}}
+                  <i style="font-size: 20px;" *ngIf="disableSubmit" class="fa fa-spinner fa-spin"></i>
+              </button>
+            </span>
+            <div  *ngIf="ads.status.id==4" class="alert alert-info" role="alert">
+                {{"This is ads under revision !" | translate}}
+              </div>
             <div class="item row" *ngFor="let product of _.orderBy(ads?.products,'productId','desc')  | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
                 <div class="photo text-center col-sm-3">
                     <img appImage src="{{product?.media[0]?.url}}" alt="Image" class="img-fluid">
@@ -73,7 +87,7 @@
                     <div class="float-left py-3">
                         <h6><a routerLink="/product/{{product?.productId}}">{{product?.title}}</a>
                           &nbsp;&nbsp;
-                        <button (click)="selectProduct(product)" data-toggle="modal" data-target="#addproduct"> Edit Product </button>
+                        <button (click)="selectProduct(product)" data-toggle="modal" data-target="#addproduct"> {{"Edit Product"|translate}} </button>
                         </h6>
                         <small>{{(product.postedOn*1000)  | date }}</small>
                     </div>
@@ -95,7 +109,7 @@
                         <bar-rating  name="rating" [rate]="product?.ratings" [max]="5" [readOnly]="true"></bar-rating>
                     </div>
                     <div>
-                        <label href="#" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
+                        <label href="javascript:;" class="button2"><i class="fas fa-phone"></i> {{product?.mobile}} </label>
                         <a href="javascript:;"  (click)="getInfoMap(product)" class="button2"  data-toggle="modal" data-target="#locationMap">
                           <i class="fas fa-map-marker-alt"></i> {{ "View Location" | translate}}
                         </a>
@@ -112,8 +126,8 @@
 
         <div class="col-xl-4 col-sm-12">
             <label class="float-right" for="editAble">
-              <a *ngIf="!editAble" class="text-primary" href="javascript:;" (click)="editAble=true" > Edit Ads </a>
-              <a *ngIf="editAble"  class="text-primary" href="javascript:;" (click)="editAble=false" > canel </a>
+              <a *ngIf="!editAble" class="text-primary" href="javascript:;" (click)="editAble=true" > {{'Edit Ads'|translate}} </a>
+              <a *ngIf="editAble"  class="text-primary" href="javascript:;" (click)="editAble=false" > {{"cancel"|translate}} </a>
             </label> <br>
           <label > {{"Ad Title"|translate}} </label>
             <div class="border">
@@ -263,7 +277,7 @@
                   </div>
                   <div class="form-group col-xl-6">
                       <span class="mb-2 d-block">  Sub Category</span>
-                      <select  class="form-control" name="sub" #sub="ngModel"  [class.is-valid]="sub.valid && sub.touched" [class.is-invalid]="sub.invalid && (sub.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.category.id" required>
+                      <select (change)="showBrands(sub.value)" class="form-control" name="sub" #sub="ngModel"  [class.is-valid]="sub.valid && sub.touched" [class.is-invalid]="sub.invalid && (sub.touched || newProduct.submitted)"   [(ngModel)]="currentProduct.category.id" required>
                           <option selected value="0"> Select .. </option>
                           <option *ngFor="let item of subCategoryList" [value]="item.id"> {{item.name}} </option>
                       </select>
@@ -285,7 +299,7 @@
                   <div class="form-group col-xl-6">
                       <span class="mb-2 d-block">{{"Ad Photos" | translate}}</span>
                       <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="customFile" multiple (change)="onFileSelect($event)" name="media" #media="ngModel"  [class.is-valid]="media.valid && media.touched" [class.is-invalid]="media.invalid && (media.touched || newProduct.submitted)"   ngModel required >
+                          <input type="file" class="custom-file-input" id="customFile" multiple (change)="onFileSelect($event)" name="media" #media="ngModel"  [class.is-valid]="media.valid && media.touched" [class.is-invalid]="media.invalid && (media.touched || newProduct.submitted)"   ngModel [required]="addSubmit" >
                           <label class="custom-file-label" for="customFile">Choose file</label>
                       </div>
                   </div>
