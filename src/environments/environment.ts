@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  ApiUrl: 'http://185.151.29.205:8099/api/',
+  ApiUrl: 'http://admin.just-cost.com/api/',
   firebase: {
     apiKey: 'AIzaSyAOdxsslQOglImuJDk0E1lzOavgj_YVC9I',
     authDomain: 'notify-c0554.firebaseapp.com',
