@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   public local: string;
   itemCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
+<<<<<<< HEAD
+
+=======
   data:any;
   _ = _;
   google_play:any;
@@ -27,6 +30,7 @@ export class AppComponent implements OnInit {
   twitter:any;
   instagram:any;
   linkedin:any;
+>>>>>>> 7ef0c2a36532fcb7a0c0f22b0aa0c85548d0ef61
   constructor(public _translate: TranslateService,
               private router: Router,
               private afs: AngularFirestore,
